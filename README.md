@@ -19,8 +19,10 @@ The Stellarys version is separate from the Firestorm base version.
 - **Separate settings and cache:** Stellarys keeps its own profile alongside
   your other viewers.
 
-Posing another avatar requires their explicit permission and a compatible
-viewer. Poses are local to your viewer; they are not synchronised between viewers.
+Posing another avatar requires their explicit permission. This currently works
+with Stellarys and Black Dragon, including permission requests between the two
+viewers. Poses are only visible in the viewer applying them and are not
+synchronised with other viewers.
 
 ## Download and updates
 
