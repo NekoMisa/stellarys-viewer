@@ -1,0 +1,54 @@
+FIRE KITTY POSER PROTOTYPE 0.1 — REVISION 2
+Base: Firestorm 7.2.4 (80712), with Fire Kitty Fix 0.1.0 AMD changes.
+Unofficial experimental Windows x64 / AVX2 build. Unsigned. Manual updates.
+
+Extract the complete portable archive into its own folder. Run
+Firestorm-FireKittyPoser.exe. Do not merge it into an installed viewer.
+It uses a new FirestormFireKittyPoser_x64 settings and cache identity.
+Your existing Firestorm, Fire Kitty Fix and Black Dragon profiles are separate.
+No personal settings, accounts, credentials or cache are included.
+
+This prototype extends Firestorm's existing poser. It is not a complete
+Black Dragon feature port and does not add Black Dragon's renderer or UI.
+Pose changes are LOCAL to the photographer's viewer. No pose sync is included.
+The existing Fire Kitty Fix rendering changes are retained without edits.
+
+MANUAL TEST (requires another consenting person)
+1. Log in yourself. Open Avatar > Poser.
+   Test your own pose, joint editing, Stop Posing and reopening the window.
+2. Ask the other person to use Black Dragon with its poser permission protocol,
+   or this prototype. Stock Firestorm does not implement this handshake and
+   may display the request as a raw ;PoserRequest IM. The recipient must
+   support the protocol; a missing response expires after two minutes.
+3. Stand in the same region, within 50 metres. In the Poser's Model tab,
+   refresh the list, select the other person, and click Ask to pose.
+4. Before acceptance, Start Posing and joint editing must remain unavailable.
+   Decline once and verify they stay unavailable. Requests are rate limited;
+   wait at least 30 seconds before trying again.
+5. Ask again and have the other person explicitly allow it. The status must
+   change to Permission granted. Click Start Posing, then select a joint and
+   change its rotation. Verify that only your view changes.
+6. Test joint reset, T-pose, Stop Posing, starting again, and closing the poser.
+   Closing the poser always stops local poses of other avatars.
+7. While posing, have the other person revoke permission using Black Dragon's
+   controls, this prototype's Revoke my permission button, or the exact IM
+   command ;PoserDeny. The pose must stop and controls must become unavailable.
+8. Test leaving the region, teleporting back and relogging: fresh permission
+   must be required. Also test blocking/unblocking the other person.
+9. Recheck the mesh that used to flicker and ordinary Firestorm photography,
+   camera controls, toolbars and animesh posing.
+
+Permission is independent in each direction. Revoke my permission withdraws
+permission YOU gave the selected person to pose YOU. Stop Posing stops the
+pose YOU are editing. This prototype accepts permission only after an active
+request, with a two-minute response deadline. The legacy Black Dragon wire
+protocol has no nonce; session/region checks and deadlines narrow its scope.
+
+Build success and automated consent tests are not proof of live cross-viewer
+compatibility or correct visual posing. See VALIDATION.md for checks actually
+performed. Do not use this prototype as a replacement for a working viewer
+until the manual tests pass.
+
+Revision 2 fixes a remaining self/animesh-only filter in the nearby avatar scan.
+Extract into a new folder. Keep both test avatars within 50 metres in the same region, then refresh Model.
+

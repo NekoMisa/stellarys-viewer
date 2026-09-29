@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Звуки" name="Preference Media panel">
+	<panel.string name="middle_mouse">
+		Средняя кнопка мышки
+	</panel.string>
+	<panel.string name="ui_sound_copy_uuid">
+		Скопировать UUID звука
+	</panel.string>
+	<panel.string name="ui_sound_select_prompt">
+		Выберите звук интерфейса
+	</panel.string>
+	<panel.string name="ui_sound_play_this">
+		Включить звук
+	</panel.string>
+	<panel.string name="ui_sound_playmode_new_session">
+		Воспроизвести только на новую сессию
+	</panel.string>
+	<panel.string name="ui_sound_playmode_every_message">
+		Воспроизвести на каждое сообщение
+	</panel.string>
+	<panel.string name="ui_sound_playmode_not_focus">
+		Воспроизводить, если не выбрана вкладка
+	</panel.string>
+	<panel.string name="ui_sound_playmode_mute">
+		Не воспроизводить звук
+	</panel.string>
+	<panel.string name="textFSChatMention">
+		Chat mentions:
+	</panel.string>
+	<panel.string name="textFSBadKeystroke">
+		Неверное нажатие:
+	</panel.string>
+	<panel.string name="textFSClick">
+		Нажатие кнопки мыши:
+	</panel.string>
+	<panel.string name="textFSClickRelease">
+		Отпускание кнопки мыши:
+	</panel.string>
+	<panel.string name="textFSFootsteps">
+		Шаги по умолчанию:
+	</panel.string>
+	<panel.string name="textFSFriendOffline">
+		Друг выходит из сети:
+	</panel.string>
+	<panel.string name="textFSFriendOnline">
+		Друг заходит в сеть:
+	</panel.string>
+	<panel.string name="textFSFriendshipOffer">
+		Предложение дружбы:
+	</panel.string>
+	<panel.string name="textFSGroupInvitation">
+		Приглашение в группу:
+	</panel.string>
+	<panel.string name="textFSGroupNotice">
+		Объявление группы:
+	</panel.string>
+	<panel.string name="textFSHealthReductionF">
+		Боль женского аватара:
+	</panel.string>
+	<panel.string name="textFSHealthReductionM">
+		Боль мужского аватара:
+	</panel.string>
+	<panel.string name="textFSIncomingVoiceCall">
+		Голосовой вызов:
+	</panel.string>
+	<panel.string name="textFSInvalidOp">
+		Неверная операция:
+	</panel.string>
+	<panel.string name="textFSInventoryOffer">
+		Предложение передачи:
+	</panel.string>
+	<panel.string name="textFSMicToggle">
+		Переключатель микрофона:
+	</panel.string>
+	<panel.string name="textFSMoneyChangeDown">
+		Снижение баланса:
+	</panel.string>
+	<panel.string name="textFSMoneyChangeUp">
+		Увеличение баланса:
+	</panel.string>
+	<panel.string name="textFSMovelockToggle">
+		Блокировка движения:
+	</panel.string>
+	<panel.string name="textFSNearbyChat">
+		Новое сообщ. общего чата:
+	</panel.string>
+	<panel.string name="textFSNewIncomingConfIMSession">
+		Сообщения конференции:
+	</panel.string>
+	<panel.string name="textFSNewIncomingGroupIMSession">
+		Сообщения от группы:
+	</panel.string>
+	<panel.string name="textFSNewIncomingIMSession">
+		Входящее ЛС:
+	</panel.string>
+	<panel.string name="textFSObjectCreate">
+		Создание объекта:
+	</panel.string>
+	<panel.string name="textFSObjectDelete">
+		Удаление объекта:
+	</panel.string>
+	<panel.string name="textFSObjectRezIn">
+		Появление объекта:
+	</panel.string>
+	<panel.string name="textFSObjectRezOut">
+		Исчезновение объекта:
+	</panel.string>
+	<panel.string name="textFSPieMenuAppear">
+		Открытие круглого меню:
+	</panel.string>
+	<panel.string name="textFSPieMenuHide">
+		Закрытие круглого меню:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight0">
+		Круглое меню, опция 1:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight1">
+		Круглое меню, опция 2:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight2">
+		Круглое меню, опция 3:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight3">
+		Круглое меню, опция 4:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight4">
+		Круглое меню, опция 5:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight5">
+		Круглое меню, опция 6:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight6">
+		Круглое меню, опция 7:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight7">
+		Круглое меню, опция 8:
+	</panel.string>
+	<panel.string name="textFSQuestionExperience">
+		Новое приключение:
+	</panel.string>
+	<panel.string name="textFSRestart">
+		Перезагрузка региона:
+	</panel.string>
+	<panel.string name="textFSRestartOpenSim">
+		Перезагрузка (OpenSim):
+	</panel.string>
+	<panel.string name="textFSScriptFloaterClose">
+		Script dialog closes:
+	</panel.string>
+	<panel.string name="textFSScriptFloaterOpen">
+		Диалог скрипта:
+	</panel.string>
+	<panel.string name="textFSSnapshot">
+		Создание снимка:
+	</panel.string>
+	<panel.string name="textFSAlert">
+		Оповещения:
+	</panel.string>
+	<panel.string name="textFSStartIM">
+		Начало сессии ЛС:
+	</panel.string>
+	<panel.string name="textFSTeleportOffer">
+		Предложение телепорта:
+	</panel.string>
+	<panel.string name="textFSTeleportOut">
+		Телепортация:
+	</panel.string>
+	<panel.string name="textFSTrackerBeacon">
+		Трекерный маяк:
+	</panel.string>
+	<panel.string name="textFSTyping">
+		Набирается сообщение:
+	</panel.string>
+	<panel.string name="textFSWindowClose">
+		Закрытие окна:
+	</panel.string>
+	<panel.string name="textFSWindowOpen">
+		Открытие окна:
+	</panel.string>
+	<tab_container label="Настройки Firestorm" name="tabs">
+		<panel label="Звуки" name="Media Sounds Panel">
+			<slider label="Общая громкость" name="System Volume"/>
+			<check_box label="Отключение при сворачивании" name="mute_when_minimized"/>
+			<slider label="Интерфейс" name="UI Volume"/>
+			<slider label="Окружение" name="Wind Volume"/>
+			<check_box name="collisions_audio_play_btn" tool_tip="Отметьте, чтобы слышать звуки по умолчанию в результате столкновений" label="Включить звуки столкновений"/>
+			<slider label="Звуковые эффекты" name="SFX Volume"/>
+			<check_box name="gesture_audio_play_btn" tool_tip="Отметьте, чтобы слышать звуки из жестов" label="Включить звуки жестов"/>
+			<slider label="Потоковая музыка" name="Music Volume"/>
+			<check_box label="Включено" name="enable_music"/>
+			<slider label="Медиа" name="Media Volume"/>
+			<check_box label="Включено" name="enable_media"/>
+			<slider label="Голосовой чат" name="Voice Volume"/>
+			<check_box label="Включено" name="enable_voice_check_volume"/>
+			<text name="Listen media from" width="200">
+				Слышать мультимедиа и звуки из:
+			</text>
+			<radio_group name="media_ear_location">
+				<radio_item label="Позиции камеры" name="0"/>
+				<radio_item label="Позиции аватара" name="1"/>
+			</radio_group>
+			<text name="auto_unmute_label" width="300">
+				Автоматически включать звук после телепортации:
+			</text>
+			<check_box name="FSAutoUnmuteAmbient" label="Окружение" tool_tip="Автоматически включать звуки окружения после телепортации, если звук отключен (по умолчанию: выключено)" width="95"/>
+			<check_box name="FSAutoUnmuteSounds" label="Звуковые эффекты" tool_tip="Автоматически включать Звуковые эффекты после телепортации, если звук отключен (по умолчанию: выключено)" width="95"/>
+			<text name="friends_logon_sounds_label">
+				Воспроизводить звук, когда друзья:
+			</text>
+			<check_box label="В сети" name="friends_notify_online_sound"/>
+			<check_box label="Не в сети" name="friends_notify_offline_sound"/>
+			<text name="money_change_threshold_label" tool_tip="Воспроизведение звука при увеличении или уменьшении вашего баланса">
+				Порог изменения L$:
+			</text>
+			<panel height="100" name="output_device_settings_panel">
+				<panel.string name="output_default_text">
+					По умолчанию
+				</panel.string>
+				<panel.string name="output_no_device">
+					Нет доступных устройств
+				</panel.string>
+				<panel.string name="output_name_no_device">
+					Безымянное устройство
+				</panel.string>
+				<panel.string name="output_device_unavailable">
+					Устройство недоступно
+				</panel.string>
+				<text name="output_label" width="120">
+					Устройство вывода:
+				</text>
+			</panel>
+		</panel>
+		<panel name="Media Media Panel" label="Медиа">
+			<text name="media_autoplay_label" width="130">
+				Автовоспроизведение
+			</text>
+			<combo_box name="media_auto_play_combo" width="100">
+				<item label="Запрещено" name="autoplay_disabled"/>
+				<item label="Разрешено" name="autoplay_enabled"/>
+				<!--<item label="Запросить" name="autoplay_ask" />-->
+			</combo_box>
+			<check_box name="media_allowscript_btn" tool_tip="Эта настройка разрешает / запрещает скриптовым примам управлять медиа потоками" label="Разрешить скриптам воспроизводить медиа"/>
+			<check_box label="Воспроизведение медиа прикрепленных к другим аватарам" name="media_show_on_others_btn" tool_tip="Воспроизведение медиа прикрепленных к другим аватарам"/>
+			<check_box name="media_huds_autoplay" label="Авто-воспроизведение медиафайлов, подключенных к вашему HUD" tool_tip="Снимите этот флажок, чтобы HUD следовал стандартным настройкам автоматического воспроизведения мультимедиа." width="230"/>
+			<check_box name="media_filter" tool_tip="Выберить это для того, чтобы фильтровать, будет ли играть медиа с определенного хоста" label="Включить медиа фильтр (повышение безопасности)"/>
+			<button label="Управление сайтами с медиа" name="edit_media_lists_button"/>
+			<text name="media_firstinteract_label" tool_tip="Этот параметр определяет, какие медиафайлы (после загрузки) не требуют первого щелчка для фокусировки перед началом взаимодействия. Это позволяет передавать щелчки непосредственно медиафайлам, минуя требование щелчка для фокусировки." width="275">
+				Первое взаимодействие с медиа:
+			</text>
+			<check_box name="media_first_click_all" label="Все"/>
+			<check_box name="media_first_click_any" label="Любые объекты"/>
+			<check_box name="media_first_click_hud" label="Только прикрепленные к HUD"/>
+			<check_box name="media_first_click_own" label="Собственные объекты"/>
+			<check_box name="media_first_click_group" label="Объекты группы"/>
+			<check_box name="media_first_click_friend" label="Объекты друзей"/>
+			<check_box name="media_first_click_land" label="Объекты землевладельца"/>
+			<text name="Media Rolloff">
+				Расстояние уменьшения слышимости источника звука:
+			</text>
+			<slider label="Минимум" name="MediaRollOffMin" tool_tip="Минимальное расстояние уменьшения слышимости источника звука"/>
+			<text name="MinMeters">
+				метров
+			</text>
+			<slider label="Максимум" name="MediaRollOffMax" tool_tip="Максимальное расстояние уменьшения слышимости источника звука."/>
+			<text name="MaxMeters">
+				метров
+			</text>
+		</panel>
+		<panel label="Музыка" name="Media Music Panel">
+			<check_box label="Разрешить автовоспроизведение музыки" name="audio_auto_play_btn" tool_tip="Выберите для автоматического запуска воспроизведения аудио потоков."/>
+			<check_box name="FSFadeAudioStream" tool_tip="Включить плавное увеличение и уменьшение громкости музыки на участке" label="Включить нарастание/затухание громкости:"/>
+			<slider label="Нарастание:" name="FSAudioMusicFadeIn" tool_tip="Время плавного увеличение громкости музыки на участке." width="270" label_width="70"/>
+			<text name="FSAudioMusicFadeInSeconds" left_delta="275">
+				секунд
+			</text>
+			<slider label="Затухание:" name="FSAudioMusicFadeOut" tool_tip="Время плавного уменьшения громкости музыки на участке." width="270" label_width="70"/>
+			<text name="FSAudioMusicFadeOutSeconds" left_delta="275">
+				секунд
+			</text>
+			<text name="show_stream_metadata_text" >
+				Показать уведомления заголовка потока:
+			</text>
+			<radio_group name="show_stream_metadata">
+				<radio_item label="Выключено" width="110" name="radio_off" />
+				<radio_item label="Всплывающее окно" width="150" name="radio_toasts" />
+				<radio_item label="Общий чат" name="radio_chat" />
+			</radio_group>
+			<check_box name="StreamMetadataAnnounceToChat" width="200" label="Посылать заголовки в канал:"/>
+		</panel>
+		<panel label="Настройки голоса" name="Media Voice tab">
+			<check_box label="Включить голос" name="enable_voice_check" width="155"/>
+			<button tool_tip="Сброс голоса" name="reset_voice_button"/>
+			<radio_group name="ear_location">
+				<radio_item label="Слышать голос из положения камеры" name="0"/>
+				<radio_item label="Слышать голос из положения аватара" name="1"/>
+				<radio_item label="Слышать все голоса громко (только Open Sim)" name="2"/>
+			</radio_group>
+			<check_box label="Двигать губами аватара во время разговора" name="enable_lip_sync"/>
+			<check_box label="Показать голосовой индикатор над аватарами" tool_tip="Показывает голосовой индикатор (белую точку) над аватарами" name="FSShowVoiceVisualizer"/>
+			<check_box label="Показать голосовой индикатор над моим аватаром" name="FSShowMyOwnVoiceVisualizer"/>
+			<check_box label="Показывать точку как часть голосового индикатора" tool_tip="Если этот параметр включен, точка отображается как часть голосового индикатора. Если отключено, отображаются только голосовые волны." name="FSShowVoiceVisualizerWithDot"/>
+			<check_box label="Показать голосовые визуализаторы при звонке" tool_tip="Показывает голосовой индикатор и двигать губами в мире, находясь в частных и групповых вызовах" name="Show_Voice_Visualizers_In_Calls"/>
+			<check_box label="Показать состояние голосовых каналов во вкладках разговоров" tool_tip="Показать состояние голосовых каналов во вкладках разговоров" name="FSShowConversationVoiceStateIndicator"/>
+			<check_box label="Автоматически отклонять все входящие групповые голосовые вызовы" name="VoiceCallsRejectGroup"/>
+			<check_box label="Автоматически отклонять все входящие специальные голосовые вызовы AdHoc" name="VoiceCallsRejectAdHoc"/>
+			<check_box label="Автоматически отклонять все входящие P2P (аватар с аватаром) голосовые вызовы" name="VoiceCallsRejectP2P"/>
+			<check_box label="Включить/выключить микрофон при нажатии кнопки на панели инструментов" name="push_to_talk_toggle_check" tool_tip="В режиме 'Включить/выключить' микрофон включается и выключается одиночным нажатием кнопки. Иначе микрофон включен только когда нажата кнопка."/>
+			<check_box label="Автоматическая регулировка усиления" name="voice_automatic_gain_control" tool_tip="Установите флажок, чтобы включить автоматическую регулировку усиления"/>
+			<check_box label="Подавление эха" name="enable_echo_cancellation" tool_tip="Установите флажок, чтобы включить подавление голосового эха"/>
+			<text name="noise_suppression_label">Шумоподавление:</text>
+			<combo_box name="noise_suppression_combo">
+				<item label="Выключено" name="noise_suppression_none"/>
+				<item label="Низкое" name="noise_suppression_low"/>
+				<item label="Умеренное" name="noise_suppression_moderate"/>
+				<item label="Высокое" name="noise_suppression_high"/>
+				<item label="Максимум" name="noise_suppression_max"/>
+			</combo_box>
+			<button label="Настройки звукового устройства" name="device_settings_btn" width="210"/>
+		</panel>
+		<panel label="Звуки интерфейса" name="UI Sounds tab">
+			<text name="textFSExplanation_tab1">
+				Здесь вы можете изменить (путем замены звуковых UUID), включить или выключить звуки интерфейса по умолчанию.
+Нажмите на кнопку 'D' рядом с UUID, чтобы вернуть значение по умолчанию.
+			</text>
+			<filter_editor name="ui_sound_filter" label="Фильтр звуков интерфейса" />
+			<scroll_list name="ui_sounds_list">
+				<column label="Звук" name="ui_sound_label" />
+				<column label="Статус" name="ui_sound_status" />
+			</scroll_list>
+			<button name="ui_sound_preview" tool_tip="Прослушать этот звук." />
+			<button name="ui_sound_default" tool_tip="Сброс к UUID по умолчанию." />
+		</panel>
+
+	</tab_container>
+</panel>

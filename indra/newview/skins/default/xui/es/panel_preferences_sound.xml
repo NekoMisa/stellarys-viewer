@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Sonidos" name="Preference Media panel">
+	<panel.string name="ui_sound_copy_uuid">
+		Copiar UUID del sonido
+	</panel.string>
+	<panel.string name="ui_sound_select_prompt">
+		Seleccione un sonido de la IU
+	</panel.string>
+	<panel.string name="ui_sound_play_this">
+		Reproducir
+	</panel.string>
+	<panel.string name="ui_sound_playmode_new_session">
+		Sólo si inicia sesión
+	</panel.string>
+	<panel.string name="ui_sound_playmode_every_message">
+		En cada mensaje
+	</panel.string>
+	<panel.string name="ui_sound_playmode_not_focus">
+		Sólo si no tiene el foco
+	</panel.string>
+	<panel.string name="ui_sound_playmode_mute">
+		Nunca
+	</panel.string>
+	<panel.string name="textFSChatMention">
+		Menciones en el chat:
+	</panel.string>
+	<panel.string name="textFSBadKeystroke">
+		Pulsaciones inválidas:
+	</panel.string>
+	<panel.string name="textFSClick">
+		Pulsación de ratón:
+	</panel.string>
+	<panel.string name="textFSClickRelease">
+		Soltar botón de ratón:
+	</panel.string>
+	<panel.string name="textFSFootsteps">
+		Sonido de pasos:
+	</panel.string>
+	<panel.string name="textFSFriendOffline">
+		Desconexión de un amigo:
+	</panel.string>
+	<panel.string name="textFSFriendOnline">
+		Conexión de un amigo:
+	</panel.string>
+	<panel.string name="textFSFriendshipOffer">
+		Oferta de amistad:
+	</panel.string>
+	<panel.string name="textFSGroupInvitation">
+		Invitación a grupo:
+	</panel.string>
+	<panel.string name="textFSGroupNotice">
+		Aviso de grupo:
+	</panel.string>
+	<panel.string name="textFSHealthReductionF">
+		Daño avatar femenino:
+	</panel.string>
+	<panel.string name="textFSHealthReductionM">
+		Daño avatar masculino:
+	</panel.string>
+	<panel.string name="textFSIncomingVoiceCall">
+		Llamada de voz:
+	</panel.string>
+	<panel.string name="textFSInvalidOp">
+		Operación inválida:
+	</panel.string>
+	<panel.string name="textFSInventoryOffer">
+		Oferta inventario:
+	</panel.string>
+	<panel.string name="textFSMicToggle">
+		Microphone toggle:
+	</panel.string>
+	<panel.string name="textFSMoneyChangeDown">
+		Gasto de L$:
+	</panel.string>
+	<panel.string name="textFSMoneyChangeUp">
+		Cobro de L$:
+	</panel.string>
+	<panel.string name="textFSMovelockToggle">
+		Toggling movelock:
+	</panel.string>
+	<panel.string name="textFSNearbyChat">
+		Nuevo mensaje chat local:
+	</panel.string>
+	<panel.string name="textFSNewIncomingConfIMSession">
+		AdHoc Instant Message:
+	</panel.string>
+	<panel.string name="textFSNewIncomingGroupIMSession">
+		Mensaje de grupo:
+	</panel.string>
+	<panel.string name="textFSNewIncomingIMSession">
+		Recepción de MI:
+	</panel.string>
+	<panel.string name="textFSObjectCreate">
+		Creación de objeto:
+	</panel.string>
+	<panel.string name="textFSObjectDelete">
+		Eliminación de objeto:
+	</panel.string>
+	<panel.string name="textFSObjectRezIn">
+		Extracción de objeto:
+	</panel.string>
+	<panel.string name="textFSObjectRezOut">
+		Toma de objeto:
+	</panel.string>
+	<panel.string name="textFSPieMenuAppear">
+		Aparición menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuHide">
+		Cierre menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight0">
+		Opción 1 menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight1">
+		Opción 2 menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight2">
+		Opción 3 menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight3">
+		Opción 4 menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight4">
+		Opción 5 menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight5">
+		Opción 6 menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight6">
+		Opción 7 menú circular:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight7">
+		Opción 8 menú circular:
+	</panel.string>
+	<panel.string name="textFSQuestionExperience">
+		New Experience:
+	</panel.string>
+	<panel.string name="textFSRestart">
+		Reinicio región:
+	</panel.string>
+	<panel.string name="textFSRestartOpenSim">
+		Reinicio región (OpenSim):
+	</panel.string>
+	<panel.string name="textFSScriptFloaterClose">
+		Script dialog closes:
+	</panel.string>
+	<panel.string name="textFSScriptFloaterOpen">
+		Script dialog opens:
+	</panel.string>
+	<panel.string name="textFSSnapshot">
+		Fotografía:
+	</panel.string>
+	<panel.string name="textFSAlert">
+		Alerta por defecto:
+	</panel.string>
+	<panel.string name="textFSStartIM">
+		Inicio de sesión de MI:
+	</panel.string>
+	<panel.string name="textFSTeleportOffer">
+		Oferta de teleporte:
+	</panel.string>
+	<panel.string name="textFSTeleportOut">
+		Teleporte:
+	</panel.string>
+	<panel.string name="textFSTrackerBeacon">
+		Tracker beacon:
+	</panel.string>
+	<panel.string name="textFSTyping">
+		Escritura de mensaje:
+	</panel.string>
+	<panel.string name="textFSWindowClose">
+		Cierre de ventana:
+	</panel.string>
+	<panel.string name="textFSWindowOpen">
+		Apertura de ventana:
+	</panel.string>
+	<tab_container label="Prefs. Firestorm" name="tabs">
+		<panel label="General" name="Media Sounds Panel">
+			<slider label="Volumen general" name="System Volume"/>
+			<check_box label="Silenciar al minimizar" name="mute_when_minimized"/>
+			<slider label="Interfaz" name="UI Volume"/>
+			<slider label="Ambiente" name="Wind Volume"/>
+			<check_box name="collisions_audio_play_btn" tool_tip="Activa/desactiva los sonidos asociados a las colisiones" label="Reproducir sonidos de colisión"/>
+			<slider label="Efectos de sonido" name="SFX Volume"/>
+			<check_box name="gesture_audio_play_btn" tool_tip="Activa/desactiva el sonido de los gestos" label="Reproducir sonido de los gestos"/>
+			<slider label="Flujo de música" name="Music Volume"/>
+			<check_box label="Activado" name="enable_music"/>
+			<slider label="Medios" name="Media Volume"/>
+			<check_box label="Activado" name="enable_media"/>
+			<slider label="Chat de voz" name="Voice Volume"/>
+			<check_box label="Activado" name="enable_voice_check_volume"/>
+			<text name="friends_logon_sounds_label">
+				Reproducir un sonido cuando mis amigos:
+			</text>
+			<check_box name="friends_notify_online_sound" label="Se conectan" width="95"/>
+			<check_box name="friends_notify_offline_sound" label="Se desconectan" width="95" />
+			<text name="money_change_threshold_label" tool_tip="Reproduce un sonido cuando se gasta o recibe una cantidad de dinero superior a la configurada.">
+				Umbral de L$:
+			</text>
+		</panel>
+		<panel name="Media Music Panel">
+			<check_box name="FSFadeAudioStream" tool_tip="Activa el fundido de sonido cuando cambia el flujo de audio de parcela" label="Fundido de audio de parcela:"/>
+			<slider label="Entrada:" name="FSAudioMusicFadeIn" tool_tip="Tiempo de fundido de entrada de audio de parcela."/>
+			<text name="FSAudioMusicFadeInSeconds">
+				segundos
+			</text>
+			<slider label="Salida:" name="FSAudioMusicFadeOut" tool_tip="Tiempo de fundido de salida de audio de parcela."/>
+			<text name="FSAudioMusicFadeOutSeconds">
+				segundos
+			</text>
+			<text name="show_stream_metadata_text" width="230">
+				Mostrar notificaciones de título de flujo:
+			</text>
+			<radio_group name="show_stream_metadata" width="270">
+				<radio_item label="No" name="radio_off"/>
+				<radio_item label="Tostadas" width="75" name="radio_toasts"/>
+				<radio_item label="Chat local" name="radio_chat"/>
+			</radio_group>
+			<check_box name="StreamMetadataAnnounceToChat" label="Enviar el título del flujo al canal:"/>
+			<spinner top_delta="-3" left_pad="25" name="StreamMetadataAnnounceChannel"/>
+		</panel>
+		<panel name="Media Media Panel">
+			<check_box name="media_auto_play_btn" tool_tip="Activa/desactiva la reproducción automática de medios cuando te conectas o cambias de región." label="Permitir reproducción automática de medios al entrar en una región"/>
+			<check_box name="media_allowscript_btn" tool_tip="Permite/impide que los scripts de los prims controlen tus conexiones de medios" label="Permitir que los scripts prims reproduzcan medios"/>
+			<check_box name="media_show_on_others_btn" tool_tip="Desactiva para ocultar los medios anexados a avatares de tu entorno" label="Reproducir medios anexados a otros avatares"/>
+			<check_box name="media_filter" tool_tip="Activa/desactiva el filtro que te permite escoger a qué servidores permites la reproducción de medios" label="Activar filtro de medios (seguridad mejorada)"/>
+			<button label="Administrar servidores de medios" name="edit_media_lists_button" width="200" />
+			<text name="Media Rolloff" width="270">
+				Distancia de atenuación de la fuente del audio:
+			</text>
+			<slider name="MediaRollOffMin" tool_tip="Distancia mínima de la fuente de sonido para que la atenuación empiece a tener efecto."/>
+			<text name="MinMeters">
+				metros
+			</text>
+			<slider name="MediaRollOffMax" tool_tip="Distancia de la fuente de sonido para silenciarlo completamente."/>
+			<text name="MaxMeters">
+				metros
+			</text>
+		</panel>
+		<panel label="Voz" name="Media Voice tab">
+			<check_box label="Activar voz" name="enable_voice_check"/>
+			<text name="Listen from">
+				Escuchar desde:
+			</text>
+			<radio_group name="ear_location">
+				<radio_item label="Posición de la cámara" name="0"/>
+				<radio_item label="Mi posición" name="1"/>
+			</radio_group>
+			<check_box label="Animar los labios del avatar al hablar" name="enable_lip_sync"/>
+			<check_box label="Mostrar indicadores de voz sobre los avatares" tool_tip="Muestra el indicador de voz (punto blanco) sobre los avatares" name="FSShowVoiceVisualizer"/>
+			<check_box label="Mostrar indicadores de voz durante las llamadas" tool_tip="Muestra los indicadores de voz y mueve los labios del avatar mientras se mantienen llamadas privadas y de grupo" name="Show_Voice_Visualizers_In_Calls"/>
+			<check_box label="Rechazar automáticamente todas las llamadas de voz de grupo" name="VoiceCallsRejectGroup"/>
+			<check_box label="Rechazar automáticamente todas las llamadas de voz AdHoc (conferencias)" name="VoiceCallsRejectAdHoc"/>
+			<check_box label="Rechazar automáticamente todas las llamadas de voz P2P (avatar con avatar)" name="VoiceCallsRejectP2P"/>
+			<check_box label="Conmutar el funcionamiento del micrófono al pulsar:" name="push_to_talk_toggle_check" tool_tip="Cuando se activa el modo de conmutación, pulsa y suelta una sola vez el botón o tecla seleccionado para activar o desactivar el micrófono. Cuando no se usa el modo de conmutación, el micrófono difunde tu voz sólo mientras la tecla o botón se mantienen pulsados."/>
+			<line_editor name="modifier_combo" label="Tecla 'Pulsar-para-Hablar'"/>
+			<button label="Configurar tecla" name="set_voice_hotkey_button"/>
+			<button tool_tip="Restablecer a botón central del ratón" name="set_voice_middlemouse_button"/>
+			<button label="Dispositivos de audio" name="device_settings_btn"/>
+		</panel>
+		<panel label="Sonidos de IU" name="UI Sounds tab">
+			<text name="textFSExplanation_tab1">
+				Aquí puedes cambiar (mediante UUIDs) los sonidos por defecto de la interfaz.
+Sitúa el cursor del ratón sobre el campo de UUID para mostrar su valor por defecto.
+			</text>
+			<filter_editor name="ui_sound_filter" label="Filtrar sonidos de la IU" />
+			<scroll_list name="ui_sounds_list">
+				<column label="Sonido" name="ui_sound_label" />
+				<column label="Estado" name="ui_sound_status" />
+			</scroll_list>
+			<button name="ui_sound_preview" tool_tip="Probar sonido." />
+			<button name="ui_sound_default" tool_tip="Restablecer al UUID por defecto." />
+		</panel>
+
+	</tab_container>
+</panel>

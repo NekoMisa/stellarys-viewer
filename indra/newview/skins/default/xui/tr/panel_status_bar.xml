@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel name="status">
+	<panel.string name="packet_loss_tooltip">
+		Paket KaybÄ±
+	</panel.string>
+	<panel.string name="bandwidth_tooltip">
+		Bant geniÅŸliÄŸi
+	</panel.string>
+	<panel.string name="time_ampm">
+		[hour12, datetime, slt]:[min, datetime, slt] [ampm, datetime, slt] [timezone,datetime, slt]
+	</panel.string>
+	<panel.string name="timeTooltip">
+		[weekday, datetime, slt], [day, datetime, slt] [month, datetime, slt] [year, datetime, slt]
+	</panel.string>
+	<panel.string name="buycurrencylabel">
+		L$ [AMT]
+	</panel.string>
+	<panel name="menu_search_panel">
+		<search_editor label="MenÃ¼lerde Ara" name="search_menu_edit" tool_tip="Merak ettiÄŸiniz arama terimini buraya yazÄ±n. SonuÃ§lar, menÃ¼ iÃ§indeki kÄ±smi tam metin eÅŸleÅŸmeleri ÅŸeklinde gÃ¶rÃ¼ntÃ¼lenir."/>
+	</panel>
+	<panel left="-446" name="balance_bg" width="215">
+		<text name="balance" tool_tip="L$ bakiyenizi yenilemek iÃ§in buraya tÄ±klayÄ±n" value="L$??"/>
+		<button label="L$ SatÄ±n Al" name="buyL" tool_tip="Daha fazla L$ satÄ±n almak iÃ§in tÄ±klayÄ±n"/>
+		<button label="AlÄ±ÅŸveriÅŸ yap" name="goShop" tool_tip="Second Life Pazaryeri AÃ§" width="95"/>
+	</panel>
+	<text name="TimeText" tool_tip="GeÃ§erli zaman (Pasifik)">
+		24:00 AM PST
+	</text>
+	<button name="media_toggle_btn" tool_tip="TÃ¼m Ortam Ã–ÄŸelerini BaÅŸlat/Durdur (MÃ¼zik, Video, Web sayfalarÄ±)"/>
+	<button name="volume_btn" tool_tip="KÃ¼resel Ses KontrolÃ¼"/>
+</panel>

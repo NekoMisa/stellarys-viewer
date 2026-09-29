@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Səslər" name="Preference Media panel">
+	<panel.string name="middle_mouse">
+		Orta siçan düyməsi
+	</panel.string>
+	<panel.string name="ui_sound_copy_uuid">
+		Səs UUID-ni kopyala
+	</panel.string>
+	<panel.string name="ui_sound_select_prompt">
+		UI səsi seçin
+	</panel.string>
+	<panel.string name="ui_sound_play_this">
+		Səsi yandır
+	</panel.string>
+	<panel.string name="ui_sound_playmode_new_session">
+		Yalnız yeni sessiyada oxudun
+	</panel.string>
+	<panel.string name="ui_sound_playmode_every_message">
+		Hər yeni mesaja oxudun
+	</panel.string>
+	<panel.string name="ui_sound_playmode_not_focus">
+		Pəncərə seçilmədikdə oxut
+	</panel.string>
+	<panel.string name="ui_sound_playmode_mute">
+		Səsi oxutma
+	</panel.string>
+	<panel.string name="textFSChatMention">
+		Chat mentions:
+	</panel.string>
+	<panel.string name="textFSBadKeystroke">
+		Yanlış düymə basılması:
+	</panel.string>
+	<panel.string name="textFSClick">
+		Siçan düyməsinin basılması:
+	</panel.string>
+	<panel.string name="textFSClickRelease">
+		Siçan düyməsinin buraxılması:
+	</panel.string>
+	<panel.string name="textFSFootsteps">
+		Susmaya görə addımlar:
+	</panel.string>
+	<panel.string name="textFSFriendOffline">
+		Dost çıxır:
+	</panel.string>
+	<panel.string name="textFSFriendOnline">
+		Dost daxil olur:
+	</panel.string>
+	<panel.string name="textFSFriendshipOffer">
+		Dostluq təklifi:
+	</panel.string>
+	<panel.string name="textFSGroupInvitation">
+		Qrupa dəvət:
+	</panel.string>
+	<panel.string name="textFSGroupNotice">
+		Qrup bildirişi:
+	</panel.string>
+	<panel.string name="textFSHealthReductionF">
+		Qadın avatarın acısı:
+	</panel.string>
+	<panel.string name="textFSHealthReductionM">
+		Kişi avatarın acısı:
+	</panel.string>
+	<panel.string name="textFSIncomingVoiceCall">
+		Səsli zəng:
+	</panel.string>
+	<panel.string name="textFSInvalidOp">
+		Yalnış əməliyyatlar:
+	</panel.string>
+	<panel.string name="textFSInventoryOffer">
+		Avadanlıq siyahısı təklifi:
+	</panel.string>
+	<panel.string name="textFSMicToggle">
+		Microphone toggle:
+	</panel.string>
+	<panel.string name="textFSMoneyChangeDown">
+		Pul balansının azalması:
+	</panel.string>
+	<panel.string name="textFSMoneyChangeUp">
+		Pul balansının artırılması:
+	</panel.string>
+	<panel.string name="textFSMovelockToggle">
+		Hərəkət bloklanması:
+	</panel.string>
+	<panel.string name="textFSNearbyChat">
+		Yeni ümumi söhbət mesajı:
+	</panel.string>
+	<panel.string name="textFSNewIncomingConfIMSession">
+		Konfransdan gələn mesajlar:
+	</panel.string>
+	<panel.string name="textFSNewIncomingGroupIMSession">
+		Qrupdan gələn mesajlar:
+	</panel.string>
+	<panel.string name="textFSNewIncomingIMSession">
+		Gələn İM:
+	</panel.string>
+	<panel.string name="textFSObjectCreate">
+		Obyektin yaradılması:
+	</panel.string>
+	<panel.string name="textFSObjectDelete">
+		Obyektin silinməsi:
+	</panel.string>
+	<panel.string name="textFSObjectRezIn">
+		Obyektin meydana çıxması:
+	</panel.string>
+	<panel.string name="textFSObjectRezOut">
+		Obyektin yoxa çıxması:
+	</panel.string>
+	<panel.string name="textFSPieMenuAppear">
+		Dairəvi menyu açılır:
+	</panel.string>
+	<panel.string name="textFSPieMenuHide">
+		Dairəvi menyu bağlanır:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight0">
+		Dairəvi menyu, seçim 1:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight1">
+		Dairəvi menyu, seçim 2:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight2">
+		Dairəvi menyu, seçim 3:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight3">
+		Dairəvi menyu, seçim 4:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight4">
+		Dairəvi menyu, seçim 5:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight5">
+		Dairəvi menyu, seçim 6:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight6">
+		Dairəvi menyu, seçim 7:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight7">
+		Dairəvi menyu, seçim 8:
+	</panel.string>
+	<panel.string name="textFSQuestionExperience">
+		Yeni macəra:
+	</panel.string>
+	<panel.string name="textFSRestart">
+		Region yenidən başlayır:
+	</panel.string>
+	<panel.string name="textFSRestartOpenSim">
+		Yenidən başlatma (OpenSim):
+	</panel.string>
+	<panel.string name="textFSScriptFloaterClose">
+		Script dialog closes:
+	</panel.string>
+	<panel.string name="textFSScriptFloaterOpen">
+		Skript dialoqu:
+	</panel.string>
+	<panel.string name="textFSSnapshot">
+		Şəkil çək:
+	</panel.string>
+	<panel.string name="textFSAlert">
+		Bildiriş:
+	</panel.string>
+	<panel.string name="textFSStartIM">
+		İM seansının başlanması:
+	</panel.string>
+	<panel.string name="textFSTeleportOffer">
+		Teleport təklifi:
+	</panel.string>
+	<panel.string name="textFSTeleportOut">
+		Teleportasiya:
+	</panel.string>
+	<panel.string name="textFSTrackerBeacon">
+		İzləyici mayak:
+	</panel.string>
+	<panel.string name="textFSTyping">
+		Mesaj yazılır:
+	</panel.string>
+	<panel.string name="textFSWindowClose">
+		Pəncərə bağlanır:
+	</panel.string>
+	<panel.string name="textFSWindowOpen">
+		Pəncərə açılır:
+	</panel.string>
+	<tab_container label="Firestorm Seçimləri" name="tabs">
+		<panel label="Səslər" name="Media Sounds Panel">
+			<slider label="Ümumi səs səviyyəsi" name="System Volume"/>
+			<check_box label="Çevirilərkən səssizləşdir" name="mute_when_minimized"/>
+			<slider label="İnterfeys" name="UI Volume"/>
+			<slider label="Ətraf mühit" name="Wind Volume"/>
+			<check_box name="collisions_audio_play_btn" tool_tip="Toqquşma səslərini dəyişdirmək üçün seçin" label="Toqquşma səslərini aktivləşdir"/>
+			<slider label="Səs effektləri" name="SFX Volume"/>
+			<check_box name="gesture_audio_play_btn" tool_tip="Jestlər səsləri eşitmək üçün seçin" label="Jestlər səsləri aktivləşdir"/>
+			<slider label="Musiqi səviyyəsi" name="Music Volume"/>
+			<check_box label="Aktivləşdir" name="enable_music"/>
+			<slider label="Media" name="Media Volume"/>
+			<check_box label="Aktivləşdir" name="enable_media"/>
+			<slider label="Səsli söhbət" name="Voice Volume"/>
+			<check_box label="Aktivləşdir" name="enable_voice_check_volume"/>
+			<text name="auto_unmute_label" width="300">
+				Teleportdan sonra səsləri avtomatik olaraq aktivləşdir:
+			</text>
+			<check_box name="FSAutoUnmuteAmbient" label="Ətraf mühit" tool_tip="Teleportdan sonra ətraf mühit səslərini avtomatik olaraq aktivləşdirin (varsayılan olaraq söndürülüb)" width="95"/>
+			<check_box name="FSAutoUnmuteSounds" label="Səs effektləri" tool_tip="Teleportdan sonra səs effektlərini avtomatik olaraq aktivləşdirin (varsayılan olaraq söndürülüb)" width="95"/>
+			<text name="friends_logon_sounds_label">
+				Dostlar daxil olanda/çıxanda səs çalın:
+			</text>
+			<check_box label="Daxil oldu" name="friends_notify_online_sound"/>
+			<check_box label="Çıxdı" name="friends_notify_offline_sound"/>
+			<text name="money_change_threshold_label" tool_tip="Balansınız dəyişdikdə səs çalın">
+				L$ dəyişiklik həddi:
+			</text>
+			<panel height="100" name="output_device_settings_panel">
+				<panel.string name="output_default_text">
+					Susmaya görə
+				</panel.string>
+				<panel.string name="output_no_device">
+					Əlçatan cihaz yoxdur
+				</panel.string>
+				<panel.string name="output_name_no_device">
+					Adsız cihaz
+				</panel.string>
+				<panel.string name="output_device_unavailable">
+					Cihaz əlçatan deyil
+				</panel.string>
+				<text name="output_label" width="120">
+					Səs çıxışı cihazı:
+				</text>
+			</panel>
+		</panel>
+		<panel name="Media Media Panel" label="Media">
+			<text name="media_autoplay_label" width="130">
+Avtomatik oxutma
+			</text>
+			<combo_box name="media_auto_play_combo" width="100">
+				<item label="Qadağan edilir" name="autoplay_disabled"/>
+				<item label="İcazə verilir" name="autoplay_enabled"/>
+				<!--<item label="Sorğu" name="autoplay_ask" />-->
+			</combo_box>
+			<check_box name="media_allowscript_btn" tool_tip="Bu seçim medya axınlarını idarə etmək üçün skriptlərin icazə verib / qadağan edir" label="Skriptlərə medyanın oxutmasına icazə ver"/>
+			<check_box label="Başqa avatara bağlı medyanın oxutmasını icazə ver" name="media_show_on_others_btn" tool_tip="Başqa avatara bağlı medyanın oxutmasını icazə ver"/>
+			<check_box name="media_filter" tool_tip="Belirli bir hostdan gələn media oynanıb oynanmayacağını seçmək üçün bunu seçin" label="Media filtri aktivləşdir (təhlükəsizlik artır)"/>
+			<button label="Media saytlarını idarə et" name="edit_media_lists_button"/>
+			<text name="Media Rolloff">
+				Səs mənbəsinin eşitilməsindən azaltma məsafəsi:
+			</text>
+			<slider label="Minimum" name="MediaRollOffMin" tool_tip="Səs mənbəsinin eşitilməsindən azaltma minimum məsafəsi"/>
+			<text name="MinMeters">
+				metr
+			</text>
+			<slider label="Maksimum" name="MediaRollOffMax" tool_tip="Səs mənbəsinin eşitilməsindən azaltma maksimum məsafəsi."/>
+			<text name="MaxMeters">
+				metr
+			</text>
+		</panel>
+		<panel label="Musiqi" name="Media Music Panel">
+			<check_box label="Musiqinin avtomatik çalınmasına icazə ver" name="audio_auto_play_btn" tool_tip="Səs axınını avtomatik olaraq başlatmaq üçün seçin."/>
+			<check_box name="FSFadeAudioStream" tool_tip="Sahədə musiqinin səsinin yumşaq artması və azalması aktivləşdirilsin" label="Səsin yumşaq artması / azalması aktivləşdir:"/>
+			<slider label="Artma:" name="FSAudioMusicFadeIn" tool_tip="Sahədə musiqinin səsinin yumşaq artma vaxtı." width="270" label_width="70"/>
+			<text name="FSAudioMusicFadeInSeconds" left_delta="275">
+				saniyə
+			</text>
+			<slider label="Azalma:" name="FSAudioMusicFadeOut" tool_tip="Sahədə musiqinin səsinin yumşaq azalma vaxtı." width="270" label_width="70"/>
+			<text name="FSAudioMusicFadeOutSeconds" left_delta="275">
+				saniyə
+			</text>
+			<text name="show_stream_metadata_text" >
+				Axın başlığı bildirişlərini göstərin:
+			</text>
+			<radio_group name="show_stream_metadata">
+				<radio_item label="Söndür" width="110" name="radio_off" />
+				<radio_item label="Açılan pəncərə" width="150" name="radio_toasts" />
+				<radio_item label="Ümumi söhbət" name="radio_chat" />
+			</radio_group>
+			<check_box name="StreamMetadataAnnounceToChat" width="200" label="Başlıqları kanala göndər:"/>
+		</panel>
+		<panel label="Səs seçimləri" name="Media Voice tab">
+			<check_box label="Səsi aktivləşdir" name="enable_voice_check" width="155"/>
+			<button tool_tip="Səsi yenilə" name="reset_voice_button"/>
+			<radio_group name="ear_location">
+				<radio_item label="Kameraların mövqeyindən səsi eşitmək" name="0"/>
+				<radio_item label="Avatarın mövqeyindən səsi eşitmək" name="1"/>
+				<radio_item label="Bütün səsləri yüksək səslə eşitmək (yalnız Open Sim)" name="2"/>
+			</radio_group>
+			<check_box label="Müsahibə zamanı avatarın dudaklarının hərəkət etməsini tələb et" name="enable_lip_sync"/>
+			<check_box label="Avatarların üzərində səs göstəricisi göstər" tool_tip="Avatarların üzərində səs göstəricisi (ağ nöqtə) göstərir" name="FSShowVoiceVisualizer"/>
+			<check_box label="Mənim avatarımın üzərində səs göstəricisini göstər" name="FSShowMyOwnVoiceVisualizer"/>
+			<check_box label="Nöqtəni səs göstəricisinin bir hissəsi kimi göstər" tool_tip="Bu seçilərsə, nöqtə səs göstəricisinin bir hissəsi kimi göstərilir. Seçilməzsə, yalnız səs dalgaları göstərilir." name="FSShowVoiceVisualizerWithDot"/>
+			<check_box label="Zənglər zamanı səs göstəricilərini göstər" tool_tip="Şəxsi və qrup zəngində səs göstəricisini göstərir" name="Show_Voice_Visualizers_In_Calls"/>
+			<check_box label="Söhbət pəncərələrində səs kanallarının vəziyyətini göstər" tool_tip="Söhbət pəncərələrində səs kanallarının vəziyyətini göstərir" name="FSShowConversationVoiceStateIndicator"/>
+			<check_box label="Bütün qrup səs zənglərini avtomatik olaraq rədd et" name="VoiceCallsRejectGroup"/>
+			<check_box label="Bütün xüsusi AdHoc səs zənglərini avtomatik olaraq rədd et" name="VoiceCallsRejectAdHoc"/>
+			<check_box label="Bütün P2P (avatarla avatar arasında) səs zənglərini avtomatik olaraq rədd et" name="VoiceCallsRejectP2P"/>
+			<check_box label="Panel alət çubuğundakı düyməyə basıldığında mikrofonu aç / bağla" name="push_to_talk_toggle_check" tool_tip="Mikrofon açıq / bağlı rejimində, düyməni bir dəfə basaraq mikrofonu açıb bağlaya bilərsiniz. Başqa halda, mikrofon yalnız düymə basıldıqda açılır."/>
+			<button label="Səs cihazı seçimləri" name="device_settings_btn"/>
+		</panel>
+		<panel label="İnterfeys səsləri" name="UI Sounds tab">
+			<text name="textFSExplanation_tab1">
+				Burada (səs UUID-lərini dəyişərək), interfeys səsini dəyişə, aktivləşdirə və ya deaktivləşdirə bilərsiniz.
+Susmaya görə dəyərə qayıtmaq üçün UUID yanındakı 'D' düyməsini basın.
+			</text>
+			<filter_editor name="ui_sound_filter" label="UI səslərini süz" />
+			<scroll_list name="ui_sounds_list">
+				<column label="Səs" name="ui_sound_label" />
+				<column label="Status" name="ui_sound_status" />
+			</scroll_list>
+			<button name="ui_sound_preview" tool_tip="Bu səsi oxut." />
+			<button name="ui_sound_default" tool_tip="Susmaya görə olan UUID-yə sıfırla." />
+		</panel>
+
+	</tab_container>
+</panel>

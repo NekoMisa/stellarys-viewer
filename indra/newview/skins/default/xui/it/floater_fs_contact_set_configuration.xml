@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="floater_fs_contact_set_configure" title="Impostazioni set contatti">
+	<floater.string name="title">
+		Impostazioni di [NAME]
+	</floater.string>
+	<panel name="top_panel">
+		<text name="set_label">
+			Impostazioni set contatti:
+		</text>
+		<button name="rename_btn" label="Rinomina"/>
+		<color_swatch name="set_swatch" tool_tip="Clic per scegliere colore"/>
+		<check_box label="Mostra notifiche" name="show_set_notifications"/>
+		<check_box label="Ordina per stato online" name="sort_by_online_status"/>
+	</panel>
+	<panel name="bottom_panel">
+		<text name="global_label">
+			Impostazioni globali:
+		</text>
+		<color_swatch label="Colore predefinito set" name="global_swatch" tool_tip="Clic per scegliere colore"/>
+		<text name="label_online">
+			Notifiche online:
+		</text>
+		<check_box label="Mostra notifiche per TUTTI gli amici come finestre" name="ChatOnlineNotification"/>
+		<check_box label="Mostra notifiche per TUTTI gli amici in chat locale" name="OnlineOfflinetoNearbyChat"/>
+		<check_box label="Mostra notifiche per alcuni set come finestre" name="FSContactSetsNotificationToast"/>
+		<check_box label="Mostra notifiche per alcuni set in chat locale" name="FSContactSetsNotificationNearbyChat"/>
+		<text name="label_colors">
+			Colori scelti:
+		</text>
+		<check_box label="Colore icona mini-mappa in base al set" name="FSContactSetsColorizeMiniMap"/>
+		<check_box label="Colore tag nome in base al set" name="FSContactSetsColorizeNameTag"/>
+		<check_box label="Colore liste radar e Nelle Vicinanze in base al set" name="FSContactSetsColorizeRadar"/>
+		<check_box label="Colore chat in base al set" name="FSContactSetsColorizeChat"/>
+		<check_box label="Colore lista amici in base al set" name="FSContactSetsColorizeFriends"/>
+	</panel>
+	<panel name="side_panel">
+		<check_box label="Usa risposta automatica personalizzata in modalità Occupato per questo set" name="set_autoresponse_busy_enabled"/>
+		<check_box label="Usa messaggio di risposta automatica personalizzato per questo set" name="set_autoresponse_mode_enabled"/>
+		<check_box label="Usa risposta automatica personalizzata per i non amici in questo set" name="set_autoresponse_nonfriends_enabled"/>
+	</panel>
+</floater>

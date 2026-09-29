@@ -1,0 +1,12 @@
+{
+  "project": "Stellarys Viewer",
+  "upstream": "Firestorm",
+  "upstream_version": "7.2.4.80712",
+  "upstream_commit": "10bd3c9f930c76e1427ddd4ecece6cdf36b4406d",
+  "kitty_fix_version": "0.1.0",
+  "poser_prototype_version": "0.1",
+  "poser_revision": 2,
+  "application_branding": "Fire Kitty Poser Prototype (Stellarys branding pending)",
+  "updater": "not implemented",
+  "black_dragon_renderer_port": "not implemented"
+}

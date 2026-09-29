@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="floater_fs_contact_set_configure" title="Настройки набора контактов">
+	<floater.string name="title">
+		Настройки [NAME]
+	</floater.string>
+	<panel name="top_panel">
+		<text name="set_label">
+			Настройки набора контактов:
+		</text>
+		<line_editor name="set_name_editor" right="-100"/>
+		<button name="rename_btn" width="85" label="Переименовать"/>
+		<color_swatch label="Задать цвет" name="set_swatch" tool_tip="Нажмите, чтобы открыть палитру цветов" />
+		<check_box label="Показывать уведомления" name="show_set_notifications" />
+		<check_box label="Сортировать по онлайн-статусу" name="sort_by_online_status" />
+	</panel>
+	<panel name="bottom_panel">
+		<text name="global_label">
+			Общие настройки:
+		</text>
+		<color_swatch label="Цвет по умолчанию" name="global_swatch" tool_tip="Нажмите, чтобы открыть палитру цветов" />
+		<text name="label_online">
+			Уведомления статуса:
+		</text>
+		<check_box label="Сообщать о входе в сеть для ВСЕХ друзей в тоастах" name="ChatOnlineNotification" />
+		<check_box label="Сообщать о входе в сеть для ВСЕХ друзей в чате" name="OnlineOfflinetoNearbyChat" />
+		<check_box label="Сообщать о входе в сеть для данного набора в тоастах" name="FSContactSetsNotificationToast" />
+		<check_box label="Сообщать о входе в сеть для данного набора в чате" name="FSContactSetsNotificationNearbyChat" />
+		<text name="label_colors">
+			Собственные цвета:
+		</text>
+		<check_box label="Цвет значка на мини карте на основе набора контактов" name="FSContactSetsColorizeMiniMap" />
+		<check_box label="Цвет тега имени на основе набора контактов" name="FSContactSetsColorizeNameTag" />
+		<check_box label="Цвет записей на радаре и в списке «Рядом» на основе набора контактов" name="FSContactSetsColorizeRadar" />
+		<check_box label="Цвет в чате на основе набора контактов" name="FSContactSetsColorizeChat" />
+		<check_box label="Цвет записи в списке друзей на основе набора контактов" name="FSContactSetsColorizeFriends" />
+	</panel>
+	<panel name="side_panel">
+		<check_box label="Использовать для этого набора свой автоответ в режиме «Занят»" name="set_autoresponse_busy_enabled" />
+		<check_box label="Использовать для этого набора своё сообщение автоответа" name="set_autoresponse_mode_enabled" />
+		<check_box label="Использовать для этого набора свой автоответ для не-друзей" name="set_autoresponse_nonfriends_enabled" />
+	</panel>
+</floater>

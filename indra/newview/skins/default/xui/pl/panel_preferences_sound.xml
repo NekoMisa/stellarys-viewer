@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Dźwięki" name="Preference Media panel">
+	<panel.string name="middle_mouse">
+		Środkowy przycisk myszy
+	</panel.string>
+	<panel.string name="button4_mouse">
+		Przycisk myszy 4
+	</panel.string>
+	<panel.string name="button5_mouse">
+		Przycisk myszy 5
+	</panel.string>
+	<panel.string name="ui_sound_copy_uuid">
+		Kopiuj UUID dźwięku
+	</panel.string>
+	<panel.string name="ui_sound_select_prompt">
+		Wybierz dźwięk interfejsu
+	</panel.string>
+	<panel.string name="ui_sound_play_this">
+		Odtwarzaj dźwięk
+	</panel.string>
+	<panel.string name="ui_sound_playmode_new_session">
+		Odtw. dźwięk tylko na nowej sesji
+	</panel.string>
+	<panel.string name="ui_sound_playmode_every_message">
+		Odtw. dźwięk przy każdej wiadomości
+	</panel.string>
+	<panel.string name="ui_sound_playmode_not_focus">
+		Odtw. dźwięk tylko gdy okno jest w tle
+	</panel.string>
+	<panel.string name="ui_sound_playmode_mute">
+		Wycisz dźwięk
+	</panel.string>
+	<panel.string name="textFSChatMention">
+		Wzmianki w czacie:
+	</panel.string>
+	<panel.string name="textFSBadKeystroke">
+		Nieprawidłowy klawisz:
+	</panel.string>
+	<panel.string name="textFSClick">
+		Klikn. przyciskiem myszy:
+	</panel.string>
+	<panel.string name="textFSClickRelease">
+		Zwoln. przycisku myszy:
+	</panel.string>
+	<panel.string name="textFSFootsteps">
+		Domyślny odgłos kroków:
+	</panel.string>
+	<panel.string name="textFSFriendOffline">
+		Znajomy się wylogowywuje:
+	</panel.string>
+	<panel.string name="textFSFriendOnline">
+		Znajomy się loguje:
+	</panel.string>
+	<panel.string name="textFSFriendshipOffer">
+		Oferta znajomości:
+	</panel.string>
+	<panel.string name="textFSGroupInvitation">
+		Zaproszenie do grupy:
+	</panel.string>
+	<panel.string name="textFSGroupNotice">
+		Ogłoszenie grupy:
+	</panel.string>
+	<panel.string name="textFSHealthReductionF">
+		Uraz żeńskiego awatara:
+	</panel.string>
+	<panel.string name="textFSHealthReductionM">
+		Uraz męskiego awatara:
+	</panel.string>
+	<panel.string name="textFSIncomingVoiceCall">
+		Rozmowa głosowa:
+	</panel.string>
+	<panel.string name="textFSInvalidOp">
+		Nieprawidłowa operacja:
+	</panel.string>
+	<panel.string name="textFSInventoryOffer">
+		Oferta przedmiotu:
+	</panel.string>
+	<panel.string name="textFSMicToggle">
+		Przełączanie mikrofonu:
+	</panel.string>
+	<panel.string name="textFSMoneyChangeDown">
+		Odpływ gotówki:
+	</panel.string>
+	<panel.string name="textFSMoneyChangeUp">
+		Przypływ gotówki:
+	</panel.string>
+	<panel.string name="textFSMovelockToggle">
+		Unieruchamianie pozycji:
+	</panel.string>
+	<panel.string name="textFSNearbyChat">
+		Nowa wiad. czatu w pobliżu:
+	</panel.string>
+	<panel.string name="textFSNewIncomingConfIMSession">
+		Wiadomość konferencji:
+	</panel.string>
+	<panel.string name="textFSNewIncomingGroupIMSession">
+		Nowa wiadomość grupy:
+	</panel.string>
+	<panel.string name="textFSNewIncomingIMSession">
+		Nowa wiadomość IM:
+	</panel.string>
+	<panel.string name="textFSObjectCreate">
+		Tworzenie obiektu:
+	</panel.string>
+	<panel.string name="textFSObjectDelete">
+		Usuwanie obiektu:
+	</panel.string>
+	<panel.string name="textFSObjectRezIn">
+		Rezzowanie obiektu:
+	</panel.string>
+	<panel.string name="textFSObjectRezOut">
+		Derezzowanie obiektu:
+	</panel.string>
+	<panel.string name="textFSPieMenuAppear">
+		Menu kołowe - pokaż:
+	</panel.string>
+	<panel.string name="textFSPieMenuHide">
+		Menu kołowe - ukryj:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight0">
+		Menu kołowe, opcja 1:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight1">
+		Menu kołowe, opcja 2:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight2">
+		Menu kołowe, opcja 3:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight3">
+		Menu kołowe, opcja 4:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight4">
+		Menu kołowe, opcja 5:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight5">
+		Menu kołowe, opcja 6:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight6">
+		Menu kołowe, opcja 7:
+	</panel.string>
+	<panel.string name="textFSPieMenuSliceHighlight7">
+		Menu kołowe, opcja 8:
+	</panel.string>
+	<panel.string name="textFSQuestionExperience">
+		Nowa Przygoda:
+	</panel.string>
+	<panel.string name="textFSRestart">
+		Restart regionu:
+	</panel.string>
+	<panel.string name="textFSRestartOpenSim">
+		Restart regionu (OpenSim):
+	</panel.string>
+	<panel.string name="textFSScriptFloaterClose">
+		Skrypt zamyka okno:
+	</panel.string>
+	<panel.string name="textFSScriptFloaterOpen">
+		Skrypt otwiera okno:
+	</panel.string>
+	<panel.string name="textFSSnapshot">
+		Robienie zdjęcia:
+	</panel.string>
+	<panel.string name="textFSAlert">
+		Domyślne ostrzeżenie:
+	</panel.string>
+	<panel.string name="textFSStartIM">
+		Rozpoczynanie sesji IM:
+	</panel.string>
+	<panel.string name="textFSTeleportOffer">
+		Oferta teleportacji:
+	</panel.string>
+	<panel.string name="textFSTeleportOut">
+		Teleportacja:
+	</panel.string>
+	<panel.string name="textFSTrackerBeacon">
+		Emiter śledzenia:
+	</panel.string>
+	<panel.string name="textFSTyping">
+		Pisanie wiadomości:
+	</panel.string>
+	<panel.string name="textFSWindowClose">
+		Zamykanie okna:
+	</panel.string>
+	<panel.string name="textFSWindowOpen">
+		Otwieranie okna:
+	</panel.string>
+	<tab_container label="Ust. Firestorma" name="tabs">
+		<panel label="Dźwięki" name="Media Sounds Panel">
+			<slider label="Głośność ogólna" name="System Volume"/>
+			<check_box label="Wycisz gdy zminimalizowane" name="mute_when_minimized"/>
+			<slider label="Interfejs" name="UI Volume"/>
+			<slider label="Otoczenie" name="Wind Volume"/>
+			<check_box name="collisions_audio_play_btn" tool_tip="Zaznacz, aby słyszeć domyślne dźwięki kolizji" label="Odtwarzaj dźwięki kolizji"/>
+			<slider label="Efekty dźwiękowe" name="SFX Volume"/>
+			<check_box name="gesture_audio_play_btn" tool_tip="Zaznacz, aby słyszeć dźwięki gestów" label="Odtwarzaj dźwięki gestów"/>
+			<slider label="Muz. strumieniowa" name="Music Volume"/>
+			<check_box label="Włączona" name="enable_music"/>
+			<check_box label="Włączone" name="enable_media"/>
+			<slider label="Rozmowy głosowe" name="Voice Volume"/>
+			<check_box label="Włączone" name="enable_voice_check_volume"/>
+			<text name="Listen media from">
+				Odtwarzaj media i dźwięki:
+			</text>
+			<radio_group name="media_ear_location">
+				<radio_item label="Z pozycji kamery" name="0" />
+				<radio_item label="Z pozycji awatara" name="1" />
+			</radio_group>
+			<text name="auto_unmute_label">
+				Wyłącz wyciszenie po teleportacji:
+			</text>
+			<check_box name="FSAutoUnmuteAmbient" label="Otoczenie" tool_tip="Automatycznie wyłącz wyciszenie otoczenia po teleportacji, jeśli jest wyciszone (domyślnie: wyłączone)" />
+			<check_box name="FSAutoUnmuteSounds" label="Efekty dźwiękowe" tool_tip="Automatycznie wyłącz wyciszenie efektów dźwiękowych po teleportacji, jeśli są wyciszone (domyślnie: wyłączone)" />
+			<text name="friends_logon_sounds_label">
+				Odtwórz dźwięk gdy moi znajomi:
+			</text>
+			<check_box label="Logują się" name="friends_notify_online_sound"/>
+			<check_box label="Wylogowywują się" name="friends_notify_offline_sound"/>
+			<text name="money_change_threshold_label" tool_tip="Przeglądarka będzie odtwarzać 'dźwięk pieniędzy' tylko wtedy, gdy wydawana lub otrzymywana kwota jest wyższa niż wartość ustawiona tutaj.">
+				Próg zmiany ilości L$:
+			</text>
+			<panel name="output_device_settings_panel">
+				<panel.string name="output_default_text">
+					Domyślne
+				</panel.string>
+				<panel.string name="output_no_device">
+					Brak urządzenia
+				</panel.string>
+				<panel.string name="output_name_no_device">
+					Nienazwane urządzenie
+				</panel.string>
+				<panel.string name="output_device_unavailable">
+					Niedostępne urządzenie
+				</panel.string>
+				<text name="output_label" width="130">
+					Urządzenie wyjściowe:
+				</text>
+			</panel>
+		</panel>
+		<panel name="Media Media Panel">
+			<text name="media_autoplay_label" width="150">
+				Autoodtwarzanie mediów
+			</text>
+			<combo_box name="media_auto_play_combo">
+				<item label="Wyłącz" name="autoplay_disabled" />
+				<item label="Włącz" name="autoplay_enabled" />
+				<!-- <item label="Pytaj" name="autoplay_ask" /> -->
+			</combo_box>
+			<check_box name="media_allowscript_btn" tool_tip="To ustawienie pozwala lub zabrania oskryptowanym primom kontrolować Twoje media" label="Pozwalaj skryptom w świecie odtwarzać media"/>
+			<check_box label="Uruchamiaj media dołączone do innych awatarów" name="media_show_on_others_btn" tool_tip="Odznacz tę funkcję by ukryć media załączone do awatarów w pobliżu"/>
+			<check_box name="media_huds_autoplay" tool_tip="Odznacz, aby HUDy stosowały się do standardowego ustawienia automatycznego odtwarzania mediów" label="Autoodtwarzanie mediów w HUDach" />
+			<check_box name="media_filter" tool_tip="Zaznacz tą opcję, aby móc wybierać, czy odtwarzać media z konkretnego hosta, czy nie" label="Włącz filtr mediów (zwiększone bezpieczeństwo)"/>
+			<button label="Zarządzaj witrynami" name="edit_media_lists_button"/>
+			<text tool_tip="To ustawienie kontroluje, które media (po załadowaniu) NIE wymagają pierwszego kliknięcia (aktywacji) przed rozpoczęciem interakcji. To ustawienie pozwala na przekazywanie kliknięć bezpośrednio do mediów, pomijając wymóg pierwszego kliknięcia aktywacyjnego." name="media_firstinteract_label">
+				Pomijaj kliknięcie aktywacyjne dla mediów:
+			</text>
+			<check_box name="media_first_click_all" label="Wszystkie MOAP" />
+			<check_box name="media_first_click_any" label="Obiekty dowolnej osoby" />
+			<check_box name="media_first_click_hud" label="Noszone HUDy" />
+			<check_box name="media_first_click_own" label="Własne obiekty" />
+			<check_box name="media_first_click_group" label="Obiekty grupy" />
+			<check_box name="media_first_click_friend" label="Obiekty znajomych" />
+			<check_box name="media_first_click_land" label="Obiekty właściciela działki" />
+			<text name="Media Rolloff">
+				Rozchodzenie się dźwięku mediów:
+			</text>
+			<slider label="Zaczyna być ciszej po:" name="MediaRollOffMin" tool_tip="Minimalny dystans od źródła, aby ściszanie mediów zaczęło działać."/>
+			<text name="MinMeters">
+				metrach
+			</text>
+			<slider label="Całkowicie zanika po:" name="MediaRollOffMax" tool_tip="Maksymalny dystans od źródła, aby dźwięk był słyszalny."/>
+			<text name="MaxMeters">
+				metrach
+			</text>
+		</panel>
+		<panel label="Muzyka" name="Media Music Panel">
+			<check_box label="Automatycznie odtwarzaj muzykę" name="audio_auto_play_btn" tool_tip="Zaznacz tę funkcję, aby automatycznie uruchamiać muzykę strumieniową."/>
+			<check_box name="FSFadeAudioStream" tool_tip="Zaznacz to pole, jeśli wygładzanie ma być używane, gdy zmieni się muzyka strumieniowa na działce" label="Płynnie wygładzaj przechodzenie między strumieniami muzyki na działkach:"/>
+			<slider label="Wejście" name="FSAudioMusicFadeIn" tool_tip="Czas wygładzania dla dźwięku działki przy wchodzeniu. Ustaw na 0, aby wyłączyć wygładzanie."/>
+			<text name="FSAudioMusicFadeInSeconds">
+				sekund
+			</text>
+			<slider label="Wyjście" name="FSAudioMusicFadeOut" tool_tip="Czas wygładzania dla dźwięku działki przy wychodzeniu. Ustaw na 0, aby wyłączyć wygładzanie."/>
+			<text name="FSAudioMusicFadeOutSeconds">
+				sekund
+			</text>
+			<text name="show_stream_metadata_text">
+				Powiadomienia o tytule strumienia:
+			</text>
+			<radio_group name="show_stream_metadata">
+				<radio_item label="Wyłącz" width="75" name="radio_off" />
+				<radio_item label="Tosty" name="radio_toasts" />
+				<radio_item label="Czat w pobliżu" name="radio_chat" />
+			</radio_group>
+			<check_box name="StreamMetadataAnnounceToChat" width="210" label="Wysyłaj tytuł strumienia na kanał:"/>
+		</panel>
+		<panel label="Głos" name="Media Voice tab">
+			<check_box label="Włącz rozmowy głosowe" name="enable_voice_check" width="155"/>
+			<button tool_tip="Resetuj rozmowy głosowe" name="reset_voice_button"/>
+			<radio_group name="ear_location">
+				<radio_item label="Odtwarzaj głos z pozycji kamery" name="0"/>
+				<radio_item label="Odtwarzaj głos z pozycji mojego awatara" name="1"/>
+				<radio_item label="Odtwarzaj głos z pełną głośnością (tylko OpenSim)" name="2" />
+			</radio_group>
+			<check_box label="Poruszaj ustami awatara podczas mówienia" name="enable_lip_sync"/>
+			<check_box label="Pokazuj wskaźniki dźwięku ponad awatarami" tool_tip="Pokazuj wskaźniki dźwięku (białe kropki) ponad awatarami" name="FSShowVoiceVisualizer"/>
+			<check_box label="Pokazuj wskaźnik dźwięku ponad moim własnym awatarem" name="FSShowMyOwnVoiceVisualizer" />
+			<check_box label="Pokazuj wskaźniki dźwięku wraz z kropką" tool_tip="Jeśli ta opcja jest włączona, to kropka jest wyświetlana jako część wskaźników dźwięku. Jeśli jest wyłączona, to pokazują się tylko fale głosowe." name="FSShowVoiceVisualizerWithDot" />
+			<check_box label="Pokazuj wskaźniki dźwięku w rozmowach prywatnych i grupowych" tool_tip="Pokazuj wskaźniki dźwięku i poruszaj ustami awatara w świecie, gdy rozmawiasz w rozmowach prywatnych lub grupowych" name="Show_Voice_Visualizers_In_Calls"/>
+			<check_box label="Pokazuj status kanału głosu na kartach rozmów" tool_tip="Pokazuje obecny status kanału głosu na kartach znajdujących się w oknie z listą wszystkich rozmów" name="FSShowConversationVoiceStateIndicator"/>
+			<check_box label="Automatycznie odrzucaj zaproszenia grupowych rozmów głosowych" name="VoiceCallsRejectGroup"/>
+			<check_box label="Automatycznie odrzucaj zaproszenia AdHoc (konferencyjne) rozmów głosowych" name="VoiceCallsRejectAdHoc"/>
+			<check_box label="Automatycznie odrzucaj zaproszenia P2P (awatar z awatarem) rozmów głosowych" name="VoiceCallsRejectP2P"/>
+			<check_box label="Włącz/wyłącz mikrofon przyciskiem na pasku" name="push_to_talk_toggle_check" tool_tip="Kiedy aktywny jest tryb przełączania wciśnij i zwolnij przełącznik RAZ, aby włączyć lub wyłączyć mikrofon. Kiedy tryb przełączania nie jest aktywny mikrofon nadaje głos tylko wtedy, gdy przełącznik jest wciśnięty."/>
+			<check_box tool_tip="Zaznacz, aby włączyć usuwanie echa głosu" label="Usuwanie echa" name="enable_echo_cancellation" />
+			<check_box tool_tip="Zaznacz, aby włączyć automatyczną regulację wzmocnienia" label="Automatyczna regulacja wzmocnienia" name="voice_automatic_gain_control" />
+			<text name="noise_suppression_label" width="95">
+				Tłumienie hałasu:
+			</text>
+			<combo_box name="noise_suppression_combo">
+				<item label="Wyłączone" name="noise_suppression_none" />
+				<item label="Niskie" name="noise_suppression_low" />
+				<item label="Umiarkowane" name="noise_suppression_moderate" />
+				<item label="Wysokie" name="noise_suppression_high" />
+				<item label="Maksymalne" name="noise_suppression_max" />
+			</combo_box>
+			<button label="Ustawienia sprzętowe audio" name="device_settings_btn"/>
+		</panel>
+		<panel label="Dźwięki interfejsu" name="UI Sounds tab">
+			<text name="textFSExplanation_tab1">
+				Możesz tutaj zmieniać (wpisując UUIDy), włączać lub wyłączać standardowe dźwięki interfejsu.
+Przytrzymaj kursor myszki ponad polem na UUID, aby zobaczyć jego domyślną wartość.
+			</text>
+			<filter_editor name="ui_sound_filter" label="Filtruj dźwięki interfejsu" />
+			<scroll_list name="ui_sounds_list">
+				<column label="Dźwięk" name="ui_sound_label" />
+				<column label="Stan" name="ui_sound_status" />
+			</scroll_list>
+			<button name="ui_sound_preview" tool_tip="Podgląd dźwięku." />
+			<button name="ui_sound_default" tool_tip="Resetuj do domyślnego UUID." />
+		</panel>
+
+	</tab_container>
+</panel>
