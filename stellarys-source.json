@@ -6,7 +6,8 @@
   "kitty_fix_version": "0.1.0",
   "poser_prototype_version": "0.1",
   "poser_revision": 2,
-  "application_branding": "Fire Kitty Poser Prototype (Stellarys branding pending)",
+  "application_branding": "Stellarys Viewer (text branding; existing artwork and prototype profile identity retained)",
   "updater": "not implemented",
-  "black_dragon_renderer_port": "not implemented"
+  "black_dragon_renderer_port": "not implemented",
+  "stellarys_version": "0.1.0"
 }

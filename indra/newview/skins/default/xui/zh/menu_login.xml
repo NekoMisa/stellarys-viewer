@@ -7,7 +7,7 @@
 		<menu_item_call label="退出 [APP_NAME]" name="Quit" />
 	</menu>
 	<menu label="幫助" name="Help">
-		<menu_item_call label="除錯" name="Troubleshooting" />
+		<menu_item_call label="Stellarys Issues" name="Troubleshooting" />
 		<menu_item_call label="指南" name="How To" />
 		<menu_item_call label="白名單顧問" name="whitelist_folders" />
 		<menu_item_call label="報告問題" name="Report Bug" />

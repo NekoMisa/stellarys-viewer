@@ -33,9 +33,9 @@
         top="16"
         width="434"
         wrap="true">
-For the latest information about Firestorm, visit 
-https://www.firestormviewer.org
-      </text>
+Stellarys Viewer — independent Firestorm-based viewer.
+https://github.com/NekoMisa/stellarys-viewer
+</text>
       <text_editor
         parse_urls="true"
         follows="top|left"
@@ -124,10 +124,11 @@ Dummy Name replaced at run time
                  top="0"
                  width="450"
                  wrap="true">
-Firestorm is a community development project to improve the SecondLife(tm) Viewer experience. We package contributions from various community developers along with code from Linden Lab and ourselves to bring you a quality, feature-rich viewer experience backed up by a large volunteer support team. Firestorm is brought to you by The Phoenix Firestorm Project, Inc., a non-profit organization.
+Stellarys Viewer builds on Firestorm and Linden Lab viewer code, with an AMD flicker fix and permission-based local posing. This independent project is not supported by the Firestorm team.
 
+Upstream Firestorm is developed by The Phoenix Firestorm Project, Inc.
 The Firestorm Development Team:
-                </text>
+</text>
                 <text
                  enabled="false"
                  follows="top|left"

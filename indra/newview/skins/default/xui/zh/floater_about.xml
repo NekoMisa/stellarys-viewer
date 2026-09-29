@@ -3,9 +3,9 @@
 	<tab_container name="about_tab">
 		<panel label="資訊" name="support_panel">
 			<text name="support_intro">
-如需瞭解有關 Firestorm 的最新資訊，請存取
-https://www.firestormviewer.org
-			</text>
+Stellarys Viewer — independent Firestorm-based viewer.
+https://github.com/NekoMisa/stellarys-viewer
+</text>
 			<button label="複製到剪貼簿" name="copy_btn" />
 			<button label="尋找是否有更新版本" name="update_btn" />
 		</panel>
@@ -25,10 +25,11 @@ https://www.firestormviewer.org
 			<scroll_container name="fs_credits_scroll_container">
 				<panel name="fs_credits_scroll_container_content_panel">
 					<text name="firestorm_intro" height="120">
-Firestorm是一個改善SecondLife(tm)檢視器體驗的社群檔案。 我們將社群開發人員的貢獻與林登實驗室的代碼以及我們自己的擴充結合起來， 以提供高品質、功能豐富的瀏覽器體驗。我們擁有一支龐大的志願者支援團隊。 Firestorm由非營利組織The Phoenix Firestorm Project, Inc提供。
+Stellarys Viewer builds on Firestorm and Linden Lab viewer code, with an AMD flicker fix and permission-based local posing. This independent project is not supported by the Firestorm team.
 
-Firestorm開發團隊：
-					</text>
+Upstream Firestorm is developed by The Phoenix Firestorm Project, Inc.
+The Firestorm Development Team:
+</text>
 					<text name="fs_contrib_intro">
 附加程式碼來自:
 					</text>

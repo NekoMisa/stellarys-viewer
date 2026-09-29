@@ -3,9 +3,9 @@
 	<tab_container name="about_tab">
 		<panel label="Məlumat" name="support_panel">
 			<text name="support_intro">
-				Firestorm haqqında yeni məlumat burada mövcuddur 
-https://www.firestormviewer.org
-			</text>
+Stellarys Viewer — independent Firestorm-based viewer.
+https://github.com/NekoMisa/stellarys-viewer
+</text>
 			<button label="Buferə köçürt" name="copy_btn"/>
 		</panel>
 		<panel label="Təşəkkürlər" name="credits_panel">
@@ -25,10 +25,11 @@ Linden kimdir:
 			<scroll_container name="fs_credits_scroll_container">
 				<panel name="fs_credits_scroll_container_content_panel">
 					<text name="firestorm_intro" height="130">
-						Firestorm, SecondLife (tm) Viewer-dən istifadə təcrübəsinə əsaslanan keyfiyyətin yaxşılaşdırılması məqsədləri olan proqramçılar icmasının layihəsidir. Biz könüllülər komandası tərəfindən dəstəklənən yaxşı, funksional müştəri yaratmaq üçün müxtəlif icmalardan olan müxtəlif proqramçıların töhfələrini, Linden Laboratoriyasının kodu və özümüzlə birləşdiririk. Firestorm qeyri-kommersiya təşkilatı The Phoenix Firestorm Project, Inc. sayəsində mövcuddur.
+Stellarys Viewer builds on Firestorm and Linden Lab viewer code, with an AMD flicker fix and permission-based local posing. This independent project is not supported by the Firestorm team.
 
-Firestorm təkmilləşdirici qrupu:
-					</text>
+Upstream Firestorm is developed by The Phoenix Firestorm Project, Inc.
+The Firestorm Development Team:
+</text>
 					<text name="fs_contrib_intro">
 						Firestorm kodunun inkişafına əlavə töhfələr:
 					</text>

@@ -9,7 +9,7 @@
      name="Me"
      tear_off="true"
      visible="true">
-        
+
         <menu_item_call
              label="Account"
              name="Manage Account">
@@ -338,7 +338,7 @@
          function="GridFeatureCheck"
          parameter="avatar_picker"/>
       </menu_item_call>
-		
+
         <menu_item_separator/>
 
       <menu_item_call
@@ -607,7 +607,7 @@
           function="Floater.Toggle"
           parameter="money_tracker" />
       </menu_item_call>
-		
+
 		<menu_item_call
 			label="Pose Stand..."
 			name="pose_stand">
@@ -643,7 +643,7 @@
              function="Floater.Toggle"
              parameter="preferences" />
         </menu_item_call>
-        
+
         <menu_item_call
          label="Toolbar Buttons"
          name="Toolbar Buttons">
@@ -684,7 +684,7 @@
             <menu_item_call.on_click
              function="Advanced.RequestAdminStatus" />
         </menu_item_call>
-        
+
         <menu_item_call
          label="Leave Admin Status"
          name="Leave Admin Options"
@@ -702,16 +702,16 @@
         </menu_item_call>
 
     </menu>
-    
+
     <!-- Comm Menu -->
-    
+
     <menu
      create_jump_keys="true"
      label="Comm"
      name="Communicate"
      tear_off="true"
      visible="true">
-     
+
         <menu
          create_jump_keys="true"
          label="Online Status"
@@ -749,7 +749,7 @@
                 <menu_item_check.on_click
                  function="World.SetAutorespondNonFriends"/>
             </menu_item_check>
-        
+
             <menu_item_separator/>
                 <menu_item_check
              label="Reject teleport offers and requests"
@@ -817,11 +817,11 @@
                      parameter="FSIgnoreAdHocSessions" />
                 </menu_item_check>
             </menu>
-        
+
         </menu>
-        
+
         <menu_item_separator/>
-             
+
         <menu_item_call
          label="Friends"
          name="My Friends"
@@ -1016,9 +1016,9 @@
 	    </menu_item_check>
         <!-- </FS:minerjr> [FIRE-35039] -->		      
     </menu>
-    
+
     <!-- World Menu -->
-    
+
     <menu
      create_jump_keys="true"
      label="World"
@@ -1032,9 +1032,9 @@
             <menu_item_call.on_click
              function="Tools.ResyncAnimations" />
         </menu_item_call>
-        
+
         <menu_item_separator/>
-     
+
         <menu_item_call
             label="Nearby Avatars"
             name="Active Speakers"
@@ -1117,7 +1117,7 @@
              function="Floater.Toggle"
              parameter="world_map" />
         </menu_item_check>
-        
+
          <menu_item_check
              label="Region Tracker"
              name="Region Tracker">
@@ -1139,7 +1139,7 @@
              parameter="fs_streamtitle" />
         </menu_item_check>
         <menu_item_separator/>
-        
+
         <menu_item_call
          label="Landmark this Place"
          name="Create Landmark Here">
@@ -1158,7 +1158,7 @@
             <menu_item_call.on_enable
              function="World.EnablePlaceProfile" />
         </menu_item_call>
-        
+
         <menu_item_call
          label="Parcel Details"
          name="About Land">
@@ -1169,7 +1169,7 @@
              function="Floater.CanShow"
              parameter="about_land" />
         </menu_item_call>
-        
+
         <menu_item_call
          label="Region Details"
          name="RegionEstate"
@@ -1201,7 +1201,7 @@
                 <menu_item_call.on_enable
                  function="World.EnableBuyLand" />
             </menu_item_call>
-        
+
         <menu_item_call
              label="Show Owned Land"
              name="My Land">
@@ -1219,13 +1219,13 @@
             <menu_item_call.on_click
              function="World.LindenHome"/>
         </menu_item_call>
-        
+
         <menu
            create_jump_keys="true"
            label="Show More"
            name="LandShow"
            tear_off="true">
-          
+
           <menu_item_check
              label="Hide Ban Lines"
              name="Hide Ban Lines">
@@ -1258,7 +1258,7 @@
           </menu_item_check>
 
           <menu_item_separator />
-           
+
            <menu_item_check
                  label="Beacons"
                  name="beacons"
@@ -1270,7 +1270,7 @@
                      function="Floater.Toggle"
                      parameter="beacons" />
           </menu_item_check>
-          
+
           <menu_item_check
              label="Property Lines"
              name="Property Lines"
@@ -1281,7 +1281,7 @@
                function="ToggleControl"
                parameter="ShowPropertyLines" />
           </menu_item_check>
-          
+
           <menu_item_check
              label="Land Owners"
              name="Land Owners"
@@ -1292,7 +1292,7 @@
                function="ToggleControl"
                parameter="ShowParcelOwners" />
           </menu_item_check>
-          
+
           <menu_item_check
              label="Coordinates"
              name="Coordinates">
@@ -1302,7 +1302,7 @@
             <menu_item_check.on_check
                control="NavBarShowCoordinates" />
           </menu_item_check>
-          
+
           <menu_item_check
              label="Parcel Permissions"
              name="Parcel Properties">
@@ -1523,14 +1523,14 @@
                 </menu_item_call>
             </menu>
         </menu>
-	    
+
 <!--   
 	    <menu
 	     create_jump_keys="true"
 	     label="Environment Editor"
 	     name="Environment Editor"
 	     tear_off="true">
-	     	
+
 	     	<menu_item_call
 	     	 label="Environment Settings..."
 	     	 name="Environment Settings">
@@ -1541,7 +1541,7 @@
            function="RLV.EnableIfNot"
            parameter="setenv" />
 	     	</menu_item_call>
-	     	
+
 	     	<menu_item_separator/>
 
 	     	<menu
@@ -1593,7 +1593,7 @@
             parameter="setenv" />
           </menu_item_call>
 	     	</menu>
-	     	
+
 	     	<menu
 	     	 name="Day Presets"
 	     	 label="Day Presets">
@@ -1907,7 +1907,7 @@
           <menu_item_call.on_enable
              function="SomethingSelectedNoHUD" />
         </menu_item_call>
-		 
+
         <menu_item_separator/>
 
         <menu
@@ -2298,7 +2298,7 @@
                    function="View.CheckHighlightTransparent"/>
                 </menu_item_check>
         <menu_item_separator/>
-          
+
           <menu_item_check
             label="No Post-processing"
             name="No Post">
@@ -2308,7 +2308,7 @@
              function="ToggleControl"
              parameter="RenderDisablePostProcessing" />
           </menu_item_check>
-          
+
 
           <menu
            create_jump_keys="true"
@@ -2545,9 +2545,9 @@
              function="Edit.EnableRedo" />
         </menu_item_call>        
     </menu>
-    
+
     <!-- Content Menu -->
-    
+
     <menu
     	create_jump_keys="true"
     	label="Content"
@@ -2610,53 +2610,18 @@
        </menu_item_call>
        <menu_item_separator/>
     	<menu_item_call
-             label="Firestorm Blog"
+             label="Stellarys Project"
              name="Firestorm Blog">
              <menu_item_call.on_click
              function="PromptShowURL"
              name="firestorm_blog_url"
-             parameter="WebLaunchExternalTarget,https://www.firestormviewer.org/" />
+             parameter="WebLaunchExternalTarget,https://github.com/NekoMisa/stellarys-viewer" />
        </menu_item_call>
-    	<menu_item_call
-             label="Firestorm Primfeed"
-             name="Firestorm Primfeed">
-             <menu_item_call.on_click
-             function="PromptShowURL"
-             name="firestorm_primfeed_url"
-             parameter="WebLaunchExternalTarget,https://www.primfeed.com/firestorm-viewer" />
-       </menu_item_call>
-    	<menu_item_call
-             label="Firestorm Flickr"
-             name="Firestorm Flickr">
-             <menu_item_call.on_click
-             function="PromptShowURL"
-             name="firestorm_flickr_url"
-             parameter="WebLaunchExternalTarget,http://www.flickr.com/groups/firestormviewer/pool/" />
-       </menu_item_call>
-    	<menu_item_call
-             label="Firestorm YouTube"
-             name="Firestorm YouTube">
-             <menu_item_call.on_click
-             function="PromptShowURL"
-             name="firestorm_youtube_url"
-             parameter="WebLaunchExternalTarget,http://www.youtube.com/user/PhoenixViewerSL" />
-       </menu_item_call>
-    	<menu_item_call
-             label="Firestorm Twitter"
-             name="Firestorm Twitter">
-             <menu_item_call.on_click
-             function="PromptShowURL"
-             name="firestorm_twitter_url"
-             parameter="WebLaunchExternalTarget,https://twitter.com/phoenixviewersl" />
-       </menu_item_call>
-    	<menu_item_call
-             label="Firestorm Plurk"
-             name="Firestorm Plurk">
-             <menu_item_call.on_click
-             function="PromptShowURL"
-             name="firestorm_plurk_url"
-             parameter="WebLaunchExternalTarget,http://www.plurk.com/ThePhoenixViewerProject" />
-       </menu_item_call>
+
+
+
+
+
        <menu_item_separator/>
        <menu_item_call
              label="Message of the day"
@@ -2666,10 +2631,10 @@
              parameter="motd" />
        </menu_item_call>
       </menu>   
-    
+
     <!-- Help Menu -->
-    
-    
+
+
     <menu
      create_jump_keys="true"
      label="Help"
@@ -2684,9 +2649,9 @@
           <on_click
             function="ToggleUIHints"/>
         </menu_item_check>
-        
+
         <menu_item_call
-         label="Firestorm Wiki"
+         label="Firestorm Documentation (upstream)"
          name="Firestorm Wiki"
 	     shortcut="F1">
              <menu_item_call.on_click
@@ -2694,44 +2659,21 @@
              name="script_library_url"
              parameter="WebLaunchExternalTarget,https://wiki.firestormviewer.org" />
         </menu_item_call>
-        
+
         <menu_item_call
-         label="Troubleshooting"
+         label="Stellarys Issues"
          name="Troubleshooting">
             <menu_item_call.on_click
              function="PromptShowURL"
              name="wiki_troubleshooting_url"
-             parameter="WebLaunchExternalTarget,https://wiki.firestormviewer.org/firestorm_troubleshooting" />
-        </menu_item_call>
-	   
-        <menu_item_call
-         label="Join Firestorm Support Group"
-         name="firestorm_support_group">
-            <menu_item_call.on_click
-             function="Advanced.WebBrowserTest"
-             parameter="https://wiki.firestormviewer.org/firestorm_support_groups_join" />
-            <menu_item_call.on_visible
-             function="GridCheck"
-             parameter="secondlife" />
+             parameter="WebLaunchExternalTarget,https://github.com/NekoMisa/stellarys-viewer/issues" />
         </menu_item_call>
 
-        <menu_item_call
-         label="Firestorm Classes Schedule"
-         name="Firestorm Classes Schedule">
-             <menu_item_call.on_click
-             function="PromptShowURL"
-             name="wiki_classes_url"
-             parameter="WebLaunchExternalTarget,https://wiki.firestormviewer.org/firestorm_classes" />
-        </menu_item_call>
 
-        <menu_item_call
-         label="Firestorm Events Calendar"
-         name="Firestorm Events Calendar">
-             <menu_item_call.on_click
-             function="PromptShowURL"
-             name="events_calendar_url"
-             parameter="WebLaunchExternalTarget,https://teamup.com/ksxdajnbw9mvw7cbwz" />
-        </menu_item_call>
+
+
+
+
 
         <menu_item_check
          label="Guidebook"
@@ -2873,7 +2815,7 @@
              parameter="sl_about" />
         </menu_item_call>
     </menu>
-    
+
     <menu
      create_jump_keys="true"
      label="RLVa"
@@ -3150,7 +3092,7 @@
              function="ToggleControl"
              parameter="DisableCameraConstraints" />
         </menu_item_check>
-        
+
         <menu_item_separator/>
 
         <menu_item_check
@@ -3220,7 +3162,7 @@
              function="Floater.Visible"
              parameter="performance" />
             </menu_item_check>
-  
+
       <menu_item_check
         label="Show avatar complexity information"
         name="Avatar Draw Info">
@@ -4012,7 +3954,7 @@
                function="Floater.Toggle"
                parameter="region_debug_console" />
             </menu_item_check>
-            
+
             <menu_item_separator/>
 
             <menu_item_call
@@ -5866,7 +5808,7 @@
         <menu_item_call.on_click
            function="Advanced.ToggleVisualLeakDetector" />
         </menu_item_call>
-      
+
         <menu_item_check
          label="Output Debug Minidump"
          name="Output Debug Minidump">
@@ -6093,10 +6035,10 @@
              function="IsGodCustomerService" />
         </menu_item_call>
     </menu>
-    
-    
+
+
     <!-- God Menu -->
-    
+
     <menu
      create_jump_keys="true"
      label="Admin"

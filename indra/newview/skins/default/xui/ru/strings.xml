@@ -8,17 +8,17 @@
 		[CURRENT_GRID]
 	</string>
 	<string name="APP_NAME">
-		Firestorm
-	</string>
+Stellarys Viewer
+</string>
 	<string name="CAPITALIZED_APP_NAME">
-		FIRESTORM
-	</string>
+STELLARYS VIEWER
+</string>
 	<string name="SECOND_LIFE_GRID">
 		Сеть Second Life
 	</string>
 	<string name="SUPPORT_SITE">
-		Портал технической поддержки Firestorm
-	</string>
+Stellarys project issues
+</string>
 	<string name="StartupDetectingHardware">
 		Обнаружение оборудования...
 	</string>
@@ -38,10 +38,13 @@
 		Инициализация графики не удалась. Пожалуйста, обновите драйвер видеокарты!
 	</string>
 	<string name="AboutHeader">
-[APP_NAME] [VIEWER_VERSION_0].[VIEWER_VERSION_1].[VIEWER_VERSION_2] ([VIEWER_VERSION_3]) [BUILD_DATE] [BUILD_TIME] ([ADDRESS_SIZE]бит / [SIMD]) ([CHANNEL]) [BUILD_TYPE]
-[[VIEWER_RELEASE_NOTES_URL] [ReleaseNotes]]
-Соответствие Second Life Viewer: [VIEWER_VERSION_LL]
-	</string>
+[APP_NAME] 0.1.0 (based on Firestorm [VIEWER_VERSION_0].[VIEWER_VERSION_1].[VIEWER_VERSION_2].[VIEWER_VERSION_3])
+[BUILD_DATE] [BUILD_TIME] ([ADDRESS_SIZE]bit / [SIMD]) ([CHANNEL]) [BUILD_TYPE]
+Independent viewer with AMD flicker fix and permission-based local posing.
+Not provided or supported by the Firestorm team or Linden Lab.
+[https://github.com/NekoMisa/stellarys-viewer Stellarys source and project information]
+Parity with Second Life Viewer: [VIEWER_VERSION_LL]
+</string>
 	<string name="AboutCompiler">
 		Использован компилятор [COMPILER], версия [COMPILER_VERSION]
 	</string>

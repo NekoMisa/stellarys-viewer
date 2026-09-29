@@ -8,17 +8,17 @@
 		[當前伺服器]
 	</string>
 	<string name="APP_NAME">
-		Firestorm
-	</string>
+Stellarys Viewer
+</string>
 	<string name="CAPITALIZED_APP_NAME">
-		FIRESTORM
-	</string>
+STELLARYS VIEWER
+</string>
 	<string name="SECOND_LIFE_GRID">
 		第二人生
 	</string>
 	<string name="SUPPORT_SITE">
-		Firestorm支援網站
-	</string>
+Stellarys project issues
+</string>
 	<!-- Will be set in fsgridhandler.cpp / llviewernetwork.cpp -->
 	<string name="VIEWER_GENERATION">
 		檢視器[VERSION]
@@ -27,8 +27,8 @@
 		V[VERSION]
 	</string>
 	<string name="APP_NAME_ABBR">
-		FS
-	</string>
+Stellarys
+</string>
 	<string name="StartupLoading">
 		[APP_NAME]載入中...
 	</string>
@@ -46,10 +46,13 @@
 	</string>
 	<!-- about dialog/support string-->
 	<string name="AboutHeader">
-[APP_NAME] [VIEWER_VERSION_0].[VIEWER_VERSION_1].[VIEWER_VERSION_2] ([VIEWER_VERSION_3]) [BUILD_DATE] [BUILD_TIME] ([ADDRESS_SIZE]bit / [SIMD]) ([CHANNEL]) [BUILD_TYPE]
-[[VIEWER_RELEASE_NOTES_URL] [ReleaseNotes]]
-与 Second Life Viewer 保持一致: [VIEWER_VERSION_LL]
-	</string>
+[APP_NAME] 0.1.0 (based on Firestorm [VIEWER_VERSION_0].[VIEWER_VERSION_1].[VIEWER_VERSION_2].[VIEWER_VERSION_3])
+[BUILD_DATE] [BUILD_TIME] ([ADDRESS_SIZE]bit / [SIMD]) ([CHANNEL]) [BUILD_TYPE]
+Independent viewer with AMD flicker fix and permission-based local posing.
+Not provided or supported by the Firestorm team or Linden Lab.
+[https://github.com/NekoMisa/stellarys-viewer Stellarys source and project information]
+Parity with Second Life Viewer: [VIEWER_VERSION_LL]
+</string>
 	<string name="AboutCompiler">
 		Built with [COMPILER] version [COMPILER_VERSION]
 	</string>

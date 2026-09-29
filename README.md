@@ -22,9 +22,16 @@ explicitly grant permission using a compatible viewer. Pose synchronisation is
 not implemented. The maintainer has confirmed that revision 2 posing works in
 their live test; this is not a claim of comprehensive compatibility testing.
 
-**The compiled application still identifies itself as Fire Kitty Poser.**
-Stellarys application/installer branding and the updater are planned follow-up
-changes. No Black Dragon renderer transplant is included. There is no
+The source now uses **Stellarys Viewer 0.1.0 (based on Firestorm 7.2.4.80712)**
+in About and its copied diagnostics. Help links point to this project, with
+upstream documentation explicitly labelled. Existing artwork, upstream credits,
+and the prototype settings/cache identity are retained. Updated branding strings
+use English where new translations are not yet available.
+
+**Existing compiled downloads still identify themselves as Fire Kitty Poser.**
+This text branding pass has not yet been compiled or visually tested. Installer
+branding and the updater remain follow-up work. No Black Dragon renderer
+transplant is included. There is no
 updater-enabled Stellarys release yet, and no official release binary is
 published by this initial source import.
 
