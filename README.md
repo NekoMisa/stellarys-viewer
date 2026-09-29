@@ -38,6 +38,17 @@ Updates preserve settings and cache. Uninstalling also preserves them by default
 with optional removal. See the
 [installation notes](tools/stellarys-installer/README-Stellarys.txt) for details.
 
+## My viewer projects
+
+- [Stellarys Viewer](https://github.com/NekoMisa/stellarys-viewer) is a
+  Firestorm-based hobby viewer with the AMD flicker fix, permission-based posing
+  of other avatars and built-in update checks, with more features as it develops.
+- [Black Dragon — Black Kitty Fix](https://github.com/NekoMisa/Black-Dragon---Black-Kitty-Fix)
+  is a Black Dragon build focused on the AMD texture and shadow flicker fix,
+  preserving Black Dragon's features and adding built-in update checks.
+
+Both are independent hobby projects with their own settings, cache and updates.
+
 ## Feedback and contributions
 
 This is an independent hobby project. Suggestions, bug reports and contributions
