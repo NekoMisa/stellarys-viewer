@@ -1,63 +1,67 @@
-# Firestorm Pull Request Guidelines
+# Contributing to Stellarys Viewer
 
-Thank you for submitting code to Firestorm; we will review it and merge or provide feedback in due course.
-We have written this guide to help you contribute code that meets our needs. It will hopefully reduce the number of iterations required before we can merge the code.
+Thank you for helping improve Stellarys Viewer. Bug reports, documentation,
+translations and code contributions are welcome.
 
-1. **Descriptive Title**:
-  Use a clear and descriptive title for the PR.
+Stellarys is an independent project based on Firestorm and Linden Lab viewer
+code. Please use this repository for Stellarys issues and pull requests.
+The upstream teams do not provide support for Stellarys builds.
+Review and support are best effort; a submission does not guarantee a merge
+or a response time.
 
-1. **Related Issues**:
-   Reference any related issues or pull requests by including the JIRA number and description in the commit message header (e.g., `[FIRE-12345] When I click, my head falls off` or `[FIRE-12345] prevent click detaching head`).
+## Reporting bugs and suggesting features
 
-1. **Description**:
-   Provide a detailed description of the changes. Explain why the changes are necessary and what problem they solve. If a JIRA is associated with the change, there is no need to duplicate that, but we would appreciate a summary and explanation of the fix.
+Search the [existing issues](https://github.com/NekoMisa/stellarys-viewer/issues)
+before opening a new one. For a bug report, include:
 
-1. **Comment tags (important)**:
-   We use comments to preserve the original upstream (LL) code when making modifications; this allows the person merging future code updates to see both the original code from LL and any new updates and then use those to determine whether the FS-specific changes need to be updated and reviewed.
- If you are modifying LL code, we need the LL code preserved in a comment.
- For example:
+- Your Stellarys version and the separate Firestorm base version from About.
+- Your Windows version and, for graphics problems, GPU and driver version.
+- Steps to reproduce the problem, expected behaviour and what actually happened.
+- Relevant screenshots or a short, redacted log excerpt if useful.
 
- ```c++
-    int buggy_code = TRUE; 
-    LL_WARN() << "This code is buggy" << LL_ENDL;
- ```
+Remove account identifiers, private conversations, personal file paths and other
+personal information before posting screenshots or logs. Never upload passwords,
+login credentials, account settings or your complete settings/cache folders.
 
-Would become:
+For a feature request, explain what you want to do and how the change would help.
+Discuss substantial rendering, posing, UI or installer changes in an issue before
+starting a large implementation.
 
- ```c++
-    // <FS> [FIRE-999] Fix the buggy code 
-    // int buggy_code = TRUE; 
-    // LL_WARN() << "This code is buggy" << LL_ENDL;
-    bool fixed_code = true;
-    LL_DEBUG() << "I fixed this" << LL_ENDL;
-    // </FS>
- ```
+## Submitting a pull request
 
- Note: You can tag them with your initials, e.g. `<FS:YI>` or a short unique tag (shorter is better)
+1. Create a branch from `main` and keep the change focused on one problem.
+2. Use a descriptive title and link related Stellarys GitHub issues, such as
+   `Fixes #123`. Firestorm JIRA references are only needed when citing an
+   actual upstream issue; they are not required for Stellarys contributions.
+3. Describe the problem, resulting behaviour and any relevant tradeoffs.
+4. Follow the surrounding code style. Preserve upstream copyright, licence
+   notices, credits and existing Firestorm/Linden Lab change annotations.
+   Mark new Stellarys-specific changes where it helps future upstream merges;
+   do not relabel existing upstream work as Stellarys work.
+5. Explain how you verified the change. State your build/test environment,
+   results and anything that remains untested. Distinguish a successful build
+   from a visually confirmed rendering fix or an in-world posing test.
+6. Update the relevant Stellarys documentation when user behaviour, build steps
+   or installation instructions change.
 
- If you add new code, the same rules apply, but there is nothing to comment out.
- This is done so that when LL updates the original code, we can see what the original code was doing, what their changes do, and how that relates to the changes that we applied on top.
+For build information, start with the [README](README.md#building-and-testing).
+Use a separate test installation and disposable settings for tests that modify
+user data. Contributions should preserve posing permissions and the separation
+of Stellarys settings/cache from other viewers. Installer and updater changes
+must retain installation guards and user approval for downloading/installing.
 
- A single line change can use the shorthand `</FS:YI>`:
+Do not include generated installers, dependency bundles, personal settings,
+credentials, logs or cache in a source pull request. Keep the Stellarys release
+version distinct from the Firestorm base version; a version bump should be
+coordinated with the release.
 
- ```c++
-    bool break_stuff = true;
- ```
+## Credits and licensing
 
-Could be fixed as follows:
+Contributions must be compatible with the applicable licences. Keep existing
+notices and identify the origin and licence of any imported code or artwork.
+See [LICENSE](LICENSE), the [README credits](README.md#credits-and-licensing)
+and [source provenance](SOURCE-PROVENANCE.md).
 
- ```c++
-    bool break_stuff = false; // </FS:Beq> [FIRE-23456] don't break stuff.
- ```
-
- The Comment tags are only required when changing code maintained upstream. If the code you are changing is in an FS-created file, RLV code, OpenSim-only code, etc., then we do not need the comments.
-
- If the code you are changing is already inside an `//<FS>` comment block, then there is no need to add a new block, but do try to make sure that any comments align with the updates you make.
-
-5. **Testing**:
-   Include details on how the changes should be tested. Describe the testing environment and any steps needed to verify the changes.
-
-1. **Documentation**:
-   If the change includes a new feature, it would be beneficial to suggest how we should update the FS Wiki pages to help users understand the feature
-
-Thank you for your contribution!
+Changes intended for official Firestorm should be submitted separately to that
+project under its own contribution guidelines. A Stellarys pull request does
+not submit anything upstream.
