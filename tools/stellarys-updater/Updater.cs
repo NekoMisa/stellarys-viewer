@@ -16,13 +16,13 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: System.Reflection.AssemblyTitle("Stellarys Viewer Updater")]
-[assembly: System.Reflection.AssemblyVersion("0.1.0.0")]
+[assembly: System.Reflection.AssemblyVersion("0.1.1.0")]
 
 internal sealed class Release
 {
     internal const string Repository = "https://github.com/NekoMisa/stellarys-viewer";
     internal const string Api = "https://api.github.com/repos/NekoMisa/stellarys-viewer/releases/latest";
-    internal const string Current = "0.1.0";
+    internal const string Current = "0.1.1";
     internal Version Version;
     internal string Tag, Notes, Url, Digest, Name;
     internal long Size;
@@ -90,6 +90,7 @@ internal sealed class Updater : Form
     {
         quiet = automatic;
         Text = "Stellarys Viewer — Updates"; Size = new Size(640, 440); MinimumSize = new Size(540, 360);
+        Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         StartPosition = FormStartPosition.CenterScreen;
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Bottom, Height = 75, Padding = new Padding(8), FlowDirection = FlowDirection.LeftToRight };
         var close = new Button { Text = "Close", Width = 90 };

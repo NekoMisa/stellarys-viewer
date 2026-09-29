@@ -1,7 +1,8 @@
-Stellarys Viewer 0.1.0 (based on Firestorm 7.2.4.80712)
+Stellarys Viewer 0.1.1 (based on Firestorm 7.2.4.80712)
 
 Includes the AMD flicker changes and permission-based local posing, including
-the nearby-avatar discovery correction. Original artwork is retained for now.
+the nearby-avatar discovery correction. Version 0.1.1 adds the Stellarys cat-ear
+and silver-star application/installer icon. Existing skins remain unchanged.
 This independent viewer is not supported by Firestorm or Linden Lab.
 
 INSTALLATION

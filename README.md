@@ -1,6 +1,6 @@
 # Stellarys Viewer
 
-**Stellarys Viewer 0.1.0 (based on Firestorm 7.2.4.80712)** is an independent
+**Stellarys Viewer 0.1.1 (based on Firestorm 7.2.4.80712)** is an independent
 viewer with an AMD flicker fix and permission-based local posing. The earlier
 prototype names are retained only in historical provenance and build notes.
 
@@ -23,10 +23,11 @@ explicitly grant permission using a compatible viewer. Pose synchronisation is
 not implemented. The maintainer has confirmed that revision 2 posing works in
 their live test; this is not a claim of comprehensive compatibility testing.
 
-The source now uses **Stellarys Viewer 0.1.0 (based on Firestorm 7.2.4.80712)**
+The source now uses **Stellarys Viewer 0.1.1 (based on Firestorm 7.2.4.80712)**
 in About and its copied diagnostics. Help links point to this project, with
-upstream documentation explicitly labelled. Existing artwork and upstream credits
-are retained. The Second Life login page is local Stellarys information; it does
+upstream documentation explicitly labelled. The Windows application, installer,
+updater and login logo use the Stellarys cat-ear/star icon. Existing skins and
+upstream credits are retained. The Second Life login page is local Stellarys information; it does
 not display Firestorm release news. Stellarys uses its own per-user `Stellarys_x64` settings and cache
 folders. Existing viewer profiles are not migrated or deleted. Updated branding strings
 use English where new translations are not yet available.

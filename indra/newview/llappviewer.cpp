@@ -3546,7 +3546,7 @@ bool LLAppViewer::initConfiguration()
     //
     // Set the name of the window
     //
-    gWindowTitle = "Stellarys Viewer 0.1.0 (based on Firestorm " + LLVersionInfo::getInstance()->getVersion() + ")";
+    gWindowTitle = "Stellarys Viewer 0.1.1 (based on Firestorm " + LLVersionInfo::getInstance()->getVersion() + ")";
 #if LL_DEBUG
     gWindowTitle += std::string(" [DEBUG]");
 #endif

@@ -378,6 +378,8 @@ class ViewerManifest(LLManifest,FSViewerManifest):
     # </FS:Ansariel>
 
     def icon_path(self):
+        if self.channel().startswith("Stellarys"):
+            return "icons/stellarys"
         # <FS:ND> Add -os for oss builds
         chan = self.channel_type()
         if chan in ['alpha', 'nightly','manual', 'profiling']:

@@ -2012,7 +2012,9 @@ if (WINDOWS)
     set(ICON_PATH "private")
     #set(VIEWER_MACOSX_PHASE "d") # <FS:Ansariel> Moved to OSX section
     string(TOLOWER ${VIEWER_CHANNEL} channel_lower)
-    if(channel_lower MATCHES "release")
+    if(channel_lower MATCHES "^stellarys")
+        set(ICON_PATH "stellarys")
+    elseif(channel_lower MATCHES "release")
         set(ICON_PATH "release")
         #set(VIEWER_MACOSX_PHASE "f") # <FS:Ansariel> Moved to OSX section
     elseif(channel_lower MATCHES "beta")
