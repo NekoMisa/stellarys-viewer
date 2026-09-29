@@ -27,6 +27,7 @@
 #include "llviewerprecompiledheaders.h"
 
 #include "llappviewer.h"
+#include "llfloaterabout.h"
 
 // Viewer includes
 #include "llversioninfo.h"
@@ -1472,6 +1473,7 @@ bool LLAppViewer::init()
     }
 #endif
 
+    LLFloaterAboutUtil::checkStellarysUpdates(true);
     return true;
 }
 

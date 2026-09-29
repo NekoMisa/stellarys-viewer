@@ -8650,6 +8650,11 @@ class LLShowHelp : public view_listener_t
     bool handleEvent(const LLSD& userdata)
     {
         std::string help_topic = userdata.asString();
+        if (help_topic == "stellarys_updates")
+        {
+            LLFloaterAboutUtil::checkStellarysUpdates();
+            return true;
+        }
 #ifdef OPENSIM
         if (help_topic.find("grid_") != std::string::npos)
         {

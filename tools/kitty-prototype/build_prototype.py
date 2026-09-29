@@ -44,7 +44,7 @@ args = [str(cmake), '-S', str(src / 'indra'), '-B', str(build),
     '-DUSE_KDU=OFF', '-DHAVOK=OFF', '-DHAVOK_TPV=OFF', '-DOPENSIM=OFF',
     '-DUSE_FMODSTUDIO=ON', '-DUSE_OPENAL=OFF', '-DUSE_AVX2_OPTIMIZATION=ON',
     '-DNVAPI=ON', '-DUSE_TRACY=OFF', '-DBUGSPLAT_DB=', '-DPACKAGE=OFF', '-DLL_TESTS=OFF',
-    '-DVIEWER_CHANNEL=Firestorm Fire Kitty Poser Prototype 0.1',
+    '-DVIEWER_CHANNEL=Stellarys Viewer',
     f'-DPYTHON_EXECUTABLE={python}', f'-DPython3_EXECUTABLE={python}',
     f'-DAUTOBUILD_EXECUTABLE={env["AUTOBUILD"]}']
 if '--build-only' not in sys.argv:

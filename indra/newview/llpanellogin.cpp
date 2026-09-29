@@ -880,6 +880,13 @@ void LLPanelLogin::loadLoginPage()
 {
     if (!sInstance) return;
 
+    // The default welcome content belongs to Stellarys; grid authentication is unchanged.
+    if (LLGridManager::getInstance()->isInSecondLife() && gSavedSettings.getString("ForceLoginURL").empty())
+    {
+        sInstance->getChild<LLMediaCtrl>("login_html")->navigateToLocalPage("stellarys", "index.html");
+        return;
+    }
+
     LLURI login_page = LLURI(LLGridManager::getInstance()->getLoginPage());
     LLSD params(login_page.queryMap());
 

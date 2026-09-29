@@ -1,9 +1,8 @@
 # Stellarys Viewer
 
-An independent Firestorm-based viewer project with local posing and photography
-enhancements. This repository starts from the tested **Fire Kitty Poser
-Prototype 0.1, revision 2**, including the existing **Fire Kitty Fix 0.1.0 AMD
-rendering changes**.
+**Stellarys Viewer 0.1.0 (based on Firestorm 7.2.4.80712)** is an independent
+viewer with an AMD flicker fix and permission-based local posing. The earlier
+prototype names are retained only in historical provenance and build notes.
 
 This software is not provided or supported by Linden Lab, the makers of Second
 Life. It is also not an official Firestorm or Black Dragon release. Support is
@@ -12,10 +11,12 @@ best effort through this repository's Issues; no support response is guaranteed.
 ## Included in this source snapshot
 
 - Firestorm **7.2.4 (80712)** as the official upstream base version.
-- The Fire Kitty Fix AMD changes carried forward from the working build.
+- The AMD changes carried forward from the working build.
 - Permission-based local posing of other avatars in Firestorm's existing poser.
 - The revision 2 fix that includes other nearby avatars in the Model list.
-- Separate prototype settings/cache identity from the official viewers.
+- Separate Stellarys settings/cache identity from official viewers and prototypes.
+- Built-in Windows update checks and a bundled download/verification helper.
+- All-users Windows installer with optional profile/cache removal on uninstall.
 
 The pose changes are local to the photographer's viewer. The other person must
 explicitly grant permission using a compatible viewer. Pose synchronisation is
@@ -24,21 +25,29 @@ their live test; this is not a claim of comprehensive compatibility testing.
 
 The source now uses **Stellarys Viewer 0.1.0 (based on Firestorm 7.2.4.80712)**
 in About and its copied diagnostics. Help links point to this project, with
-upstream documentation explicitly labelled. Existing artwork, upstream credits,
-and the prototype settings/cache identity are retained. Updated branding strings
+upstream documentation explicitly labelled. Existing artwork and upstream credits
+are retained. The Second Life login page is local Stellarys information; it does
+not display Firestorm release news. Stellarys uses its own per-user `Stellarys_x64` settings and cache
+folders. Existing viewer profiles are not migrated or deleted. Updated branding strings
 use English where new translations are not yet available.
 
-**Existing compiled downloads still identify themselves as Fire Kitty Poser.**
-This text branding pass has not yet been compiled or visually tested. Installer
-branding and the updater remain follow-up work. No Black Dragon renderer
-transplant is included. There is no
-updater-enabled Stellarys release yet, and no official release binary is
-published by this initial source import.
+Use Help → Check for Updates to open the updater and change startup checking.
+Downloads and installation require approval. The unsigned installer requests
+Windows administrator permission; updates preserve settings and cache.
+Uninstall also preserves both by default, with explicit optional removal for
+the Windows account shown on its data-removal page. Other users, older viewer
+profiles and custom cache folders are excluded.
+
+See the [installation notes](tools/stellarys-installer/README-Stellarys.txt) and
+[updater release contract](tools/stellarys-updater/README.md). Until a stable
+GitHub Release is published, the updater reports that no public release exists.
+No Black Dragon renderer transplant or new visual skin is included.
 
 ## Versions and provenance
 
-The Stellarys release version will remain distinct from the upstream Firestorm
-version and the Kitty Fix version. See [SOURCE-PROVENANCE.md](SOURCE-PROVENANCE.md)
+The Stellarys release version remains distinct from the upstream Firestorm
+version. Earlier fix/prototype versions appear only in historical provenance.
+See [SOURCE-PROVENANCE.md](SOURCE-PROVENANCE.md)
 and [stellarys-source.json](stellarys-source.json) for this snapshot's identities.
 
 ## Building and testing

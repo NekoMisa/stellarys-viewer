@@ -315,7 +315,7 @@
       <combo_box.drop_down_button
         font="SansSerifLarge"/>
       <combo_box.item
-        label="Firestorm"
+        label="Stellarys"
         name="Firestorm"
         value="settings_firestorm.xml" />
       <combo_box.item

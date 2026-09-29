@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<panel label="Firestorm" name="firestorm">
+<panel label="Firestorm Settings" name="firestorm">
 	<tab_container label="Prefs Firestorm" name="tabs">
 		<panel label="Extras" name="tab-extras">
 			<check_box name="checkMiscRLVa" label="Permitir control remoto del visor mediante scripts (RLVa)" width="330"/>

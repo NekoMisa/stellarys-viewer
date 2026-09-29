@@ -12,7 +12,7 @@
     <string name="EmbeddedItemNotLoggedIn">
         Non presente
     </string>
-    <tab_container label="Firestorm" name="tabs">
+    <tab_container label="Firestorm Settings" name="tabs">
         <panel label="Extra" name="tab-extras">
             <check_box name="checkMiscRLVa" label="Abilita Remote Scripted Viewer Controls (RLVa)" />
             <text name="textMiscRLVaRestart">

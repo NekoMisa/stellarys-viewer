@@ -33,6 +33,7 @@ namespace LLFloaterAboutUtil
 
     // Support for user initialized update/state checks
     void checkUpdatesAndNotify();
+    void checkStellarysUpdates(bool startup = false);
 }
 
 #endif // LL_LLFLOATERABOUT_H

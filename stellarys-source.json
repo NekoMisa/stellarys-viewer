@@ -6,8 +6,9 @@
   "kitty_fix_version": "0.1.0",
   "poser_prototype_version": "0.1",
   "poser_revision": 2,
-  "application_branding": "Stellarys Viewer (text branding; existing artwork and prototype profile identity retained)",
-  "updater": "not implemented",
+  "application_branding": "Stellarys Viewer",
+  "updater": "Windows GitHub Releases checks; approved download and install; SHA-256 verification",
   "black_dragon_renderer_port": "not implemented",
-  "stellarys_version": "0.1.0"
+  "stellarys_version": "0.1.0",
+  "profile": "Stellarys_x64"
 }
