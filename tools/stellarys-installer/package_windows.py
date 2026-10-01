@@ -5,7 +5,7 @@ w=Path(os.environ.get('STELLARYS_WORK', str(repo.parent)))
 build=Path(os.environ.get('STELLARYS_BUILD', r'C:\FK-Poser-Test\build-vs18-v143'))
 version=json.loads((repo/'stellarys-source.json').read_text())['stellarys_version']
 out=w.parent/('outputs/Stellarys-Viewer-'+version); out.mkdir(parents=True,exist_ok=True)
-payload=w/('stellarys-payload-'+version); payload.mkdir(exist_ok=True)
+payload=Path(os.environ.get('STELLARYS_PAYLOAD', str(w/('stellarys-payload-'+version)))); payload.mkdir(exist_ok=True)
 source=repo/'indra/newview'
 icon=source/'icons/stellarys/firestorm_icon.ico'
 sys.path.insert(0,str(source))

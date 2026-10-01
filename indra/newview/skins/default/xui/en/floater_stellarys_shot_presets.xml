@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="stellarys_shot_presets" title="Shot Presets" width="440" height="404"
+ layout="topleft" positioning="centered" save_rect="true" can_resize="false">
+    <text name="intro" left="16" top="32" width="408" height="44" wrap="true" layout="topleft">
+Save a whole photo setup: camera position, lens and blur, local lighting and image size.
+    </text>
+    <combo_box name="shots" label="Choose a saved shot" left="16" top="84" width="408" height="24" layout="topleft" />
+    <button name="restore" label="Restore shot" left="16" top="116" width="130" height="26" layout="topleft" />
+    <button name="delete" label="Delete..." left="158" top="116" width="88" height="26" layout="topleft" />
+    <text name="name_label" left="16" top="160" width="408" height="18" layout="topleft">Save current setup as</text>
+    <line_editor name="shot_name" left="16" top="182" width="408" height="24" max_length_bytes="80" layout="topleft" />
+    <spinner name="shot_width" label="Width" label_width="44" left="16" top="220" width="134" height="22" min_val="32" max_val="6016" increment="32" decimal_digits="0" layout="topleft" />
+    <spinner name="shot_height" label="Height" label_width="44" left="162" top="220" width="134" height="22" min_val="32" max_val="6016" increment="32" decimal_digits="0" layout="topleft" />
+    <button name="save" label="Save shot" left="308" top="216" width="116" height="28" layout="topleft" />
+    <text name="scope" left="16" top="258" width="408" height="42" wrap="true" layout="topleft">
+Camera position restores in the original region only. Lighting saves the visible sky and water as a fixed local setup. Poses are saved separately in the poser.
+    </text>
+    <text name="status" left="16" top="310" width="408" height="48" wrap="true" layout="topleft">Choose a saved shot, or name your current setup and save it.</text>
+    <button name="snapshot" label="Open Snapshot" left="280" top="372" width="144" height="24" layout="topleft" />
+</floater>

@@ -13,9 +13,13 @@ Run `package_windows.py` with the configured Python environment after building.
 `C:\FK-Poser-Test\build-vs18-v143`). `STELLARYS_WORK` selects the staging/tool
 directory (default: the repository's parent). Put NSIS 3.12 under
 `STELLARYS_WORK\installer\nsis-3.12`, or adapt its one tool path. Outputs go to
-the sibling `outputs\Stellarys-Viewer-0.1.1` folder. Packaging invokes the
+the sibling `outputs\Stellarys-Viewer-0.1.2` folder. Packaging invokes the
 upstream manifest, adds the .NET updater, creates an explicit file manifest and
 compiles NSIS. No settings are copied from a user profile.
+
+`STELLARYS_PAYLOAD` optionally selects a separate clean application staging
+folder, useful when an earlier test build is still running. Keep runtime test
+profiles outside this folder.
 
 The current upstream dependency manifest still refers to the separately built
 local FMOD archive. Supply that licensed dependency and the tools documented

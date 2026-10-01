@@ -36,7 +36,7 @@ Stellarys
 
 	<!-- about dialog/support string-->
 	<string name="AboutHeader">
-[APP_NAME] 0.1.1 (based on Firestorm [VIEWER_VERSION_0].[VIEWER_VERSION_1].[VIEWER_VERSION_2].[VIEWER_VERSION_3])
+[APP_NAME] 0.1.2 (based on Firestorm [VIEWER_VERSION_0].[VIEWER_VERSION_1].[VIEWER_VERSION_2].[VIEWER_VERSION_3])
 [BUILD_DATE] [BUILD_TIME] ([ADDRESS_SIZE]bit / [SIMD]) [BUILD_TYPE]
 Independent viewer with AMD flicker fix and permission-based local posing.
 Not provided or supported by the Firestorm team or Linden Lab.
@@ -2757,7 +2757,7 @@ name="Command_360_Capture_Label">360° Snapshot</string>
   <string name="Command_Search_Label">Search</string>
   <string name="Command_Snapshot_Label">Snapshot</string>
   <string name="Command_Speak_Label">Speak</string>
-  <string name="Command_View_Label">Camera controls</string>
+  <string name="Command_View_Label">Camera Controls</string>
 <!-- Ansariel: Renamed for FS (FIRE-5019)
   <string name="Command_Voice_Label">Voice settings</string>-->
   <string name="Command_Voice_Label">Nearby voice</string>
@@ -2774,8 +2774,8 @@ name="Command_360_Capture_Label">360° Snapshot</string>
   <string name="Command_Groundsit_Label">Ground sit</string>
   <string name="Command_Sound_Explorer_Label">Sound explorer</string>
   <string name="Command_Asset_Blacklist_Label">Asset blacklist</string>
-  <string name="Command_Phototools_Label">Phototools</string>
-  <string name="Command_Phototools_View_Label">Phototools camera</string>
+  <string name="Command_Phototools_Label">Photo Tools</string>
+  <string name="Command_Phototools_View_Label">Camera Tools</string>
   <string name="Command_Contact_Sets_Label">Contact sets</string>
   <string name="Command_Mouselook_Label">Mouselook</string>
   <string name="Command_Landmark_Here_Label">Create Landmark</string>
@@ -2831,7 +2831,7 @@ name="Command_360_Capture_Label">360° Snapshot</string>
   <string name="Command_Search_Tooltip">Find places, events, people (CTRL+F)</string>
   <string name="Command_Snapshot_Tooltip">Take a picture (CTRL+SHIFT+S)</string>
   <string name="Command_Speak_Tooltip">Speak with people nearby using your microphone</string>
-  <string name="Command_View_Tooltip">Changing camera angle</string>
+  <string name="Command_View_Tooltip">Orbit, pan and zoom the camera (CTRL+K). Also available in the Photo menu.</string>
   <string name="Command_Voice_Tooltip">Volume controls for calls and people near you in world</string>
 <!-- Firestorm commands -->
   <string name="Command_Quickprefs_Tooltip">Quick preferences for changing often used settings</string>
@@ -2845,8 +2845,8 @@ name="Command_360_Capture_Label">360° Snapshot</string>
   <string name="Command_Groundsit_Tooltip">Toggle ground sit mode on/off (CTRL+ALT+S)</string>
   <string name="Command_Sound_Explorer_Tooltip">Opens the sound explorer</string>
   <string name="Command_Asset_Blacklist_Tooltip">Opens the list of all the items you have blacklisted</string>
-  <string name="Command_Phototools_Tooltip">Tools for full-featured image making (ALT+P).</string>
-  <string name="Command_Phototools_View_Tooltip">Advanced phototools camera controls (CTRL+SHIFT+C)</string>
+  <string name="Command_Phototools_Tooltip">Lighting, environment and graphics controls for photography (ALT+P). Also available in the Photo menu.</string>
+  <string name="Command_Phototools_View_Tooltip">Camera movement, focus and lens controls (CTRL+SHIFT+C). Also available in the Photo menu.</string>
   <string name="Command_Contact_Sets_Tooltip">Opens contact sets (CTRL+ALT+SHIFT+C)</string>
   <string name="Command_Mouselook_Tooltip">Enter mouselook mode (M)</string>
   <string name="Command_Landmark_Here_Tooltip">Creates a landmark at your current position</string>

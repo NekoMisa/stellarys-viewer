@@ -299,6 +299,8 @@ public:
     void            cameraOrbitIn(const F32 meters);        // Move camera in toward build focus point
 // <FS:Chanayane> Camera roll (from Alchemy)
     void            cameraRollOver(const F32 radians);      // Roll the camera
+    F32             getCameraRoll() const { return mRollAngle; }
+    void            restorePhotographicView(const LLVector3d& position, const LLVector3d& focus, F32 roll);
 // </FS:Chanayane>
     void            resetCameraOrbit();
     void            resetOrbitDiff();

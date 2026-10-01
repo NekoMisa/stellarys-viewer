@@ -5,8 +5,20 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.1 — based on Firestorm 7.2.4.80712.**
+**Stellarys Viewer 0.1.2 — based on Firestorm 7.2.4.80712.**
 The Stellarys version is separate from the Firestorm base version.
+
+## What's new in 0.1.2
+
+- **Cleaner updater:** a clear version heading, short change highlights, readable
+  spacing and a link to the full release notes.
+- **Photo menu:** snapshots, camera and lighting tools, the poser and avatar reset
+  actions in one place. Toolbar customization keeps its familiar access points.
+- **Shot presets:** save and restore camera position, focus and roll, lens/blur,
+  local lighting and snapshot dimensions together in the same region.
+
+Shot presets do not include poses or automatically save photos. Width and height
+set the Snapshot window's custom output size in pixels.
 
 ## Features
 
@@ -15,7 +27,14 @@ The Stellarys version is separate from the Firestorm base version.
 - **Pose other avatars:** use the poser to adjust nearby avatars with their
   permission, making it easier to arrange photos and group scenes.
 - **Built-in update checks:** check for releases from within the viewer and
-  choose when to download and install them.
+  choose when to download and install them. Read short release highlights or
+  follow the link to the full release notes.
+- **Photography tools together:** the **Photo** menu gives quick access to
+  snapshots, camera controls, Camera Tools, Photo Tools, the poser and avatar reset
+  actions. Familiar toolbar customization remains available.
+- **Complete shot presets:** save camera position, lens/blur controls, local
+  lighting and image dimensions together, then restore a shot in its original
+  region. See the [shot preset guide](tools/stellarys-photography/README.md).
 - **Separate settings and cache:** Stellarys keeps its own profile alongside
   your other viewers.
 

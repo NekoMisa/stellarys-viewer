@@ -1,11 +1,25 @@
-Stellarys Viewer 0.1.1 (based on Firestorm 7.2.4.80712)
+Stellarys Viewer 0.1.2 (based on Firestorm 7.2.4.80712)
 
-Includes the AMD flicker changes and permission-based local posing, including
-the nearby-avatar discovery correction. Version 0.1.1 adds the Stellarys cat-ear
-and silver-star application/installer icon. Existing skins remain unchanged.
+A hobby viewer with the AMD flicker fix and permission-based local posing.
+This update adds clearer update highlights with a full release-notes link, plus
+a Photo menu for snapshots, camera controls, Camera Tools, Photo Tools and the
+poser and self reset actions. Shot Presets saves camera position, lens/blur,
+local lighting and image dimensions together; restore shots in their original
+region. Toolbar customization stays at its existing access points.
+Your saved toolbar layout and existing shortcuts are retained. Rendering,
+posing, the AMD fix and existing skins are unchanged.
 This independent viewer is not supported by Firestorm or Linden Lab.
 
 INSTALLATION
+Shot Presets: choose Photo > Shot Presets, name your current setup, set the
+image width/height and click Save shot. Choose a saved shot and click Restore
+shot in its original region. This applies camera, lens/blur, local lighting and
+snapshot dimensions; it does not save or upload a photo. Open Snapshot to review
+and save to disk. Flycam and snapshot Freeze Frame must be off. Saved lighting
+is a fixed local sky/water setup; use Photo Tools to return to Shared Environment.
+Poses are saved separately in the poser. Your shot presets are stored with your
+per-user settings and are preserved by updates and default uninstall.
+
 Windows x64; administrator approval required. Default:
 C:\Program Files\StellarysViewer
 Setup accepts an empty folder or an existing marked Stellarys installation.

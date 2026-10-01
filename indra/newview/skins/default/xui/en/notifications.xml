@@ -15099,4 +15099,8 @@ To withdraw it, open the Poser's Model tab, select this person and click "Revoke
 The Stellarys updater could not be started. Reinstall Stellarys or download a release from https://github.com/NekoMisa/stellarys-viewer/releases.
     <usetemplate name="okbutton" yestext="OK" />
   </notification>
+  <notification name="StellarysDeleteShotPreset" type="alertmodal">
+Delete the saved shot "[NAME]"? Your current camera and lighting will stay as they are.
+    <usetemplate name="okcancelbuttons" yestext="Delete" notext="Cancel" />
+  </notification>
 </notifications>

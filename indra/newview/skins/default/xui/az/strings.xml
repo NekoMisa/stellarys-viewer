@@ -29,7 +29,7 @@ Stellarys project issues
 		Grafika başladıla bilmədi. Zəhmət olmasa, video kartın sürücüsünü yeniləyin
 	</string>
 	<string name="AboutHeader">
-[APP_NAME] 0.1.1 (based on Firestorm [VIEWER_VERSION_0].[VIEWER_VERSION_1].[VIEWER_VERSION_2].[VIEWER_VERSION_3])
+[APP_NAME] 0.1.2 (based on Firestorm [VIEWER_VERSION_0].[VIEWER_VERSION_1].[VIEWER_VERSION_2].[VIEWER_VERSION_3])
 [BUILD_DATE] [BUILD_TIME] ([ADDRESS_SIZE]bit / [SIMD]) [BUILD_TYPE]
 Independent viewer with AMD flicker fix and permission-based local posing.
 Not provided or supported by the Firestorm team or Linden Lab.

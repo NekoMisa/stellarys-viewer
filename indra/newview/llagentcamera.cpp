@@ -959,6 +959,23 @@ void LLAgentCamera::resetCameraRoll()
 {
     mRollAngle = 0.f;
 }
+
+// Restore an explicitly selected local shot without retained object-focus zoom
+// or smoothing from the previous view. Normal camera constraints still apply.
+void LLAgentCamera::restorePhotographicView(const LLVector3d& position, const LLVector3d& focus, F32 roll)
+{
+    setFocusOnAvatar(false, false);
+    setFocusGlobal(focus, LLUUID::null);
+    setCameraPosAndFocusGlobal(position, focus, LLUUID::null);
+    stopCameraAnimation();
+    mCameraFOVZoomFactor = 0.f;
+    mCameraCurrentFOVZoomFactor = 0.f;
+    mCameraLag.clearVec();
+    mCameraSmoothingLastPositionGlobal = position;
+    mCameraSmoothingStop = true;
+    resetCameraRoll();
+    cameraRollOver(roll);
+}
 // </FS:Chanayane>
 void LLAgentCamera::resetCameraOrbit()
 {

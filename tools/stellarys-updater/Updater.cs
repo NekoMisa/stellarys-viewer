@@ -16,16 +16,17 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: System.Reflection.AssemblyTitle("Stellarys Viewer Updater")]
-[assembly: System.Reflection.AssemblyVersion("0.1.1.0")]
+[assembly: System.Reflection.AssemblyVersion("0.1.2.0")]
 
 internal sealed class Release
 {
     internal const string Repository = "https://github.com/NekoMisa/stellarys-viewer";
     internal const string Api = "https://api.github.com/repos/NekoMisa/stellarys-viewer/releases/latest";
-    internal const string Current = "0.1.1";
+    internal const string Current = "0.1.2";
     internal Version Version;
     internal string Tag, Notes, Url, Digest, Name;
     internal long Size;
+    internal string PageUrl { get { return Repository + "/releases/tag/" + Tag; } }
     internal static Version ParseVersion(string value)
     {
         if (!Regex.IsMatch(value ?? "", @"^\d+\.\d+\.\d+$")) throw new InvalidDataException("Invalid stable version.");
@@ -72,11 +73,96 @@ internal sealed class Release
     }
 }
 
+internal static class ReleaseNotes
+{
+    // The dialog shows a bounded summary; the trusted release page contains details.
+    internal static string[] Summary(string markdown)
+    {
+        string[] lines = (markdown ?? "").Replace("\r", "").Split('\n');
+        var selected = new List<string>();
+        bool preferred = false, inCode = false;
+        foreach (string line in lines)
+        {
+            var heading = Regex.Match(line.Trim(), @"^#{1,6}\s+(.+?)\s*#*$");
+            if (heading.Success && Regex.IsMatch(Plain(heading.Groups[1].Value),
+                @"^(what['’]?s new|changes|changed|highlights|improvements)$", RegexOptions.IgnoreCase))
+            { preferred = true; break; }
+        }
+        bool active = !preferred;
+        foreach (string line in lines)
+        {
+            string text = line.Trim();
+            if (text.StartsWith("```", StringComparison.Ordinal)) { inCode = !inCode; continue; }
+            if (inCode) continue;
+            var heading = Regex.Match(text, @"^#{1,6}\s+(.+?)\s*#*$");
+            if (heading.Success)
+            {
+                if (preferred)
+                {
+                    bool wanted = Regex.IsMatch(Plain(heading.Groups[1].Value),
+                        @"^(what['’]?s new|changes|changed|highlights|improvements)$", RegexOptions.IgnoreCase);
+                    if (active && !wanted) break;
+                    active = wanted;
+                }
+                continue;
+            }
+            if (!active || text.Length == 0 || text.StartsWith("|", StringComparison.Ordinal)) continue;
+            var bullet = Regex.Match(text, @"^(?:[-*+]\s+|\d+[.)]\s+|•\s*)(.+)$");
+            if (bullet.Success)
+            {
+                string item = Plain(bullet.Groups[1].Value);
+                if (item.Length > 0) selected.Add(item);
+            }
+            else if (selected.Count > 0 && line.Length > 0 && Char.IsWhiteSpace(line[0]))
+                selected[selected.Count - 1] += " " + Plain(text);
+            if (selected.Count == 5) break;
+        }
+        if (selected.Count == 0)
+        {
+            inCode = false;
+            foreach (string line in lines)
+            {
+                string text = line.Trim();
+                if (text.StartsWith("```", StringComparison.Ordinal)) { inCode = !inCode; continue; }
+                if (inCode || text.Length == 0 || text.StartsWith("#") || text.StartsWith("|")) continue;
+                text = Plain(text);
+                if (Regex.IsMatch(text, @"^(Stellarys.*\d+\.\d+\.\d+|Based on |SHA-?256|Source commit)", RegexOptions.IgnoreCase)) continue;
+                if (text.Length > 0) selected.Add(text);
+                if (selected.Count == 3) break;
+            }
+        }
+        if (selected.Count == 0) selected.Add("See the full release notes for details about this update.");
+        for (int i = 0; i < selected.Count; i++) selected[i] = Shorten(selected[i]);
+        return selected.ToArray();
+    }
+    static string Plain(string text)
+    {
+        text = Regex.Replace(text, @"!?\[([^\]]+)\]\([^)]*\)", "$1");
+        text = Regex.Replace(text, @"<[^>]*>", "");
+        text = Regex.Replace(text, @"[*_`]+", "");
+        text = WebUtility.HtmlDecode(text);
+        return Regex.Replace(text, @"[\s\x00-\x1f\x7f]+", " ").Trim();
+    }
+    static string Shorten(string text)
+    {
+        if (text.Length <= 180) return text;
+        int length = 177;
+        int space = text.LastIndexOf(' ', length);
+        if (space >= 120) length = space;
+        if (Char.IsHighSurrogate(text[length - 1])) length--;
+        return text.Substring(0, length).TrimEnd() + "…";
+    }
+}
+
 internal sealed class Updater : Form
 {
-    readonly Label status = new Label { Dock = DockStyle.Top, Height = 52, Padding = new Padding(8) };
-    readonly TextBox notes = new TextBox { Multiline = true, ReadOnly = true, ScrollBars = ScrollBars.Vertical, Dock = DockStyle.Fill };
-    readonly Button action = new Button { Text = "Checking…", Enabled = false, Width = 180 };
+    readonly Label heading = new Label { Dock = DockStyle.Top, Height = 40, Text = "Stellarys Viewer" };
+    readonly Label versions = new Label { Dock = DockStyle.Top, Height = 28 };
+    readonly Label status = new Label { Dock = DockStyle.Top, Height = 55 };
+    readonly RichTextBox notes = new RichTextBox { ReadOnly = true, DetectUrls = false, BorderStyle = BorderStyle.None,
+        BackColor = Color.White, ScrollBars = RichTextBoxScrollBars.Vertical, Dock = DockStyle.Fill };
+    readonly LinkLabel fullNotes = new LinkLabel { Text = "Read full release notes on GitHub", Dock = DockStyle.Bottom, Height = 30, Enabled = false };
+    readonly Button action = new Button { Text = "Checking…", Enabled = false, Width = 160, Height = 30 };
     readonly CheckBox startup = new CheckBox { Text = "Check for updates when Stellarys starts", AutoSize = true };
     readonly CancellationTokenSource cancel = new CancellationTokenSource();
     readonly string home = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
@@ -86,26 +172,70 @@ internal sealed class Updater : Form
     string downloaded;
     bool verified;
     bool busy;
-    internal Updater(bool automatic)
+    internal Updater(bool automatic, Release preview = null)
     {
         quiet = automatic;
-        Text = "Stellarys Viewer — Updates"; Size = new Size(640, 440); MinimumSize = new Size(540, 360);
+        Text = "Stellarys Viewer — Updates"; Size = new Size(740, 570); MinimumSize = new Size(620, 480);
+        Font = new Font("Segoe UI", 10); AutoScaleMode = AutoScaleMode.Dpi;
+        BackColor = Color.White;
+        heading.Font = new Font("Segoe UI", 19, FontStyle.Bold);
+        versions.ForeColor = Color.DimGray;
+        versions.Text = "Installed: Stellarys " + Release.Current;
         Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         StartPosition = FormStartPosition.CenterScreen;
-        var buttons = new FlowLayoutPanel { Dock = DockStyle.Bottom, Height = 75, Padding = new Padding(8), FlowDirection = FlowDirection.LeftToRight };
-        var close = new Button { Text = "Close", Width = 90 };
+        var footer = new Panel { Dock = DockStyle.Bottom, Height = 100, Padding = new Padding(18, 8, 18, 12) };
+        var buttons = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 37, FlowDirection = FlowDirection.RightToLeft, WrapContents = false };
+        var close = new Button { Text = "Close", Width = 90, Height = 30 };
         close.Click += (s,e) => Close();
         startup.Checked = !File.Exists(preferences);
         startup.CheckedChanged += (s,e) => {
             try { Directory.CreateDirectory(Path.GetDirectoryName(preferences)); if (startup.Checked) File.Delete(preferences); else File.WriteAllText(preferences, "disabled"); }
             catch (Exception ex) { MessageBox.Show(this, "Could not save update preference: " + ex.Message); }
         };
-        buttons.Controls.Add(action); buttons.Controls.Add(close); buttons.Controls.Add(startup);
-        Controls.Add(notes); Controls.Add(status); Controls.Add(buttons);
+        buttons.Controls.Add(close); buttons.Controls.Add(action);
+        startup.Dock = DockStyle.Bottom;
+        footer.Controls.Add(buttons); footer.Controls.Add(startup);
+        var header = new Panel { Dock = DockStyle.Top, Height = 148, Padding = new Padding(20, 16, 20, 0) };
+        header.Controls.Add(status); header.Controls.Add(versions); header.Controls.Add(heading);
+        var content = new Panel { Dock = DockStyle.Fill, Padding = new Padding(22, 8, 22, 8) };
+        var changesTitle = new Label { Dock = DockStyle.Top, Height = 32, Text = "Release highlights", Font = new Font("Segoe UI", 12, FontStyle.Bold) };
+        content.Controls.Add(notes); content.Controls.Add(changesTitle); content.Controls.Add(fullNotes);
+        Controls.Add(content); Controls.Add(header); Controls.Add(footer);
+        fullNotes.LinkClicked += (s,e) => {
+            if (release == null) return;
+            try { Process.Start(new ProcessStartInfo(release.PageUrl) { UseShellExecute = true }); }
+            catch { MessageBox.Show(this, "Could not open GitHub. You can find the release notes at " + release.PageUrl); }
+        };
         action.Click += async (s,e) => await DownloadAndInstall();
         FormClosing += (s,e) => cancel.Cancel();
-        Shown += async (s,e) => { if (quiet) Hide(); await Check(); };
+        Shown += async (s,e) => {
+            if (preview != null) {
+                release = preview; ShowRelease(); startup.Enabled = false;
+                status.Text = "Release notes preview. Download and installation are disabled.";
+                action.Text = "Download update"; action.Enabled = false;
+                return;
+            }
+            if (quiet) Hide(); await Check();
+        };
         if (quiet) { Opacity = 0; ShowInTaskbar = false; }
+    }
+    void ShowRelease()
+    {
+        heading.Text = "Stellarys Viewer " + release.Version;
+        versions.Text = "Installed: " + Release.Current + "    •    Release: " + release.Version;
+        notes.Clear();
+        foreach (string item in ReleaseNotes.Summary(release.Notes))
+        {
+            notes.SelectionStart = notes.TextLength;
+            notes.SelectionIndent = 18; notes.SelectionHangingIndent = 4;
+            notes.SelectionBullet = true;
+            notes.AppendText(item + "\n");
+            notes.SelectionBullet = false; notes.SelectionIndent = 0; notes.SelectionHangingIndent = 0;
+            notes.AppendText("\n");
+        }
+        notes.SelectionStart = 0; notes.SelectionLength = 0;
+        notes.ScrollToCaret();
+        fullNotes.Enabled = true;
     }
     void Reveal() { Opacity = 1; ShowInTaskbar = true; Show(); Activate(); }
     static HttpClient Client()
@@ -139,10 +269,10 @@ internal sealed class Updater : Form
                     }
                 }
             }
+            ShowRelease();
             if (release.Version <= Release.ParseVersion(Release.Current)) { Finish("Stellarys " + Release.Current + " is up to date."); return; }
             Reveal();
-            status.Text = "Stellarys " + release.Version + " is available (installed: " + Release.Current + "). Download and install it?";
-            notes.Text = release.Notes;
+            status.Text = "An update is ready. Review the highlights below, then choose Download update.";
             action.Text = "Download update"; action.Enabled = true;
         }
         catch (OperationCanceledException) { if (!IsDisposed) Finish("Update check cancelled or timed out."); }

@@ -58,6 +58,7 @@
 #include "llfloaterbvhpreview.h"
 #include "llfloatercamera.h"
 #include "llfloatercamerapresets.h"
+#include "llfloatershotpresets.h"
 #include "llfloaterchangeitemthumbnail.h"
 #include "llfloaterchatmentionpicker.h"
 #include "llfloaterchatvoicevolume.h"
@@ -658,6 +659,7 @@ void LLViewerFloaterReg::registerFloaters()
     LLFloaterReg::add("fs_partial_inventory", "floater_fs_partial_inventory.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterPartialInventory>);
     LLFloaterReg::add("fs_placedetails", "floater_fs_placedetails.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterPlaceDetails>);
     LLFloaterReg::add("fs_poser", "floater_fs_poser.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterPoser>); // <FS:AR> [FIRE-30873]: Poser
+    LLFloaterReg::add("stellarys_shot_presets", "floater_stellarys_shot_presets.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterShotPresets>);
     LLFloaterReg::add("fs_protectedfolders", "floater_fs_protectedfolders.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterProtectedFolders>);
     LLFloaterReg::add("fs_radar", "floater_fs_radar.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterRadar>);
     LLFloaterReg::add("fs_splash_screen_settings", "floater_fs_splash_screen_settings.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterSplashScreenSettings>);

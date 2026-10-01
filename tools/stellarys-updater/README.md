@@ -15,6 +15,13 @@ be closed by their user. The installer independently rechecks running processes.
 
 ## Release contract
 
+The update window shows the release version, installed version and up to five
+short bullet highlights. Write release notes with a `## What's new` heading
+followed by concise bullets, then a separate heading for installation notes,
+validation or other details. Long highlights are shortened in the dialog;
+the full notes remain available through the GitHub link. The link is derived
+from the validated version tag and fixed Stellarys repository.
+
 - Repository: `NekoMisa/stellarys-viewer`.
 - Stable tags: `vMAJOR.MINOR.PATCH`; no drafts or prereleases.
 - Asset: `Stellarys-Viewer-MAJOR.MINOR.PATCH-Windows-x64-Setup.exe`.
@@ -39,8 +46,9 @@ Compile `Updater.cs` using .NET Framework's `csc.exe`, target `winexe`, referenc
 `System.Web.Extensions.dll`. Install it beside `StellarysViewer.exe`.
 
 For tests, compile both `.cs` files with target `exe` and `/main:UpdaterTests`.
-The tests exercise real release parsing, version comparison, URL policy, and
-SHA-256/size verification with harmless temporary files.
+The tests exercise real release parsing, version comparison, URL policy,
+release-summary formatting and SHA-256/size verification with harmless
+temporary files.
 
 `Test-RemoveUserData.ps1 -FixtureRoot <new empty directory>` validates optional
 profile removal only against generated fixtures. Never run the production
