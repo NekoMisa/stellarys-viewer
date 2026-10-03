@@ -1,7 +1,7 @@
-Stellarys Viewer 0.1.2 (based on Firestorm 7.2.4.80712)
+Stellarys Viewer 0.1.3 (based on Firestorm 7.2.4.80712)
 
 A hobby viewer with the AMD flicker fix and permission-based local posing.
-This update adds clearer update highlights with a full release-notes link, plus
+The viewer includes clearer update highlights with a full release-notes link, plus
 a Photo menu for snapshots, camera controls, Camera Tools, Photo Tools and the
 poser and self reset actions. Shot Presets saves camera position, lens/blur,
 local lighting and image dimensions together; restore shots in their original
@@ -9,6 +9,26 @@ region. Toolbar customization stays at its existing access points.
 Your saved toolbar layout and existing shortcuts are retained. Rendering,
 posing, the AMD fix and existing skins are unchanged.
 This independent viewer is not supported by Firestorm or Linden Lab.
+
+SECOND LIFE LINKS AND PHOTO MENU
+The final Setup page has an unchecked "Set up Second Life links with Stellarys"
+option. Select it to make Stellarys available for secondlife and hop browser
+location links and open the compact link dialog after installation.
+This does not replace your existing viewer default. To select Stellarys, choose
+Preferences > Network & Files > Stellarys > Open Second Life links with Stellarys, then
+Set up SL links. In Windows Default apps, select Stellarys for SECOND LIFE and HOP.
+On older Windows versions, search for those link types in Default apps manually.
+Setup registers availability for all users; the Preferences button registers
+this installation for the current Windows user without administrator approval.
+The dialog shows which application currently opens each link type.
+
+Uninstall removes only link registrations still owned by that installation.
+It does not change Windows' saved choice to another viewer. Other users' per-user
+registrations are left alone; they may need to select another viewer in Windows
+if their chosen Stellarys installation is removed.
+
+Hide/show Photo through Preferences > User Interface > Top Bars > Show Photo menu.
+Photo is visible by default. Hiding it keeps tools and existing shortcuts usable.
 
 INSTALLATION
 Shot Presets: choose Photo > Shot Presets, name your current setup, set the
@@ -42,9 +62,14 @@ Updates require an exact versioned Windows installer asset with GitHub's SHA-256
 digest. No digest, unexpected URL, wrong size or wrong hash means no install.
 The digest is obtained over HTTPS from GitHub; it is not a publisher signature
 and does not protect against compromise of the repository/account itself.
-Downloads need approval. After approval to install, the updater asks Stellarys
-to close normally and waits for it. Save your work and respond to any shutdown
-prompts. If shutdown is cancelled or times out, installation is postponed.
+Downloads need approval. From version 0.1.3, the unchecked "Install when the
+download finishes (closes Stellarys)" option combines download and install approval.
+The installer starts only after SHA-256/size verification and normal viewer
+shutdown. Without it, a separate install confirmation is shown. Save your work
+first. The ordinary quit confirmation is skipped; settings are saved and logout
+completes normally. Unsaved editing can still prompt. If shutdown is cancelled
+or times out, installation is postponed. Updating from 0.1.2 still uses its
+existing two-step updater; the new option is available for subsequent updates.
 The updater never force-kills the viewer, never asks for credentials and never
 bypasses Windows administrator approval. An offline or failed check does not
 mean that this version is up to date. Until a stable release is published, the

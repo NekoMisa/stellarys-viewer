@@ -16,13 +16,13 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: System.Reflection.AssemblyTitle("Stellarys Viewer Updater")]
-[assembly: System.Reflection.AssemblyVersion("0.1.2.0")]
+[assembly: System.Reflection.AssemblyVersion("0.1.3.0")]
 
 internal sealed class Release
 {
     internal const string Repository = "https://github.com/NekoMisa/stellarys-viewer";
     internal const string Api = "https://api.github.com/repos/NekoMisa/stellarys-viewer/releases/latest";
-    internal const string Current = "0.1.2";
+    internal const string Current = "0.1.3";
     internal Version Version;
     internal string Tag, Notes, Url, Digest, Name;
     internal long Size;
@@ -164,6 +164,8 @@ internal sealed class Updater : Form
     readonly LinkLabel fullNotes = new LinkLabel { Text = "Read full release notes on GitHub", Dock = DockStyle.Bottom, Height = 30, Enabled = false };
     readonly Button action = new Button { Text = "Checking…", Enabled = false, Width = 160, Height = 30 };
     readonly CheckBox startup = new CheckBox { Text = "Check for updates when Stellarys starts", AutoSize = true };
+    readonly CheckBox installAutomatically = new CheckBox {
+        Text = "Install when the download finishes (closes Stellarys)", AutoSize = true, Checked = false, Enabled = false };
     readonly CancellationTokenSource cancel = new CancellationTokenSource();
     readonly string home = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
     readonly string preferences = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Stellarys_x64", "updater-disable-startup");
@@ -183,7 +185,7 @@ internal sealed class Updater : Form
         versions.Text = "Installed: Stellarys " + Release.Current;
         Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         StartPosition = FormStartPosition.CenterScreen;
-        var footer = new Panel { Dock = DockStyle.Bottom, Height = 100, Padding = new Padding(18, 8, 18, 12) };
+        var footer = new Panel { Dock = DockStyle.Bottom, Height = 124, Padding = new Padding(18, 8, 18, 12) };
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 37, FlowDirection = FlowDirection.RightToLeft, WrapContents = false };
         var close = new Button { Text = "Close", Width = 90, Height = 30 };
         close.Click += (s,e) => Close();
@@ -194,7 +196,10 @@ internal sealed class Updater : Form
         };
         buttons.Controls.Add(close); buttons.Controls.Add(action);
         startup.Dock = DockStyle.Bottom;
-        footer.Controls.Add(buttons); footer.Controls.Add(startup);
+        installAutomatically.Dock = DockStyle.Bottom;
+        footer.Controls.Add(buttons); footer.Controls.Add(installAutomatically); footer.Controls.Add(startup);
+        var installTip = new ToolTip();
+        installTip.SetToolTip(installAutomatically, "Save your work before downloading. A verified download requests normal viewer shutdown, then opens Setup. Cancelling shutdown or administrator approval postpones installation.");
         var header = new Panel { Dock = DockStyle.Top, Height = 148, Padding = new Padding(20, 16, 20, 0) };
         header.Controls.Add(status); header.Controls.Add(versions); header.Controls.Add(heading);
         var content = new Panel { Dock = DockStyle.Fill, Padding = new Padding(22, 8, 22, 8) };
@@ -274,6 +279,7 @@ internal sealed class Updater : Form
             Reveal();
             status.Text = "An update is ready. Review the highlights below, then choose Download update.";
             action.Text = "Download update"; action.Enabled = true;
+            installAutomatically.Enabled = true;
         }
         catch (OperationCanceledException) { if (!IsDisposed) Finish("Update check cancelled or timed out."); }
         catch (Exception ex) { if (!IsDisposed) Finish("Could not check for updates. " + ex.Message); }
@@ -282,7 +288,10 @@ internal sealed class Updater : Form
     async Task DownloadAndInstall()
     {
         if (busy || release == null) return;
-        busy = true; action.Enabled = false;
+        // Consent is specific to this Download click; retries with an existing
+        // download still use the normal Install confirmation.
+        bool installAfterDownload = downloaded == null && installAutomatically.Checked;
+        busy = true; action.Enabled = false; installAutomatically.Enabled = false;
         try
         {
             if (downloaded == null)
@@ -327,7 +336,7 @@ internal sealed class Updater : Form
             if (cancel.IsCancellationRequested) return;
             if (!File.Exists(Path.Combine(home, "stellarys-install.txt")) || File.ReadAllLines(Path.Combine(home, "stellarys-install.txt"))[0] != "StellarysViewer")
                 throw new InvalidDataException("Automatic installation requires a marked Stellarys installation. Use the downloaded installer manually for a portable build.");
-            if (MessageBox.Show(this, "The download is verified. Install now?\n\nStellarys will be asked to close normally. Save your work first and respond to any viewer shutdown prompts. Setup will then request administrator permission. Cancel leaves the viewer running.", "Ready to update", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            if (!installAfterDownload && MessageBox.Show(this, "The download is verified. Install now?\n\nStellarys will close normally without another quit confirmation. Save your work first. Unsaved-edit prompts may still need attention. Setup will then request administrator permission. Cancel leaves the viewer running.", "Ready to update", MessageBoxButtons.OKCancel) != DialogResult.OK)
             { status.Text = "Update postponed. Your viewer has not been closed."; return; }
             var viewers = Process.GetProcessesByName("StellarysViewer");
             try
@@ -340,9 +349,8 @@ internal sealed class Updater : Form
                         throw new InvalidOperationException("Another Stellarys installation or Windows session is running. Close it yourself before updating this installation.");
                 }
                 foreach (var process in viewers)
-                    if (!process.HasExited && !process.CloseMainWindow())
-                        throw new InvalidOperationException("Stellarys could not be asked to close. Close it normally, then retry Install update.");
-                status.Text = "Waiting for Stellarys to close. Please respond to any viewer shutdown prompts…";
+                    if (!process.HasExited) ViewerShutdown.Request(process.MainWindowHandle);
+                status.Text = "Waiting for Stellarys to close. Saving and logging out…";
                 DateTime deadline = DateTime.UtcNow.AddSeconds(90);
                 foreach (var process in viewers)
                     while (!process.HasExited)
@@ -365,7 +373,14 @@ internal sealed class Updater : Form
         catch (OperationCanceledException) { if (!IsDisposed) status.Text = "Download cancelled."; DeleteDownload(); }
         catch (System.ComponentModel.Win32Exception ex) { if (!IsDisposed) status.Text = ex.NativeErrorCode == 1223 ? "Administrator approval cancelled. Nothing installed." : ex.Message; }
         catch (Exception ex) { if (!IsDisposed) status.Text = ex.Message; if (!verified || ex is InvalidDataException) DeleteDownload(); }
-        finally { busy = false; if (!IsDisposed) { action.Enabled = true; action.Text = downloaded == null ? "Retry download" : "Install update"; } }
+        finally {
+            busy = false;
+            if (!IsDisposed) {
+                installAutomatically.Checked = false;
+                installAutomatically.Enabled = downloaded == null && release != null && release.Version > Release.ParseVersion(Release.Current);
+                action.Enabled = true; action.Text = downloaded == null ? "Retry download" : "Install update";
+            }
+        }
     }
     void DeleteDownload() { if (downloaded != null) { try { File.Delete(downloaded); } catch { } downloaded = null; } verified = false; }
     [STAThread]
@@ -373,6 +388,9 @@ internal sealed class Updater : Form
     {
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         Application.EnableVisualStyles(); Application.SetCompatibleTextRenderingDefault(false);
+        if (args.Length == 1 && (args[0] == "--link-settings" || args[0] == "--register-links-machine" ||
+            args[0] == "--refresh-links-machine" || args[0] == "--remove-links"))
+            return LinkRegistration.Run(args[0]);
         bool fresh;
         using (var mutex = new Mutex(true, "Local\\StellarysUpdater", out fresh))
         {

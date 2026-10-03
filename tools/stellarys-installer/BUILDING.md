@@ -13,8 +13,8 @@ Run `package_windows.py` with the configured Python environment after building.
 `C:\FK-Poser-Test\build-vs18-v143`). `STELLARYS_WORK` selects the staging/tool
 directory (default: the repository's parent). Put NSIS 3.12 under
 `STELLARYS_WORK\installer\nsis-3.12`, or adapt its one tool path. Outputs go to
-the sibling `outputs\Stellarys-Viewer-0.1.2` folder. Packaging invokes the
-upstream manifest, adds the .NET updater, creates an explicit file manifest and
+the sibling `outputs\Stellarys-Viewer-0.1.3` folder. Packaging invokes the
+upstream manifest, adds the .NET updater and native Explorer link-setup helper, creates an explicit file manifest and
 compiles NSIS. No settings are copied from a user profile.
 
 `STELLARYS_PAYLOAD` optionally selects a separate clean application staging

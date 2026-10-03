@@ -7652,6 +7652,7 @@ void show_debug_menus()
     // this might get called at login screen where there is no menu so only toggle it if one exists
     if ( gMenuBarView )
     {
+        gMenuBarView->setItemVisible("StellarysPhotography", gSavedSettings.getBOOL("StellarysShowPhotoMenu"));
         bool debug = gSavedSettings.getBOOL("UseDebugMenus");
         bool qamode = gSavedSettings.getBOOL("QAMode");
 

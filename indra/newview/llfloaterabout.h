@@ -34,6 +34,7 @@ namespace LLFloaterAboutUtil
     // Support for user initialized update/state checks
     void checkUpdatesAndNotify();
     void checkStellarysUpdates(bool startup = false);
+    void openStellarysLinkSettings();
 }
 
 #endif // LL_LLFLOATERABOUT_H

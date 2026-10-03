@@ -517,6 +517,7 @@ LLFloaterPreference::LLFloaterPreference(const LLSD& key)
     mCommitCallbackRegistrar.add("Pref.PermsDefault",           boost::bind(&LLFloaterPreference::onClickPermsDefault, this));
     mCommitCallbackRegistrar.add("Pref.RememberedUsernames",    boost::bind(&LLFloaterPreference::onClickRememberedUsernames, this));
     mCommitCallbackRegistrar.add("Pref.SpellChecker",           boost::bind(&LLFloaterPreference::onClickSpellChecker, this));
+    mCommitCallbackRegistrar.add("Pref.StellarysLinkSettings", boost::bind(&LLFloaterAboutUtil::openStellarysLinkSettings));
     mCommitCallbackRegistrar.add("Pref.Advanced",               boost::bind(&LLFloaterPreference::onClickAdvanced, this));
 
     // <FS:Zi> Support preferences search SLURLs
@@ -647,6 +648,9 @@ void LLFloaterPreference::saveAvatarPropertiesCoro(const std::string cap_url, bo
 bool LLFloaterPreference::postBuild()
 {
     mDeleteTranscriptsBtn = getChild<LLButton>("delete_transcripts");
+#if !LL_WINDOWS
+    if (LLButton* links = findChild<LLButton>("StellarysLinkSettings")) links->setEnabled(false);
+#endif
 
     // <FS:Ansariel> We don't have these buttons
     //mEnabledPopups  = getChild<LLScrollListCtrl>("enabled_popups");

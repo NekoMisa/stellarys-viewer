@@ -733,5 +733,24 @@
 
     </panel>
 
+    <panel top_pad="5" bottom="-1" left="1" right="-1" follows="all"
+     label="Stellarys" name="tab-stellarys">
+        <text type="string" follows="left|top" height="30" layout="topleft"
+         left="15" top="15" name="stellarys_links_heading" width="480" font="SansSerifLarge">
+            Second Life links
+        </text>
+        <text type="string" follows="left|top" height="52" layout="topleft"
+         left="15" top="50" name="stellarys_links_info" width="490" word_wrap="true">
+            Choose Stellarys to open browser location links. View the current link handlers and set up secondlife and hop links in Windows.
+        </text>
+        <button follows="left|top" height="26" layout="topleft" left="15" top="112"
+         label="Open Second Life links with Stellarys..." name="StellarysLinkSettings" width="350">
+            <button.commit_callback function="Pref.StellarysLinkSettings" />
+        </button>
+        <text type="string" follows="left|top" height="55" layout="topleft"
+         left="15" top="152" name="stellarys_links_hint" width="490" word_wrap="true">
+            Windows lets you choose your default viewer. Setting this up does not remove another viewer or change its settings. Available on Windows.
+        </text>
+    </panel>
     </tab_container>
 </panel>

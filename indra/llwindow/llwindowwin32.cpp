@@ -3223,8 +3223,13 @@ LRESULT CALLBACK LLWindowWin32::mainWindowProc(HWND h_wnd, UINT u_msg, WPARAM w_
             {
                 // received a URL
                 PCOPYDATASTRUCT myCDS = (PCOPYDATASTRUCT)l_param;
-                void* data = new U8[myCDS->cbData];
+                // Local IPC is length-delimited. Bound it and always terminate
+                // the copy before callbacks interpret text, including URLs.
+                if (!myCDS || !myCDS->lpData || !myCDS->cbData || myCDS->cbData > 65536)
+                    return 0;
+                U8* data = new U8[static_cast<size_t>(myCDS->cbData) + 1];
                 memcpy(data, myCDS->lpData, myCDS->cbData);
+                data[myCDS->cbData] = 0;
                 auto myType = myCDS->dwData;
 
                 window_imp->post([=]()

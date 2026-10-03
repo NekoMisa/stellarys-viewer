@@ -385,3 +385,21 @@ void LLFloaterAboutUtil::checkStellarysUpdates(bool startup)
     if (!startup) LLWeb::loadURLExternal("https://github.com/NekoMisa/stellarys-viewer/releases");
 #endif
 }
+
+// Link setup runs unelevated for the Windows user operating the viewer.
+void LLFloaterAboutUtil::openStellarysLinkSettings()
+{
+#if LL_WINDOWS
+    const std::string helper = gDirUtilp->getExecutableDir() + "/StellarysUpdater.exe";
+    if (!LLFile::isfile(helper))
+    {
+        LLNotificationsUtil::add("StellarysUpdaterMissing");
+        return;
+    }
+    LLProcess::Params params;
+    params.executable = helper;
+    params.autokill = false;
+    params.args.add("--link-settings");
+    if (!LLProcess::create(params)) LLNotificationsUtil::add("StellarysUpdaterMissing");
+#endif
+}

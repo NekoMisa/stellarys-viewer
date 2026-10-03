@@ -1446,6 +1446,7 @@ void settings_setup_listeners()
     setting_setup_signal_listener(gSavedSettings, "VelocityInterpolate", handleVelocityInterpolate);
     setting_setup_signal_listener(gSavedSettings, "QAMode", show_debug_menus);
     setting_setup_signal_listener(gSavedSettings, "UseDebugMenus", show_debug_menus);
+    setting_setup_signal_listener(gSavedSettings, "StellarysShowPhotoMenu", show_debug_menus);
     setting_setup_signal_listener(gSavedSettings, "AgentPause", toggle_agent_pause);
     // <FS:Zi> Is done inside XUI now, using visibility_control
     // setting_setup_signal_listener(gSavedSettings, "ShowNavbarNavigationPanel", toggle_show_navigation_panel);

@@ -732,6 +732,10 @@
      follows="all"
      label="Top Bars"
      name="UI-interface-top-bars" >
+        <check_box control_name="StellarysShowPhotoMenu" height="16"
+         label="Show Photo menu" layout="topleft" left="10" top_pad="8"
+         name="StellarysShowPhotoMenu" width="300"
+         tool_tip="Hide or show the top Photo menu. Photography tools and existing shortcuts remain available." />
 
 		<text
 		type="string"

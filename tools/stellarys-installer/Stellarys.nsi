@@ -12,24 +12,24 @@ Var DataArgs
 !define MUI_ICON "${PAYLOAD}\Stellarys.ico"
 !define MUI_UNICON "${PAYLOAD}\Stellarys.ico"
 !define KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\StellarysViewer"
-Name "${PRODUCT} 0.1.2 (based on Firestorm 7.2.4.80712)"
+Name "${PRODUCT} 0.1.3 (based on Firestorm 7.2.4.80712)"
 OutFile "${OUTPUT}"
 InstallDir "$PROGRAMFILES64\StellarysViewer"
 InstallDirRegKey HKLM "${KEY}" "InstallLocation"
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 SetCompressorDictSize 32
-BrandingText "Stellarys Viewer 0.1.2 (based on Firestorm 7.2.4.80712)"
-VIProductVersion "0.1.2.0"
+BrandingText "Stellarys Viewer 0.1.3 (based on Firestorm 7.2.4.80712)"
+VIProductVersion "0.1.3.0"
 VIAddVersionKey /LANG=1033 "ProductName" "Stellarys Viewer"
-VIAddVersionKey /LANG=1033 "FileDescription" "Stellarys Viewer 0.1.2 Setup"
-VIAddVersionKey /LANG=1033 "FileVersion" "0.1.2.0"
-VIAddVersionKey /LANG=1033 "ProductVersion" "0.1.2 (based on Firestorm 7.2.4.80712)"
+VIAddVersionKey /LANG=1033 "FileDescription" "Stellarys Viewer 0.1.3 Setup"
+VIAddVersionKey /LANG=1033 "FileVersion" "0.1.3.0"
+VIAddVersionKey /LANG=1033 "ProductVersion" "0.1.3 (based on Firestorm 7.2.4.80712)"
 VIAddVersionKey /LANG=1033 "LegalCopyright" "Original viewer and libraries: their respective authors."
 Var GuardResult
 Var GuardMessage
 !define MUI_ABORTWARNING
-!define MUI_WELCOMEPAGE_TEXT "Stellarys Viewer 0.1.2 (based on Firestorm 7.2.4.80712), with the AMD flicker fix and permission-based local poser.$\r$\n$\r$\nInstalls for all Windows users. Each user has a separate Stellarys profile and cache. Existing Firestorm, Black Dragon and prototype profiles are not changed.$\r$\n$\r$\nUpdate checks are built in; downloading and installation require your approval."
+!define MUI_WELCOMEPAGE_TEXT "Stellarys Viewer 0.1.3 (based on Firestorm 7.2.4.80712), with the AMD flicker fix and permission-based local poser.$\r$\n$\r$\nInstalls for all Windows users. Each user has a separate Stellarys profile and cache. Existing Firestorm, Black Dragon and prototype profiles are not changed.$\r$\n$\r$\nUpdate checks are built in; downloading and installation require your approval."
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "${PAYLOAD}\LICENSE.txt"
 !define MUI_PAGE_HEADER_TEXT "Choose installation folder"
@@ -38,6 +38,10 @@ Var GuardMessage
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
 !define MUI_FINISHPAGE_TEXT "Stellarys is installed. Start it from the Start menu or desktop shortcut.$\r$\n$\r$\nUse Help > Check for Updates to check for releases or change startup checking. Settings and cache are retained during updates. See README-Stellarys.txt for details."
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Set up Second Life links with Stellarys"
+!define MUI_FINISHPAGE_RUN_FUNCTION FinishLinkSetup
+!define MUI_FINISHPAGE_RUN_NOTCHECKED
 !insertmacro MUI_PAGE_FINISH
 !insertmacro MUI_UNPAGE_CONFIRM
 UninstPage custom un.DataPage un.DataPageLeave
@@ -75,6 +79,28 @@ Function .onInit
  ${EndIf}
 FunctionEnd
 
+Function FinishLinkSetup
+ ; The selected finish action makes Stellarys available but never chooses a default.
+ ClearErrors
+ ExecWait '$\"$INSTDIR\StellarysUpdater.exe$\" --register-links-machine' $0
+ ${If} ${Errors}
+  StrCpy $0 3
+ ${EndIf}
+ ${If} $0 != 0
+  MessageBox MB_OK|MB_ICONEXCLAMATION "Link registration could not be completed. Open Preferences > Network & Files > Stellarys to try again." /SD IDOK
+  Return
+ ${EndIf}
+ ; Hand off through the interactive user's Explorer, not the elevated account.
+ ClearErrors
+ ExecWait '$\"$INSTDIR\StellarysLinkSetup.exe$\"' $0
+ ${If} ${Errors}
+  StrCpy $0 3
+ ${EndIf}
+ ${If} $0 != 0
+  MessageBox MB_OK|MB_ICONINFORMATION "Open Preferences > Network & Files > Stellarys > Open Second Life links with Stellarys to choose your Windows default viewer." /SD IDOK
+ ${EndIf}
+FunctionEnd
+
 Function ValidateDestination
  !insertmacro Guard Install
 FunctionEnd
@@ -95,10 +121,10 @@ Section "Viewer"
  CreateShortCut "$SMPROGRAMS\${PRODUCT}\Read me.lnk" "$INSTDIR\README-Stellarys.txt"
  CreateShortCut "$SMPROGRAMS\${PRODUCT}\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
  CreateShortCut "$DESKTOP\${PRODUCT}.lnk" "$INSTDIR\StellarysViewer.exe" "" "$INSTDIR\StellarysViewer.exe"
- WriteRegStr HKLM "${KEY}" "DisplayName" "Stellarys Viewer 0.1.2"
- WriteRegStr HKLM "${KEY}" "DisplayVersion" "0.1.2"
+ WriteRegStr HKLM "${KEY}" "DisplayName" "Stellarys Viewer 0.1.3"
+ WriteRegStr HKLM "${KEY}" "DisplayVersion" "0.1.3"
  WriteRegStr HKLM "${KEY}" "BaseViewerVersion" "7.2.4.80712"
- WriteRegStr HKLM "${KEY}" "StellarysVersion" "0.1.2"
+ WriteRegStr HKLM "${KEY}" "StellarysVersion" "0.1.3"
  WriteRegStr HKLM "${KEY}" "InstallerRevision" "1"
  WriteRegStr HKLM "${KEY}" "Publisher" "Stellarys (unofficial build)"
  WriteRegStr HKLM "${KEY}" "InstallLocation" "$INSTDIR"
@@ -112,6 +138,12 @@ Section "Viewer"
  ; The guard compares canonical paths and examines loaded user hives, so an
  ; installation in any other folder is left entirely alone.
  !insertmacro Guard CleanupLegacy
+ ; Preserve an existing matching registration during updates. New registration
+ ; is offered only on the final page, after all files are installed.
+ ExecWait '$\"$INSTDIR\StellarysUpdater.exe$\" --refresh-links-machine' $0
+ ${If} $0 != 0
+  MessageBox MB_OK|MB_ICONEXCLAMATION "Windows link registration could not be refreshed. You can set it up later in Preferences > Network & Files > Stellarys." /SD IDOK
+ ${EndIf}
  Goto done
  copy_failed:
   MessageBox MB_OK|MB_ICONSTOP "Application files could not be written. Close the viewer and retry. No old per-user uninstall registration has been removed." /SD IDOK
@@ -182,6 +214,12 @@ FunctionEnd
 Section "Uninstall"
  ; Recheck just before removal in case the viewer started at the confirm page.
  !insertmacro Guard Uninstall
+ ; Remove only registrations still owned by this exact installation. Do this
+ ; before removing the helper. Another viewer/default choice is never rewritten.
+ ExecWait '$\"$INSTDIR\StellarysUpdater.exe$\" --remove-links' $0
+ ${If} $0 != 0
+  MessageBox MB_OK|MB_ICONEXCLAMATION "Some Stellarys link registration could not be removed. Use Windows Default apps to select another viewer if needed." /SD IDOK
+ ${EndIf}
  Call un.RemoveOptionalData
  ; Explicit package files only. No recursive deletion, no profile/cache paths.
  !include "${UNINSTALL_FILES}"

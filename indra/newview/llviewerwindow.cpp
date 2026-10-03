@@ -1851,6 +1851,14 @@ void LLViewerWindow::handleDataCopy(LLWindow *window, S32 data_type, void *data)
     const S32 SLURL_MESSAGE_TYPE = 0;
     switch (data_type)
     {
+    case 0x53555154: // Stellarys updater: consented local shutdown, not a SLURL
+        if (std::string((const char*)data) == "Stellarys update approved")
+        {
+            // Skip only the ordinary ConfirmQuit dialog. Preserve normal logout,
+            // settings saving, floater shutdown and any unsaved-edit handling.
+            LLAppViewer::instance()->requestQuit();
+        }
+        break;
     case SLURL_MESSAGE_TYPE:
         // received URL
         std::string url = (const char*)data;

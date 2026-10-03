@@ -5,18 +5,25 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.2 — based on Firestorm 7.2.4.80712.**
+**Stellarys Viewer 0.1.3 â€” based on Firestorm 7.2.4.80712.**
 The Stellarys version is separate from the Firestorm base version.
 
-## What's new in 0.1.2
+## What's new in 0.1.3
 
-- **Cleaner updater:** a clear version heading, short change highlights, readable
-  spacing and a link to the full release notes.
-- **Photo menu:** snapshots, camera and lighting tools, the poser and avatar reset
-  actions in one place. Toolbar customization keeps its familiar access points.
-- **Shot presets:** save and restore camera position, focus and roll, lens/blur,
-  local lighting and snapshot dimensions together in the same region.
+- **Second Life links:** optionally set up Stellarys on the installer's final page, or
+  set it up later under **Preferences > Network & Files > Stellarys**. The link dialog
+  shows the current handlers and opens Windows' default-app choices for
+  `secondlife` and `hop` links. Existing viewer defaults are not replaced silently.
+- **Optional Photo menu:** hide or show it under **Preferences > User Interface >
+  Top Bars > Show Photo menu**. It is visible by default, and hiding it does not
+  disable photography tools or their existing shortcuts.
 
+- **Download and install together:** select the optional updater checkbox to
+  install after a verified download. Stellarys logs out and saves settings without
+  the ordinary quit confirmation. Windows administrator approval still applies.
+  This option becomes available for future updates after installing 0.1.3.
+
+Version 0.1.2 introduced the cleaner updater, Photo menu and complete shot presets.
 Shot presets do not include poses or automatically save photos. Width and height
 set the Snapshot window's custom output size in pixels.
 
@@ -49,7 +56,7 @@ Get the Windows x64 installer from the
 [latest release](https://github.com/NekoMisa/stellarys-viewer/releases/latest).
 Source archives and SHA-256 checksums are available with each release.
 
-If Stellarys is already installed, use **Help → Check for Updates**.
+If Stellarys is already installed, use **Help â†’ Check for Updates**.
 Downloading and installing an update requires your approval. The installer is
 unsigned and requests Windows administrator permission.
 
@@ -62,7 +69,7 @@ with optional removal. See the
 - [Stellarys Viewer](https://github.com/NekoMisa/stellarys-viewer) is a
   Firestorm-based hobby viewer with the AMD flicker fix, permission-based posing
   of other avatars and built-in update checks, with more features as it develops.
-- [Black Dragon — Black Kitty Fix](https://github.com/NekoMisa/Black-Dragon---Black-Kitty-Fix)
+- [Black Dragon â€” Black Kitty Fix](https://github.com/NekoMisa/Black-Dragon---Black-Kitty-Fix)
   is a Black Dragon build focused on the AMD texture and shadow flicker fix,
   preserving Black Dragon's features and adding built-in update checks.
 

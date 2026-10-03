@@ -21,7 +21,8 @@ module.main(extra=[dict(name=n,description=n,default=d) for n,d in [('bugsplat',
 for name in ('Firestorm-FireKittyPoser.exe','fire-kitty-poser-version.json','README-Fire-Kitty-Poser.txt'):
  (payload/name).unlink(missing_ok=True)
 shutil.copy2((build/'newview/Release/firestorm-bin.exe'),payload/'StellarysViewer.exe')
-subprocess.run([r'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe','/nologo','/target:winexe','/win32icon:'+str(icon),'/out:'+str(payload/'StellarysUpdater.exe'),'/r:System.Windows.Forms.dll','/r:System.Drawing.dll','/r:System.Net.Http.dll','/r:System.Web.Extensions.dll',str(repo/'tools/stellarys-updater/Updater.cs')],check=True)
+subprocess.run([r'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe','/nologo','/target:winexe','/win32icon:'+str(icon),'/out:'+str(payload/'StellarysUpdater.exe'),'/r:System.Windows.Forms.dll','/r:System.Drawing.dll','/r:System.Net.Http.dll','/r:System.Web.Extensions.dll',str(repo/'tools/stellarys-updater/Updater.cs'),str(repo/'tools/stellarys-updater/LinkRegistration.cs'),str(repo/'tools/stellarys-updater/ViewerShutdown.cs')],check=True)
+subprocess.run([sys.executable,str(repo/'tools/stellarys-installer/compile_link_setup.py'),str(payload/'StellarysLinkSetup.exe')],check=True)
 shutil.copy2(icon,payload/'Stellarys.ico')
 shutil.copy2(repo/'LICENSE',payload/'LICENSE.txt')
 shutil.copytree((build/'packages/LICENSES'),payload/'ThirdPartyLicenses',dirs_exist_ok=True)
