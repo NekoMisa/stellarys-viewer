@@ -5,7 +5,7 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.3 â€” based on Firestorm 7.2.4.80712.**
+**Stellarys Viewer 0.1.3 — based on Firestorm 7.2.4.80712.**
 The Stellarys version is separate from the Firestorm base version.
 
 ## What's new in 0.1.3
@@ -33,7 +33,7 @@ set the Snapshot window's custom output size in pixels.
   affected meshes with AMD graphics cards.
 - **Pose other avatars:** use the poser to adjust nearby avatars with their
   permission, making it easier to arrange photos and group scenes.
-- **Built-in update checks:** check for releases from within the viewer and
+- **Built-in update checks (Windows):** check for releases from within the viewer and
   choose when to download and install them. Read short release highlights or
   follow the link to the full release notes.
 - **Photography tools together:** the **Photo** menu gives quick access to
@@ -56,7 +56,7 @@ Get the Windows x64 installer from the
 [latest release](https://github.com/NekoMisa/stellarys-viewer/releases/latest).
 Source archives and SHA-256 checksums are available with each release.
 
-If Stellarys is already installed, use **Help â†’ Check for Updates**.
+If Stellarys is already installed, use **Help → Check for Updates**.
 Downloading and installing an update requires your approval. The installer is
 unsigned and requests Windows administrator permission.
 
@@ -64,12 +64,25 @@ Updates preserve settings and cache. Uninstalling also preserves them by default
 with optional removal. See the
 [installation notes](tools/stellarys-installer/README-Stellarys.txt) for details.
 
+## Experimental Linux preview
+
+A native Linux x86_64 experimental preview is built from Stellarys 0.1.3, targeting
+Ubuntu 22.04. It keeps the poser, photography tools, shot presets and AMD code.
+Linux currently uses OpenAL audio and manual archive updates; the Windows
+installer and automatic update workflow do not apply to Linux.
+
+See the [Linux usage notes](tools/stellarys-linux/README-Linux.txt) and
+[Linux build instructions](tools/stellarys-linux/BUILDING.md). This is an
+experimental port with a verified software-rendered login-screen startup, pending
+native Linux hardware and in-world testing. Keep the entire
+extracted application together; Firestorm and Black Dragon are not required.
+
 ## My viewer projects
 
 - [Stellarys Viewer](https://github.com/NekoMisa/stellarys-viewer) is a
   Firestorm-based hobby viewer with the AMD flicker fix, permission-based posing
   of other avatars and built-in update checks, with more features as it develops.
-- [Black Dragon â€” Black Kitty Fix](https://github.com/NekoMisa/Black-Dragon---Black-Kitty-Fix)
+- [Black Dragon — Black Kitty Fix](https://github.com/NekoMisa/Black-Dragon---Black-Kitty-Fix)
   is a Black Dragon build focused on the AMD texture and shadow flicker fix,
   preserving Black Dragon's features and adding built-in update checks.
 

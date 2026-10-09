@@ -40,6 +40,7 @@
 #include "llviewerwindow.h"
 #include "lldebugmessagebox.h"
 #include "llweb.h"
+#include "lluri.h"
 #include "llrender.h"
 #include "llpluginclassmedia.h"
 #include "llslurl.h"
@@ -699,6 +700,12 @@ void LLMediaCtrl::navigateToLocalPage( const std::string& subdir, const std::str
         LL_WARNS() << "File " << filename << "not found" << LL_ENDL;
         return;
     }
+#if LL_LINUX
+    // CEF needs a file URI for absolute Linux paths, including escaped spaces,
+    // percent signs and fragment characters in the extraction folder name.
+    expanded_filename = "file://" + LLURI::escape(expanded_filename,
+        "/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~");
+#endif
     if (ensureMediaSourceExists())
     {
         mCurrentNavUrl = expanded_filename;

@@ -1029,7 +1029,13 @@ void LLShaderMgr::initShaderCache(bool enabled, const LLUUID& old_cache_version,
     {
         GLint num_binary_formats = 0;
         glGetIntegerv(GL_NUM_PROGRAM_BINARY_FORMATS, &num_binary_formats);
+#if LL_LINUX
+        // Linux links these GL dispatch symbols directly; their addresses cannot
+        // be null. GL version and advertised binary formats still gate the cache.
+        const bool have_entry_points = true;
+#else
         const bool have_entry_points = glProgramParameteri && glGetProgramBinary && glProgramBinary;
+#endif
         if (!have_entry_points || num_binary_formats <= 0)
         {
             LL_WARNS("ShaderMgr") << "Disabling shader binary cache: "
