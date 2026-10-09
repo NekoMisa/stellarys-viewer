@@ -33,7 +33,7 @@ set the Snapshot window's custom output size in pixels.
   affected meshes with AMD graphics cards.
 - **Pose other avatars:** use the poser to adjust nearby avatars with their
   permission, making it easier to arrange photos and group scenes.
-- **Built-in update checks (Windows):** check for releases from within the viewer and
+- **Built-in update checks:** check for releases from within the viewer and
   choose when to download and install them. Read short release highlights or
   follow the link to the full release notes.
 - **Photography tools together:** the **Photo** menu gives quick access to
@@ -66,16 +66,23 @@ with optional removal. See the
 
 ## Experimental Linux preview
 
-A native Linux x86_64 experimental preview is built from Stellarys 0.1.3, targeting
-Ubuntu 22.04. It keeps the poser, photography tools, shot presets and AMD code.
-Linux currently uses OpenAL audio and manual archive updates; the Windows
-installer and automatic update workflow do not apply to Linux.
+Stellarys 0.1.3 has a native Linux x86_64 preview targeting Ubuntu 22.04.
+It keeps the poser, photography tools, shot presets and AMD code, and uses OpenAL.
+Firestorm, Black Dragon and Wine are not required to run the viewer.
 
-See the [Linux usage notes](tools/stellarys-linux/README-Linux.txt) and
-[Linux build instructions](tools/stellarys-linux/BUILDING.md). This is an
-experimental port with a verified software-rendered login-screen startup, pending
-native Linux hardware and in-world testing. Keep the entire
-extracted application together; Firestorm and Black Dragon are not required.
+The Linux `.deb` installer adds an application-menu entry and declares its runtime
+dependencies. It includes **Help → Check for Updates** with verified downloads and
+administrator-approved installation. Windows-only releases are ignored. Installing,
+updating and uninstalling the Linux package preserve all per-user settings and cache.
+Browser link registration is optional and per-user.
+
+See the [Linux installer guide](tools/stellarys-linux/README-Debian.md),
+[build instructions](tools/stellarys-linux/BUILDING.md) and
+[validation notes](tools/stellarys-linux/VALIDATION.md).
+The earlier [tar preview guide](tools/stellarys-linux/README-Linux.txt) is separate;
+that archive uses manual replacement. Linux remains experimental: a volunteer
+reported that the tar preview ran and desktop/link setup worked, while detailed
+GPU, posing, photography, voice/media and public updater testing remain incomplete.
 
 ## My viewer projects
 

@@ -1,8 +1,9 @@
 # Experimental Stellarys Linux x86_64 build
 
-Base: Stellarys 0.1.3, Firestorm 7.2.4.80712. This first Linux preview keeps
+Base: Stellarys 0.1.3, Firestorm 7.2.4.80712. The Linux preview keeps
 the rendering, AMD workaround, posing and photography implementations. Linux's
-D-Bus message identity is separate from Firestorm. Updates are manual.
+D-Bus message identity is separate from Firestorm. The tar preview uses manual
+replacement; the Debian package includes the Linux update workflow below.
 A Linux-only compiler adaptation treats directly linked OpenGL entry points as
 available; the existing GL-version and binary-format checks remain in place.
 Windows keeps its existing function-pointer checks. Local HTML pages use escaped
@@ -51,3 +52,65 @@ Test the compiled poser consent and shot validation fixtures as described in
 their respective tools directories. A successful build and isolated startup
 are not native Linux hardware or in-world validation. Keep preview labeling
 until Linux volunteers have tested graphics, posing, photography, voice and media.
+
+## Ubuntu Debian installer and updater
+
+The Debian installer uses a clean application stage and the current compiled Linux
+viewer. A small Linux-only viewer hook launches the GTK updater and provides a
+per-process D-Bus request for normal logout. No rendering, posing or photography
+code changes are needed for this installer/updater revision.
+
+Install `dpkg-dev`, `desktop-file-utils`, `python3-gi`, `gir1.2-gtk-3.0`,
+`policykit-1` and `xdg-utils` for packaging/testing. The package declares runtime
+dependencies derived from every bundled 64-bit ELF plus explicit Python, GTK,
+GStreamer, PulseAudio and amd64 multilib dependencies. Python is also a Pre-Depends
+because the pre-install safety check uses it. The upstream legacy voice UUID and
+IDN runtimes are bundled. No foreign architecture is enabled by maintainer scripts.
+
+```sh
+python3 tools/stellarys-linux/package_deb.py \
+  --application /absolute/clean/StellarysViewer \
+  --viewer-binary build-linux-x86_64/newview/firestorm-bin \
+  --output /absolute/new/debian-output
+python3 tools/stellarys-linux/test_updater.py
+```
+
+The input application may be staged with `package_linux.py` as above. Use a fresh
+output directory; do not package an installed or previously launched application.
+The packager replaces only the staged viewer binary, adds updater/integration
+files, strips the staged binary and creates a clean payload manifest. The package
+installs to `/opt/stellarys-viewer`, with `/usr/bin/stellarys`, a system desktop
+entry/icons and an administrator-approved PolicyKit installer bridge.
+
+`preinst` refuses an unrelated nonempty or symlink destination. `preinst` and
+`prerm` check the actual executable path under `/proc` and refuse updates/removal
+while an installed viewer is running. Maintainer scripts only refresh system
+desktop/icon caches and never change users' MIME defaults or remove home files.
+The explicit per-user `stellarys --register-links` command migrates a marked old
+tar desktop entry by backing it up; it refuses unrelated entries and symlinks.
+
+The privileged bridge copies the requesting user's regular, non-symlink installer
+into a private root-owned temporary directory, rechecks SHA-256 and Debian package
+identity, then invokes APT with `--no-remove`. It uses an isolated Python interpreter
+and a fixed environment. The PolicyKit action requires fresh administrator approval;
+there is no retained authorization or silent root service.
+
+### Publishing Linux updates in the existing repository
+
+For each Linux installer version, update `DEB_VERSION`, `DISPLAY_VERSION` and
+`FILENAME` in `package_deb.py`. Keep the official Firestorm base and Stellarys
+application version accurate. Preview 2 is `0.1.3~linuxpreview2-1`; the tilde keeps
+Debian preview versions below a future stable `0.1.3` package.
+
+Attach the generated `.deb` and **Stellarys-Linux-Update.json** to the same GitHub
+release in `NekoMisa/stellarys-viewer`, along with matching source, documentation
+and SHA-256 checksums. Do not edit the manifest's hash/size by hand. Linux's feed
+scans the repository's releases for this manifest, includes Linux prereleases,
+ignores drafts and Windows-only releases, and selects the highest newer Debian
+version. Use a prerelease for experimental Linux builds to keep the existing
+Windows stable release unchanged. The Windows updater and metadata are untouched.
+
+SHA-256 is an integrity check, not an independent publisher signature. No package
+signing or APT repository is required by this design. Validate a real public
+Linux update and authentication on a volunteer's desktop before claiming the
+complete public update path has passed.

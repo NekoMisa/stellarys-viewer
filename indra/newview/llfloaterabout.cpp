@@ -65,6 +65,9 @@
 #include "lldir.h"
 #include "llprocess.h"
 #include "llfile.h"
+#if LL_LINUX
+#include <unistd.h>
+#endif
 
 #if LL_WINDOWS
 #include "lldxhardware.h"
@@ -379,6 +382,24 @@ void LLFloaterAboutUtil::checkStellarysUpdates(bool startup)
     params.executable = updater;
     params.autokill = false;
     params.args.add(startup ? "--startup" : "--manual");
+    if (!LLProcess::create(params) && !startup)
+        LLNotificationsUtil::add("StellarysUpdaterMissing");
+#elif LL_LINUX
+    const std::string updater = gDirUtilp->getAppRODataDir() + "/stellarys-updater.py";
+    if (!LLFile::isfile(updater))
+    {
+        if (!startup) LLWeb::loadURLExternal("https://github.com/NekoMisa/stellarys-viewer/releases");
+        return;
+    }
+    LLProcess::Params params;
+    params.executable = "/usr/bin/python3";
+    params.autokill = false;
+    params.args.add(updater);
+    params.args.add(startup ? "--startup" : "--manual");
+    params.args.add("--viewer-pid");
+    params.args.add(std::to_string(getpid()));
+    params.args.add("--profile-dir");
+    params.args.add(gDirUtilp->getOSUserAppDir());
     if (!LLProcess::create(params) && !startup)
         LLNotificationsUtil::add("StellarysUpdaterMissing");
 #else
