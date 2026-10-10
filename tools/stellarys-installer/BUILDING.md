@@ -13,7 +13,7 @@ Run `package_windows.py` with the configured Python environment after building.
 `C:\FK-Poser-Test\build-vs18-v143`). `STELLARYS_WORK` selects the staging/tool
 directory (default: the repository's parent). Put NSIS 3.12 under
 `STELLARYS_WORK\installer\nsis-3.12`, or adapt its one tool path. Outputs go to
-the sibling `outputs\Stellarys-Viewer-0.1.3` folder. Packaging invokes the
+the sibling `outputs\Stellarys-Viewer-0.1.4` folder. Packaging invokes the
 upstream manifest, adds the .NET updater and native Explorer link-setup helper, creates an explicit file manifest and
 compiles NSIS. No settings are copied from a user profile.
 
@@ -24,6 +24,14 @@ profiles outside this folder.
 The current upstream dependency manifest still refers to the separately built
 local FMOD archive. Supply that licensed dependency and the tools documented
 in the historical build notes; they are not included in the source archive.
+
+The release channel is generated from `stellarys-source.json`; never reuse a
+version/variant for different source releases. Run `test_release_identity.py`
+with the configured CMake executable. `package_windows.py` refuses a mismatched
+compiled channel. If PRIVACY.md or DISCLOSURES.md changes, run
+`update_disclosures.py` to regenerate the checked-in offline first-run text and
+HTML. Setup includes both documents before installation. The first-run gate also
+applies to automatic sign-in and is separate from Second Life's ToS acceptance.
 
 Run `Test-InstallerGuard.ps1` with a new fixture directory and report filename.
 Its process/registry adapters are mocked; filesystem checks use real fixtures.

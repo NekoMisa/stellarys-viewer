@@ -1,5 +1,5 @@
 from pathlib import Path
-import subprocess, shutil, hashlib, json, zipfile, os, sys, importlib.util
+import subprocess, shutil, hashlib, json, zipfile, os, sys, importlib.util, re
 repo=Path(__file__).resolve().parents[2]
 w=Path(os.environ.get('STELLARYS_WORK', str(repo.parent)))
 build=Path(os.environ.get('STELLARYS_BUILD', r'C:\FK-Poser-Test\build-vs18-v143'))
@@ -7,6 +7,10 @@ version=json.loads((repo/'stellarys-source.json').read_text())['stellarys_versio
 out=w.parent/('outputs/Stellarys-Viewer-'+version); out.mkdir(parents=True,exist_ok=True)
 payload=Path(os.environ.get('STELLARYS_PAYLOAD', str(w/('stellarys-payload-'+version)))); payload.mkdir(exist_ok=True)
 source=repo/'indra/newview'
+header=(build/'newview/fsversionvalues.h').read_text(encoding='utf-8')
+channel=re.search(r'^#define LL_VIEWER_CHANNEL (.+)$',header,re.M).group(1).strip().strip('"')
+assert channel == 'Stellarys Viewer '+version, 'Build/release channel mismatch; configure and compile first'
+
 icon=source/'icons/stellarys/firestorm_icon.ico'
 sys.path.insert(0,str(source))
 spec=importlib.util.spec_from_file_location('viewer_manifest',source/'viewer_manifest.py')
@@ -16,7 +20,7 @@ def portable_finish(self):
 module.Windows_x86_64_Manifest.package_finish=portable_finish
 module.Windows_x86_64_Manifest.final_exe=lambda self: 'StellarysViewer.exe'
 os.chdir(build/'newview')
-sys.argv=[str(source/'viewer_manifest.py'),'--actions=copy package','--platform=windows','--arch=x86_64','--configuration=Release','--buildtype=Release','--channel=Stellarys Viewer','--viewer_flavor=hvk','--grid=agni','--bugsplat=','--discord=OFF','--fmodstudio=ON','--openal=OFF','--tracy=OFF','--velopack=OFF','--avx2=ON',f'--source={source}',f'--artwork={source}',f'--build={build/"newview"}',f'--dest={payload}',f'--versionfile={build/"newview/viewer_version.txt"}']
+sys.argv=[str(source/'viewer_manifest.py'),'--actions=copy package','--platform=windows','--arch=x86_64','--configuration=Release','--buildtype=Release','--channel='+channel,'--viewer_flavor=hvk','--grid=agni','--bugsplat=','--discord=OFF','--fmodstudio=ON','--openal=OFF','--tracy=OFF','--velopack=OFF','--avx2=ON',f'--source={source}',f'--artwork={source}',f'--build={build/"newview"}',f'--dest={payload}',f'--versionfile={build/"newview/viewer_version.txt"}']
 module.main(extra=[dict(name=n,description=n,default=d) for n,d in [('bugsplat',''),('discord','OFF'),('fmodstudio','OFF'),('openal','ON'),('tracy','OFF'),('velopack','OFF'),('avx2','ON')]])
 for name in ('Firestorm-FireKittyPoser.exe','fire-kitty-poser-version.json','README-Fire-Kitty-Poser.txt'):
  (payload/name).unlink(missing_ok=True)
@@ -25,11 +29,16 @@ subprocess.run([r'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe','/nol
 subprocess.run([sys.executable,str(repo/'tools/stellarys-installer/compile_link_setup.py'),str(payload/'StellarysLinkSetup.exe')],check=True)
 shutil.copy2(icon,payload/'Stellarys.ico')
 shutil.copy2(repo/'LICENSE',payload/'LICENSE.txt')
+for name in ('PRIVACY.md','DISCLOSURES.md','SOURCE-PROVENANCE.md'):
+ shutil.copy2(repo/name,payload/name)
+(payload/'DISCLOSURES.txt').write_text((repo/'DISCLOSURES.md').read_text(encoding='utf-8')+'\n\n'+(repo/'PRIVACY.md').read_text(encoding='utf-8'),encoding='utf-8')
+shutil.copy2(repo/'PRIVACY.md',out/'PRIVACY.md')
+shutil.copy2(repo/'DISCLOSURES.md',out/'DISCLOSURES.md')
 shutil.copytree((build/'packages/LICENSES'),payload/'ThirdPartyLicenses',dirs_exist_ok=True)
 shutil.copy2(repo/'tools/stellarys-installer/README-Stellarys.txt',payload/'README-Stellarys.txt')
 shutil.copy2(repo/'tools/stellarys-installer/README-Stellarys.txt',out/'README.txt')
 (payload/'stellarys-install.txt').write_text('StellarysViewer\nVersion='+version+'\nBase=7.2.4.80712\n',encoding='utf-8')
-(payload/'stellarys-version.json').write_text(json.dumps({'name':'Stellarys Viewer','version':version,'base_version':'7.2.4.80712','profile':'Stellarys_x64','updater':'GitHub Releases; opt-in download and install'},indent=2),encoding='utf-8')
+(payload/'stellarys-version.json').write_text(json.dumps({'name':'Stellarys Viewer','version':version,'viewer_channel':channel,'base_version':'7.2.4.80712','profile':'Stellarys_x64','updater':'GitHub Releases; opt-in download and install'},indent=2),encoding='utf-8')
 manifest=[];install=[];uninstall=[];dirs=set()
 def q(s):return '"'+str(s).replace('$','$$').replace('"','$\\"')+'"'
 for p in sorted(payload.rglob('*')):

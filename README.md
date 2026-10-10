@@ -5,27 +5,20 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.3 — based on Firestorm 7.2.4.80712.**
+**Stellarys Viewer 0.1.4 — based on Firestorm 7.2.4.80712.**
 The Stellarys version is separate from the Firestorm base version.
 
-## What's new in 0.1.3
+## What's new in 0.1.4
 
-- **Second Life links:** optionally set up Stellarys on the installer's final page, or
-  set it up later under **Preferences > Network & Files > Stellarys**. The link dialog
-  shows the current handlers and opens Windows' default-app choices for
-  `secondlife` and `hop` links. Existing viewer defaults are not replaced silently.
-- **Optional Photo menu:** hide or show it under **Preferences > User Interface >
-  Top Bars > Show Photo menu**. It is visible by default, and hiding it does not
-  disable photography tools or their existing shortcuts.
+- Privacy policy and clear project/support disclosures, also bundled offline.
+- First-run project/privacy information before sign-in, including automatic sign-in.
+- Unique Stellarys release identifiers while preserving the Firestorm base version.
+- Rendering, the AMD fix, posing and photography behavior are unchanged.
 
-- **Download and install together:** select the optional updater checkbox to
-  install after a verified download. Stellarys logs out and saves settings without
-  the ordinary quit confirmation. Windows administrator approval still applies.
-  This option becomes available for future updates after installing 0.1.3.
-
-Version 0.1.2 introduced the cleaner updater, Photo menu and complete shot presets.
-Shot presets do not include poses or automatically save photos. Width and height
-set the Snapshot window's custom output size in pixels.
+**This software is not provided or supported by Linden Lab, the makers of Second Life.**
+Read [Before installing Stellarys](DISCLOSURES.md) and the
+[privacy policy](PRIVACY.md). Support is provided through GitHub Issues as time
+permits; do not post passwords, private conversations or unredacted logs.
 
 ## Features
 
@@ -64,25 +57,16 @@ Updates preserve settings and cache. Uninstalling also preserves them by default
 with optional removal. See the
 [installation notes](tools/stellarys-installer/README-Stellarys.txt) for details.
 
-## Experimental Linux preview
+## Linux
 
-Stellarys 0.1.3 has a native Linux x86_64 preview targeting Ubuntu 22.04.
-It keeps the poser, photography tools, shot presets and AMD code, and uses OpenAL.
-Firestorm, Black Dragon and Wine are not required to run the viewer.
-
-The Linux `.deb` installer adds an application-menu entry and declares its runtime
-dependencies. It includes **Help → Check for Updates** with verified downloads and
-administrator-approved installation. Windows-only releases are ignored. Installing,
-updating and uninstalling the Linux package preserve all per-user settings and cache.
-Browser link registration is optional and per-user.
-
-See the [Linux installer guide](tools/stellarys-linux/README-Debian.md),
-[build instructions](tools/stellarys-linux/BUILDING.md) and
-[validation notes](tools/stellarys-linux/VALIDATION.md).
-The earlier [tar preview guide](tools/stellarys-linux/README-Linux.txt) is separate;
-that archive uses manual replacement. Linux remains experimental: a volunteer
-reported that the tar preview ran and desktop/link setup worked, while detailed
-GPU, posing, photography, voice/media and public updater testing remain incomplete.
+Linux packages are native x86_64 experimental builds for Ubuntu 22.04-compatible
+systems such as Linux Mint. Download the .deb and matching source from
+[Linux preview 1](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.4-preview1).
+The Linux build is version 0.1.4, based on Firestorm 7.2.4.80712.
+Read [Before installing](DISCLOSURES.md) and [Privacy](PRIVACY.md).
+Linux installation instructions are included with that release and on the
+`stellarys-linux` branch. The Linux updater selects Linux packages from this
+repository and ignores Windows installers. Settings and cache survive package removal.
 
 ## My viewer projects
 

@@ -12,9 +12,9 @@ import tempfile
 TOOLS = Path(__file__).resolve().parent
 REPO = TOOLS.parents[1]
 PACKAGE = 'stellarys-viewer'
-DEB_VERSION = '0.1.3~linuxpreview2-1'
-DISPLAY_VERSION = '0.1.3 Linux preview 2'
-FILENAME = 'Stellarys-Viewer-0.1.3-Linux-amd64-preview2.deb'
+DEB_VERSION = '0.1.4~linuxpreview1-1'
+DISPLAY_VERSION = '0.1.4 Linux preview 1'
+FILENAME = 'Stellarys-Viewer-0.1.4-Linux-amd64-preview1.deb'
 
 GUARD = '''/usr/bin/python3 - <<'PY'
 import os
@@ -134,10 +134,16 @@ def main():
     (app / 'install-desktop.py').unlink(missing_ok=True)
     for library in (args.build / 'packages/lib32').glob('libuuid.so.1*'):
         shutil.copy2(library, app / 'lib32' / library.name, follow_symlinks=False)
+    for name in ('PRIVACY.md','DISCLOSURES.md','SOURCE-PROVENANCE.md'):
+        shutil.copy2(REPO / name, app / name)
+    header=(args.build / 'newview/fsversionvalues.h').read_text()
+    expected='Stellarys Viewer 0.1.4 Linux Preview 1'
+    if ('#define LL_VIEWER_CHANNEL '+expected+'\n') not in header:
+        raise SystemExit('Build/release identity mismatch; configure and compile first.')
     write(app / '.stellarys-deb-install', 'StellarysDebPackage=stellarys-viewer\n')
-    metadata = {'name': 'Stellarys Viewer', 'version': '0.1.3',
-        'base_version': '7.2.4.80712', 'platform': 'linux-x86_64',
-        'status': 'experimental preview 2', 'profile': '~/.stellarys_x64',
+    metadata = {'name': 'Stellarys Viewer', 'version': '0.1.4',
+        'viewer_channel': expected, 'base_version': '7.2.4.80712', 'platform': 'linux-x86_64',
+        'status': 'experimental preview 1', 'profile': '~/.stellarys_x64',
         'debian_version': DEB_VERSION, 'display_version': DISPLAY_VERSION,
         'updates': 'GitHub Linux installer feed; administrator approval required'}
     write(app / 'stellarys-version.json', json.dumps(metadata, indent=2) + '\n')

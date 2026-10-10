@@ -40,6 +40,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--build', type=Path, default=repo / 'build-linux-x86_64')
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--skip-archive', action='store_true', help='Stage only, for Debian packaging')
     args = parser.parse_args()
     build, output = args.build.resolve(), args.output.resolve()
     version = json.loads((repo / 'stellarys-source.json').read_text())['stellarys_version']
@@ -60,7 +61,7 @@ def main():
     os.chdir(build / 'newview')
     sys.argv = [str(source / 'viewer_manifest.py'), '--actions=copy package',
         '--platform=linux', '--arch=x86_64', '--configuration=Release', '--buildtype=Release',
-        '--channel=Stellarys Viewer', '--viewer_flavor=oss', '--grid=agni', '--bugsplat=',
+        '--channel=Stellarys Viewer '+version+' Linux Preview 1', '--viewer_flavor=oss', '--grid=agni', '--bugsplat=',
         '--discord=OFF', '--fmodstudio=OFF', '--openal=ON', '--tracy=OFF', '--avx2=OFF',
         '--source=' + str(source), '--artwork=' + str(source), '--build=' + str(build / 'newview'),
         '--dest=' + str(stage), '--versionfile=' + str(build / 'newview/viewer_version.txt')]
@@ -82,6 +83,8 @@ def main():
     shutil.copy2(Path(__file__).with_name('install-desktop.py'), stage / 'install-desktop.py')
     shutil.copy2(Path(__file__).with_name('README-Linux.txt'), stage / 'README-Linux.txt')
     (stage / 'README-linux.txt').unlink(missing_ok=True)
+    for name in ('PRIVACY.md','DISCLOSURES.md','SOURCE-PROVENANCE.md'):
+        shutil.copy2(repo/name,stage/name)
     artwork = source / 'icons/stellarys'
     shutil.copy2(artwork / 'firestorm_256.png', stage / 'Stellarys.png')
     shutil.copy2(artwork / 'firestorm_256.png', stage / 'firestorm_icon.png')
@@ -111,6 +114,9 @@ def main():
         elif path.is_dir():
             path.chmod(0o755)
     (output / 'PAYLOAD-MANIFEST.json').write_text(json.dumps(manifest, indent=2))
+    if args.skip_archive:
+        print('Clean Linux application stage created:',len(manifest),flush=True)
+        return
     archive = output / ('Stellarys-Viewer-' + version + '-Linux-x86_64-preview1.tar.xz')
     archive_env = os.environ.copy()
     archive_env['XZ_OPT'] = '-T3 -6'

@@ -1,4 +1,4 @@
-Stellarys Viewer 0.1.3 - Linux x86_64 experimental preview 1
+Stellarys Viewer 0.1.4 - Linux x86_64 experimental preview 1
 Based on Firestorm 7.2.4.80712.
 
 Stellarys is an independent hobby viewer with permission-based posing of other
@@ -59,3 +59,11 @@ The viewer is 64-bit; its inherited Vivox voice helper is 32-bit. Enable the
 The older libidn.so.11 required by this helper is included from the upstream
 runtime bundle. These are dependency instructions, not confirmation of working
 in-world voice; native Linux volunteer testing is still required.
+PROJECT DISCLOSURES AND PRIVACY
+This software is not provided or supported by Linden Lab, the makers of Second Life.
+Stellarys is also not provided or supported by the Firestorm team.
+Read the bundled DISCLOSURES.md and PRIVACY.md before installing/using it.
+Privacy: https://github.com/NekoMisa/stellarys-viewer/blob/stellarys-linux/PRIVACY.md
+Support: https://github.com/NekoMisa/stellarys-viewer/issues (as time permits).
+Never post credentials, private conversations or unredacted logs in public issues.
+The first-run screen includes the policy offline before sign-in or automatic login.

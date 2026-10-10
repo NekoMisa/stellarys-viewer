@@ -176,8 +176,13 @@ std::string LLVersionInfo::getChannel() const
 
 void LLVersionInfo::resetChannel(const std::string& channel)
 {
-    mWorkingChannelName = channel;
-    mVersionChannel.clear(); // Reset version and channel string til next use.
+    // Stellarys' login/statistics identity belongs to this source release.
+    // Ignore the inherited --channel/CmdLineChannel override, including saved
+    // values from older profiles, rather than impersonating another viewer.
+    if (channel != mWorkingChannelName)
+    {
+        LL_WARNS("AppInit") << "Ignoring unsupported viewer channel override" << LL_ENDL;
+    }
 }
 
 LLVersionInfo::ViewerMaturity LLVersionInfo::getViewerMaturity() const

@@ -60,6 +60,7 @@
 #include "lldonotdisturbnotificationstorage.h"
 #include "llerrorcontrol.h"
 #include "llfloaterreg.h"
+#include "llbutton.h"
 #include "llfocusmgr.h"
 #include "llfloatergridstatus.h"
 #include "llfloaterimsession.h"
@@ -1288,6 +1289,35 @@ bool idle_startup()
 
     if (STATE_LOGIN_SHOW == LLStartUp::getStartupState())
     {
+        // Show the bundled policy before creating credential widgets or autologin.
+        // Closing another window cannot bypass this startup-state gate.
+        if (!gSavedSettings.getBOOL("StellarysDisclosuresRead"))
+        {
+            gViewerWindow->setShowProgress(false, false);
+            LLSplashScreen::hide();
+            gViewerWindow->getWindow()->show();
+            LLFloater* disclosure = LLFloaterReg::getInstance("stellarys_disclosures");
+            if (!disclosure)
+            {
+                LL_WARNS("AppInit") << "Required Stellarys disclosures are missing" << LL_ENDL;
+                LLAppViewer::instance()->earlyExitNoNotify();
+                return false;
+            }
+            if (!disclosure->getVisible())
+            {
+                disclosure->getChild<LLButton>("continue")->setCommitCallback(
+                    [disclosure](LLUICtrl*, const LLSD&)
+                    {
+                        gSavedSettings.setBOOL("StellarysDisclosuresRead", true);
+                        disclosure->closeFloater();
+                    });
+                disclosure->getChild<LLButton>("quit")->setCommitCallback(
+                    [](LLUICtrl*, const LLSD&) { LLAppViewer::instance()->earlyExitNoNotify(); });
+                disclosure->openFloater();
+            }
+            do_startup_frame();
+            return false;
+        }
         LL_DEBUGS("AppInit") << "Initializing Window, show_connect_box = "
                              << show_connect_box << LL_ENDL;
 

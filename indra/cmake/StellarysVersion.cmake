@@ -1,0 +1,17 @@
+# Keep the official Firestorm numeric base separate from our release identity.
+# The complete channel + numeric version pair must identify each source release.
+include_guard(GLOBAL)
+file(READ "${CMAKE_CURRENT_LIST_DIR}/../../stellarys-source.json" STELLARYS_METADATA)
+string(JSON STELLARYS_VERSION GET "${STELLARYS_METADATA}" stellarys_version)
+if(NOT STELLARYS_VERSION MATCHES "^[0-9]+\\.[0-9]+\\.[0-9]+$")
+  message(FATAL_ERROR "Invalid Stellarys release version")
+endif()
+set(STELLARYS_CHANNEL_VARIANT "" CACHE STRING "Distinct source variant, e.g. Linux Preview 1")
+if(NOT STELLARYS_CHANNEL_VARIANT MATCHES "^[A-Za-z0-9 .-]*$")
+  message(FATAL_ERROR "Stellarys channel variant must use ASCII letters, numbers, spaces, dots or hyphens")
+endif()
+set(VIEWER_CHANNEL "Stellarys Viewer ${STELLARYS_VERSION}")
+if(NOT STELLARYS_CHANNEL_VARIANT STREQUAL "")
+  string(APPEND VIEWER_CHANNEL " ${STELLARYS_CHANNEL_VARIANT}")
+endif()
+message(STATUS "Stellarys release channel: ${VIEWER_CHANNEL}")

@@ -27,7 +27,7 @@ autobuild configure -A 64 -c Release -- \
   -DINSTALL_PROPRIETARY=OFF -DUSE_KDU=OFF -DHAVOK=OFF -DHAVOK_TPV=OFF \
   -DOPENSIM=OFF -DUSE_FMODSTUDIO=OFF -DUSE_OPENAL=ON -DUSE_TRACY=OFF \
   -DBUGSPLAT_DB= -DPACKAGE=OFF -DLL_TESTS=OFF \
-  '-DVIEWER_CHANNEL=Stellarys Viewer' -DUNATTENDED=ON
+  '-DSTELLARYS_CHANNEL_VARIANT=Linux Preview 1' -DUNATTENDED=ON
 cmake --build build-linux-x86_64 --parallel 3
 python tools/stellarys-linux/package_linux.py --output /absolute/new/output-folder
 ```

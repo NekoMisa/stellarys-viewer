@@ -1,6 +1,6 @@
-# Stellarys Viewer — Linux installer preview 2
+# Stellarys Viewer — Linux installer preview 1
 
-Stellarys 0.1.3, based on Firestorm 7.2.4.80712. Native Linux x86_64.
+Stellarys 0.1.4, based on Firestorm 7.2.4.80712. Native Linux x86_64.
 This experimental installer targets Ubuntu 22.04 and compatible amd64 systems.
 Other distributions have not been validated. No Firestorm or Black Dragon
 installation is required. No Wine is required for the viewer itself.
@@ -10,7 +10,7 @@ installation is required. No Wine is required for the viewer itself.
 Download the `.deb` to your Downloads folder. Open a terminal there and run:
 
 ```bash
-sudo apt install ./Stellarys-Viewer-0.1.3-Linux-amd64-preview2.deb
+sudo apt install ./Stellarys-Viewer-0.1.4-Linux-amd64-preview1.deb
 ```
 
 Approve the Linux administrator prompt. APT installs the declared dependencies.
@@ -93,3 +93,12 @@ voice, media and desktop integration can vary by distribution. Legacy Vivox audi
 may require additional 32-bit ALSA/PulseAudio packages; these are not automatically
 enabled through foreign-architecture setup. The optional Wine voice proxy is not
 required to run Stellarys. See VALIDATION.md for actual test coverage.
+
+PROJECT DISCLOSURES AND PRIVACY
+This software is not provided or supported by Linden Lab, the makers of Second Life.
+Stellarys is also not provided or supported by the Firestorm team.
+Read the bundled DISCLOSURES.md and PRIVACY.md before installing/using it.
+Privacy: https://github.com/NekoMisa/stellarys-viewer/blob/stellarys-linux/PRIVACY.md
+Support: https://github.com/NekoMisa/stellarys-viewer/issues (as time permits).
+Never post credentials, private conversations or unredacted logs in public issues.
+The first-run screen includes the policy offline before sign-in or automatic login.
