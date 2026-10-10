@@ -12,5 +12,6 @@
   "stellarys_version": "0.1.4",
   "profile": "Stellarys_x64",
   "viewer_identifier": "Versioned Stellarys channel + unchanged Firestorm numeric base",
-  "linux_installer_preview": "0.1.4~linuxpreview1-1 (Ubuntu 22.04 amd64)"
+  "linux_installer_preview": "0.1.4~linuxpreview1-1 (Ubuntu 22.04 amd64)",
+  "linux_portable_version": "0.1.4-portable.1"
 }

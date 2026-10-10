@@ -22,6 +22,9 @@ from gi.repository import Gtk, GLib
 import stellarys_updater_core as core
 
 APP = Path(__file__).resolve().parent
+PORTABLE = json.loads((APP / 'stellarys-version.json').read_text()).get('install_kind') == 'portable' if (APP / 'stellarys-version.json').is_file() else False
+if PORTABLE:
+    import stellarys_portable_core as core
 HELPER = '/usr/lib/stellarys-viewer/install-update.py'
 
 
@@ -65,7 +68,7 @@ class Updater(Gtk.Window):
         self.progress = Gtk.ProgressBar(show_text=True)
         box.pack_start(self.progress, False, False, 0)
         self.auto_install = Gtk.CheckButton(label='Close Stellarys and install after download')
-        self.auto_install.set_tooltip_text('Uses normal logout. Linux will ask for administrator approval.')
+        self.auto_install.set_tooltip_text('Uses normal logout, retains the previous application and preserves settings/cache.' if PORTABLE else 'Uses normal logout. Linux will ask for administrator approval.')
         box.pack_start(self.auto_install, False, False, 0)
         self.startup = Gtk.CheckButton(label='Check for updates when Stellarys starts')
         self.startup.set_active(preferences.get('check_at_startup', True))
@@ -103,7 +106,7 @@ class Updater(Gtk.Window):
             if self.args.preview_json:
                 update = json.loads(self.args.preview_json.read_text())
             else:
-                update = core.check_release(self.installed['debian_version'])
+                update = core.check_release(self.installed[getattr(core, 'VERSION_KEY', 'debian_version')])
             GLib.idle_add(self.checked, update, None)
         except Exception as error:
             GLib.idle_add(self.checked, None, str(error))
@@ -114,7 +117,7 @@ class Updater(Gtk.Window):
                 Gtk.main_quit()
                 return False
             self.status.set_text('Could not check for updates: ' + error if error else
-                                 'You have the latest published Linux installer.')
+                                 ('You have the latest published portable Linux release.' if PORTABLE else 'You have the latest published Linux installer.'))
             self.auto_install.set_sensitive(False)
             return False
         self.update = update
@@ -138,8 +141,19 @@ class Updater(Gtk.Window):
         if self.installing:
             return True
         self.cancelled.set()
-        Gtk.main_quit()
+        if PORTABLE and getattr(self, 'worker', None) and self.worker.is_alive():
+            self.status.set_text('Cancelling safely…')
+            self.close_button.set_sensitive(False)
+            GLib.timeout_add(100, self.finish_close)
+        else:
+            Gtk.main_quit()
         return True
+
+    def finish_close(self):
+        if self.worker.is_alive():
+            return True
+        Gtk.main_quit()
+        return False
 
     def start_action(self, button):
         if self.busy:
@@ -148,7 +162,8 @@ class Updater(Gtk.Window):
         self.action.set_sensitive(False)
         self.auto_install.set_sensitive(False)
         self.progress.show()
-        threading.Thread(target=self.work, args=(self.auto_install.get_active(),), daemon=True).start()
+        self.worker = threading.Thread(target=self.work, args=(self.auto_install.get_active(),), daemon=True)
+        self.worker.start()
 
     def display_status(self, message):
         GLib.idle_add(self.status.set_text, message)
@@ -158,6 +173,7 @@ class Updater(Gtk.Window):
         GLib.idle_add(self.progress.set_text, f'{value:.0%}')
 
     def work(self, auto):
+        prepared = None
         try:
             if self.downloaded is None:
                 GLib.idle_add(self.progress.set_fraction, 0)
@@ -170,6 +186,11 @@ class Updater(Gtk.Window):
                 if not auto:
                     GLib.idle_add(self.ready_to_install)
                     return
+            if self.cancelled.is_set():
+                return
+            if PORTABLE:
+                self.display_status('Preparing and verifying the portable application…')
+                prepared = core.PreparedUpdate(APP, self.downloaded, self.update, self.cancelled)
             if self.cancelled.is_set():
                 return
             if viewer_alive(self.args.viewer_pid):
@@ -190,23 +211,38 @@ class Updater(Gtk.Window):
                 return
             self.installing = True
             GLib.idle_add(self.close_button.set_sensitive, False)
-            self.display_status('Waiting for administrator approval and installation…')
-            result = subprocess.run(['/usr/bin/pkexec', HELPER, str(self.downloaded),
-                self.update['sha256'], self.update['debian_version']], capture_output=True,
-                text=True)
-            if result.returncode:
-                detail = (result.stderr or result.stdout).strip()[-1600:]
-                raise ValueError('Installation was cancelled or failed. ' + detail)
+            if PORTABLE:
+                self.display_status('Installing the verified portable update…')
+                # The launcher holds a shared lock until its child has fully exited.
+                # Give that wrapper a brief chance to finish normal shutdown.
+                deadline = time.monotonic() + 3
+                while True:
+                    try:
+                        self.backup_path = prepared.commit()
+                        break
+                    except core.InstallationBusy:
+                        if time.monotonic() >= deadline:
+                            raise
+                        time.sleep(.15)
+            else:
+                self.display_status('Waiting for administrator approval and installation…')
+                result = subprocess.run(['/usr/bin/pkexec', HELPER, str(self.downloaded),
+                    self.update['sha256'], self.update['debian_version']], capture_output=True,
+                    text=True)
+                if result.returncode:
+                    detail = (result.stderr or result.stdout).strip()[-1600:]
+                    raise ValueError('Installation was cancelled or failed. ' + detail)
             GLib.idle_add(self.finished)
         except Exception as error:
             GLib.idle_add(self.failed, str(error))
         finally:
+            if prepared is not None:
+                prepared.cleanup()
             self.installing = False
 
     def ready_to_install(self):
         self.busy = False
-        self.status.set_text('Installer verified. Install update will close this viewer normally '
-                             'and ask for administrator approval.')
+        self.status.set_text('Archive verified. Install update will close this viewer normally, retain the previous application and preserve settings/cache.' if PORTABLE else 'Installer verified. Install update will close this viewer normally and ask for administrator approval.')
         self.action.set_label('Install update')
         self.action.set_sensitive(True)
         self.progress.hide()
@@ -225,7 +261,7 @@ class Updater(Gtk.Window):
         self.busy = False
         self.close_button.set_sensitive(True)
         self.progress.hide()
-        self.status.set_text('Update installed. Open Stellarys from your application menu.')
+        self.status.set_text('Update installed. Previous application retained in a backup folder beside Stellarys. Your settings/cache are preserved.' if PORTABLE else 'Update installed. Open Stellarys from your application menu.')
         self.action.set_label('Open Stellarys')
         self.action.disconnect_by_func(self.start_action)
         self.action.connect('clicked', lambda button: self.launch())
@@ -233,7 +269,7 @@ class Updater(Gtk.Window):
         return False
 
     def launch(self):
-        subprocess.Popen(['/usr/bin/stellarys'], start_new_session=True)
+        subprocess.Popen([str(APP / 'stellarys') if PORTABLE else '/usr/bin/stellarys'], start_new_session=True)
         Gtk.main_quit()
 
 

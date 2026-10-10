@@ -1,9 +1,9 @@
 # Experimental Stellarys Linux x86_64 build
 
-Base: Stellarys 0.1.3, Firestorm 7.2.4.80712. The Linux preview keeps
+Base: Stellarys 0.1.4, Firestorm 7.2.4.80712. The Linux preview keeps
 the rendering, AMD workaround, posing and photography implementations. Linux's
-D-Bus message identity is separate from Firestorm. The tar preview uses manual
-replacement; the Debian package includes the Linux update workflow below.
+D-Bus message identity is separate from Firestorm. Debian and portable packages
+have separate update feeds and installation backends, described below.
 A Linux-only compiler adaptation treats directly linked OpenGL entry points as
 available; the existing GL-version and binary-format checks remain in place.
 Windows keeps its existing function-pointer checks. Local HTML pages use escaped
@@ -99,8 +99,8 @@ there is no retained authorization or silent root service.
 
 For each Linux installer version, update `DEB_VERSION`, `DISPLAY_VERSION` and
 `FILENAME` in `package_deb.py`. Keep the official Firestorm base and Stellarys
-application version accurate. Preview 2 is `0.1.3~linuxpreview2-1`; the tilde keeps
-Debian preview versions below a future stable `0.1.3` package.
+application version accurate. The current Debian preview is `0.1.4~linuxpreview1-1`; the tilde keeps
+Debian preview versions below a future stable `0.1.4` package.
 
 Attach the generated `.deb` and **Stellarys-Linux-Update.json** to the same GitHub
 release in `NekoMisa/stellarys-viewer`, along with matching source, documentation
@@ -114,3 +114,38 @@ SHA-256 is an integrity check, not an independent publisher signature. No packag
 signing or APT repository is required by this design. Validate a real public
 Linux update and authentication on a volunteer's desktop before claiming the
 complete public update path has passed.
+
+## Portable installer and updater
+
+Configure with `-DSTELLARYS_CHANNEL_VARIANT=Linux Portable Preview 1` for this
+release, then rebuild. The official base remains 7.2.4.80712. Keep the root
+`linux_portable_version` consistent with the application version and variant.
+Package only a clean, never-launched application stage:
+
+```sh
+python3 tools/stellarys-linux/package_portable.py \
+  --application /absolute/clean/StellarysViewer \
+  --viewer-binary build-linux-x86_64/newview/firestorm-bin \
+  --output /absolute/new/portable-output
+python3 tools/stellarys-linux/test_portable_updater.py
+dbus-run-session -- xvfb-run -a python3 tools/stellarys-linux/test_portable_gui.py
+```
+
+The generated archive contains its portable marker and full payload inventory.
+Internal staging links become regular files; archive links and special files
+are refused during updates. Python 3.10+, GTK 3/PyGObject and gdbus are required.
+The launcher keeps a shared lock in its parent process, without passing that
+descriptor to the viewer. Updates stage and verify the whole replacement before
+requesting normal logout, require all instances to close, then use an exclusive
+lock and Linux renameat2(RENAME_EXCHANGE). Unsupported filesystems are refused.
+The previous application is retained beside the current folder. Settings and
+cache outside the application folder are preserved. No package manager or root
+service is involved. See [the portable user guide](README-Portable-Linux.md).
+
+Publish the generated archive and `Stellarys-Linux-Portable-Update.json` together
+in the existing repository, with matching source/docs/checksums. Version
+`0.1.4-portable.1` maps to tag `linux-v0.1.4-portable-preview1`. The portable feed
+ignores Debian and Windows releases, and vice versa. Keep experimental builds
+as prereleases so Windows stable remains unchanged. SHA-256 is integrity checking,
+not an independent publisher signature. Native Fedora/Bazzite testing and a
+future public portable version-to-version upgrade remain separate validation.
