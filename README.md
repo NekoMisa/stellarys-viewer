@@ -68,6 +68,15 @@ Linux installation instructions are included with that release and on the
 `stellarys-linux` branch. The Linux updater selects Linux packages from this
 repository and ignores Windows installers. Settings and cache survive package removal.
 
+For Fedora/Bazzite testing, use the separate
+[portable Linux preview](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.4-portable-preview1).
+Download the application `.tar.xz`, not the source archive. Extract it into a
+private folder you own and run `stellarys`. Its built-in updater verifies and
+replaces portable archives without a system package manager, preserving settings
+and cache and retaining the previous application. Python 3.10+, GTK 3/PyGObject,
+gdbus and the normal viewer runtimes are required. Native Fedora/Bazzite testing
+is still needed. See the [portable guide](https://github.com/NekoMisa/stellarys-viewer/blob/stellarys-linux/tools/stellarys-linux/README-Portable-Linux.md).
+
 ## My viewer projects
 
 - [Stellarys Viewer](https://github.com/NekoMisa/stellarys-viewer) is a
