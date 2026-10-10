@@ -49,6 +49,7 @@ set(CMAKE_COLOR_DIAGNOSTICS ON)
 set(CMAKE_XCODE_GENERATE_TOP_LEVEL_PROJECT_ONLY ON)
 
 include(Variables)
+include(StellarysVersion)
 include(BuildVersion)
 
 if (NOT CMAKE_BUILD_TYPE)

@@ -11,7 +11,8 @@ project, not a rewrite of the original authors' contribution history.
 | AMD reference commit | `0c132c2eb3d15afc56d7fe42589dc8f2eb778197` |
 | Poser snapshot | Fire Kitty Poser Prototype 0.1, revision 2 |
 | Public project name | Stellarys Viewer |
-| Stellarys binary release | Not yet published |
+| Published Stellarys Windows release | 0.1.3 |
+| Current prepared source | Stellarys 0.1.4 (not yet published) |
 
 Upstream repository: https://github.com/FirestormViewer/phoenix-firestorm
 
@@ -19,7 +20,10 @@ The source retains the existing AMD patch adaptation and build/dependency
 adjustments used for the working Windows build. It also includes the independent
 poser permission implementation and the revision 2 nearby-avatar discovery fix.
 No rendering changes were made during this repository import. The proposed
-Black Dragon renderer port and automatic updater are not part of this snapshot.
+Black Dragon renderer port has not been implemented. Subsequent Stellarys
+releases added approved GitHub update downloads/installation, photography shot
+presets, optional browser-link registration and project disclosures. The Linux
+branch adds native Linux packaging and an administrator-approved update helper.
 
 Original tracked source files were selected from the upstream Git inventory,
 then taken from the tested patched source tree. The three new poser permission
@@ -34,3 +38,15 @@ and extended for local builds, profiles and signing material.
 The root licence and original source notices remain intact. The prototype
 verification notes report exactly what was tested and what still needs live
 verification; the maintainer subsequently reported that the poser works.
+
+The official Firestorm base remains 7.2.4.80712. From 0.1.4 onward the compiled
+channel contains the Stellarys release number, with a separate variant for
+different preview sources. Its channel/base-version pair is the viewer
+identifier used for login and statistics. Historical 0.1.1-0.1.3 identifiers
+were not distinct; new packages do not retroactively change installed binaries.
+
+Public Windows builds include the FMOD runtime, its licence and upstream
+attribution, subject to FMOD's terms. The maintainer confirmed the project is
+entirely non-commercial. Linux uses OpenAL instead. Proprietary Havok/KDU and
+automatic crash upload are disabled in these build configurations. Dependency
+notices are retained; a complete independent legal audit is not claimed.

@@ -1,7 +1,7 @@
 # Stellarys Windows updater
 
 The viewer starts the bundled `StellarysUpdater.exe` on startup and from
-Help â†’ Check for Updates. This separate process survives viewer shutdown;
+Help → Check for Updates. This separate process survives viewer shutdown;
 it is part of the installed viewer, not a browser download workflow.
 
 It uses Windows .NET Framework 4.8 and normal user privileges. Only the final
@@ -56,6 +56,8 @@ temporary files.
 `Test-RemoveUserData.ps1 -FixtureRoot <new empty directory>` validates optional
 profile removal only against generated fixtures. Never run the production
 removal script against a real user's data as part of a build test.
+
+The compiled channel is generated from `stellarys-source.json`: `Stellarys Viewer MAJOR.MINOR.PATCH`, optionally followed by `STELLARYS_CHANNEL_VARIANT`. This makes the channel/base-number pair unique without changing the official Firestorm base. Use a new version/variant for different source releases.
 
 When changing the release version, update `Release.Current`, the installer,
 version metadata and visible About/window-title version together. The upstream

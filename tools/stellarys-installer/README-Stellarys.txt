@@ -1,4 +1,4 @@
-Stellarys Viewer 0.1.3 (based on Firestorm 7.2.4.80712)
+Stellarys Viewer 0.1.4 (based on Firestorm 7.2.4.80712)
 
 A hobby viewer with the AMD flicker fix and permission-based local posing.
 The viewer includes clearer update highlights with a full release-notes link, plus
@@ -8,7 +8,12 @@ local lighting and image dimensions together; restore shots in their original
 region. Toolbar customization stays at its existing access points.
 Your saved toolbar layout and existing shortcuts are retained. Rendering,
 posing, the AMD fix and existing skins are unchanged.
-This independent viewer is not supported by Firestorm or Linden Lab.
+This software is not provided or supported by Linden Lab, the makers of Second Life.
+It is also not provided or supported by the Firestorm team.
+Read the bundled DISCLOSURES.md and PRIVACY.md before installing/using it.
+Privacy: https://github.com/NekoMisa/stellarys-viewer/blob/main/PRIVACY.md
+Support: https://github.com/NekoMisa/stellarys-viewer/issues (as time permits).
+Never post credentials or private/unredacted logs in public support requests.
 
 SECOND LIFE LINKS AND PHOTO MENU
 The final Setup page has an unchecked "Set up Second Life links with Stellarys"
@@ -62,7 +67,7 @@ Updates require an exact versioned Windows installer asset with GitHub's SHA-256
 digest. No digest, unexpected URL, wrong size or wrong hash means no install.
 The digest is obtained over HTTPS from GitHub; it is not a publisher signature
 and does not protect against compromise of the repository/account itself.
-Downloads need approval. From version 0.1.3, the unchecked "Install when the
+Downloads need approval. From version 0.1.4, the unchecked "Install when the
 download finishes (closes Stellarys)" option combines download and install approval.
 The installer starts only after SHA-256/size verification and normal viewer
 shutdown. Without it, a separate install confirmation is shown. Save your work
