@@ -117,6 +117,7 @@
 // [/RLVa:KB]
 
 #include "llweb.h"
+#include "llfloaterlinkdomains.h"
 // <FS:Ansariel> [FS communication UI]
 #include "fsfloatervoicecontrols.h"
 // </FS:Ansariel> [FS communication UI]
@@ -1101,9 +1102,15 @@ bool LLAppViewer::init()
     LLKeyboard::setStringTranslatorFunc( LLTrans::getKeyboardString );
 
     // Provide the text fields with callbacks for opening Urls
-    LLUrlAction::setOpenURLCallback(boost::bind(&LLWeb::loadURL, _1, LLStringUtil::null, LLStringUtil::null));
-    LLUrlAction::setOpenURLInternalCallback(boost::bind(&LLWeb::loadURLInternal, _1, LLStringUtil::null, LLStringUtil::null, false));
-    LLUrlAction::setOpenURLExternalCallback(boost::bind(&LLWeb::loadURLExternal, _1, true, LLStringUtil::null));
+    LLUrlAction::setOpenURLCallback([](const std::string& url) {
+        StellarysLinkSafety::open(url, [url]() { LLWeb::loadURL(url); });
+    });
+    LLUrlAction::setOpenURLInternalCallback([](const std::string& url) {
+        StellarysLinkSafety::open(url, [url]() { LLWeb::loadURLInternal(url); });
+    });
+    LLUrlAction::setOpenURLExternalCallback([](const std::string& url) {
+        StellarysLinkSafety::open(url, [url]() { LLWeb::loadURLExternal(url); });
+    });
     LLUrlAction::setExecuteSLURLCallback(&LLURLDispatcher::dispatchFromTextEditor);
 
     // Let code in llui access the viewer help floater

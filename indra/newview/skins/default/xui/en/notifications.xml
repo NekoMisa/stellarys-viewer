@@ -15103,4 +15103,36 @@ The Stellarys updater could not be started. Reinstall Stellarys or download a re
 Delete the saved shot "[NAME]"? Your current camera and lighting will stay as they are.
     <usetemplate name="okcancelbuttons" yestext="Delete" notext="Cancel" />
   </notification>
+  <notification name="StellarysLinkUnknown" type="alertmodal">
+Open this web link? (Experimental)
+
+Domain: [DOMAIN]
+This domain is not on your trusted list. That does not mean it is dangerous. Trusting it skips future warnings, not a guarantee of safety.
+
+Destination: [DESTINATION]
+    <form name="form">
+      <button name="OpenOnce" text="Open once" index="0" />
+      <button name="TrustAndOpen" text="Trust domain and open" index="1" />
+      <button name="BlockDomain" text="Block domain" index="2" />
+      <button name="Cancel" text="Cancel" index="3" default="true" />
+    </form>
+  </notification>
+  <notification name="StellarysLinkBlocked" type="alertmodal">
+This domain is on your blocked list: [DOMAIN]
+The link was not opened. Remove the block in Link warnings to allow it.
+    <form name="form">
+      <button name="Manage" text="Manage domains" index="0" />
+      <button name="Cancel" text="Cancel" index="1" default="true" />
+    </form>
+  </notification>
+  <notification name="StellarysLinkListsUnavailable" type="alertmodal">
+Your domain lists are busy or could not be read/saved. Existing lists were left unchanged and this link was not opened. Try again or check Preferences > Privacy > Links.
+    <usetemplate name="okbutton" yestext="OK" />
+  </notification>
+  <notification name="StellarysLinkUnsupported" type="alertmodal">
+This experimental link check cannot reliably identify the destination. The link was not opened.
+
+Use an ordinary http/https address with an ASCII/punycode domain or IPv4 host. Encoded hosts, login details in addresses, IPv6 and ambiguous forms are not supported yet. You can disable Link warnings in Preferences > Privacy > Links if needed.
+    <usetemplate name="okbutton" yestext="OK" />
+  </notification>
 </notifications>

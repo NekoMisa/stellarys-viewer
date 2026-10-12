@@ -1,6 +1,6 @@
 # Experimental Stellarys Linux x86_64 build
 
-Base: Stellarys 0.1.4, Firestorm 7.2.4.80712. The Linux preview keeps
+Base: Stellarys 0.1.5, Firestorm 7.2.4.80712. The Linux preview keeps
 the rendering, AMD workaround, posing and photography implementations. Linux's
 D-Bus message identity is separate from Firestorm. Debian and portable packages
 have separate update feeds and installation backends, described below.
@@ -99,8 +99,8 @@ there is no retained authorization or silent root service.
 
 For each Linux installer version, update `DEB_VERSION`, `DISPLAY_VERSION` and
 `FILENAME` in `package_deb.py`. Keep the official Firestorm base and Stellarys
-application version accurate. The current Debian preview is `0.1.4~linuxpreview1-1`; the tilde keeps
-Debian preview versions below a future stable `0.1.4` package.
+application version accurate. The current Debian preview is `0.1.5~linuxpreview1-1`; the tilde keeps
+Debian preview versions below a future stable `0.1.5` package.
 
 Attach the generated `.deb` and **Stellarys-Linux-Update.json** to the same GitHub
 release in `NekoMisa/stellarys-viewer`, along with matching source, documentation
@@ -144,7 +144,7 @@ service is involved. See [the portable user guide](README-Portable-Linux.md).
 
 Publish the generated archive and `Stellarys-Linux-Portable-Update.json` together
 in the existing repository, with matching source/docs/checksums. Version
-`0.1.4-portable.1` maps to tag `linux-v0.1.4-portable-preview1`. The portable feed
+`0.1.5-portable.1` maps to tag `linux-v0.1.5-portable-preview1`. The portable feed
 ignores Debian and Windows releases, and vice versa. Keep experimental builds
 as prereleases so Windows stable remains unchanged. SHA-256 is integrity checking,
 not an independent publisher signature. Native Fedora/Bazzite testing and a
