@@ -1,4 +1,4 @@
-Stellarys Viewer 0.1.4 (based on Firestorm 7.2.4.80712)
+Stellarys Viewer 0.1.5 (based on Firestorm 7.2.4.80712)
 
 A hobby viewer with the AMD flicker fix and permission-based local posing.
 The viewer includes clearer update highlights with a full release-notes link, plus
@@ -14,6 +14,19 @@ Read the bundled DISCLOSURES.md and PRIVACY.md before installing/using it.
 Privacy: https://github.com/NekoMisa/stellarys-viewer/blob/main/PRIVACY.md
 Support: https://github.com/NekoMisa/stellarys-viewer/issues (as time permits).
 Never post credentials or private/unredacted logs in public support requests.
+
+EXPERIMENTAL WEB LINK CONTROLS
+Preferences > Privacy > Links: enable Link warnings and blocking (off by default).
+Keep Warn before opening unlisted web links checked for Open once / Trust and
+open / Block domain / Cancel. Clear it to keep blocking without unlisted prompts.
+Blocked links show a brief notice. Main OFF bypasses these checks but keeps lists.
+Manage domains saves immediately; Common sites imports only selected exact domains.
+Trusted does not mean guaranteed safe. Subdomains need separate entries. Checks
+are local and apply to viewer text links, not embedded pages, redirects or media.
+The mode and personal lists survive updates. Default uninstall keeps them;
+explicit settings removal deletes them. Existing browser prompts still apply.
+When updating, choose the existing marked Stellarys installation folder. Another
+folder does not move the old installation.
 
 SECOND LIFE LINKS AND PHOTO MENU
 The final Setup page has an unchecked "Set up Second Life links with Stellarys"

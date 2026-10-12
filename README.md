@@ -5,15 +5,20 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.4 — based on Firestorm 7.2.4.80712.**
+**Stellarys Viewer 0.1.5 — based on Firestorm 7.2.4.80712.**
 The Stellarys version is separate from the Firestorm base version.
 
-## What's new in 0.1.4
+## What's new in 0.1.5
 
-- Privacy policy and clear project/support disclosures, also bundled offline.
-- First-run project/privacy information before sign-in, including automatic sign-in.
-- Unique Stellarys release identifiers while preserving the Firestorm base version.
+- Optional **link warnings and blocking (Experimental)**, off by default.
+- Choose warnings for unlisted links or use only your saved blocked list.
+- Trust/block domains directly, manage your lists and optionally select Common sites.
+- Personal lists and your mode persist; removed defaults stay removed.
 - Rendering, the AMD fix, posing and photography behavior are unchanged.
+
+Enable it in **Preferences > Privacy > Links**. Trusted means skip the warning,
+not guaranteed safe. Checks are local and do not scan embedded pages or redirects.
+See the [link controls guide](tools/stellarys-links/README.md).
 
 **This software is not provided or supported by Linden Lab, the makers of Second Life.**
 Read [Before installing Stellarys](DISCLOSURES.md) and the
@@ -35,6 +40,8 @@ permits; do not post passwords, private conversations or unredacted logs.
 - **Complete shot presets:** save camera position, lens/blur controls, local
   lighting and image dimensions together, then restore a shot in its original
   region. See the [shot preset guide](tools/stellarys-photography/README.md).
+- **Optional link controls:** local trusted/blocked domain lists with warnings or
+  blocked-list-only mode; off by default and labelled Experimental.
 - **Separate settings and cache:** Stellarys keeps its own profile alongside
   your other viewers.
 
@@ -61,15 +68,15 @@ with optional removal. See the
 
 Linux packages are native x86_64 experimental builds for Ubuntu 22.04-compatible
 systems such as Linux Mint. Download the .deb and matching source from
-[Linux preview 1](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.4-preview1).
-The Linux build is version 0.1.4, based on Firestorm 7.2.4.80712.
+[Linux preview 1](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.5-preview1).
+The Linux build is version 0.1.5, based on Firestorm 7.2.4.80712.
 Read [Before installing](DISCLOSURES.md) and [Privacy](PRIVACY.md).
 Linux installation instructions are included with that release and on the
 `stellarys-linux` branch. The Linux updater selects Linux packages from this
 repository and ignores Windows installers. Settings and cache survive package removal.
 
 For Fedora/Bazzite testing, use the separate
-[portable Linux preview](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.4-portable-preview1).
+[portable Linux preview](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.5-portable-preview1).
 Download the application `.tar.xz`, not the source archive. Extract it into a
 private folder you own and run `stellarys`. Its built-in updater verifies and
 replaces portable archives without a system package manager, preserving settings

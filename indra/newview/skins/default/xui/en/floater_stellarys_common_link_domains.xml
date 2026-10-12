@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="stellarys_common_link_domains" title="Common sites (Experimental)" width="620" height="570"
+ layout="topleft" positioning="centered" single_instance="true" save_rect="true" can_resize="false">
+    <text name="intro" parse_urls="false" follows="left|top" left="18" top="34" width="584" height="72" wrap="true" layout="topleft">
+Optional suggestions, not a list of guaranteed safe sites. These services can contain user content and redirects. Choose only domains you want to skip warnings for. Existing blocks are always kept.
+    </text>
+    <scroll_list name="suggestions" follows="left|top" left="18" top="118" width="584" height="300" layout="topleft"
+     multi_select="true" draw_border="true" draw_heading="true" commit_on_selection_change="true">
+        <column name="service" label="Service" width="220" />
+        <column name="domain" label="Exact domain" width="344" />
+    </scroll_list>
+    <text name="instructions" parse_urls="false" follows="left|top" left="18" top="430" width="584" height="32" wrap="true" layout="topleft">
+Click a row to select it. Use Ctrl-click or Shift-click for several. Nothing is added until you click Trust selected; changes then save immediately.
+    </text>
+    <button name="trust_selected" follows="left|top" label="Trust selected" enabled="false" left="18" top="474" width="190" height="26" layout="topleft" />
+    <button name="refresh" follows="left|top" label="Refresh" left="408" top="474" width="92" height="26" layout="topleft" />
+    <button name="close" follows="left|top" label="Close" left="510" top="474" width="92" height="26" layout="topleft" />
+    <text name="status" parse_urls="false" follows="left|top" left="18" top="514" width="584" height="40" wrap="true" layout="topleft" />
+</floater>

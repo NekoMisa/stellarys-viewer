@@ -338,6 +338,7 @@ set(viewer_SOURCE_FILES
     llfloaterbuyland.cpp
     llfloatercamera.cpp
     llfloatercamerapresets.cpp
+    llfloaterlinkdomains.cpp
     llfloatershotpresets.cpp
     llfloaterchangeitemthumbnail.cpp
     llfloaterchatmentionpicker.cpp
@@ -1205,6 +1206,9 @@ set(viewer_HEADER_FILES
     llfloaterbuycurrencyhtml.h
     llfloaterbuyland.h
     llfloatercamerapresets.h
+    llfloaterlinkdomains.h
+    stellaryslinkpolicy.h
+    stellaryslinkstore.h
     llfloatershotpresets.h
     stellarysshotvalidation.h
     llfloaterchangeitemthumbnail.h

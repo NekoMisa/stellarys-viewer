@@ -52,7 +52,7 @@ Directory listing and Linden Lab approval are not claimed.
 
 Stellarys Viewer privacy policy
 
-Effective date: 10 October 2026. Maintainer: NekoMisa.
+Effective date: 12 October 2026. Maintainer: NekoMisa.
 
 Stellarys Viewer is an independent hobby project based on Firestorm. This
 software is not provided or supported by Linden Lab, the makers of Second Life.
@@ -101,6 +101,26 @@ grid; do not reuse your Second Life password on an untrusted grid.
 
 See Linden Lab&#x27;s privacy policy: https://lindenlab.com/privacy and the policies
 of the services you choose to use.
+
+Experimental link warnings
+
+Link warnings are off by default and can be enabled in Preferences &gt; Privacy &gt;
+Links. Checks compare clicked web links in viewer text with trusted and blocked
+domain lists on your computer. No chat messages, clicked URLs or domain lists
+are sent to a checking service. Opening an approved link still contacts its
+destination through your selected browser. A separate warning checkbox allows
+blocked-list-only checks: unlisted links open without a domain-choice prompt,
+while saved blocks remain enforced. Both preferences persist between sessions.
+
+The lists store domains and trust/block choices in your per-user settings
+directory, without recording clicked URLs or queries. They are shared by avatars
+using that viewer profile and preserved during updates. List edits save
+immediately, even if you later cancel Preferences. Explicitly removing your
+settings also removes these lists. A trusted domain skips the warning; it is not
+a guarantee of safety. Embedded pages and redirects are not checked.
+The optional Common sites picker is a bundled local catalogue. It does not
+contact the listed sites or add domains automatically. Only your selected entries
+are added, while existing blocks are preserved.
 
 Update checks and downloads
 
