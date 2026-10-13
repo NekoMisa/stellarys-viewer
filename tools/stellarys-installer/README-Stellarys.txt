@@ -1,4 +1,4 @@
-Stellarys Viewer 0.1.6 (based on Firestorm 7.2.4.80712)
+Stellarys Viewer 0.1.7 (based on Firestorm 7.2.4.80712)
 
 A hobby viewer with the AMD flicker fix and permission-based local posing.
 The viewer includes clearer update highlights with a full release-notes link, plus
@@ -40,7 +40,11 @@ location links and open the compact link dialog after installation.
 This does not replace your existing viewer default. To select Stellarys, choose
 Preferences > Network & Files > Stellarys > Open Second Life links with Stellarys, then
 Set up SL links. In Windows Default apps, select Stellarys for SECOND LIFE and HOP.
-On older Windows versions, search for those link types in Default apps manually.
+Windows may open the general Default apps page instead of Stellarys's page.
+Use the file/link-type search at the top: search secondlife, choose Stellarys,
+then repeat for hop. Do not use the general Settings search box.
+This update declares missing URL protocols and repairs older Stellarys aliases;
+it does not write Windows UserChoice or select a different viewer for you.
 Setup registers availability for all users; the Preferences button registers
 this installation for the current Windows user without administrator approval.
 The dialog shows which application currently opens each link type.
@@ -95,8 +99,7 @@ or times out, installation is postponed. Updating from 0.1.2 still uses its
 existing two-step updater; the new option is available for subsequent updates.
 The updater never force-kills the viewer, never asks for credentials and never
 bypasses Windows administrator approval. An offline or failed check does not
-mean that this version is up to date. Until a stable release is published, the
-manual check reports that no public releases are available.
+mean that this version is up to date. A failed check is shown as an error; it does not mean you are up to date.
 
 PROFILES AND MIGRATION
 Stellarys uses its own folders, per Windows user:

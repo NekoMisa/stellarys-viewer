@@ -73,6 +73,19 @@ registration only if this folder already owns it. `--remove-links` is called
 before uninstall removes the helper and unregisters only matching paths/commands.
 No mode writes a protocol default or Windows UserChoice, chooses another viewer,
 or removes another viewer's registration. Only secondlife/hop are claimed.
+`ApplicationName`, the `RegisteredApplications` value name and the Default apps
+deep-link target all use the same version-free name, `Stellarys`. The older
+`Stellarys Viewer` registration alias is removed only when it points to our
+capabilities path; protocol ProgIDs and the capabilities path remain unchanged.
+The dialog registers for the current user before opening `registeredAppUser`.
+Shared scheme keys receive a missing `URL Protocol` marker so Windows can
+enumerate secondlife/hop as link types. Existing marker values, default values
+and other viewers' open commands are preserved. The shared markers remain on
+uninstall; only Stellarys's owned entries are removed. Owned ProgIDs include a
+version-free application name for the Windows chooser.
+Some Windows builds open the general Default apps page despite the app-specific
+URI. Use the link-type search at the top: enter `secondlife`, choose Stellarys,
+then repeat for `hop`. This also avoids ambiguity from duplicate app-list entries.
 The standard viewer `--url` option is last-option bounded and retains its existing
 location handling, login behavior and running-instance dispatch.
 

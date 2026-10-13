@@ -5,23 +5,25 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.6 — based on Firestorm 7.2.4.80712.**
+**Stellarys Viewer 0.1.7 for Windows — based on Firestorm 7.2.4.80712.**
 The Stellarys version is separate from the Firestorm base version.
 
-## What's new in 0.1.6
+## What's new in 0.1.7 (Windows)
 
-- Correct automatic version labels in the window title and translated About pages.
-- A simple **Stellarys** name for Windows browser-link selection and Linux desktop entries.
-- Expanded official Second Life links, including every Marketplace language.
-- NekoMisa GitHub account/repository scopes, without trusting the whole GitHub domain.
-- Existing saved lists and removed entries are preserved. Link checks remain off by default.
+- Corrected registration for Second Life and Hop browser links in Windows.
+- Consistent, version-free **Stellarys** names in the Windows link chooser.
+- Clear instructions when Windows opens the general Default apps page.
 
-Enable the experimental controls in **Preferences > Privacy > Links**. New
-profiles include reviewed official services; existing users can select additions
-in Common sites. Adding GitHub scopes uses a newer list format that 0.1.5 cannot
-read. See the [link controls guide](tools/stellarys-links/README.md) and
-[release notes](doc/RELEASE-NOTES-0.1.6.md) before downgrading a profile.
-Trusted means skip the warning, not guaranteed safe.
+Open **Preferences > Network & Files > Stellarys > Open Second Life links with
+Stellarys**, then **Set up SL links**. If Windows opens its general Default apps
+page, use the **file/link-type search at the top**: enter `secondlife`, choose
+Stellarys, then repeat for `hop`. Choosing a default remains your decision.
+See the [release notes](doc/RELEASE-NOTES-0.1.7.md).
+
+This is a Windows-only maintenance release. Linux Debian and portable previews
+remain at **0.1.6**, with their existing update feeds. Settings, cache, trusted
+and blocked lists, and link-checking preferences are preserved. Experimental
+link controls remain off by default. Rendering, posing and photography are unchanged.
 
 **This software is not provided or supported by Linden Lab, the makers of Second Life.**
 Read [Before installing Stellarys](DISCLOSURES.md) and the

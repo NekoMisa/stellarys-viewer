@@ -10,9 +10,11 @@ using Microsoft.Win32;
 
 internal static class LinkRegistration
 {
-    // Keep the registration key stable across display-name changes.
-    internal const string AppName = "Stellarys Viewer";
-    internal const string DisplayName = "Stellarys";
+    // Windows requires ApplicationName to match RegisteredApplications.
+    // Keep AppKey and the protocol ProgIDs stable so existing choices survive.
+    internal const string AppName = "Stellarys";
+    internal const string DisplayName = AppName;
+    internal const string LegacyAppName = "Stellarys Viewer";
     internal const string AppKey = @"Software\StellarysViewer\LinkHandler";
     internal static readonly string[] Schemes = { "secondlife", "hop" };
     internal static string ProgId(string scheme) { return "StellarysViewer." + scheme; }
@@ -30,6 +32,12 @@ internal static class LinkRegistration
     internal static bool Owns(RegistryKey root, string exe)
     {
         return String.Equals(Read(root, AppKey, "Executable"), Path.GetFullPath(exe), StringComparison.OrdinalIgnoreCase);
+    }
+    static void RemoveApplicationName(RegistryKey root, string name)
+    {
+        using (RegistryKey key = root.OpenSubKey(@"Software\RegisteredApplications", true))
+            if (key != null && String.Equals(key.GetValue(name) as string, AppKey + @"\Capabilities", StringComparison.OrdinalIgnoreCase))
+                key.DeleteValue(name, false);
     }
     // Passing a disposable RegistryKey lets tests exercise real registry behavior
     // without touching Windows associations. Production uses only HKCU/HKLM.
@@ -50,11 +58,21 @@ internal static class LinkRegistration
             Set(root, key, "", "Stellarys " + scheme + " location", RegistryValueKind.String);
             Set(root, key, "URL Protocol", "", RegistryValueKind.String);
             Set(root, key + @"\DefaultIcon", "", "\"" + exe + "\",0", RegistryValueKind.String);
+            Set(root, key + @"\shell\open", "FriendlyAppName", DisplayName, RegistryValueKind.String);
+            Set(root, key + @"\Application", "ApplicationName", DisplayName, RegistryValueKind.String);
+            Set(root, key + @"\Application", "ApplicationIcon", "\"" + exe + "\",0", RegistryValueKind.String);
             Set(root, key + @"\shell\open\command", "", Command(exe), RegistryValueKind.String);
             Set(root, capabilities + @"\URLAssociations", scheme, id, RegistryValueKind.String);
+            // Windows Settings enumerates only known URL protocols. Declare the
+            // scheme without writing its default value or an open command.
+            using (RegistryKey protocol = root.CreateSubKey(@"Software\Classes\" + scheme))
+                if (protocol.GetValue("URL Protocol") == null)
+                    protocol.SetValue("URL Protocol", "", RegistryValueKind.String);
             Set(root, @"Software\Classes\" + scheme + @"\OpenWithProgids", id, new byte[0], RegistryValueKind.None);
         }
         Set(root, @"Software\RegisteredApplications", AppName, capabilities, RegistryValueKind.String);
+        // Remove only our old alias, after the replacement is fully written.
+        RemoveApplicationName(root, LegacyAppName);
         // No protocol default, UserChoice or other viewer key is changed.
     }
     internal static void Remove(RegistryKey root, string exe)
@@ -73,9 +91,8 @@ internal static class LinkRegistration
             using (RegistryKey key = root.OpenSubKey(@"Software\Classes\" + scheme + @"\OpenWithProgids", true))
                 if (key != null) key.DeleteValue(id, false);
         }
-        using (RegistryKey key = root.OpenSubKey(@"Software\RegisteredApplications", true))
-            if (key != null && String.Equals(key.GetValue(AppName) as string, AppKey + @"\Capabilities", StringComparison.OrdinalIgnoreCase))
-                key.DeleteValue(AppName, false);
+        RemoveApplicationName(root, AppName);
+        RemoveApplicationName(root, LegacyAppName);
         root.DeleteSubKeyTree(AppKey, false);
     }
 
@@ -98,9 +115,13 @@ internal static class LinkRegistration
         if (name.IndexOf("blackdragon", StringComparison.OrdinalIgnoreCase) >= 0 || name.IndexOf("black-dragon", StringComparison.OrdinalIgnoreCase) >= 0) return "Black Dragon";
         return name;
     }
+    internal static string DefaultsUri()
+    {
+        return "ms-settings:defaultapps?registeredAppUser=" + Uri.EscapeDataString(AppName);
+    }
     internal static void OpenDefaults()
     {
-        Process.Start(new ProcessStartInfo("ms-settings:defaultapps?registeredAppUser=" + Uri.EscapeDataString(AppName)) { UseShellExecute = true });
+        Process.Start(new ProcessStartInfo(DefaultsUri()) { UseShellExecute = true });
     }
     internal static int Run(string mode)
     {
@@ -141,7 +162,7 @@ internal sealed class LinkSettingsForm : Form
         secondLife = new Label { Left = 132, Top = 10, Width = 260, Height = 23, AutoEllipsis = true };
         hop = new Label { Left = 132, Top = 41, Width = 260, Height = 23, AutoEllipsis = true };
         handlers.Controls.Add(secondLife); handlers.Controls.Add(hop); Controls.Add(handlers);
-        message = new Label { Text = "Select Stellarys in Windows Default apps.", Left = 18, Top = 164, Width = 404, Height = 28, Font = new Font(Font.FontFamily, 9), ForeColor = Color.FromArgb(90, 86, 99), AutoEllipsis = true };
+        message = new Label { Text = "In Default apps, search link types: secondlife, then hop.\r\nSelect Stellarys for each.", Left = 18, Top = 164, Width = 404, Height = 32, Font = new Font(Font.FontFamily, 9), ForeColor = Color.FromArgb(90, 86, 99), AutoEllipsis = true };
         Controls.Add(message);
         var setup = new Button { Text = "Set up SL links…", Left = 18, Top = 202, Width = 150, Height = 32,
             BackColor = Color.FromArgb(92, 73, 149), ForeColor = Color.White, FlatStyle = FlatStyle.Flat, UseVisualStyleBackColor = false };
