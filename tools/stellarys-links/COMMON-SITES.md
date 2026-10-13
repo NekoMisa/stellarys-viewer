@@ -1,17 +1,22 @@
 # Optional common-site catalogue
 
 This is a convenience catalogue, **not a certified-safe list or a malware scan**.
-The first catalogue contains 36 exact domains across the services below. Entries
+The current catalogue contains 59 entries: exact domains plus a scoped GitHub account. Entries
 are bundled, reviewed as named service destinations, and never trusted merely
 because the catalogue exists. Users explicitly select entries in Common sites.
 The viewer does not fetch these pages when showing/importing the catalogue.
 
-Service references reviewed on 12 October 2026:
+Service references reviewed on 12 October 2026; Second Life and NekoMisa GitHub
+coverage expanded on 13 October 2026:
 
 - [Second Life](https://www.secondlife.com/) and its
   [community](https://www.secondlife.com/community),
   [Marketplace](https://marketplace.secondlife.com/) and
   [feedback](https://feedback.secondlife.com/) services.
+- The full 31-domain official-service review, language coverage and aliases are
+  documented in [Official Second Life sites](OFFICIAL-SECOND-LIFE-SITES.md).
+- [NekoMisa's GitHub profile and viewer projects](https://github.com/NekoMisa),
+  scoped as `github.com/nekomisa`, rather than trusting the entire shared host.
 - [Primfeed](https://primfeed.com/), [Flickr](https://www.flickr.com/) and
   [Facebook](https://www.facebook.com/). These retain the domains already in the
   initial default list; automated access to Primfeed was unavailable during review.
@@ -26,8 +31,9 @@ Service references reviewed on 12 October 2026:
 The exact catalogue is defined by `commonSites()` in
 `indra/newview/stellaryslinkpolicy.h`. Root and www names are separate entries;
 only explicitly listed documentation/community subdomains are suggested. The
-catalogue does not include URL shorteners or blanket shared download/hosting
-domains. Social services still host user-controlled content, and this feature
+catalogue does not include general URL shorteners or blanket shared download/hosting
+domains. Linden's dedicated `second.life` short-link domain is included explicitly;
+its redirects are not inspected. Social services still host user-controlled content, and this feature
 does not inspect redirects or embedded pages. A service's presence is not an
 endorsement of its content, privacy practices or downloads.
 

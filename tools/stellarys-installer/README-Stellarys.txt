@@ -1,4 +1,4 @@
-Stellarys Viewer 0.1.5 (based on Firestorm 7.2.4.80712)
+Stellarys Viewer 0.1.6 (based on Firestorm 7.2.4.80712)
 
 A hobby viewer with the AMD flicker fix and permission-based local posing.
 The viewer includes clearer update highlights with a full release-notes link, plus
@@ -20,7 +20,12 @@ Preferences > Privacy > Links: enable Link warnings and blocking (off by default
 Keep Warn before opening unlisted web links checked for Open once / Trust and
 open / Block domain / Cancel. Clear it to keep blocking without unlisted prompts.
 Blocked links show a brief notice. Main OFF bypasses these checks but keeps lists.
-Manage domains saves immediately; Common sites imports only selected exact domains.
+Manage sites saves immediately; Common sites imports only selected entries.
+New profiles include 31 official Second Life domains and github.com/nekomisa.
+Existing saved lists do not receive new defaults automatically. Select additions
+in Common sites. GitHub account/repo scopes apply only to their HTTPS pages;
+a whole-domain block wins. Adding a scope writes list format 2, which older
+0.1.5 viewers cannot read. Back up settings before any downgrade.
 Trusted does not mean guaranteed safe. Subdomains need separate entries. Checks
 are local and apply to viewer text links, not embedded pages, redirects or media.
 The mode and personal lists survive updates. Default uninstall keeps them;

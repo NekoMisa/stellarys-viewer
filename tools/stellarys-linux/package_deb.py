@@ -12,9 +12,9 @@ import tempfile
 TOOLS = Path(__file__).resolve().parent
 REPO = TOOLS.parents[1]
 PACKAGE = 'stellarys-viewer'
-DEB_VERSION = '0.1.5~linuxpreview1-1'
-DISPLAY_VERSION = '0.1.5 Linux preview 1'
-FILENAME = 'Stellarys-Viewer-0.1.5-Linux-amd64-preview1.deb'
+DEB_VERSION = '0.1.6~linuxpreview1-1'
+DISPLAY_VERSION = '0.1.6 Linux preview 1'
+FILENAME = 'Stellarys-Viewer-0.1.6-Linux-amd64-preview1.deb'
 
 GUARD = '''/usr/bin/python3 - <<'PY'
 import os
@@ -84,7 +84,7 @@ exec /opt/stellarys-viewer/stellarys "$@"
 '''
 DESKTOP = '''[Desktop Entry]
 Type=Application
-Name=Stellarys Viewer
+Name=Stellarys
 Comment=Second Life photography and permission-based posing
 Exec=/usr/bin/stellarys %u
 TryExec=/usr/bin/stellarys
@@ -137,11 +137,11 @@ def main():
     for name in ('PRIVACY.md','DISCLOSURES.md','SOURCE-PROVENANCE.md'):
         shutil.copy2(REPO / name, app / name)
     header=(args.build / 'newview/fsversionvalues.h').read_text()
-    expected='Stellarys Viewer 0.1.5 Linux Preview 1'
+    expected='Stellarys Viewer 0.1.6 Linux Preview 1'
     if ('#define LL_VIEWER_CHANNEL '+expected+'\n') not in header:
         raise SystemExit('Build/release identity mismatch; configure and compile first.')
     write(app / '.stellarys-deb-install', 'StellarysDebPackage=stellarys-viewer\n')
-    metadata = {'name': 'Stellarys Viewer', 'version': '0.1.5',
+    metadata = {'name': 'Stellarys Viewer', 'version': '0.1.6',
         'viewer_channel': expected, 'base_version': '7.2.4.80712', 'platform': 'linux-x86_64',
         'status': 'experimental preview 1', 'profile': '~/.stellarys_x64',
         'debian_version': DEB_VERSION, 'display_version': DISPLAY_VERSION,

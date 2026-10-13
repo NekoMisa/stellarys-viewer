@@ -27,11 +27,33 @@ int main()
         std::set<std::string> suggestions;
         for (const auto& site : commonSites())
         {
-            expect(!site.second.empty() && domain(site.first) == site.first, "Invalid common-site suggestion");
+            expect(!site.second.empty() && trustedRule(site.first) == site.first, "Invalid common-site suggestion");
             expect(suggestions.insert(site.first).second, "Duplicate common-site suggestion");
         }
         expect(suggestions.size() > rules.trusted.size(), "Common sites were not expanded");
+        std::cout << "Catalogue: " << officialSecondLifeSites().size() << " official Second Life domains; "
+                  << suggestions.size() << " suggestions; " << rules.trusted.size() << " new-profile trusted entries\n";
         expect(!suggestions.count("github.com") && !suggestions.count("t.co") && !suggestions.count("bit.ly"), "Shared download/shortener hosts suggested");
+        for (const auto& site : officialSecondLifeSites())
+            expect(rules.trusted.count(site.first) && suggestions.count(site.first), "Official site missing from new-profile defaults or catalogue");
+        for (const auto& lang : {"en-US", "de-DE", "es-ES", "fr-FR", "ja-JP", "pt-BR"})
+            expect(decide(std::string("https://marketplace.secondlife.com/?lang=") + lang, true, rules) == Decision::Trusted, "Marketplace language unexpectedly warns");
+        expect(decide("https://wiki.secondlife.com/wiki/LSL_Portal/fr", true, rules) == Decision::Trusted, "Localized Wiki path unexpectedly warns");
+        for (const auto& url : {"https://github.com/NekoMisa", "https://github.com/NekoMisa?tab=repositories",
+            "https://github.com/NekoMisa/stellarys-viewer/releases", "https://github.com/NekoMisa/Black-Dragon---Black-Kitty-Fix",
+            "https://github.com:443/nekomisa/stellarys-viewer/"})
+            expect(decide(url, true, rules) == Decision::Trusted, "NekoMisa GitHub scope did not match");
+        for (const auto& url : {"https://github.com/other-owner/project", "https://github.com/NekoMisa-lookalike/project",
+            "https://github.com/NekoMisa/../other-owner/project", "https://github.com/NekoMisa/%2e%2e/other-owner",
+            "https://github.com/NekoMisa//../other-owner", "https://github.com/NekoMisa/./project", "https://github.com/%4eekoMisa/project",
+            "https://github.com/?next=/NekoMisa/project", "http://github.com/NekoMisa/project", "https://github.com:444/NekoMisa/project",
+            "https://github.com.evil.example/NekoMisa/project", "https://raw.githubusercontent.com/NekoMisa/project/main/file"})
+            expect(decide(url, true, rules) == Decision::Ask, "GitHub scoped trust escaped its HTTPS account boundary");
+        Rules repo_only{{"github.com/nekomisa/stellarys-viewer"},{}};
+        expect(decide("https://github.com/NekoMisa/Stellarys-Viewer/releases", true, repo_only) == Decision::Trusted, "Repository scope did not match");
+        expect(decide("https://github.com/NekoMisa/stellarys-viewer-other", true, repo_only) == Decision::Ask, "Repository scope matched a prefix lookalike");
+        repo_only.blocked.insert("github.com");
+        expect(decide("https://github.com/NekoMisa/stellarys-viewer", true, repo_only) == Decision::Blocked, "GitHub path bypassed a domain block");
         expect(decide("https://secondlife.com/path", false, rules) == Decision::Bypass, "Disabled changes legacy behavior");
         expect(decide("https://evil.example/", false, rules) == Decision::Bypass, "Disabled warns on unknown");
         for (const auto& url : {"https://secondlife.com", "HTTP://SECONDlife.COM:80/path?x=a#b", "https://secondlife.com./"})
@@ -69,6 +91,26 @@ int main()
         Store first(file);
         expect(first.read().trusted.count("primfeed.com") == 1, "First-run defaults missing");
         expect(std::filesystem::is_regular_file(file), "Defaults not persisted");
+        auto legacy_file = root / "profile" / "legacy.txt";
+        const std::string legacy_bytes = std::string(FILE_HEADER) + "\nT secondlife.com\nT personal.example\nB github.com\n";
+        put(legacy_file, legacy_bytes);
+        Store legacy(legacy_file);
+        auto legacy_rules = legacy.read();
+        expect(legacy_rules.trusted.count("personal.example") && !legacy_rules.trusted.count("community.secondlife.com") &&
+            !legacy_rules.trusted.count("github.com/nekomisa") && legacy_rules.blocked.count("github.com"), "Expanded defaults changed an older saved list");
+        expect(readBytes(legacy_file) == legacy_bytes, "Reading a legacy list rewrote it");
+        legacy.trustSelected({"github.com/nekomisa", "community.secondlife.com"});
+        expect(!legacy.read().trusted.count("github.com/nekomisa") && legacy.read().blocked.count("github.com"), "GitHub import removed a saved domain block");
+        legacy.edit("github.com", true, true);
+        legacy.trustSelected({"github.com/nekomisa"});
+        expect(readBytes(legacy_file).find(SCOPED_FILE_HEADER) == 0, "GitHub scopes did not use the scoped file format");
+        expect(legacy.read().trusted.count("personal.example") && legacy.read().trusted.count("github.com/nekomisa"), "Scoped format lost personal entries");
+        legacy.edit("github.com", true);
+        expect(!legacy.read().trusted.count("github.com/nekomisa"), "Domain block did not remove its scoped trust");
+        legacy.edit("github.com", true, true);
+        expect(!legacy.read().trusted.count("github.com/nekomisa"), "Removing a block resurrected scoped trust");
+        for (const auto& bad : {"github.com/nekomisa/..", "github.com/nekomisa/../other", "github.com/nekomisa%2fother", "github.com/-owner", "example.com/path"})
+            expect(trustedRule(bad).empty(), "Ambiguous trusted site accepted");
         first.edit("primfeed.com", false, true);
         first.edit("my.example", false);
         first.edit("bad.example", true);
@@ -104,7 +146,7 @@ int main()
         expect(readBytes(file) == before, "Locked operation changed saved lists");
         refuses([&] { first.edit("https://invalid.example", false); }, "Invalid entry saved");
         expect(readBytes(file) == before, "Invalid entry changed saved lists");
-        for (const auto& bytes : {std::string("Stellarys link domains 2\nT example.com\n"), std::string("broken"),
+        for (const auto& bytes : {std::string("Stellarys link domains 3\nT example.com\n"), std::string("broken"),
              std::string(FILE_HEADER) + "\nT https://invalid.example\n", std::string(MAX_BYTES + 1, 'x')})
         {
             put(file, bytes);
@@ -115,6 +157,9 @@ int main()
         put(file, std::string(FILE_HEADER) + "\n");
         expect(first.read().trusted.empty() && first.read().blocked.empty(), "Empty saved lists reset to defaults");
         expect(parse(std::string(FILE_HEADER) + "\nT example.com\nB example.com\n").trusted.empty(), "Conflicting saved block loses");
+        refuses([&] { parse(std::string(FILE_HEADER) + "\nT github.com/nekomisa\n"); }, "Version-1 file silently accepted scoped syntax");
+        auto scoped_conflict = parse(std::string(SCOPED_FILE_HEADER) + "\nT github.com/nekomisa\nT github.com/nekomisa/stellarys-viewer\nB github.com\n");
+        expect(scoped_conflict.trusted.empty() && scoped_conflict.blocked.count("github.com"), "Hand-edited scoped trusts bypassed a domain block");
         expect(serialize(parse(before)) == before, "Saved rules do not round-trip");
 #if !defined(_WIN32)
         expect((std::filesystem::status(file).permissions() & std::filesystem::perms::all) ==

@@ -1,6 +1,6 @@
 # Stellarys Viewer — Linux installer preview 1
 
-Stellarys 0.1.5, based on Firestorm 7.2.4.80712. Native Linux x86_64.
+Stellarys 0.1.6, based on Firestorm 7.2.4.80712. Native Linux x86_64.
 This experimental installer targets Ubuntu 22.04 and compatible amd64 systems.
 Other distributions have not been validated. No Firestorm or Black Dragon
 installation is required. No Wine is required for the viewer itself.
@@ -10,7 +10,7 @@ installation is required. No Wine is required for the viewer itself.
 Download the `.deb` to your Downloads folder. Open a terminal there and run:
 
 ```bash
-sudo apt install ./Stellarys-Viewer-0.1.5-Linux-amd64-preview1.deb
+sudo apt install ./Stellarys-Viewer-0.1.6-Linux-amd64-preview1.deb
 ```
 
 Approve the Linux administrator prompt. APT installs the declared dependencies.

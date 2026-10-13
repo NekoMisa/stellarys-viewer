@@ -133,7 +133,7 @@ void LLFloaterLinkDomains::edit(bool denied, bool remove)
     }
     catch (const std::exception&)
     {
-        status("Could not save. Enter an exact ASCII domain without https://, a path, port or wildcard. If the lists are busy, try Refresh. Existing entries are unchanged.");
+        status("Could not save. Use a domain or trusted github.com/account[/repo], without https:// or a port. Blocks apply to whole domains; remove a GitHub block before trusting a path. Try Refresh if busy.");
     }
 }
 
@@ -157,7 +157,8 @@ void LLFloaterCommonLinkDomains::refresh()
         const auto rules = store().read();
         for (const auto& site : StellarysLinks::commonSites())
         {
-            if (rules.trusted.count(site.first) || rules.blocked.count(site.first)) continue;
+            if (rules.trusted.count(site.first) || rules.trusted.count(StellarysLinks::ruleHost(site.first)) ||
+                rules.blocked.count(StellarysLinks::ruleHost(site.first))) continue;
             LLSD row;
             row["value"] = site.first;
             row["columns"][0]["column"] = "service";

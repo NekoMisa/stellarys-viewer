@@ -10,7 +10,9 @@ using Microsoft.Win32;
 
 internal static class LinkRegistration
 {
+    // Keep the registration key stable across display-name changes.
     internal const string AppName = "Stellarys Viewer";
+    internal const string DisplayName = "Stellarys";
     internal const string AppKey = @"Software\StellarysViewer\LinkHandler";
     internal static readonly string[] Schemes = { "secondlife", "hop" };
     internal static string ProgId(string scheme) { return "StellarysViewer." + scheme; }
@@ -39,7 +41,7 @@ internal static class LinkRegistration
         if (exe.IndexOf('"') >= 0) throw new InvalidDataException("Invalid application path.");
         Set(root, AppKey, "Executable", exe, RegistryValueKind.String);
         string capabilities = AppKey + @"\Capabilities";
-        Set(root, capabilities, "ApplicationName", AppName, RegistryValueKind.String);
+        Set(root, capabilities, "ApplicationName", DisplayName, RegistryValueKind.String);
         Set(root, capabilities, "ApplicationDescription", "Open Second Life and hop location links with Stellarys Viewer.", RegistryValueKind.String);
         Set(root, capabilities, "ApplicationIcon", "\"" + exe + "\",0", RegistryValueKind.String);
         foreach (string scheme in Schemes)

@@ -1,4 +1,4 @@
-# Stellarys Viewer 0.1.5 — Linux portable preview 1
+# Stellarys Viewer 0.1.6 — Linux portable preview 1
 
 Based on Firestorm 7.2.4.80712. Experimental native x86_64 Linux application.
 This software is not provided or supported by Linden Lab, the makers of Second Life.
@@ -9,7 +9,7 @@ Never post credentials, private conversations or unredacted logs.
 
 ## Which download?
 
-Use **Stellarys-Viewer-0.1.5-Linux-x86_64-portable-preview1.tar.xz** to run it.
+Use **Stellarys-Viewer-0.1.6-Linux-x86_64-portable-preview1.tar.xz** to run it.
 The **Source.tar.xz** download contains developer source code, not a runnable app.
 This portable build does not use .deb, APT, RPM, root privileges or a system
 installation. It is intended for Bazzite/Fedora volunteer testing, and also runs

@@ -7,7 +7,7 @@ Optional suggestions, not a list of guaranteed safe sites. These services can co
     <scroll_list name="suggestions" follows="left|top" left="18" top="118" width="584" height="300" layout="topleft"
      multi_select="true" draw_border="true" draw_heading="true" commit_on_selection_change="true">
         <column name="service" label="Service" width="220" />
-        <column name="domain" label="Exact domain" width="344" />
+        <column name="domain" label="Domain or GitHub scope" width="344" />
     </scroll_list>
     <text name="instructions" parse_urls="false" follows="left|top" left="18" top="430" width="584" height="32" wrap="true" layout="topleft">
 Click a row to select it. Use Ctrl-click or Shift-click for several. Nothing is added until you click Trust selected; changes then save immediately.

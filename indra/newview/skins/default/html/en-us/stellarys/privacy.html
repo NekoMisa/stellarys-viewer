@@ -54,13 +54,14 @@ of the services you choose to use.
 
 Link warnings are off by default and can be enabled in Preferences &gt; Privacy &gt;
 Links. Checks compare clicked web links in viewer text with trusted and blocked
-domain lists on your computer. No chat messages, clicked URLs or domain lists
+domain lists and explicit trusted GitHub account/repository scopes on your computer.
+No chat messages, clicked URLs or domain lists
 are sent to a checking service. Opening an approved link still contacts its
 destination through your selected browser. A separate warning checkbox allows
 blocked-list-only checks: unlisted links open without a domain-choice prompt,
 while saved blocks remain enforced. Both preferences persist between sessions.
 
-The lists store domains and trust/block choices in your per-user settings
+The lists store domains, selected GitHub account/repository scopes and trust/block choices in your per-user settings
 directory, without recording clicked URLs or queries. They are shared by avatars
 using that viewer profile and preserved during updates. List edits save
 immediately, even if you later cancel Preferences. Explicitly removing your
@@ -69,6 +70,11 @@ a guarantee of safety. Embedded pages and redirects are not checked.
 The optional Common sites picker is a bundled local catalogue. It does not
 contact the listed sites or add domains automatically. Only your selected entries
 are added, while existing blocks are preserved.
+New profiles start with reviewed official Second Life services and the scoped
+NekoMisa GitHub account alongside the original social-site defaults. Existing
+saved lists are not merged with new defaults. GitHub scopes cover only the named
+account/repository over HTTPS, and a domain block takes priority. These entries
+are local preferences, not verification of hosted content or redirect destinations.
 
 ## Update checks and downloads
 

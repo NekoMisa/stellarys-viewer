@@ -24,7 +24,10 @@ internal static class LinkRegistrationTests
                 using (RegistryKey key = root.CreateSubKey(@"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\secondlife\UserChoice"))
                 { key.SetValue("ProgId", "OtherViewer"); key.SetValue("Hash", "unchanged fixture"); }
                 using (RegistryKey key = root.CreateSubKey(@"Software\Classes\hop\OpenWithProgids")) key.SetValue("OtherViewer.hop", new byte[0], RegistryValueKind.None);
+                using (RegistryKey legacy = root.CreateSubKey(LinkRegistration.AppKey + @"\Capabilities"))
+                    legacy.SetValue("ApplicationName", "Stellarys Viewer 0.1.3");
                 LinkRegistration.Register(root, exe);
+                Check(Read(root, LinkRegistration.AppKey + @"\Capabilities", "ApplicationName") == "Stellarys");
                 Check(LinkRegistration.Owns(root, exe)); Check(!LinkRegistration.Owns(root, other));
                 Check(Read(root, @"Software\RegisteredApplications", LinkRegistration.AppName) == LinkRegistration.AppKey + @"\Capabilities");
                 Check(Read(root, @"Software\Classes\secondlife\shell\open\command", "") == "existing viewer command");

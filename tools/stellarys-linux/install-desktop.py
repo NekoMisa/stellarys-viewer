@@ -24,7 +24,7 @@ def escape_exec(value):
 
 def desktop_entry(prefix):
     return '\n'.join([
-        '[Desktop Entry]', 'Type=Application', 'Name=Stellarys Viewer',
+        '[Desktop Entry]', 'Type=Application', 'Name=Stellarys',
         'Comment=Second Life photography and permission-based posing',
         'Exec=/usr/bin/env ' + escape_exec(prefix / 'stellarys') + ' %u',
         'TryExec=' + escape_value(prefix / 'stellarys'),

@@ -2,9 +2,9 @@
 <floater name="stellarys_link_domains" title="Link warnings (Experimental)" width="570" height="552"
  layout="topleft" positioning="centered" save_rect="true" can_resize="false" single_instance="true">
     <text parse_urls="false" follows="left|top" name="intro" left="18" top="34" width="534" height="48" wrap="true" layout="topleft">
-Trusted domains skip the warning; they are not guaranteed safe. Blocked domains do not open while link warnings are enabled. Checks stay on your computer.
+Trusted sites skip the warning; they are not guaranteed safe. Blocked domains do not open while link checks are enabled. Checks stay on your computer.
     </text>
-    <text parse_urls="false" follows="left|top" name="trusted_label" left="18" top="94" width="254" height="18" layout="topleft">Trusted domains</text>
+    <text parse_urls="false" follows="left|top" name="trusted_label" left="18" top="94" width="254" height="18" layout="topleft">Trusted sites</text>
     <text parse_urls="false" follows="left|top" name="blocked_label" left="298" top="94" width="254" height="18" layout="topleft">Blocked domains</text>
     <scroll_list follows="left|top" name="trusted" left="18" top="118" width="254" height="182" layout="topleft"
      multi_select="false" draw_border="true" commit_on_selection_change="true" />
@@ -12,12 +12,12 @@ Trusted domains skip the warning; they are not guaranteed safe. Blocked domains 
      multi_select="false" draw_border="true" commit_on_selection_change="true" />
     <button follows="left|top" name="remove_trusted" label="Remove selected" left="18" top="308" width="150" height="24" enabled="false" layout="topleft" />
     <button follows="left|top" name="remove_blocked" label="Remove selected" left="298" top="308" width="150" height="24" enabled="false" layout="topleft" />
-    <text parse_urls="false" follows="left|top" name="domain_label" left="18" top="346" width="534" height="18" layout="topleft">Exact domain (for example, example.com)</text>
+    <text parse_urls="false" follows="left|top" name="domain_label" left="18" top="346" width="534" height="18" layout="topleft">Domain, or trusted GitHub account/repo (github.com/nekomisa)</text>
     <line_editor follows="left|top" name="domain" left="18" top="370" width="254" height="24" max_length_bytes="254" layout="topleft" />
-    <button follows="left|top" name="add_trusted" label="Trust domain" left="284" top="370" width="126" height="24" layout="topleft" />
+    <button follows="left|top" name="add_trusted" label="Trust site" left="284" top="370" width="126" height="24" layout="topleft" />
     <button follows="left|top" name="add_blocked" label="Block domain" left="420" top="370" width="132" height="24" layout="topleft" />
     <text parse_urls="false" follows="left|top" name="exact_match" left="18" top="404" width="534" height="28" wrap="true" layout="topleft">
-Exact matches only: www.example.com and other subdomains need their own entries. Adding to one list removes the domain from the other.
+Domains match exactly. GitHub paths cover only that account/repo over HTTPS. A blocked domain overrides its trusted paths.
     </text>
     <button follows="left|top" name="common_sites" label="Common sites..." left="18" top="442" width="180" height="26" layout="topleft">
         <button.commit_callback function="Floater.Show" parameter="stellarys_common_link_domains" />

@@ -1,4 +1,4 @@
-# Link warnings (Experimental) — Stellarys 0.1.5
+# Link warnings (Experimental)
 
 Enable **Preferences > Privacy > Links > Enable link warnings and blocking**.
 It is **off by default**. Manage the trusted and blocked domains from the same tab.
@@ -21,8 +21,8 @@ network request. Existing browser/media permission prompts still apply.
 - **Block domain** saves the block immediately without opening the link.
 - Blocked domain: do not open; manage the list to remove the block if desired.
 
-**Manage domains > Common sites...** opens an optional picker with 36 exact
-domains for familiar services and documentation. Nothing is preselected or
+**Manage domains > Common sites...** opens an optional picker with 59 entries
+for familiar services, documentation and the NekoMisa GitHub account. Nothing is preselected or
 automatically imported. Choose rows, then **Trust selected** to save those
 choices immediately. Existing trusted/blocked entries are omitted; a block added
 after opening the picker also wins when saving. Other personal entries and
@@ -31,7 +31,9 @@ explicitly adds it back. Future catalogue changes do not alter saved lists.
 
 The catalogue identifies common services, not guaranteed safe destinations or
 security-scanned content. Social sites can host user content; redirects are not
-checked. URL shorteners and blanket shared download/hosting domains are excluded.
+checked. General URL shorteners and blanket shared download/hosting domains are excluded.
+Linden's dedicated `second.life` official short-link host is explicitly included;
+its redirect destinations are not checked.
 It is bundled locally: opening the picker does not contact the suggested sites.
 
 Checks use the actual URL destination, not its display label. Exact domain
@@ -42,10 +44,22 @@ canonical IPv4 addresses are supported. IPv6, encoded hostnames, credentials in
 addresses, control bytes, backslashes and ambiguous numeric hosts are refused
 while enabled; they are not silently trusted. This is intentionally experimental.
 
+GitHub account/repository scopes are a separate trusted-site option. For example,
+`github.com/nekomisa` covers that profile and its repositories; it does not trust
+all of GitHub. `github.com/nekomisa/stellarys-viewer` covers only that repository.
+They apply to HTTPS on the normal port, with path boundaries; encoded paths and
+dot segments do not match. A blocked `github.com` domain wins. Remove that block
+explicitly before adding a scoped trust entry. Blocks always apply to domains.
+
 Initial trusted entries include explicit Primfeed, Second Life, Flickr and
 Facebook domains. Shared hosts such as all of GitHub are not automatically
 trusted. You can add/remove entries. No malicious-site database is bundled and
 no chat messages or URLs are sent to a checking service.
+New profiles include the 31 reviewed official Second Life service domains and
+the scoped NekoMisa GitHub entry. Existing saved profiles do not receive these
+additions automatically. Marketplace's language choices share one domain, so all
+of them are covered without guessed language subdomains. See the
+[official sites and references](OFFICIAL-SECOND-LIFE-SITES.md).
 
 ## Saved data and updates
 
@@ -57,7 +71,8 @@ Domain choices save immediately in the per-user settings directory:
 
 The adjacent `.lock` file coordinates simultaneous viewer instances. It can stay
 on disk after exit; the OS releases its lock when the process exits. The rule
-file stores only domains and trust/block decisions, not clicked URLs or queries.
+file stores domains, explicitly selected GitHub account/repository scopes and
+trust/block decisions, not clicked URLs or queries.
 Do not include this personal file in source or release application payloads.
 
 Updates replace application files and retain this settings directory. Existing
@@ -65,6 +80,11 @@ lists, including removed defaults and empty lists, are read as saved; future
 bundled defaults never silently overwrite them. Normal uninstall preserves the
 profile; explicitly choosing to remove settings also removes personal domain lists.
 Other avatars using this same OS-user viewer profile share these choices.
+Version-1 domain files remain readable and are not rewritten on read. Adding a
+GitHub scope writes format 2 atomically while retaining other entries. Lists with
+only domains keep format 1. Older 0.1.5 viewers cannot read format 2; they preserve
+it and refuse checked links instead of resetting lists. Do not downgrade a
+profile containing scoped entries without a backup.
 
 Editor changes save immediately and are not undone by cancelling Preferences.
 Adding a domain to one list removes it from the other. An already-open warning
