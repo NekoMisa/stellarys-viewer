@@ -230,13 +230,13 @@
         <text name="link_explanation" follows="left|top" left="18" top="126" width="494" height="66" wrap="true" layout="topleft">
 When enabled, blocked domains do not open. Clear the warning checkbox to open unlisted links without this prompt while keeping your blocks. The main switch is off by default.
         </text>
-        <button name="manage_link_domains" follows="left|top" label="Manage trusted and blocked domains..." left="18" top="210" width="314" height="28" layout="topleft">
+        <button name="manage_link_domains" follows="left|top" label="Manage trusted sites and blocked domains..." left="18" top="210" width="314" height="28" layout="topleft">
             <button.commit_callback function="Floater.Show" parameter="stellarys_link_domains" />
         </button>
         <text name="link_limits" follows="left|top" left="18" top="260" width="494" height="144" wrap="true" layout="topleft">
 Trusted means skip the warning, not guaranteed safe. Subdomains need their own entries. Checks are local; no chat or URLs are sent to a checking service. Redirects and pages inside the web browser are not checked.
 
-Lists save immediately and survive updates. This experimental version accepts ordinary ASCII/punycode domains and IPv4 addresses; unusual address formats are refused while enabled.
+Lists save immediately and survive updates. Domains match exactly; trusted GitHub account/repo paths cover only their HTTPS pages. Unusual address formats are refused while enabled.
         </text>
     </panel>
 

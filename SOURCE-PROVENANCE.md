@@ -12,7 +12,7 @@ project, not a rewrite of the original authors' contribution history.
 | Poser snapshot | Fire Kitty Poser Prototype 0.1, revision 2 |
 | Public project name | Stellarys Viewer |
 | Published Stellarys Windows release | 0.1.3 |
-| Current release source | Stellarys 0.1.5 |
+| Current release source | Stellarys 0.1.6 |
 
 Upstream repository: https://github.com/FirestormViewer/phoenix-firestorm
 

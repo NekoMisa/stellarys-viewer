@@ -22,6 +22,7 @@ namespace StellarysLinks
 inline constexpr size_t MAX_RULES = 2000;
 inline constexpr size_t MAX_BYTES = 1024 * 1024;
 inline constexpr const char* FILE_HEADER = "Stellarys link domains 1";
+inline constexpr const char* SCOPED_FILE_HEADER = "Stellarys link domains 2";
 
 class FileLock
 {
@@ -72,21 +73,23 @@ inline Rules parse(const std::string& bytes)
     if (bytes.size() > MAX_BYTES) throw std::runtime_error("The saved domain lists are too large. They were left unchanged.");
     std::istringstream input(bytes);
     std::string line;
-    if (!std::getline(input, line) || line != FILE_HEADER)
+    if (!std::getline(input, line) || (line != FILE_HEADER && line != SCOPED_FILE_HEADER))
         throw std::runtime_error("The saved domain lists could not be read. They were left unchanged.");
+    const bool scoped = line == SCOPED_FILE_HEADER;
     Rules result;
     size_t count = 0;
     while (std::getline(input, line))
     {
         if (++count > MAX_RULES || line.size() < 3 || line[1] != ' ' || (line[0] != 'T' && line[0] != 'B'))
             throw std::runtime_error("The saved domain lists are invalid. They were left unchanged.");
-        const auto host = domain(line.substr(2));
+        const auto host = line[0] == 'T' && scoped ? trustedRule(line.substr(2)) : domain(line.substr(2));
         if (host.empty() || host != line.substr(2))
             throw std::runtime_error("The saved domain lists are invalid. They were left unchanged.");
         (line[0] == 'T' ? result.trusted : result.blocked).insert(host);
     }
     // An explicit block always wins, including a hand-edited conflicting file.
-    for (const auto& host : result.blocked) result.trusted.erase(host);
+    for (auto it = result.trusted.begin(); it != result.trusted.end();)
+        if (result.blocked.count(ruleHost(*it))) it = result.trusted.erase(it); else ++it;
     return result;
 }
 
@@ -94,10 +97,12 @@ inline std::string serialize(const Rules& rules)
 {
     if (rules.trusted.size() + rules.blocked.size() > MAX_RULES)
         throw std::runtime_error("The domain lists are full. Remove an unused entry first.");
-    std::string bytes = std::string(FILE_HEADER) + '\n';
+    const bool scoped = std::any_of(rules.trusted.begin(), rules.trusted.end(),
+        [](const std::string& item) { return item.find('/') != std::string::npos; });
+    std::string bytes = std::string(scoped ? SCOPED_FILE_HEADER : FILE_HEADER) + '\n';
     for (const auto& item : rules.trusted)
     {
-        if (item.empty() || domain(item) != item || rules.blocked.count(item))
+        if (item.empty() || trustedRule(item) != item || rules.blocked.count(ruleHost(item)))
             throw std::runtime_error("Invalid trusted domain.");
         bytes += "T " + item + '\n';
     }
@@ -122,14 +127,21 @@ public:
     // open settings window never writes a stale copy over another viewer's edits.
     Rules edit(const std::string& value, bool blocked, bool remove = false, bool refuse_blocked = false)
     {
-        const auto host = domain(value);
-        if (host.empty()) throw std::runtime_error("Enter an exact domain, without a scheme, port, path or wildcard. Use ASCII/punycode spelling.");
+        const auto host = blocked ? domain(value) : trustedRule(value);
+        if (host.empty()) throw std::runtime_error("Enter an exact domain or a trusted GitHub account/repository path, without https://, a port or wildcard.");
         FileLock lock(lockPath());
         auto rules = readUnlocked();
-        if (refuse_blocked && rules.blocked.count(host)) return rules;
+        if (refuse_blocked && rules.blocked.count(ruleHost(host))) return rules;
         if (remove) (blocked ? rules.blocked : rules.trusted).erase(host);
         else
         {
+            if (!blocked && host.find('/') != std::string::npos && rules.blocked.count(ruleHost(host)))
+                throw std::runtime_error("Remove the blocked GitHub domain before trusting a specific account or repository.");
+            if (blocked)
+            {
+                for (auto it = rules.trusted.begin(); it != rules.trusted.end();)
+                    if (ruleHost(*it) == host) it = rules.trusted.erase(it); else ++it;
+            }
             (blocked ? rules.trusted : rules.blocked).erase(host);
             (blocked ? rules.blocked : rules.trusted).insert(host);
         }
@@ -140,12 +152,12 @@ public:
     Rules trustSelected(const std::set<std::string>& selected)
     {
         for (const auto& value : selected)
-            if (value.empty() || domain(value) != value) throw std::runtime_error("Invalid selected domain.");
+            if (value.empty() || trustedRule(value) != value) throw std::runtime_error("Invalid selected trusted site.");
         FileLock lock(lockPath());
         auto rules = readUnlocked();
         // Re-read under the lock: a new block always wins over an older picker.
         for (const auto& host : selected)
-            if (!rules.blocked.count(host)) rules.trusted.insert(host);
+            if (!rules.blocked.count(ruleHost(host))) rules.trusted.insert(host);
         if (!selected.empty()) writeUnlocked(rules);
         return rules;
     }

@@ -44,6 +44,16 @@ Use ordinary web links for testing. SLURL/Hop actions keep their existing behavi
 Embedded browser pages/redirects are outside this feature's scope. No malicious
 site needs to be visited for these checks.
 
+For the pending expanded catalogue, check a new disposable profile separately
+from an existing saved one. New profiles include the reviewed Second Life
+services and `github.com/nekomisa`. Existing lists do not receive new defaults
+automatically; select additions in Common sites. Marketplace's different
+`?lang=...` links all share its trusted domain. NekoMisa profile/repository links
+match only the HTTPS account scope; other GitHub accounts should still warn.
+Blocking `github.com` must override scoped trust and remove that host's scopes.
+Removing the block must not resurrect trust. Do not use a downgraded 0.1.5 viewer
+to edit a profile after scoped entries have written format 2; keep a backup.
+
 Automated policy/store tests, compiled-viewer fixture checks and this real chat/IM
 test are separate checks. A future actual installer/updater upgrade retaining the
 lists is also a separate test; a simulated application replacement is not a
