@@ -11,7 +11,7 @@ through the viewer have their own privacy policies.
 
 The viewer stores preferences, account identifiers and optional saved sign-in
 information, chat/diagnostic logs, cached world content, browser data, poses and
-shot presets on your computer. Saved sign-ins are optional. Chat logging and
+shot presets and camera paths on your computer. Saved sign-ins are optional. Chat logging and
 other privacy options are available in Preferences. These files may contain
 avatar names, conversations, locations and technical information. Protect your
 Windows/Linux account and review files before sharing them.
@@ -92,7 +92,7 @@ Posing another avatar uses explicit permission requests and acceptance/revocatio
 messages through Second Life IMs. Consent state is kept in memory for the current
 session/region. Pose changes are local to the viewer applying them; they are not
 broadcast as animations or synchronised with other viewers. Poses and shot
-presets can be saved locally. A snapshot is uploaded or shared only when you
+presets and camera paths can be saved locally. A snapshot is uploaded or shared only when you
 choose a viewer action that does so.
 
 The Stellarys additions do not operate a separate maintainer analytics or

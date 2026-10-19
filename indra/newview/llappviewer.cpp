@@ -28,6 +28,7 @@
 
 #include "llappviewer.h"
 #include "llfloaterabout.h"
+#include "llfloatercamerapaths.h"
 
 // Viewer includes
 #include "llversioninfo.h"
@@ -6134,6 +6135,7 @@ void LLAppViewer::idle()
 
     LLWorld::getInstance()->updateParticles();
 
+    LLFloaterCameraPaths::updatePlayback();
     if (gAgentPilot.isPlaying() && gAgentPilot.getOverrideCamera())
     {
         gAgentPilot.moveCamera();
@@ -6597,6 +6599,7 @@ void LLAppViewer::idleNetwork()
 
 void LLAppViewer::disconnectViewer()
 {
+    LLFloaterCameraPaths::stopPlayback(false);
     if (gDisconnected)
     {
         return;

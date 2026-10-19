@@ -1,4 +1,4 @@
-Stellarys Viewer 0.1.7 (based on Firestorm 7.2.4.80712)
+Stellarys Viewer 0.1.8 (based on Firestorm 7.2.4.80712)
 
 A hobby viewer with the AMD flicker fix and permission-based local posing.
 The viewer includes clearer update highlights with a full release-notes link, plus
@@ -8,6 +8,23 @@ local lighting and image dimensions together; restore shots in their original
 region. Toolbar customization stays at its existing access points.
 Your saved toolbar layout and existing shortcuts are retained. Rendering,
 posing, the AMD fix and existing skins are unchanged.
+
+CAMERA PATHS
+Photo > Camera Paths saves camera keyframes with timing, zoom and roll. Choose
+Move or Cut for each transition: A as Move and B as Cut moves from A to B, then
+jumps directly to C. Choose a start countdown, Play once, Back and forth or a
+Closed loop. Stop / return or Esc restores the starting view where allowed.
+Paths save locally with your settings and play in their original region/grid.
+
+UPDATES AND REPAIR
+Normal Setup keeps identical application files and replaces changed, missing
+or damaged files. The complete installer is still downloaded. Full reinstall /
+repair replaces every packaged application file instead. It is available in
+Setup and in the new updater, including repair of the current published version.
+Both modes preserve settings, saved shots/camera paths, poses, trusted/blocked
+lists and cache. Repair does not reset your profile or remove unrelated extra
+files. Settings import from Firestorm is not included in this version.
+
 This software is not provided or supported by Linden Lab, the makers of Second Life.
 It is also not provided or supported by the Firestorm team.
 Read the bundled DISCLOSURES.md and PRIVACY.md before installing/using it.

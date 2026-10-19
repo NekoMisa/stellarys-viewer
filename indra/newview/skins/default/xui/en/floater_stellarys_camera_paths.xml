@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="stellarys_camera_paths" title="Camera Paths (Preview)" width="560" height="660"
+ layout="topleft" positioning="centered" save_rect="true" can_resize="false">
+    <text name="intro" left="16" top="32" width="528" height="38" wrap="true" layout="topleft">
+Save camera position, focus, roll and zoom as keyframes for filming. Paths are local and play in their original region. Esc cancels preview.
+    </text>
+    <combo_box name="paths" label="Choose a saved path" left="16" top="78" width="328" height="24" layout="topleft" />
+    <button name="new_path" label="New" left="356" top="76" width="84" height="26" layout="topleft" />
+    <button name="reload" label="Reload" left="452" top="76" width="92" height="26" layout="topleft" tool_tip="Reload saved paths from your profile." />
+    <text name="name_label" left="16" top="120" width="76" height="18" layout="topleft">Path name</text>
+    <line_editor name="path_name" left="96" top="116" width="248" height="24" max_length_bytes="80" layout="topleft" />
+    <button name="save_path" label="Save path" left="356" top="114" width="90" height="28" layout="topleft" />
+    <button name="delete_path" label="Delete..." left="454" top="114" width="90" height="28" layout="topleft" />
+    <scroll_list name="frames" left="16" top="156" width="528" height="160" layout="topleft" draw_heading="true" multi_select="false" commit_on_selection_change="true">
+        <scroll_list.columns name="frame" label="Camera keyframe" width="334" />
+        <scroll_list.columns name="seconds" label="Travel to next" width="166" />
+    </scroll_list>
+    <button name="add" label="Add keyframe" left="16" top="328" width="128" height="28" layout="topleft" tool_tip="Capture the current camera view and add it to the end." />
+    <button name="replace" label="Replace view" left="152" top="328" width="128" height="28" layout="topleft" />
+    <button name="view_frame" label="Snap to view" left="288" top="328" width="128" height="28" layout="topleft" tool_tip="Jump the camera directly to the selected keyframe, without playing the path. Stop / return restores your previous view." />
+    <button name="remove" label="Remove" left="424" top="328" width="120" height="28" layout="topleft" />
+    <text name="transition_label" left="16" top="372" width="132" height="18" layout="topleft">Transition to next</text>
+    <combo_box name="transition" left="152" top="368" width="116" height="24" layout="topleft" initial_value="move">
+        <combo_box.item name="move" label="Move" value="move" />
+        <combo_box.item name="cut" label="Cut" value="cut" />
+    </combo_box>
+    <button name="up" label="Move up" left="288" top="366" width="120" height="26" layout="topleft" />
+    <button name="down" label="Move down" left="420" top="366" width="124" height="26" layout="topleft" />
+    <spinner name="seconds" label="Travel time (move)" label_width="132" left="16" top="408" width="252" height="22" min_val="0.1" max_val="600" increment="0.5" decimal_digits="1" initial_value="3" layout="topleft" tool_tip="Cuts jump instantly and ignore travel time. The last keyframe's transition is used only for a closed loop." />
+    <combo_box name="motion" left="288" top="406" width="256" height="24" layout="topleft" initial_value="curve">
+        <combo_box.item name="curve" label="Smooth curve" value="curve" />
+        <combo_box.item name="ease" label="Straight — ease at each point" value="ease" />
+        <combo_box.item name="linear" label="Straight — constant speed" value="linear" />
+    </combo_box>
+    <combo_box name="repeat" left="16" top="448" width="252" height="24" layout="topleft" initial_value="none" tool_tip="Closed loop travels from the last keyframe to the first. Back and forth retraces the same path in reverse.">
+        <combo_box.item name="none" label="Play once" value="none" />
+        <combo_box.item name="closed" label="Closed loop (for circling)" value="closed" />
+        <combo_box.item name="reverse" label="Back and forth" value="reverse" />
+    </combo_box>
+    <text name="cut_hint" left="288" top="450" width="256" height="30" wrap="true" layout="topleft">Cut jumps instantly to the next view. Include a Move transition to play.</text>
+    <text name="delay_label" left="16" top="490" width="92" height="18" layout="topleft">Start after</text>
+    <combo_box name="delay_choice" left="112" top="486" width="176" height="24" layout="topleft" initial_value="5">
+        <combo_box.item name="none" label="No countdown" value="0" />
+        <combo_box.item name="five" label="5 seconds" value="5" />
+        <combo_box.item name="ten" label="10 seconds" value="10" />
+        <combo_box.item name="custom" label="Custom..." value="custom" />
+    </combo_box>
+    <spinner name="delay" label="Seconds" label_width="76" left="308" top="488" width="236" height="22" min_val="0" max_val="60" increment="1" decimal_digits="1" initial_value="5" layout="topleft" />
+    <slider name="timeline" label="Preview" label_width="76" left="16" top="528" width="528" height="20" min_val="0" max_val="100" increment="0.1" initial_value="0" show_text="false" layout="topleft" />
+    <button name="play" label="Play" left="16" top="566" width="128" height="30" layout="topleft" />
+    <button name="stop" label="Stop / return" left="156" top="566" width="148" height="30" layout="topleft" tool_tip="Stop the countdown or movement and restore your pre-preview camera view." />
+    <text name="summary" left="316" top="566" width="228" height="34" wrap="true" layout="topleft">0 keyframes</text>
+    <text name="status" left="16" top="610" width="528" height="36" wrap="true" layout="topleft">Position your camera, then Add keyframe. Add at least two to play.</text>
+</floater>

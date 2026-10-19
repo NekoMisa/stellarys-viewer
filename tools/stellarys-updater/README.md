@@ -16,6 +16,14 @@ confirmation is skipped; unsaved editing may still prompt. A cancelled
 or timed-out shutdown postpones installation. Other installations/sessions must
 be closed by their user. The installer independently rechecks running processes.
 
+## Normal updates and repair
+
+The complete installer is downloaded in both modes. Its normal mode preserves
+identical application files and replaces changed/missing files. The Full
+reinstall / repair option forces replacement of all packaged files, without
+resetting profiles or clearing cache. It is available for the current published
+version as well as a newer version; downgrades stay disabled. See [repair details](REPAIR.md).
+
 ## Release contract
 
 The update window shows the release version, installed version and up to five

@@ -33,6 +33,7 @@
 #include "llagent.h"
 #include "llanimationstates.h"
 #include "llfloatercamera.h"
+#include "llfloatercamerapaths.h"
 #include "llfloaterreg.h"
 #include "llhudmanager.h"
 #include "lljoystickbutton.h"
@@ -976,6 +977,15 @@ void LLAgentCamera::restorePhotographicView(const LLVector3d& position, const LL
     resetCameraRoll();
     cameraRollOver(roll);
 }
+void LLAgentCamera::getPhotographicZoom(F32& target, F32& current) const
+{
+    target=mCameraFOVZoomFactor; current=mCameraCurrentFOVZoomFactor;
+}
+void LLAgentCamera::restorePhotographicZoom(F32 target, F32 current)
+{
+    if (std::isfinite(target) && std::isfinite(current))
+    { mCameraFOVZoomFactor=llclamp(target,0.f,1000.f); mCameraCurrentFOVZoomFactor=llclamp(current,0.f,1000.f); }
+}
 // </FS:Chanayane>
 void LLAgentCamera::resetCameraOrbit()
 {
@@ -1629,7 +1639,8 @@ void LLAgentCamera::updateCamera()
         return;
 
     // Change FOV
-    LLViewerCamera::getInstance()->setView(LLViewerCamera::getInstance()->getDefaultFOV() / (1.f + mCameraCurrentFOVZoomFactor));
+    LLViewerCamera::getInstance()->setView(mCinematicFOV > 0.f ? mCinematicFOV :
+        LLViewerCamera::getInstance()->getDefaultFOV() / (1.f + mCameraCurrentFOVZoomFactor));
 
     // follow camera when in customize mode
     if (cameraCustomizeAvatar())
@@ -2357,6 +2368,7 @@ LLVector3 LLAgentCamera::getAvatarRootPosition()
 //-----------------------------------------------------------------------------
 void LLAgentCamera::handleScrollWheel(S32 clicks)
 {
+    LLFloaterCameraPaths::stopPlayback(false);
     // <FS:PP> Option to disable mouse wheel for camera zooming in/out
     static LLCachedControl<bool> FSDisableMouseWheelCameraZoom(gSavedSettings, "FSDisableMouseWheelCameraZoom");
 

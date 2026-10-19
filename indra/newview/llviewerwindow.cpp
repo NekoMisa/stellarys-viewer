@@ -25,6 +25,7 @@
  */
 
 #include "llviewerprecompiledheaders.h"
+#include "llfloatercamerapaths.h"
 #include "llviewerwindow.h"
 
 
@@ -3270,6 +3271,7 @@ bool LLViewerWindow::handleKeyUp(KEY key, MASK mask)
 // Takes a single keydown event, usually when UI is visible
 bool LLViewerWindow::handleKey(KEY key, MASK mask)
 {
+    if (key == KEY_ESCAPE && LLFloaterCameraPaths::stopPlayback()) return true;
     // hide tooltips on keypress
     LLToolTipMgr::instance().blockToolTips();
 

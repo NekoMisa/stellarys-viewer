@@ -340,6 +340,7 @@ set(viewer_SOURCE_FILES
     llfloatercamerapresets.cpp
     llfloaterlinkdomains.cpp
     llfloatershotpresets.cpp
+    llfloatercamerapaths.cpp
     llfloaterchangeitemthumbnail.cpp
     llfloaterchatmentionpicker.cpp
     llfloaterchatvoicevolume.cpp
@@ -1210,6 +1211,8 @@ set(viewer_HEADER_FILES
     stellaryslinkpolicy.h
     stellaryslinkstore.h
     llfloatershotpresets.h
+    llfloatercamerapaths.h
+    stellaryscamerapath.h
     stellarysshotvalidation.h
     llfloaterchangeitemthumbnail.h
     llfloaterchatmentionpicker.h

@@ -18,6 +18,13 @@ class UpdaterTests
         Check(Release.Parse(Metadata("v0.2.0",digest,url,false,false)).Version > Release.ParseVersion(Release.Current));
         Check(Release.ParseVersion("0.10.0") > Release.ParseVersion("0.9.0"));
         Check(!(Release.ParseVersion("0.1.0") > Release.ParseVersion(Release.Current)));
+        Check(!InstallChoice.Allowed(Release.ParseVersion(Release.Current),false));
+        Check(InstallChoice.Allowed(Release.ParseVersion(Release.Current),true));
+        Check(!InstallChoice.Allowed(new Version(0,1,0),true));
+        Check(InstallChoice.Allowed(new Version(1,0,0),false));
+        Check(!InstallChoice.Allowed(null,true));
+        Check(InstallChoice.Arguments(@"D:\Viewer folder",false)==@"/D=D:\Viewer folder");
+        Check(InstallChoice.Arguments(@"D:\Viewer folder",true)==@"/REPAIR /D=D:\Viewer folder");
         Reject(()=>Release.ParseVersion("0.2.0-beta"));
         Reject(()=>Release.Parse(Metadata("v0.2.0",digest,url,true,false)));
         Reject(()=>Release.Parse(Metadata("v0.2.0",digest,url,false,true)));
