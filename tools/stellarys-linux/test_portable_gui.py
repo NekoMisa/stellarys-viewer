@@ -9,7 +9,7 @@ import subprocess
 import unittest
 from unittest.mock import patch
 
-from test_portable_updater import PortableUpdates
+import test_portable_updater as fixtures
 import stellarys_portable_core as core
 
 spec=importlib.util.spec_from_file_location('gui',Path(__file__).with_name('stellarys-updater.py'))
@@ -23,7 +23,7 @@ def drain():
 
 class Workflow(unittest.TestCase):
     def setUp(self):
-        self.fixture=PortableUpdates();self.fixture.setUp()
+        self.fixture=fixtures.PortableUpdates();self.fixture.setUp()
         self.fixture.profile.joinpath('user_settings').mkdir()
         self.patches=[patch.object(gui,'APP',self.fixture.app),patch.object(gui,'PORTABLE',True),
                       patch.object(gui,'core',core),patch.dict(os.environ,{'XDG_CACHE_HOME':str(self.fixture.root/'downloads')})]

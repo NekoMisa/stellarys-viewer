@@ -9,9 +9,9 @@
   "application_branding": "Stellarys Viewer",
   "updater": "Windows and Linux GitHub Releases checks; approved download and install; SHA-256 verification",
   "black_dragon_renderer_port": "not implemented",
-  "stellarys_version": "0.1.6",
+  "stellarys_version": "0.1.8",
   "profile": "Stellarys_x64",
   "viewer_identifier": "Versioned Stellarys channel + unchanged Firestorm numeric base",
-  "linux_installer_preview": "0.1.6~linuxpreview1-1 (Ubuntu 22.04 amd64)",
-  "linux_portable_version": "0.1.6-portable.1"
+  "linux_installer_preview": "0.1.8~linuxpreview1-1 (Ubuntu 22.04 amd64)",
+  "linux_portable_version": "0.1.8-portable.1"
 }

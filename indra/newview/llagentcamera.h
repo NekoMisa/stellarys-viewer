@@ -301,6 +301,12 @@ public:
     void            cameraRollOver(const F32 radians);      // Roll the camera
     F32             getCameraRoll() const { return mRollAngle; }
     void            restorePhotographicView(const LLVector3d& position, const LLVector3d& focus, F32 roll);
+    void            getPhotographicZoom(F32& target, F32& current) const;
+    void            restorePhotographicZoom(F32 target, F32 current);
+    void            setCinematicFOV(F32 fov) { mCinematicFOV = fov; }
+private:
+    F32             mCinematicFOV = -1.f; // Temporary path-preview lens; never a saved setting.
+public:
 // </FS:Chanayane>
     void            resetCameraOrbit();
     void            resetOrbitDiff();

@@ -3,6 +3,8 @@ Unicode true
 !include "LogicLib.nsh"
 !include "x64.nsh"
 !include "nsDialogs.nsh"
+!include "FileFunc.nsh"
+Var RepairCheck
 Var RemoveSettings
 Var RemoveCache
 Var SettingsCheck
@@ -12,24 +14,27 @@ Var DataArgs
 !define MUI_ICON "${PAYLOAD}\Stellarys.ico"
 !define MUI_UNICON "${PAYLOAD}\Stellarys.ico"
 !define KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\StellarysViewer"
-Name "${PRODUCT} 0.1.6 (based on Firestorm 7.2.4.80712)"
+Name "${PRODUCT} 0.1.8 (based on Firestorm 7.2.4.80712)"
 OutFile "${OUTPUT}"
 InstallDir "$PROGRAMFILES64\StellarysViewer"
 InstallDirRegKey HKLM "${KEY}" "InstallLocation"
 RequestExecutionLevel admin
-SetCompressor /SOLID lzma
+; Separate compressed blocks let setup skip identical application files.
+SetCompressor lzma
 SetCompressorDictSize 32
-BrandingText "Stellarys Viewer 0.1.6 (based on Firestorm 7.2.4.80712)"
-VIProductVersion "0.1.6.0"
+!include "${__FILEDIR__}\InstallFiles.nsh"
+AllowSkipFiles off
+BrandingText "Stellarys Viewer 0.1.8 (based on Firestorm 7.2.4.80712)"
+VIProductVersion "0.1.8.0"
 VIAddVersionKey /LANG=1033 "ProductName" "Stellarys Viewer"
-VIAddVersionKey /LANG=1033 "FileDescription" "Stellarys Viewer 0.1.6 Setup"
-VIAddVersionKey /LANG=1033 "FileVersion" "0.1.6.0"
-VIAddVersionKey /LANG=1033 "ProductVersion" "0.1.6 (based on Firestorm 7.2.4.80712)"
+VIAddVersionKey /LANG=1033 "FileDescription" "Stellarys Viewer 0.1.8 Setup"
+VIAddVersionKey /LANG=1033 "FileVersion" "0.1.8.0"
+VIAddVersionKey /LANG=1033 "ProductVersion" "0.1.8 (based on Firestorm 7.2.4.80712)"
 VIAddVersionKey /LANG=1033 "LegalCopyright" "Original viewer and libraries: their respective authors."
 Var GuardResult
 Var GuardMessage
 !define MUI_ABORTWARNING
-!define MUI_WELCOMEPAGE_TEXT "Stellarys Viewer 0.1.6 (based on Firestorm 7.2.4.80712), with the AMD flicker fix and permission-based local poser.$\r$\n$\r$\nInstalls for all Windows users. Each user has a separate Stellarys profile and cache. Existing Firestorm, Black Dragon and prototype profiles are not changed.$\r$\n$\r$\nUpdate checks are built in; downloading and installation require your approval."
+!define MUI_WELCOMEPAGE_TEXT "Stellarys Viewer 0.1.8 (based on Firestorm 7.2.4.80712), with the AMD flicker fix and permission-based local poser.$\r$\n$\r$\nInstalls for all Windows users. Each user has a separate Stellarys profile and cache. Existing Firestorm, Black Dragon and prototype profiles are not changed.$\r$\n$\r$\nUpdate checks are built in; downloading and installation require your approval."
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_TEXT_TOP "Read the Stellarys disclosures and privacy policy before installing."
 !insertmacro MUI_PAGE_LICENSE "${PAYLOAD}\DISCLOSURES.txt"
@@ -38,6 +43,7 @@ Var GuardMessage
 !define MUI_PAGE_HEADER_SUBTEXT "Select an empty folder or a marked Stellarys installation to update."
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE ValidateDestination
 !insertmacro MUI_PAGE_DIRECTORY
+Page custom InstallModePage InstallModePageLeave
 !insertmacro MUI_PAGE_INSTFILES
 !define MUI_FINISHPAGE_TEXT "Stellarys is installed. Start it from the Start menu or desktop shortcut.$\r$\n$\r$\nUse Help > Check for Updates to check for releases or change startup checking. Settings and cache are retained during updates. See README-Stellarys.txt for details."
 !define MUI_FINISHPAGE_RUN
@@ -66,6 +72,13 @@ UninstPage custom un.DataPage un.DataPageLeave
 !macroend
 
 Function .onInit
+ StrCpy $ForceRepair 0
+ ${GetParameters} $0
+ ClearErrors
+ ${GetOptions} $0 "/REPAIR" $1
+ ${IfNot} ${Errors}
+  StrCpy $ForceRepair 1
+ ${EndIf}
  SetShellVarContext all
  SetRegView 64
  ReadRegDWORD $0 HKLM "SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" "Release"
@@ -107,14 +120,34 @@ Function ValidateDestination
  !insertmacro Guard Install
 FunctionEnd
 
+Function InstallModePage
+ !insertmacro MUI_HEADER_TEXT "Installation options" "Keep identical application files, or replace every packaged file."
+ nsDialogs::Create 1018
+ Pop $0
+ ${NSD_CreateLabel} 0 0 100% 44u "Normal updates compare application files and replace only files that changed or are missing. The complete installer is downloaded in both modes."
+ Pop $0
+ ${NSD_CreateCheckbox} 0 56u 100% 24u "Full reinstall / repair: replace all application files"
+ Pop $RepairCheck
+ ${NSD_SetState} $RepairCheck $ForceRepair
+ ${NSD_CreateLabel} 0 94u 100% 44u "Both modes preserve your Stellarys settings, saved shots, camera paths, trusted/blocked lists and cache. Repair does not reset your profile."
+ Pop $0
+ nsDialogs::Show
+FunctionEnd
+
+Function InstallModePageLeave
+ ${NSD_GetState} $RepairCheck $ForceRepair
+FunctionEnd
+
 Section "Viewer"
  ; Also validate here: silent installs and /D= must not bypass the checks.
  Call ValidateDestination
+ Call PrepareApplicationFiles
  SetOverwrite on
  ClearErrors
  SetOutPath "$INSTDIR"
  !include "${INSTALL_FILES}"
  IfErrors copy_failed
+ Call VerifyApplicationFiles
  WriteUninstaller "$INSTDIR\Uninstall.exe"
  IfErrors copy_failed
  CreateDirectory "$SMPROGRAMS\${PRODUCT}"
@@ -123,10 +156,10 @@ Section "Viewer"
  CreateShortCut "$SMPROGRAMS\${PRODUCT}\Read me.lnk" "$INSTDIR\README-Stellarys.txt"
  CreateShortCut "$SMPROGRAMS\${PRODUCT}\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
  CreateShortCut "$DESKTOP\${PRODUCT}.lnk" "$INSTDIR\StellarysViewer.exe" "" "$INSTDIR\StellarysViewer.exe"
- WriteRegStr HKLM "${KEY}" "DisplayName" "Stellarys Viewer 0.1.6"
- WriteRegStr HKLM "${KEY}" "DisplayVersion" "0.1.6"
+ WriteRegStr HKLM "${KEY}" "DisplayName" "Stellarys Viewer 0.1.8"
+ WriteRegStr HKLM "${KEY}" "DisplayVersion" "0.1.8"
  WriteRegStr HKLM "${KEY}" "BaseViewerVersion" "7.2.4.80712"
- WriteRegStr HKLM "${KEY}" "StellarysVersion" "0.1.6"
+ WriteRegStr HKLM "${KEY}" "StellarysVersion" "0.1.8"
  WriteRegStr HKLM "${KEY}" "InstallerRevision" "1"
  WriteRegStr HKLM "${KEY}" "Publisher" "Stellarys (unofficial build)"
  WriteRegStr HKLM "${KEY}" "InstallLocation" "$INSTDIR"

@@ -11,7 +11,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from test_updater import Updates
+import test_updater as fixtures
 import stellarys_updater_core as core
 
 spec = importlib.util.spec_from_file_location('gui', Path(__file__).with_name('stellarys-updater.py'))
@@ -28,11 +28,11 @@ def drain():
 class Workflow(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        Updates.setUpClass()
+        fixtures.Updates.setUpClass()
 
     @classmethod
     def tearDownClass(cls):
-        Updates.tearDownClass()
+        fixtures.Updates.tearDownClass()
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -43,7 +43,7 @@ class Workflow(unittest.TestCase):
         with patch.object(gui.Updater, 'check', lambda window: None):
             self.window = gui.Updater(self.args, {'display_version': '0.1.3 Linux preview 2',
                                                   'debian_version': '0.1.3~linuxpreview2-1'}, {})
-        self.update = core.validate_manifest(Updates.feed, Updates.release)
+        self.update = core.validate_manifest(fixtures.Updates.feed, fixtures.Updates.release)
         self.window.checked(self.update, None)
         self.environment = patch.dict(os.environ, {'XDG_CACHE_HOME': str(self.root / 'cache')})
         self.environment.start()
@@ -56,11 +56,11 @@ class Workflow(unittest.TestCase):
         self.temp.cleanup()
 
     def test_download_then_explicit_install(self):
-        with patch.object(core, 'open_url', return_value=io.BytesIO(Updates.content)):
+        with patch.object(core, 'open_url', return_value=io.BytesIO(fixtures.Updates.content)):
             self.window.work(False)
         drain()
         self.assertEqual(self.window.action.get_label(), 'Install update')
-        self.assertEqual(self.window.downloaded.read_bytes(), Updates.content)
+        self.assertEqual(self.window.downloaded.read_bytes(), fixtures.Updates.content)
         with patch.object(gui, 'viewer_alive', return_value=False), patch.object(gui.subprocess, 'run',
                 return_value=subprocess.CompletedProcess([], 0, '', '')) as run:
             self.window.work(False)
@@ -79,7 +79,7 @@ class Workflow(unittest.TestCase):
                 return subprocess.CompletedProcess(args, 0, '(true,)\n', '')
             return original_run(args, **kwargs)
 
-        with patch.object(core, 'open_url', return_value=io.BytesIO(Updates.content)), \
+        with patch.object(core, 'open_url', return_value=io.BytesIO(fixtures.Updates.content)), \
                 patch.object(gui, 'viewer_alive', side_effect=[True, False]), \
                 patch.object(gui.subprocess, 'run', side_effect=run):
             self.window.work(True)
@@ -101,7 +101,7 @@ class Workflow(unittest.TestCase):
         self.assertEqual(self.window.action.get_label(), 'Retry download')
 
     def test_authentication_cancel_is_recoverable(self):
-        self.window.downloaded = Updates.deb
+        self.window.downloaded = fixtures.Updates.deb
         with patch.object(gui, 'viewer_alive', return_value=False), patch.object(gui.subprocess, 'run',
                 return_value=subprocess.CompletedProcess([], 126, '', 'Authentication cancelled')):
             self.window.work(False)

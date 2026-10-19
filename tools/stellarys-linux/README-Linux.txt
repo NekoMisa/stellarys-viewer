@@ -1,4 +1,4 @@
-Stellarys Viewer 0.1.6 - Linux x86_64 experimental preview 1
+Stellarys Viewer 0.1.8 - Linux x86_64 experimental preview 1
 Based on Firestorm 7.2.4.80712.
 
 Stellarys is an independent hobby viewer with permission-based posing of other

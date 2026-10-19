@@ -4,7 +4,7 @@ repo=Path(__file__).resolve().parents[2]
 w=Path(os.environ.get('STELLARYS_WORK', str(repo.parent)))
 build=Path(os.environ.get('STELLARYS_BUILD', r'C:\FK-Poser-Test\build-vs18-v143'))
 version=json.loads((repo/'stellarys-source.json').read_text())['stellarys_version']
-out=w.parent/('outputs/Stellarys-Viewer-'+version); out.mkdir(parents=True,exist_ok=True)
+out=Path(os.environ.get('STELLARYS_OUTPUT',str(w.parent/('outputs/Stellarys-Viewer-'+version)))); out.mkdir(parents=True,exist_ok=True)
 payload=Path(os.environ.get('STELLARYS_PAYLOAD', str(w/('stellarys-payload-'+version)))); payload.mkdir(exist_ok=True)
 source=repo/'indra/newview'
 header=(build/'newview/fsversionvalues.h').read_text(encoding='utf-8')
@@ -48,7 +48,7 @@ for p in sorted(payload.rglob('*')):
  assert p.suffix.lower() not in ('.log','.dmp','.pdb','.pfx','.p12','.key'),rel
  assert p.name.lower() not in ('password.dat','bin_conf.dat','stored_logins.xml','agni_agents.xml'),rel
  folder=str(rel.parent)
- install+=['SetOutPath "$INSTDIR'+('\\'+folder if folder!='.' else '')+'"','File '+q(p)]
+ install+=['!insertmacro StellarysFile '+q(p)+' "$INSTDIR'+('\\'+folder.replace('$','$$') if folder!='.' else '')+'"']
  uninstall+=['Delete "$INSTDIR\\'+str(rel).replace('$','$$')+'"']
  dirs.update(str(x) for x in rel.parents if str(x)!='.')
  manifest.append({'path':str(rel),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
@@ -56,7 +56,10 @@ uninstall+=['RMDir "$INSTDIR\\'+d+'"' for d in sorted(dirs,key=lambda d:(d.count
 (out/'install-files.nsh').write_text('\n'.join(install),encoding='utf-8-sig')
 (out/'uninstall-files.nsh').write_text('\n'.join(uninstall),encoding='utf-8-sig')
 (out/'PAYLOAD-MANIFEST.json').write_text(json.dumps(manifest,indent=2))
+planner=out/'InstallerFiles.exe'
+subprocess.run([r'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe','/nologo','/target:exe',
+ '/out:'+str(planner),'/r:System.Web.Extensions.dll',str(repo/'tools/stellarys-installer/InstallerFiles.cs')],check=True)
 exe=out/('Stellarys-Viewer-'+version+'-Windows-x64-Setup.exe')
 with (out/'installer-build.log').open('w') as log:
- subprocess.run([str(w/'installer/nsis-3.12/makensis.exe'),'/V3',f'/DPAYLOAD={payload}',f'/DOUTPUT={exe}',f'/DINSTALL_FILES={out/"install-files.nsh"}',f'/DUNINSTALL_FILES={out/"uninstall-files.nsh"}',f'/DGUARD={repo/"tools/stellarys-installer/InstallerGuard.ps1"}',f'/DREMOVE_DATA={repo/"tools/stellarys-updater/RemoveUserData.ps1"}',str(repo/'tools/stellarys-installer/Stellarys.nsi')],stdout=log,stderr=subprocess.STDOUT,check=True)
+ subprocess.run([str(w/'installer/nsis-3.12/makensis.exe'),'/V3',f'/DPAYLOAD={payload}',f'/DOUTPUT={exe}',f'/DINSTALL_FILES={out/"install-files.nsh"}',f'/DUNINSTALL_FILES={out/"uninstall-files.nsh"}',f'/DFILE_PLANNER={planner}',f'/DFILE_MANIFEST={out/"PAYLOAD-MANIFEST.json"}',f'/DGUARD={repo/"tools/stellarys-installer/InstallerGuard.ps1"}',f'/DREMOVE_DATA={repo/"tools/stellarys-updater/RemoveUserData.ps1"}',str(repo/'tools/stellarys-installer/Stellarys.nsi')],stdout=log,stderr=subprocess.STDOUT,check=True)
 print('Stellarys installer compiled; clean payload files:',len(manifest),flush=True)

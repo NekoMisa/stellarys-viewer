@@ -15135,4 +15135,12 @@ This experimental link check cannot reliably identify the destination. The link 
 Use an ordinary http/https address with an ASCII/punycode domain or IPv4 host. Encoded hosts, login details in addresses, IPv6 and ambiguous forms are not supported yet. You can disable Link warnings in Preferences > Privacy > Links if needed.
     <usetemplate name="okbutton" yestext="OK" />
   </notification>
+  <notification name="StellarysDiscardCameraPath" type="alertmodal">
+Discard unsaved keyframe changes and switch or reload paths? Your saved paths will stay unchanged.
+    <usetemplate name="okcancelbuttons" yestext="Discard changes" notext="Cancel" />
+  </notification>
+  <notification name="StellarysDeleteCameraPath" type="alertmodal">
+Delete the saved camera path "[NAME]"? This does not move your camera or change your shot presets.
+    <usetemplate name="okcancelbuttons" yestext="Delete path" notext="Cancel" />
+  </notification>
 </notifications>

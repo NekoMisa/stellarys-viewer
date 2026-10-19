@@ -16,13 +16,13 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: System.Reflection.AssemblyTitle("Stellarys Viewer Updater")]
-[assembly: System.Reflection.AssemblyVersion("0.1.6.0")]
+[assembly: System.Reflection.AssemblyVersion("0.1.8.0")]
 
 internal sealed class Release
 {
     internal const string Repository = "https://github.com/NekoMisa/stellarys-viewer";
     internal const string Api = "https://api.github.com/repos/NekoMisa/stellarys-viewer/releases/latest";
-    internal const string Current = "0.1.6";
+    internal const string Current = "0.1.8";
     internal Version Version;
     internal string Tag, Notes, Url, Digest, Name;
     internal long Size;
@@ -154,6 +154,14 @@ internal static class ReleaseNotes
     }
 }
 
+internal static class InstallChoice
+{
+    internal static bool Allowed(Version release, bool repair)
+    { return release != null && (release > Release.ParseVersion(Release.Current) || (repair && release == Release.ParseVersion(Release.Current))); }
+    internal static string Arguments(string home, bool repair)
+    { return (repair ? "/REPAIR " : "") + "/D=" + home; } // NSIS requires /D to be last.
+}
+
 internal sealed class Updater : Form
 {
     readonly Label heading = new Label { Dock = DockStyle.Top, Height = 40, Text = "Stellarys Viewer" };
@@ -166,6 +174,8 @@ internal sealed class Updater : Form
     readonly CheckBox startup = new CheckBox { Text = "Check for updates when Stellarys starts", AutoSize = true };
     readonly CheckBox installAutomatically = new CheckBox {
         Text = "Install when the download finishes (closes Stellarys)", AutoSize = true, Checked = false, Enabled = false };
+    readonly CheckBox repair = new CheckBox {
+        Text = "Full reinstall / repair (keeps settings and cache)", AutoSize = true, Checked = false, Enabled = false };
     readonly CancellationTokenSource cancel = new CancellationTokenSource();
     readonly string home = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
     readonly string preferences = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Stellarys_x64", "updater-disable-startup");
@@ -185,7 +195,7 @@ internal sealed class Updater : Form
         versions.Text = "Installed: Stellarys " + Release.Current;
         Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         StartPosition = FormStartPosition.CenterScreen;
-        var footer = new Panel { Dock = DockStyle.Bottom, Height = 124, Padding = new Padding(18, 8, 18, 12) };
+        var footer = new Panel { Dock = DockStyle.Bottom, Height = 148, Padding = new Padding(18, 8, 18, 12) };
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 37, FlowDirection = FlowDirection.RightToLeft, WrapContents = false };
         var close = new Button { Text = "Close", Width = 90, Height = 30 };
         close.Click += (s,e) => Close();
@@ -197,9 +207,12 @@ internal sealed class Updater : Form
         buttons.Controls.Add(close); buttons.Controls.Add(action);
         startup.Dock = DockStyle.Bottom;
         installAutomatically.Dock = DockStyle.Bottom;
-        footer.Controls.Add(buttons); footer.Controls.Add(installAutomatically); footer.Controls.Add(startup);
+        repair.Dock = DockStyle.Bottom;
+        repair.CheckedChanged += (s,e) => UpdateAction();
+        footer.Controls.Add(buttons); footer.Controls.Add(installAutomatically); footer.Controls.Add(repair); footer.Controls.Add(startup);
         var installTip = new ToolTip();
         installTip.SetToolTip(installAutomatically, "Save your work before downloading. A verified download requests normal viewer shutdown, then opens Setup. Cancelling shutdown or administrator approval postpones installation.");
+        installTip.SetToolTip(repair, "Normal updates keep identical application files. Repair replaces every packaged file and can reinstall the current release. Both download the complete installer and preserve your profile.");
         var header = new Panel { Dock = DockStyle.Top, Height = 148, Padding = new Padding(20, 16, 20, 0) };
         header.Controls.Add(status); header.Controls.Add(versions); header.Controls.Add(heading);
         var content = new Panel { Dock = DockStyle.Fill, Padding = new Padding(22, 8, 22, 8) };
@@ -243,6 +256,15 @@ internal sealed class Updater : Form
         fullNotes.Enabled = true;
     }
     void Reveal() { Opacity = 1; ShowInTaskbar = true; Show(); Activate(); }
+    void UpdateAction()
+    {
+        if(IsDisposed || busy || release==null)return;
+        bool allowed=InstallChoice.Allowed(release.Version,repair.Checked);
+        repair.Enabled=release.Version>=Release.ParseVersion(Release.Current);
+        action.Enabled=allowed;
+        action.Text=downloaded==null?(repair.Checked?"Download repair":"Download update"):(repair.Checked?"Install repair":"Install update");
+        installAutomatically.Enabled=downloaded==null&&allowed;
+    }
     static HttpClient Client()
     {
         var c = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
@@ -275,11 +297,13 @@ internal sealed class Updater : Form
                 }
             }
             ShowRelease();
-            if (release.Version <= Release.ParseVersion(Release.Current)) { Finish("Stellarys " + Release.Current + " is up to date."); return; }
+            if (release.Version <= Release.ParseVersion(Release.Current)) {
+                Finish(release.Version == Release.ParseVersion(Release.Current) ? "Stellarys " + Release.Current + " is up to date. Select Full reinstall / repair to repair application files." : "This build is newer than the public release. Downgrading is disabled.");
+                UpdateAction();return;
+            }
             Reveal();
             status.Text = "An update is ready. Review the highlights below, then choose Download update.";
-            action.Text = "Download update"; action.Enabled = true;
-            installAutomatically.Enabled = true;
+            UpdateAction();
         }
         catch (OperationCanceledException) { if (!IsDisposed) Finish("Update check cancelled or timed out."); }
         catch (Exception ex) { if (!IsDisposed) Finish("Could not check for updates. " + ex.Message); }
@@ -287,11 +311,12 @@ internal sealed class Updater : Form
     void Finish(string message) { if (quiet) Close(); else { status.Text = message; action.Text = "No update ready"; } }
     async Task DownloadAndInstall()
     {
-        if (busy || release == null) return;
+        if (busy || release == null || !InstallChoice.Allowed(release.Version,repair.Checked)) return;
         // Consent is specific to this Download click; retries with an existing
         // download still use the normal Install confirmation.
         bool installAfterDownload = downloaded == null && installAutomatically.Checked;
-        busy = true; action.Enabled = false; installAutomatically.Enabled = false;
+        bool fullRepair=repair.Checked;
+        busy = true; action.Enabled = false; installAutomatically.Enabled = false;repair.Enabled=false;
         try
         {
             if (downloaded == null)
@@ -336,7 +361,7 @@ internal sealed class Updater : Form
             if (cancel.IsCancellationRequested) return;
             if (!File.Exists(Path.Combine(home, "stellarys-install.txt")) || File.ReadAllLines(Path.Combine(home, "stellarys-install.txt"))[0] != "StellarysViewer")
                 throw new InvalidDataException("Automatic installation requires a marked Stellarys installation. Use the downloaded installer manually for a portable build.");
-            if (!installAfterDownload && MessageBox.Show(this, "The download is verified. Install now?\n\nStellarys will close normally without another quit confirmation. Save your work first. Unsaved-edit prompts may still need attention. Setup will then request administrator permission. Cancel leaves the viewer running.", "Ready to update", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            if (!installAfterDownload && MessageBox.Show(this, "The download is verified. Install now?\n\n"+(fullRepair?"Full reinstall / repair replaces every packaged application file. Settings and cache are preserved.\n\n":"Normal updates replace changed or missing application files and keep identical files.\n\n")+"Stellarys will close normally without another quit confirmation. Save your work first. Unsaved-edit prompts may still need attention. Setup will then request administrator permission. Cancel leaves the viewer running.", "Ready to update", MessageBoxButtons.OKCancel) != DialogResult.OK)
             { status.Text = "Update postponed. Your viewer has not been closed."; return; }
             var viewers = Process.GetProcessesByName("StellarysViewer");
             try
@@ -365,7 +390,7 @@ internal sealed class Updater : Form
             using (var hold = new FileStream(downloaded, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 Release.Verify(downloaded, release.Digest, release.Size);
-                var start = new ProcessStartInfo(downloaded) { UseShellExecute = true, Verb = "runas", Arguments = "/D=" + home };
+                var start = new ProcessStartInfo(downloaded) { UseShellExecute = true, Verb = "runas", Arguments = InstallChoice.Arguments(home,fullRepair) };
                 Process.Start(start);
             }
             Close();
@@ -377,8 +402,7 @@ internal sealed class Updater : Form
             busy = false;
             if (!IsDisposed) {
                 installAutomatically.Checked = false;
-                installAutomatically.Enabled = downloaded == null && release != null && release.Version > Release.ParseVersion(Release.Current);
-                action.Enabled = true; action.Text = downloaded == null ? "Retry download" : "Install update";
+                UpdateAction();
             }
         }
     }

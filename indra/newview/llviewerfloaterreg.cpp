@@ -59,6 +59,7 @@
 #include "llfloatercamera.h"
 #include "llfloatercamerapresets.h"
 #include "llfloatershotpresets.h"
+#include "llfloatercamerapaths.h"
 #include "llfloaterlinkdomains.h"
 #include "llfloaterchangeitemthumbnail.h"
 #include "llfloaterchatmentionpicker.h"
@@ -664,6 +665,7 @@ void LLViewerFloaterReg::registerFloaters()
     LLFloaterReg::add("stellarys_link_domains", "floater_stellarys_link_domains.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterLinkDomains>);
     LLFloaterReg::add("stellarys_common_link_domains", "floater_stellarys_common_link_domains.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterCommonLinkDomains>);
     LLFloaterReg::add("stellarys_shot_presets", "floater_stellarys_shot_presets.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterShotPresets>);
+    LLFloaterReg::add("stellarys_camera_paths", "floater_stellarys_camera_paths.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterCameraPaths>);
     LLFloaterReg::add("fs_protectedfolders", "floater_fs_protectedfolders.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterProtectedFolders>);
     LLFloaterReg::add("fs_radar", "floater_fs_radar.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterRadar>);
     LLFloaterReg::add("fs_splash_screen_settings", "floater_fs_splash_screen_settings.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<FSFloaterSplashScreenSettings>);

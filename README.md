@@ -5,23 +5,25 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.6 — based on Firestorm 7.2.4.80712.**
+**Stellarys Viewer 0.1.8 - based on Firestorm 7.2.4.80712.**
 The Stellarys version is separate from the Firestorm base version.
 
-## What's new in 0.1.6
+## What's new in 0.1.8
 
-- Correct automatic version labels in the window title and translated About pages.
-- A simple **Stellarys** name for Windows browser-link selection and Linux desktop entries.
-- Expanded official Second Life links, including every Marketplace language.
-- NekoMisa GitHub account/repository scopes, without trusting the whole GitHub domain.
-- Existing saved lists and removed entries are preserved. Link checks remain off by default.
+- Cinematic camera paths with keyframes, adjustable travel times, lens zoom and roll.
+- Instant cuts between selected keyframes: move from A to B, then cut straight to C.
+- Start countdowns, pause/resume, reverse loops and closed loops for circling shots.
+- Faster Windows installation: identical application files are kept in place.
+- Full reinstall / repair can replace every application file while preserving your data.
 
-Enable the experimental controls in **Preferences > Privacy > Links**. New
-profiles include reviewed official services; existing users can select additions
-in Common sites. Adding GitHub scopes uses a newer list format that 0.1.5 cannot
-read. See the [link controls guide](tools/stellarys-links/README.md) and
-[release notes](doc/RELEASE-NOTES-0.1.6.md) before downgrading a profile.
-Trusted means skip the warning, not guaranteed safe.
+Open **Photo → Camera Paths** to create and save a path locally. Stop / return or
+Esc ends the preview. See the [camera and shot guide](tools/stellarys-photography/README.md)
+and [release notes](doc/RELEASE-NOTES-0.1.8.md).
+
+Windows still downloads the complete installer. Normal updates replace changed,
+missing or damaged application files; repair replaces every packaged file.
+Settings, cache, saved shots/paths and trusted/blocked lists are preserved in
+both modes. Firestorm settings import is not part of this version.
 
 **This software is not provided or supported by Linden Lab, the makers of Second Life.**
 Read [Before installing Stellarys](DISCLOSURES.md) and the
@@ -43,6 +45,8 @@ permits; do not post passwords, private conversations or unredacted logs.
 - **Complete shot presets:** save camera position, lens/blur controls, local
   lighting and image dimensions together, then restore a shot in its original
   region. See the [shot preset guide](tools/stellarys-photography/README.md).
+- **Cinematic camera paths:** save keyframes, combine timed moves and instant cuts,
+  and play once, in reverse loops or in closed loops with an optional countdown.
 - **Optional link controls:** local trusted/blocked domain lists with warnings or
   blocked-list-only mode; off by default and labelled Experimental.
 - **Separate settings and cache:** Stellarys keeps its own profile alongside
@@ -59,7 +63,7 @@ Get the Windows x64 installer from the
 [latest release](https://github.com/NekoMisa/stellarys-viewer/releases/latest).
 Source archives and SHA-256 checksums are available with each release.
 
-If Stellarys is already installed, use **Help → Check for Updates**.
+If Stellarys is already installed, use **Help > Check for Updates**.
 Downloading and installing an update requires your approval. The installer is
 unsigned and requests Windows administrator permission.
 
@@ -71,15 +75,15 @@ with optional removal. See the
 
 Linux packages are native x86_64 experimental builds for Ubuntu 22.04-compatible
 systems such as Linux Mint. Download the .deb and matching source from
-[Linux preview 1](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.6-preview1).
-The Linux build is version 0.1.6, based on Firestorm 7.2.4.80712.
+[Linux preview 1](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.8-preview1).
+The Linux build is version 0.1.8, based on Firestorm 7.2.4.80712.
 Read [Before installing](DISCLOSURES.md) and [Privacy](PRIVACY.md).
 Linux installation instructions are included with that release and on the
 `stellarys-linux` branch. The Linux updater selects Linux packages from this
 repository and ignores Windows installers. Settings and cache survive package removal.
 
 For Fedora/Bazzite testing, use the separate
-[portable Linux preview](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.6-portable-preview1).
+[portable Linux preview](https://github.com/NekoMisa/stellarys-viewer/releases/tag/linux-v0.1.8-portable-preview1).
 Download the application `.tar.xz`, not the source archive. Extract it into a
 private folder you own and run `stellarys`. Its built-in updater verifies and
 replaces portable archives without a system package manager, preserving settings
@@ -92,7 +96,7 @@ is still needed. See the [portable guide](https://github.com/NekoMisa/stellarys-
 - [Stellarys Viewer](https://github.com/NekoMisa/stellarys-viewer) is a
   Firestorm-based hobby viewer with the AMD flicker fix, permission-based posing
   of other avatars and built-in update checks, with more features as it develops.
-- [Black Dragon — Black Kitty Fix](https://github.com/NekoMisa/Black-Dragon---Black-Kitty-Fix)
+- [Black Dragon - Black Kitty Fix](https://github.com/NekoMisa/Black-Dragon---Black-Kitty-Fix)
   is a Black Dragon build focused on the AMD texture and shadow flicker fix,
   preserving Black Dragon's features and adding built-in update checks.
 

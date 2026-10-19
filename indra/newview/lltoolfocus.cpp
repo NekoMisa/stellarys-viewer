@@ -54,6 +54,7 @@
 #include "llmorphview.h"
 #include "llfloaterreg.h"
 #include "llfloatercamera.h"
+#include "llfloatercamerapaths.h"
 #include "llmenugl.h"
 
 // Globals
@@ -115,6 +116,7 @@ void LLToolCamera::handleDeselect()
 
 bool LLToolCamera::handleMouseDown(S32 x, S32 y, MASK mask)
 {
+    LLFloaterCameraPaths::stopPlayback(false);
     // Ensure a mouseup
     setMouseCapture(true);
 

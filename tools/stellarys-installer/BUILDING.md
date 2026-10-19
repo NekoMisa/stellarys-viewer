@@ -13,13 +13,37 @@ Run `package_windows.py` with the configured Python environment after building.
 `C:\FK-Poser-Test\build-vs18-v143`). `STELLARYS_WORK` selects the staging/tool
 directory (default: the repository's parent). Put NSIS 3.12 under
 `STELLARYS_WORK\installer\nsis-3.12`, or adapt its one tool path. Outputs go to
-the sibling `outputs\Stellarys-Viewer-0.1.6` folder. Packaging invokes the
+the sibling `outputs\Stellarys-Viewer-0.1.8` folder. Packaging invokes the
 upstream manifest, adds the .NET updater and native Explorer link-setup helper, creates an explicit file manifest and
 compiles NSIS. No settings are copied from a user profile.
 
 `STELLARYS_PAYLOAD` optionally selects a separate clean application staging
 folder, useful when an earlier test build is still running. Keep runtime test
 profiles outside this folder.
+`STELLARYS_OUTPUT` can place the complete output directory on a different drive.
+
+## File-preserving Windows installation
+
+`InstallerFiles.cs` is compiled into an embedded setup helper, not installed as
+an application file. The generated manifest and `StellarysFile` macro calls use
+the same sorted order. The helper emits one ASCII decision byte per packaged
+file: `1` keeps an identical file, `0` installs it. Missing/corrupt files are
+replaced. Setup checks the decision count and verifies all packaged files after
+copying, before completing registration. It does not use timestamps as proof
+of matching content and does not prune unrelated files.
+
+NSIS uses separate LZMA blocks rather than `/SOLID`, so skipping a File command
+does not require extracting the whole compressed payload. The complete installer
+still contains every file. Full reinstall / repair forces all decisions to `0`;
+`/REPAIR` preselects that checkbox. `/D` remains the final command-line argument.
+Both modes retain the same ownership/process guards and per-user data policy.
+
+Compile `InstallerFilesTests.cs` with `InstallerFiles.cs`, target exe,
+`/main:InstallerFilesTests`, and `System.Web.Extensions.dll`. Supply a new
+disposable fixture directory. Test actual `InstallFiles.nsh` extraction and
+failure behavior using a separate user-level NSIS harness that has no registry,
+shortcut or real profile actions. Report that distinctly from production
+administrator installation and uninstall testing.
 
 The current upstream dependency manifest still refers to the separately built
 local FMOD archive. Supply that licensed dependency and the tools documented
