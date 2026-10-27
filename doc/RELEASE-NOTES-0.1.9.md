@@ -65,8 +65,5 @@ features, and approved this beta release. Detailed test scope and outstanding
 installer/platform checks are in [VALIDATION-0.1.9.md](VALIDATION-0.1.9.md).
 Native Linux hardware testing remains distinct from WSL tests.
 
-This update does not claim to fix the unresolved Windows restart/Bluetooth
-report. No reporter has been asked to reproduce a crash loop.
-
 Stellarys is an independent non-commercial hobby project, not provided or
 supported by Linden Lab or the Firestorm team. Read DISCLOSURES.md and PRIVACY.md.
