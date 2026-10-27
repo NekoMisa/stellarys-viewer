@@ -22,6 +22,10 @@
          function="Clothing.OnEnable"
          parameter="edit" />
     </menu_item_call>
+    <menu_item_call label="Move to position..." layout="topleft" name="layer_position">
+        <on_click function="Clothing.LayerPosition" />
+        <on_enable function="Clothing.OnEnable" parameter="layer_position" />
+    </menu_item_call>
     <menu_item_call
      label="Replace"
      layout="topleft"

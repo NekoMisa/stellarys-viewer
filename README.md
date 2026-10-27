@@ -5,12 +5,12 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.9 Beta 1 for Windows - based on Firestorm 7.2.5.81788.**
+**Stellarys Viewer 0.1.9 Beta 2 for Windows - based on Firestorm 7.2.5.81788.**
 The Stellarys version is separate from the Firestorm base version.
 
-## Windows 0.1.9 Beta 1
+## Windows 0.1.9 Beta 2
 
-Download the [Windows beta installer](https://github.com/NekoMisa/stellarys-viewer/releases/tag/v0.1.9-beta.1)
+Download the [Windows beta installer](https://github.com/NekoMisa/stellarys-viewer/releases/tag/v0.1.9-beta.2)
 to try the experimental branch. The new Windows updater includes an
 **Include experimental updates (beta)** checkbox, off by default and saved in
 your Stellarys profile. Stable users receive stable releases; opting in also
@@ -23,6 +23,14 @@ retaining Stellarys' AMD changes, consent-based poser, Photo menu, saved shots,
 cinematic camera paths, optional link controls and platform-specific updater.
 The avatar skinning shader combines AMD precision safeguards with bounded
 palette indexing from the new upstream release.
+
+Beta 2 adds **drag-and-drop layer ordering** and **Move to position…** in
+**Appearance → Edit Outfit Parts → Clothing**. Position 1 is the topmost layer
+of the same clothing type. Wearing is unchanged. It also guards mirror texture
+sampling against unwritten mip levels to address the coloured surface artifacts
+confirmed in the maintainer's test scene with Mirrors enabled.
+
+Beta 1 users can enable experimental updates and use the updater to install Beta 2.
 
 The stable Windows and published Linux downloads remain at 0.1.8. This Windows
 beta is optional; compilation and individual tests do not establish compatibility

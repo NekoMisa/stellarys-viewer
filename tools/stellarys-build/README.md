@@ -18,7 +18,7 @@ python tools/stellarys-build/build_windows.py `
   --work-dir D:/StellarysBuild `
   --tools C:/FS-AMD-Test/python-tools `
   --build-variables C:/FS-AMD-Test/variables/variables `
-  --channel-variant "Windows Beta 1"
+  --channel-variant "Windows Beta 2"
 ```
 
 The helper reads Stellarys and Firestorm versions from stellarys-source.json,

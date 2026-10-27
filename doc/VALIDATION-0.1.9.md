@@ -1,93 +1,72 @@
-# Stellarys 0.1.9 Beta 1 validation
+# Stellarys 0.1.9 Beta 2 validation
 
-This Windows experimental release is based on Firestorm 7.2.5.81788
-(`4ac201fdc56127de27de34567286885f4e75d194`). Windows is identified as
-0.1.9 Beta 1 on the experimental branch. Linux artifacts remain private.
+Windows experimental release based on Firestorm **7.2.5.81788**
+(`4ac201fdc56127de27de34567286885f4e75d194`). This is not a stable promotion
+or a Linux release. The official numeric base version is retained separately.
 
-## Checks performed
+## User tests
 
-- The user tested the private Windows Beta 1 in-world and reported that the
-  affected AMD mesh renders correctly and media/sound works. This is a visual
-  confirmation for that tested mesh, not all AMD hardware or content.
-  The user subsequently confirmed voice works as well, gave positive general
-  feature-test feedback and approved the beta release. That feedback did not
-  itemize every poser/photography case, so no exhaustive test claim is made.
-- Private Windows startup reached the first-run disclosure with the correct
-  version title and isolated AppData/cache folders. The user handled login.
-- Native MSVC v143 Windows and GCC 11 Linux builds completed successfully.
-  Windows was reconfigured and incrementally rebuilt with the exact channel
-  `Stellarys Viewer 0.1.9 Windows Beta 1`. Its executable FileVersion and
-  ProductVersion remain the official Firestorm base `7.2.5.81788`.
-- The clean Windows application stage contains 24,523 files. Its generated
-  SHA-256 inventory passed verification for every file. Packaging's forbidden
-  data/path checks passed, and scanning the application against the maintainer's
-  private marker values found no matches. No marker values were printed or sent
-  to a third party. This is a scoped privacy check, not a malware certification.
-- All 28,133 selected source files were checked against the same private marker
-  values before committing; no matches or forbidden runtime/profile paths were
-  found. Only aggregate results were reported.
-- Merged the official upstream source while retaining Stellarys features.
-  All 1,685 changed XML files parsed in the initial source validation.
-- Existing camera path, shot validation, poser consent and link policy fixture
-  suites passed on Windows and Linux. Nearby poser discovery passed controlled
-  avatar fixtures. These are not tests of real user consent or live animation.
-- The existing 32 Windows updater validations passed after the channel changes.
-  All 52 new experimental channel/version/feed/profile checks passed after
-  recompiling the test executable following the restart.
-- The updater compiled with the new channel code. Its Windows UI was tested
-  with disposable AppData directories: experimental updates initially off,
-  opt-in persisted across closing/reopening, opt-out returned to stable checks.
-  Both channel modes contacted the public GitHub feed and declined to downgrade
-  the unpublished beta to the older public release. No installer was launched.
-- Nine CMake release identity fixtures passed, including Windows Beta 1.
-- Updated the offline first-run disclosure to the new upstream base and beta
-  status; the regenerated XML parses.
-- The private Windows beta installer compiled successfully. Windows SDK
-  manifest extraction verified `requireAdministrator`; version resources say
-  `0.1.9 Beta 1 (based on Firestorm 7.2.5.81788)`. Its unsigned status was checked
-  and a SHA-256 checksum recorded. NSIS compiled the seven installation pages
-  and three uninstall pages. This was not an interactive installation test.
-- Ownership/process guards, file comparison, data removal and link registration
-  implementation files are byte-unchanged from 0.1.8. Destination selection and
-  per-user data protections remain in the compiled installer source.
-- Actual Radeon RX 7900 XTX OpenGL shader compilation and linking passed four
-  avatar shader variants (AMD safeguards on/off and precision qualifier on/off).
-  This does not establish an in-world flicker fix for the new upstream renderer.
-- Linux updater, portable launcher, desktop entry and GUI fixture suites passed
-  in disposable environments. They do not establish native Linux compatibility.
-- After antivirus restoration, all 2,511 integrated source files existed.
-  Of 2,430 files copied directly from upstream, 2,427 exactly matched official
-  Git blob hashes. The three differences were reviewed build/platform fixes.
-  All 81 merged files matched the independent Linux source snapshot.
+- The maintainer reported that the private Edit Outfit layer controls worked.
+  This is general in-world confirmation, not a separate sign-off for every
+  edge case, same-asset copy or save/relog persistence scenario.
+- The maintainer reproduced coloured patches with Mirrors on, confirmed that
+  disabling Mirrors removed them and re-enabling brought them back, and reported
+  that the isolated guarded shader appeared to fix the issue in the test scene.
+  Hardware: AMD Radeon RX 7900 XTX. This does not establish a universal GPU fix.
+- In Beta 1 testing, the maintainer confirmed the affected AMD mesh, media/sound
+  and voice worked and gave positive general feature feedback. Those results
+  remain distinct from exhaustive poser, photography or driver coverage.
 
-## Pending checks and limitations
+## Automated checks
 
-- Linux Debian and portable packages were built privately. Debian identity,
-  feed SHA-256/size and all 21 bundled 64-bit ELF runtime dependencies passed
-  checks in Ubuntu 22.04 WSL. No non-64-bit ELF or unresolved libraries were
-  found. The portable archive passed its updater's archive inspection. These
-  Linux packages are not part of this Windows release and need runtime testing.
-- Interactive beta installer destination selection, installation/update and
-  uninstall have not been tested. No actual installation has been modified.
-- Review clean payload inventories, licences, source archives and checksums.
-- Complete user tests of posing, saved shots/camera paths and settings
-  persistence. Windows startup, the affected mesh, media/sound and voice passed.
-- Native Linux hardware tests are separate from compilation/WSL checks.
-- No complete beta download/install/promotion cycle has been tested against a
-  published beta, because no beta has been published. Fixtures cover ordering,
-  metadata verification and channel selection.
+- Layer-order C++17 tests run with MSVC v143, `/W4 /WX` and assertions enabled:
+  **73,810 numeric moves and 147,620 drag placements**, including invalid bounds,
+  no-op positions and stable ordering of unaffected items, passed.
+- Native OpenGL regression tests extract the actual mirror sampling function,
+  deliberately poison unused mip levels with extreme colours or NaNs, and check
+  seven mip counts and 101 gloss values. All **1,414 guarded draws** passed on
+  the RX 7900 XTX; the original function gave 738 mismatches in comparison draws.
+  This demonstrates the sampling guard, not the real scene's GPU memory contents.
+- Both modified/new Edit Outfit XML files parse, have unique control names and
+  match their C++ menu/floater wiring. Source whitespace checks passed.
+- The separate mirror test reached the login screen with no shader compilation
+  error patterns in its startup log. Test profiles and cache were isolated.
 
-## Antivirus incident
+## Release checks
 
-Chili Security reported suspicious behavior during build/testing. The user
-restored the affected files. Windows initially denied overwriting two restored
-files despite normal permissions. After a user-operated restart, ordinary edits
-and recompilation to the same paths worked again. All 52 updater channel tests
-then passed, and the build helper's channel default was updated successfully.
-The cause has not been confirmed. No antivirus exclusions or protection changes
-were made.
-These checks do not certify an antivirus false positive.
+- Native MSVC v143 Windows build completed with the exact channel
+  `Stellarys Viewer 0.1.9 Windows Beta 2`; numeric viewer version remains
+  `7.2.5.81788`. The staged executable and feature assets match the build/source.
+- All 10 CMake identity cases, 52 experimental updater checks, 32 updater
+  validation checks and 45 link-registration fixture checks passed. The existing
+  camera path, shot preset, poser consent, link policy and shutdown suites passed.
+  Fixture tests left real profiles, associations and user sessions untouched.
+- All 28,142 selected source files passed the private-marker scan. The clean
+  application inventory contains 24,524 files, each verified by size and SHA-256;
+  its private-marker scan also found zero matches.
+- Eighteen existing feature, AMD shader, installer and updater implementation
+  files were verified unchanged from Beta 1.
 
-Installed viewers, real profiles and real protocol defaults have not been
-changed for these development checks. Private test profiles and logs remain
-outside application staging. Do not publish runtime data or unredacted logs.
+Installer manifest/version inspection, final source ZIP inventory and checksums
+are appended to the release's attached VALIDATION.md after artifact assembly.
+No successful installation or uninstall test is implied by compilation, static
+checks or manifest inspection.
+
+## Limits and preserved behavior
+
+- No Linux build or Linux runtime validation of these Beta 2 additions is claimed.
+- No new interactive Beta 2 installer/update/uninstall test on the maintainer's
+  real installation is claimed. Installed applications, real profiles and
+  protocol defaults remain untouched during release preparation.
+- Installer ownership/process guards, per-user data preservation/removal,
+  file comparison and link registration implementations are unchanged from Beta 1.
+- The AMD avatar shader, posing consent, photography, motion blur and existing
+  updater channel behavior are preserved; the beta number advances to 2.
+- No exhaustive drag scrolling/cancellation, stale dialog, duplicate-asset,
+  outfit persistence or cross-driver reflection compatibility claim is made.
+- No actual Beta 1-to-Beta 2 user download/install cycle is claimed merely by
+  checking the published update feed. Any such test must be reported separately.
+
+Private screenshots, profiles, credentials, account identifiers and runtime logs
+are excluded from source/application release staging. Privacy scan results are
+reported as aggregate counts; they are not a malware or antivirus certification.

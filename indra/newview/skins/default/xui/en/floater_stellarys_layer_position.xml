@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="stellarys_layer_position" title="Move Layer to Position" width="400" height="222"
+ layout="topleft" positioning="centered" can_resize="false" save_rect="false">
+    <text name="item" left="16" top="36" width="368" height="36" wrap="true" layout="topleft" />
+    <spinner name="position" label="Position" label_width="64" left="16" top="82" width="160" height="24"
+     min_val="1" max_val="60" initial_value="1" increment="1" decimal_digits="0" layout="topleft" />
+    <text name="scope" left="16" top="120" width="368" height="48" wrap="true" layout="topleft" />
+    <button name="move" label="Move" left="176" top="184" width="100" height="26" layout="topleft" />
+    <button name="cancel" label="Cancel" left="284" top="184" width="100" height="26" layout="topleft" />
+</floater>

@@ -37,6 +37,9 @@
 #include "llinventorylistitem.h"
 #include "lllistcontextmenu.h"
 #include "llwearabletype.h"
+#include <memory>
+
+namespace LLWearableLayerOrder { class Drag; }
 
 /**
  * @class LLPanelWearableListItem
@@ -184,6 +187,14 @@ public:
 
     /*virtual*/ bool postBuild();
 
+    // This row class is used only by Edit Outfit's Clothing list.
+    bool handleMouseDown(S32 x, S32 y, MASK mask) override;
+    bool handleMouseUp(S32 x, S32 y, MASK mask) override;
+    bool handleHover(S32 x, S32 y, MASK mask) override;
+    bool handleKeyHere(KEY key, MASK mask) override;
+    void onMouseCaptureLost() override;
+    void draw() override;
+
     /**
      * Make button visible during mouse over event.
      */
@@ -197,6 +208,8 @@ protected:
 
     LLPanelClothingListItem(LLViewerInventoryItem* item, const Params& params);
 
+private:
+    std::unique_ptr<LLWearableLayerOrder::Drag> mLayerDrag;
 };
 
 class LLPanelBodyPartsListItem : public LLPanelWearableListItem

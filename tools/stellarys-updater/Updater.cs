@@ -23,7 +23,7 @@ internal sealed class Release
     internal const string Repository = "https://github.com/NekoMisa/stellarys-viewer";
     internal const string Api = "https://api.github.com/repos/NekoMisa/stellarys-viewer/releases/latest";
     internal const string Current = "0.1.9";
-    internal const int CurrentBeta = 1; // 0 for a stable build; positive for Windows beta revisions.
+    internal const int CurrentBeta = 2; // 0 for a stable build; positive for Windows beta revisions.
     internal Version Version;
     internal int Beta;
     internal string Tag, Notes, Url, Digest, Name;

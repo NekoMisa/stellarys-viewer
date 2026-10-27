@@ -10,6 +10,19 @@ Your saved toolbar layout and existing shortcuts are retained. Stellarys posing,
 photography and AMD safeguards are retained alongside the rendering and UI
 updates from Firestorm 7.2.5. This preview is not a new Stellarys skin redesign.
 
+EDIT OUTFIT LAYER ORDER
+Appearance > Edit Outfit Parts > Clothing: drag a layer above or below another
+of the same clothing type, or right-click > Move to position. Position 1 is the
+topmost within that type. Drag near the list edge to scroll; Esc or dropping
+outside a valid target cancels. Use the normal outfit Save action afterwards.
+The Wearing list, attachments, body parts and RLV commands are unchanged.
+
+MIRROR RENDERING
+The mirror shader now avoids reading texture mip levels that mirror generation
+has not filled. This addresses the coloured surface corruption reproduced in
+the maintainer's RX 7900 XTX test scene with Mirrors enabled. It does not claim
+to fix every reflection issue on every GPU. The existing AMD mesh fix is retained.
+
 CAMERA PATHS
 Photo > Camera Paths saves camera keyframes with timing, zoom and roll. Choose
 Move or Cut for each transition: A as Move and B as Cut moves from A to B, then

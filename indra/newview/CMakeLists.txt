@@ -342,6 +342,7 @@ set(viewer_SOURCE_FILES
     llfloatercamerapresets.cpp
     llfloaterlinkdomains.cpp
     llfloatershotpresets.cpp
+    llwearablelayerorder.cpp
     llfloatercamerapaths.cpp
     llfloaterchangeitemthumbnail.cpp
     llfloaterchatmentionpicker.cpp
@@ -1220,6 +1221,8 @@ set(viewer_HEADER_FILES
     stellaryslinkpolicy.h
     stellaryslinkstore.h
     llfloatershotpresets.h
+    llwearablelayerorder.h
+    stellaryslayerorder.h
     llfloatercamerapaths.h
     stellaryscamerapath.h
     stellarysshotvalidation.h

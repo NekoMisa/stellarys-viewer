@@ -620,15 +620,10 @@ const S32 LLAgentWearables::getWearableIdxFromItem(const LLViewerInventoryItem* 
     U32 wearable_count = getWearableCount(type);
     if (0 == wearable_count) return -1;
 
-    const LLUUID& asset_id = item->getAssetUUID();
-
-    for (U32 i = 0; i < wearable_count; ++i)
-    {
-        const LLViewerWearable* wearable = getViewerWearable(type, i);
-        if (!wearable) continue;
-        if (wearable->getAssetID() != asset_id) continue;
-        return i;
-    }
+    // Inventory copies may share an asset UUID but occupy different layer positions.
+    U32 index = 0;
+    const auto* wearable = getWearableFromItemID(item->getUUID());
+    if (wearable && getWearableIndex(wearable, index)) return static_cast<S32>(index);
 
     return -1;
 }
@@ -1673,39 +1668,10 @@ bool LLAgentWearables::moveWearable(const LLViewerInventoryItem* item, bool clos
     U32 wearable_count = getWearableCount(type);
     if (wearable_count < 2) return false;
 
-    const LLUUID& asset_id = item->getAssetUUID();
-
-    //nowhere to move if the wearable is already on any boundary (closest to the body/furthest from the body)
-    if (closer_to_body)
-    {
-        LLViewerWearable* bottom_wearable = dynamic_cast<LLViewerWearable*>( getBottomWearable(type) );
-        if (bottom_wearable->getAssetID() == asset_id)
-        {
-            return false;
-        }
-    }
-    else // !closer_to_body
-    {
-        LLViewerWearable* top_wearable = dynamic_cast<LLViewerWearable*>( getTopWearable(type) );
-        if (top_wearable->getAssetID() == asset_id)
-        {
-            return false;
-        }
-    }
-
-    for (U32 i = 0; i < wearable_count; ++i)
-    {
-        LLViewerWearable* wearable = getViewerWearable(type, i);
-        if (!wearable) continue;
-        if (wearable->getAssetID() != asset_id) continue;
-
-        //swapping wearables
-        U32 swap_i = closer_to_body ? i-1 : i+1;
-        swapWearables(type, i, swap_i);
-        return true;
-    }
-
-    return false;
+    const S32 index = getWearableIdxFromItem(item);
+    if (index < 0 || (closer_to_body ? index == 0 : index == wearable_count - 1)) return false;
+    swapWearables(type, index, closer_to_body ? index - 1 : index + 1);
+    return true;
 }
 
 // static

@@ -40,6 +40,7 @@
 #include "llmenugl.h"
 #include "llviewermenu.h"
 #include "llwearableitemslist.h"
+#include "llwearablelayerorder.h"
 #include "llpaneloutfitedit.h"
 #include "lltrans.h"
 #include "llvoavatarself.h"
@@ -206,6 +207,7 @@ protected:
         registrar.add("Clothing.Replace", boost::bind(replaceWearable, selected_id));
         registrar.add("Clothing.Edit", boost::bind(LLAgentWearables::editWearable, selected_id));
         registrar.add("Clothing.Create", boost::bind(&CofClothingContextMenu::createNew, this, selected_id));
+        registrar.add("Clothing.LayerPosition", boost::bind(LLWearableLayerOrder::prompt, selected_id));
 
         enable_registrar.add("Clothing.OnEnable", boost::bind(&CofClothingContextMenu::onEnable, this, _2));
 
@@ -234,6 +236,12 @@ protected:
         else if ("replace" == param)
         {
             return get_is_item_worn(selected_id) && mUUIDs.size() == 1;
+        }
+        else if ("layer_position" == param)
+        {
+            LLWearableLayerOrder::Snapshot snapshot;
+            std::string error;
+            return mUUIDs.size() == 1 && LLWearableLayerOrder::capture(selected_id, snapshot, error);
         }
 
         return true;

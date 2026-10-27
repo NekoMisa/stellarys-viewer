@@ -11,7 +11,7 @@
   "black_dragon_renderer_port": "not implemented",
   "stellarys_version": "0.1.9",
   "windows_update_channel": "experimental",
-  "windows_beta": 1,
+  "windows_beta": 2,
   "profile": "Stellarys_x64",
   "viewer_identifier": "Versioned Stellarys channel + unchanged Firestorm numeric base",
   "linux_debian_version": "0.1.9~linuxpreview1-1",

@@ -734,7 +734,17 @@ void tapHeroProbe(inout vec3 glossenv, vec3 pos, vec3 norm, float glossiness)
     clipDist = clamp(clipDist * falloffMult, 0, 1);
     w = clamp(w * falloffMult * clipDist, 0, 1);
     w = mix(0, w, clamp(glossiness - 0.75, 0, 1) * 4); // We only generate a quarter of the mips for the hero probes.  Linearly interpolate between normal probes and hero probes based upon glossiness.
-    glossenv = mix(glossenv, textureLod(heroProbes, vec4(env_mat * refnormpersp, 0), (1.0-glossiness)*heroMipCount).xyz, w);
+    // Stellarys: generateRadiance fills only
+    // floor(heroMipCount / 4) levels of this output cubemap. Never sample the
+    // allocated but unwritten levels, including through trilinear filtering.
+    int generatedMipCount = heroMipCount / 4;
+    if (w <= 0.0 || generatedMipCount <= 0)
+    {
+        return;
+    }
+    float maxHeroLod = float(generatedMipCount - 1);
+    float heroLod = clamp((1.0-glossiness)*float(heroMipCount), 0.0, maxHeroLod);
+    glossenv = mix(glossenv, textureLod(heroProbes, vec4(env_mat * refnormpersp, 0), heroLod).xyz, w);
 }
 
 #else

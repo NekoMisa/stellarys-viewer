@@ -27,6 +27,13 @@
 #include "llviewerprecompiledheaders.h"
 
 #include "llwearableitemslist.h"
+#include "llwearablelayerorder.h"
+#include "stellaryslayerorder.h"
+#include "llflatlistview.h"
+#include "llfocusmgr.h"
+#include "llkeyboard.h"
+#include "llrender2dutils.h"
+#include "llviewerwindow.h"
 
 #include "fsfloaterwearablefavorites.h"
 
@@ -50,6 +57,66 @@
 #include "lltextbox.h"
 #include "llresmgr.h"
 #include "llviewerinventory.h"
+
+namespace LLWearableLayerOrder
+{
+// A private mouse drag, not inventory cargo: dropping outside this list never wears,
+// removes, or transfers an item. Handles allow normal inventory refresh to cancel it.
+class Drag
+{
+public:
+    Drag(LLPanelClothingListItem* row, LLFlatListView* list, S32 x, S32 y)
+        : scope(list->getHandle())
+    {
+        row->localPointToScreen(x, y, &startX, &startY);
+        std::string error;
+        valid = row->getItem() && capture(row->getItem()->getUUID(), snapshot, error);
+    }
+    ~Drag() { clearMarker(); }
+    void clearMarker() { target.markDead(); destination = -1; }
+    void hover(LLPanelClothingListItem* row, S32 x, S32 y, bool scroll)
+    {
+        clearMarker();
+        auto* list = dynamic_cast<LLFlatListView*>(scope.get());
+        if (!valid || !list || !list->isInVisibleChain()) return;
+        S32 sx, sy, lx, ly;
+        row->localPointToScreen(x, y, &sx, &sy);
+        if (!active && llabs(sx - startX) < 5 && llabs(sy - startY) < 5) return;
+        if (!active)
+        {
+            active = true;
+            row->setFocus(true); // Escape cancels an active drag.
+        }
+        list->screenPointToLocal(sx, sy, &lx, &ly);
+        if (!list->getContentWindowRect().pointInRect(lx, ly)) return;
+        if (scroll) list->autoScroll(lx, ly);
+        std::vector<LLPanel*> rows;
+        list->getItems(rows);
+        for (auto* panel : rows)
+        {
+            auto* candidate = dynamic_cast<LLPanelClothingListItem*>(panel);
+            if (!candidate || !candidate->getVisible() || !candidate->getItem()) continue;
+            S32 rx, ry;
+            candidate->screenPointToLocal(sx, sy, &rx, &ry);
+            if (!candidate->getLocalRect().pointInRect(rx, ry)) continue;
+            const auto found = std::find(snapshot.links.begin(), snapshot.links.end(), candidate->getItem()->getUUID());
+            if (found == snapshot.links.end()) return; // Another clothing type.
+            above = ry >= candidate->getRect().getHeight() / 2;
+            destination = StellarysLayerOrder::dropIndex(static_cast<int>(snapshot.items.size()), snapshot.source,
+                static_cast<int>(found - snapshot.links.begin()), above);
+            if (destination != snapshot.source) target = candidate->getHandle();
+            return;
+        }
+    }
+    Snapshot snapshot;
+    LLHandle<LLView> scope, target;
+    S32 startX = 0, startY = 0;
+    int destination = -1;
+    bool active = false, valid = false, above = false;
+};
+// Only one mouse capture can be active; rows consult its handle to draw the marker.
+static LLHandle<LLView> dragSource;
+}
 
 bool LLFindOutfitItems::operator()(LLInventoryCategory* cat,
                                    LLInventoryItem* item)
@@ -332,6 +399,77 @@ LLPanelClothingListItem::LLPanelClothingListItem(LLViewerInventoryItem* item, co
 
 LLPanelClothingListItem::~LLPanelClothingListItem()
 {
+    if (hasMouseCapture()) gFocusMgr.setMouseCapture(nullptr);
+}
+
+bool LLPanelClothingListItem::handleMouseDown(S32 x, S32 y, MASK mask)
+{
+    const bool handled = LLPanelDeletableWearableListItem::handleMouseDown(x, y, mask);
+    // Buttons retain their normal capture and actions. Modifier clicks retain multi-selection.
+    if (mask != MASK_NONE || gFocusMgr.getMouseCapture()) return handled;
+    auto* list = getParentByType<LLFlatListView>();
+    if (!list || list->numSelected() != 1) return handled;
+    auto drag = std::make_unique<LLWearableLayerOrder::Drag>(this, list, x, y);
+    if (!drag->valid) return handled;
+    mLayerDrag = std::move(drag);
+    LLWearableLayerOrder::dragSource = getHandle();
+    gFocusMgr.setMouseCapture(this);
+    return true;
+}
+
+bool LLPanelClothingListItem::handleHover(S32 x, S32 y, MASK mask)
+{
+    if (!mLayerDrag) return LLPanelDeletableWearableListItem::handleHover(x, y, mask);
+    mLayerDrag->hover(this, x, y, true);
+    if (mLayerDrag->active)
+        gViewerWindow->setCursor(mLayerDrag->destination < 0 ? UI_CURSOR_NO : UI_CURSOR_ARROWDRAG);
+    return true;
+}
+
+bool LLPanelClothingListItem::handleMouseUp(S32 x, S32 y, MASK mask)
+{
+    if (!mLayerDrag) return LLPanelDeletableWearableListItem::handleMouseUp(x, y, mask);
+    mLayerDrag->hover(this, x, y, false);
+    const auto saved = mLayerDrag->snapshot;
+    const int destination = mLayerDrag->active ? mLayerDrag->destination : -1;
+    gFocusMgr.setMouseCapture(nullptr); // clears marker before any observer can rebuild the list
+    if (destination >= 0 && destination != saved.source) LLWearableLayerOrder::enqueue(saved, destination);
+    return true;
+}
+
+bool LLPanelClothingListItem::handleKeyHere(KEY key, MASK mask)
+{
+    if (key == KEY_ESCAPE && mLayerDrag)
+    {
+        gFocusMgr.setMouseCapture(nullptr);
+        return true;
+    }
+    return LLPanelDeletableWearableListItem::handleKeyHere(key, mask);
+}
+
+void LLPanelClothingListItem::onMouseCaptureLost()
+{
+    if (mLayerDrag)
+    {
+        if (hasFocus())
+        {
+            if (auto* list = dynamic_cast<LLFlatListView*>(mLayerDrag->scope.get())) list->setFocus(true);
+        }
+        mLayerDrag.reset();
+        LLWearableLayerOrder::dragSource.markDead();
+    }
+    LLPanelDeletableWearableListItem::onMouseCaptureLost();
+}
+
+void LLPanelClothingListItem::draw()
+{
+    LLPanelDeletableWearableListItem::draw();
+    auto* source = dynamic_cast<LLPanelClothingListItem*>(LLWearableLayerOrder::dragSource.get());
+    if (source && source->mLayerDrag && source->mLayerDrag->target.get() == this)
+    {
+        const S32 y = source->mLayerDrag->above ? getRect().getHeight() - 1 : 2;
+        gl_rect_2d(4, y, getRect().getWidth() - 4, y - 2, LLColor4(0.3f, 0.8f, 1.f, 1.f));
+    }
 }
 
 bool LLPanelClothingListItem::postBuild()
@@ -345,6 +483,8 @@ bool LLPanelClothingListItem::postBuild()
 
     setWidgetsVisible(false);
     reshapeWidgets();
+
+    setToolTip(LLStringExplicit("Drag to reorder layers of the same clothing type. Right-click for Move to position."));
 
     return true;
 }

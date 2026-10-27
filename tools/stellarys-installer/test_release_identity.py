@@ -17,6 +17,7 @@ with tempfile.TemporaryDirectory(prefix='stellarys-identity-') as name:
     for version,variant,valid in [('0.1.4','',True),('0.1.5','',True),
                                  ('0.1.4','Linux Preview 1',True),('0.1.4','Linux Preview 2',True),
                                  ('0.1.9','Windows Beta 1',True),
+                                 ('0.1.9','Windows Beta 2',True),
                                  ('0.1.4-beta','',False),('0.1','',False),
                                  ('0.1.4','bad"channel',False),('0.1.4','bad;channel',False)]:
         (root/'stellarys-source.json').write_text(json.dumps({'stellarys_version':version}))
@@ -27,4 +28,4 @@ with tempfile.TemporaryDirectory(prefix='stellarys-identity-') as name:
             assert channel == 'Stellarys Viewer '+version+(' '+variant if variant else '')
             channels.append(channel)
     assert len(channels)==len(set(channels))
-print('PASS: 9 release identity cases, including distinct release/beta/preview sources and invalid input refusal')
+print('PASS: 10 release identity cases, including distinct release/beta/preview sources and invalid input refusal')
