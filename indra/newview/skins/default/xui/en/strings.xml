@@ -3400,4 +3400,14 @@ Your current position: [AVATAR_POS]
 
   <!-- <FS:TJ> Launch new instance option from macOS dock> -->
   <string name="FSMacOSNewViewerInstance">New Viewer Instance</string>
+  <!-- Stellarys login and teleport tips: bundled locally, no advertising feed. -->
+  <string name="StellarysLoadingTitle">Stellarys Viewer</string>
+  <string name="StellarysLoadingTipPhoto">The Photo menu brings snapshots, camera controls, Photo Tools and the poser together.</string>
+  <string name="StellarysLoadingTipShots">Photo &gt; Shot Presets saves camera position, lens and blur, local lighting and image size together.</string>
+  <string name="StellarysLoadingTipCameraPaths">Photo &gt; Camera Paths combines smooth camera moves, instant cuts, loops and an optional countdown.</string>
+  <string name="StellarysLoadingTipPoser">Posing another avatar requires their permission. Poses are visible only in the viewer applying them.</string>
+  <string name="StellarysLoadingTipLayers">Edit Outfit Parts &gt; Clothing: drag layers of the same type, or right-click and choose Move to position.</string>
+  <string name="StellarysLoadingTipLinks">Optional link warnings and your blocked-site list are in Preferences &gt; Privacy &gt; Links.</string>
+  <string name="StellarysLoadingTipUpdates">Help &gt; Check for Updates shows available releases. Experimental beta updates are optional.</string>
+  <string name="StellarysLoadingTipProfiles">Stellarys keeps its own settings and cache separate from your other viewers.</string>
 </strings>

@@ -1,4 +1,5 @@
-Stellarys Viewer 0.1.9 (based on Firestorm 7.2.5.81788)
+Stellarys Viewer 0.2.0
+Firestorm base: 7.2.5.81788
 
 A hobby viewer with the AMD flicker fix and permission-based local posing.
 The viewer includes clearer update highlights with a full release-notes link, plus
@@ -8,7 +9,17 @@ local lighting and image dimensions together; restore shots in their original
 region. Toolbar customization stays at its existing access points.
 Your saved toolbar layout and existing shortcuts are retained. Stellarys posing,
 photography and AMD safeguards are retained alongside the rendering and UI
-updates from Firestorm 7.2.5. This preview is not a new Stellarys skin redesign.
+updates from Firestorm 7.2.5.
+
+STELLARYS MIDNIGHT
+The new navy/starry skin is the default for the Stellarys login mode; saved
+explicit skin choices take precedence. Prefer the familiar look? Select Firestorm
+or StarLight in Preferences > Skins, then restart. Leave toolbar reset unchecked
+to retain custom toolbar placement. Please leave feedback about the skin's
+readability, contrast and artwork at https://github.com/NekoMisa/stellarys-viewer/issues.
+Unread IM highlights use muted blue, with a lighter blue for mentions. Folder
+icons remain distinct and Received Items matches the navy controls.
+Login and teleport screens now show bundled rotating Stellarys feature tips.
 
 EDIT OUTFIT LAYER ORDER
 Appearance > Edit Outfit Parts > Clothing: drag a layer above or below another
@@ -118,7 +129,7 @@ disabled there. By default it checks the latest stable GitHub Release at:
 https://github.com/NekoMisa/stellarys-viewer
 "Include experimental updates (beta)" is off by default. Enable it to also
 receive Windows betas. The choice is saved with your Stellarys settings and
-survives normal updates. Beta 2 replaces Beta 1; final 0.1.9 replaces its betas.
+survives normal updates. Beta 2 replaces Beta 1; final 0.2.0 replaces its betas.
 Turning it off stops beta offers without automatically downgrading your viewer.
 Version 0.1.8 needs one manual beta installation to get this checkbox.
 Updates require an exact versioned Windows installer asset with GitHub's SHA-256

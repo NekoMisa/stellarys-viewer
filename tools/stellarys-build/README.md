@@ -17,8 +17,7 @@ Example with an existing build-tool virtual environment:
 python tools/stellarys-build/build_windows.py `
   --work-dir D:/StellarysBuild `
   --tools C:/FS-AMD-Test/python-tools `
-  --build-variables C:/FS-AMD-Test/variables/variables `
-  --channel-variant "Windows Beta 2"
+  --build-variables C:/FS-AMD-Test/variables/variables
 ```
 
 The helper reads Stellarys and Firestorm versions from stellarys-source.json,
@@ -44,3 +43,5 @@ Review package contents, licence notices and checksums before sharing. A build
 does not establish visual AMD correctness or validate live posing/photography.
 
 Linux build and package instructions are in `../stellarys-linux/BUILDING.md`.
+
+For Windows packaging, `STELLARYS_NSIS` may point to an existing `makensis.exe`; the default is the work directory’s `installer/nsis-3.12/makensis.exe`.

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<colors>
+  <color name="StellarysBase" value="0.027451 0.050980 0.109804 1" />
+  <color name="StellarysPanel" value="0.047059 0.086275 0.168627 1" />
+  <color name="StellarysRaised" value="0.078431 0.129412 0.231373 1" />
+  <color name="StellarysLine" value="0.168627 0.231373 0.345098 1" />
+  <color name="StellarysText" value="0.905882 0.929412 0.972549 1" />
+  <color name="StellarysMuted" value="0.678431 0.737255 0.827451 1" />
+  <color name="StellarysAccent" value="0.678431 0.607843 0.980392 1" />
+  <color name="StellarysSelected" value="0.188235 0.196078 0.325490 1" />
+  <color name="StellarysHover" value="0.125490 0.184314 0.298039 1" />
+  <color name="StellarysDisabled" value="0.470588 0.529412 0.619608 1" />
+  <color name="StellarysUnread" value="0.207843 0.333333 0.454902 1" />
+  <color name="StellarysMention" value="0.274510 0.396078 0.513725 1" />
+  <color name="DkGrayLogin" reference="StellarysBase" />
+  <color name="PanelDark" reference="StellarysBase" />
+  <color name="TextBgFocusColor" reference="StellarysBase" />
+  <color name="TextBgWriteableColor" reference="StellarysBase" />
+  <color name="TextBgReadOnlyColor" reference="StellarysBase" />
+  <color name="FilterBackgroundColor" reference="StellarysBase" />
+  <color name="ScrollBgWriteableColor" reference="StellarysBase" />
+  <color name="ScrollBgReadOnlyColor" reference="StellarysBase" />
+  <color name="BackgroundChatColor" reference="StellarysBase" />
+  <color name="FSChatHistoryBackground" reference="StellarysBase" />
+  <color name="ChatHeaderOpaqueBackground" reference="StellarysBase" />
+  <color name="DkGray" reference="StellarysPanel" />
+  <color name="DkGray2" reference="StellarysPanel" />
+  <color name="PanelGray" reference="StellarysPanel" />
+  <color name="SL-Background" reference="StellarysPanel" />
+  <color name="SL-Background_Light" reference="StellarysPanel" />
+  <color name="PanelDefaultBackgroundColor" reference="StellarysPanel" />
+  <color name="PanelFocusBackgroundColor" reference="StellarysPanel" />
+  <color name="MenuBarBgColor" reference="StellarysPanel" />
+  <color name="MenuDefaultBgColor" reference="StellarysPanel" />
+  <color name="MenuPopupBgColor" reference="StellarysPanel" />
+  <color name="ComboListBgColor" reference="StellarysPanel" />
+  <color name="ToolTipBgColor" reference="StellarysPanel" />
+  <color name="UploadDialogBackground" reference="StellarysPanel" />
+  <color name="PieMenuBgColor" reference="StellarysPanel" />
+  <color name="PieMenuBgColorOverride" reference="StellarysPanel" />
+  <color name="MouseGray" reference="StellarysRaised" />
+  <color name="ScrollBGStripeColor" reference="StellarysRaised" />
+  <color name="TextFgColor" reference="StellarysText" />
+  <color name="TextFgReadOnlyColor" reference="StellarysText" />
+  <color name="TextDefaultColor" reference="StellarysText" />
+  <color name="TextCursorColor" reference="StellarysText" />
+  <color name="LabelTextColor" reference="StellarysText" />
+  <color name="LabelSelectedColor" reference="StellarysText" />
+  <color name="ButtonLabelColor" reference="StellarysText" />
+  <color name="ButtonLabelSelectedColor" reference="StellarysText" />
+  <color name="MenuItemEnabledColor" reference="StellarysText" />
+  <color name="MenuItemHighlightFgColor" reference="StellarysText" />
+  <color name="ScrollSelectedFGColor" reference="StellarysText" />
+  <color name="ScrollUnselectedColor" reference="StellarysText" />
+  <color name="InventoryItemEnabledColor" reference="StellarysText" />
+  <color name="InventoryItemLibraryColor" reference="StellarysText" />
+  <color name="InventoryItemHighlightFgColor" reference="StellarysText" />
+  <color name="AccordionHeaderTextColor" reference="StellarysText" />
+  <color name="ToolTipTextColor" reference="StellarysText" />
+  <color name="PieMenuTextColor" reference="StellarysText" />
+  <color name="ScriptDialogFg" reference="StellarysText" />
+  <color name="TextFgTentativeColor" reference="StellarysMuted" />
+  <color name="InventoryItemLinkColor" reference="StellarysMuted" />
+  <color name="InventoryItemSuffixColor" reference="StellarysMuted" />
+  <color name="LabelDisabledColor" reference="StellarysDisabled" />
+  <color name="LabelSelectedDisabledColor" reference="StellarysDisabled" />
+  <color name="ButtonLabelDisabledColor" reference="StellarysDisabled" />
+  <color name="ButtonLabelSelectedDisabledColor" reference="StellarysDisabled" />
+  <color name="MenuItemDisabledColor" reference="StellarysDisabled" />
+  <color name="ScrollDisabledColor" reference="StellarysDisabled" />
+  <color name="SchemeDark" reference="StellarysSelected" />
+  <color name="MenuItemHighlightBgColor" reference="StellarysSelected" />
+  <color name="ScrollSelectedBGColor" reference="StellarysSelected" />
+  <color name="InventoryItemHighlightBgColor" reference="StellarysSelected" />
+  <color name="TextBgHighlightColor" reference="StellarysSelected" />
+  <color name="SelectedBgReadOnlyColor" reference="StellarysSelected" />
+  <color name="PieMenuSelectedColor" reference="StellarysSelected" />
+  <color name="PieMenuSelectedColorOverride" reference="StellarysSelected" />
+  <color name="AccentColor" reference="StellarysAccent" />
+  <color name="EmphasisColor" reference="StellarysAccent" />
+  <color name="EmphasisColorLight" reference="StellarysAccent" />
+  <color name="SchemeLightest" reference="StellarysAccent" />
+  <color name="FocusColor" reference="StellarysAccent" />
+  <color name="ColorSwatchBorderColor" reference="StellarysAccent" />
+  <color name="HintTitle" reference="StellarysAccent" />
+  <color name="HTMLLinkColor" reference="StellarysAccent" />
+  <color name="HTMLLinkColorHovertips" reference="StellarysAccent" />
+  <color name="ScrollHoveredColor" reference="StellarysHover" />
+  <color name="InventoryMouseOverColor" reference="StellarysHover" />
+  <color name="FloaterFocusBorderColor" reference="StellarysLine" />
+  <color name="FloaterUnfocusBorderColor" reference="StellarysLine" />
+  <color name="ResizebarBorderLight" reference="StellarysLine" />
+  <color name="ResizebarBorderDark" reference="StellarysLine" />
+  <color name="ToolTipBorderColor" reference="StellarysLine" />
+  <color name="ButtonFlashBgColor" reference="StellarysUnread" />
+  <color name="MentionFlashBgColor" reference="StellarysMention" />
+  <color name="EmphasisColor_13" value="0.678431 0.607843 0.980392 0.13" />
+  <color name="EmphasisColor_35" value="0.678431 0.607843 0.980392 0.35" />
+  <color name="SchemeLightest_35" value="0.678431 0.607843 0.980392 0.35" />
+  <color name="DkGray_66" value="0.047059 0.086275 0.168627 0.9" />
+  <color name="DkGray_86" value="0.047059 0.086275 0.168627 0.96" />
+  <color name="SL-Background_50" value="0.047059 0.086275 0.168627 0.5" />
+  <color name="SL-Background_66" value="0.047059 0.086275 0.168627 0.9" />
+  <color name="FloaterDefaultBackgroundColor" value="0.047059 0.086275 0.168627 0.96" />
+  <color name="FloaterFocusBackgroundColor" value="0.047059 0.086275 0.168627 1" />
+  <color name="TitleBarFocusColor" value="0.678431 0.607843 0.980392 0.035" />
+  <color name="ScriptDialog" value="0.078431 0.129412 0.231373 1" />
+  <color name="ChatHeaderAlphaBackground" value="0.047059 0.086275 0.168627 0.9" />
+</colors>

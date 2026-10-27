@@ -104,7 +104,7 @@ private:
 
     LLSD mHeaders;
     LLSD mLegacyClientList;
-    LLSD mRandomMOTDs;
+    S32 mLastLoadingTip = -1; // Bundled Stellarys tip; never a remote promotion.
 
     std::string mFSdataFilename;
     std::string mFSdataDefaultsFilename;
@@ -118,7 +118,6 @@ private:
     std::string mAgentsURL;
     std::string mAssetsURL;
 
-    std::string mSecondLifeMOTD;
     std::string mOpenSimMOTD;
 
     bool mLegacySearch;

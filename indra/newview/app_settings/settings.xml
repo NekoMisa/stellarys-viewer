@@ -1003,7 +1003,7 @@
       <key>Type</key>
       <string>String</string>
       <key>Value</key>
-      <string>grey</string>
+      <string></string>
     </map>
 
     <key>ShowSearchTopBar</key>
@@ -15374,7 +15374,7 @@ Change of this parameter will affect the layout of buttons in notification toast
       <key>Type</key>
       <string>String</string>
       <key>Value</key>
-      <string>firestorm</string>
+      <string>stellarys_midnight</string>
     </map>
     <key>SkinningSettingsFile</key>
     <map>
@@ -22095,7 +22095,7 @@ Change of this parameter will affect the layout of buttons in notification toast
       <key>Type</key>
       <string>String</string>
       <key>Value</key>
-      <string>Firestorm</string>
+      <string>Stellarys Midnight</string>
     </map>
   <key>FSSkinCurrentThemeReadableName</key>
     <map>
@@ -22108,7 +22108,7 @@ Change of this parameter will affect the layout of buttons in notification toast
       <key>Type</key>
       <string>String</string>
       <key>Value</key>
-      <string>Grey</string>
+      <string>Midnight</string>
     </map>
     <key>FSStatusbarShowSimulatorVersion</key>
     <map>

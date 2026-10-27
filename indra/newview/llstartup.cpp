@@ -1453,6 +1453,9 @@ bool idle_startup()
 
     if (STATE_LOGIN_CLEANUP == LLStartUp::getStartupState())
     {
+        // Select bundled loading content before connecting, even without fsdata.
+        FSData::instance().selectNextMOTD();
+
         // <FS:Ansariel> Check for test build expiration
         if (is_testbuild_expired())
         {

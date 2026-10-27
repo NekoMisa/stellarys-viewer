@@ -36,6 +36,7 @@
 #include "fsassetblacklist.h"
 
 #include <boost/filesystem.hpp>
+#include <array>
 
 #include "llappviewer.h"
 #include "llagent.h"
@@ -412,35 +413,12 @@ void FSData::downloadAgents()
 
 void FSData::processData(const LLSD& fs_data)
 {
-    // Set Message Of The Day if present
-    if (fs_data.has("MOTD") && !fs_data["MOTD"].asString().empty())
+    // Stellarys loading content is bundled with the viewer. Do not consume
+    // Firestorm's MOTD, RandomMOTD or EventsMOTD promotional fields, including
+    // those in a cached configuration. Other configuration processing is unchanged.
+    if (gAgent.mMOTD.empty())
     {
-        mSecondLifeMOTD = fs_data["MOTD"].asString();
-        gAgent.mMOTD.assign(mSecondLifeMOTD);
-    }
-    else if (fs_data.has("RandomMOTD") && fs_data["RandomMOTD"].isArray() && fs_data["RandomMOTD"].size() > 0) // only used if MOTD is not present or empty in the xml file.
-    {
-        mRandomMOTDs = fs_data["RandomMOTD"];
-        LLSD::array_const_iterator iter = mRandomMOTDs.beginArray();
-        gAgent.mMOTD.assign((iter + (ll_rand((S32)mRandomMOTDs.size())))->asString());
-    }
-
-    // If the event falls withen the current date, use that for MOTD instead.
-    if (fs_data.has("EventsMOTD"))
-    {
-        const LLSD& events = fs_data["EventsMOTD"];
-        for(LLSD::map_const_iterator iter = events.beginMap(); iter != events.endMap(); ++iter)
-        {
-            std::string name = iter->first;
-            const LLSD& content = iter->second;
-            LL_DEBUGS("fsdata") << "Found event MOTD: " << name << LL_ENDL;
-            if (content["startDate"].asDate() < LLDate::now() && content["endDate"].asDate() > LLDate::now())
-            {
-                LL_INFOS("fsdata") << "Setting MOTD to " << name << LL_ENDL;
-                gAgent.mMOTD.assign(content["EventMOTD"]); // note singler instead of plural above
-                break; // Only use the first one found.
-            }
-        }
+        selectNextMOTD();
     }
 
     if (fs_data.has("OpensimMOTD"))
@@ -625,26 +603,29 @@ void FSData::processClientTags(const LLSD& tags)
     }
 }
 
-// Selection rules for MOTD:
-// * if main MOTD is defined, show this at login and during TPs
-// * if random MOTDs are defined and main MOTD not set, show a random MOTD
-//   at login and every TP
-// * if event MOTD is defined, show event MOTD at login. For TPs, either
-//   show main MOTD if defined, or show a random MOTD if defined
+// Choose one localised Stellarys tip per login/teleport, without an immediate
+// repeat. The catalogue works even when downloadable configuration is unavailable.
 void FSData::selectNextMOTD()
 {
-    if (LLGridManager::instance().isInSLMain())
+    if (!LLGridManager::instance().isInSLMain())
     {
-        if (!mSecondLifeMOTD.empty())
-        {
-            gAgent.mMOTD.assign(mSecondLifeMOTD);
-        }
-        else if (mRandomMOTDs.isArray() && mRandomMOTDs.size() > 0)
-        {
-            LLSD::array_const_iterator iter = mRandomMOTDs.beginArray();
-            gAgent.mMOTD.assign((iter + (ll_rand((S32)mRandomMOTDs.size())))->asString());
-        }
+        return;
     }
+    static const std::array<const char*, 8> tips = {
+        "StellarysLoadingTipPhoto", "StellarysLoadingTipShots",
+        "StellarysLoadingTipCameraPaths", "StellarysLoadingTipPoser",
+        "StellarysLoadingTipLayers", "StellarysLoadingTipLinks",
+        "StellarysLoadingTipUpdates", "StellarysLoadingTipProfiles"
+    };
+    const S32 count = static_cast<S32>(tips.size());
+    const bool have_previous = mLastLoadingTip >= 0 && mLastLoadingTip < count;
+    S32 next = ll_rand(have_previous ? count - 1 : count);
+    if (have_previous && next >= mLastLoadingTip)
+    {
+        ++next;
+    }
+    mLastLoadingTip = next;
+    gAgent.mMOTD = LLTrans::getString(tips[next]);
 }
 
 //WS: Create a new LLSD based on the data from the mLegacyClientList if

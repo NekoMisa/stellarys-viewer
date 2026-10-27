@@ -2,6 +2,21 @@
   <array>
     <map>
       <key>name</key>
+      <string>Stellarys Midnight</string>
+      <key>folder</key>
+      <string>stellarys_midnight</string>
+      <key>themes</key>
+      <array>
+        <map>
+          <key>name</key>
+          <string>Midnight</string>
+          <key>folder</key>
+          <string/>
+        </map>
+      </array>
+    </map>
+    <map>
+      <key>name</key>
       <string>AnsaStorm</string>
       <key>folder</key>
       <string>ansastorm</string>

@@ -11,8 +11,8 @@ project, not a rewrite of the original authors' contribution history.
 | AMD reference commit | `0c132c2eb3d15afc56d7fe42589dc8f2eb778197` |
 | Poser snapshot | Fire Kitty Poser Prototype 0.1, revision 2 |
 | Public project name | Stellarys Viewer |
-| Stellarys Windows package version | 0.1.9 Beta 2 |
-| Current development source | Stellarys 0.1.9 |
+| Stellarys Windows package version | 0.2.0 |
+| Current development source | Stellarys 0.2.0 |
 
 Upstream repository: https://github.com/FirestormViewer/phoenix-firestorm
 
@@ -63,8 +63,8 @@ Stellarys' independent feature layers and Linux packaging are retained. The
 avatar skinning shader preserves precise AMD interpolation while bounding both
 matrix-palette indices. Second Life builds follow upstream's WebRTC voice path;
 obsolete legacy Vivox binaries and their Linux 32-bit runtime dependencies are
-not included. This preview does not claim a fix for the unresolved report of a
-Windows restart/Bluetooth compatibility problem.
+not included. The previous restart/Bluetooth report was subsequently reported to occur outside
+Stellarys as well and is not attributed to this viewer.
 
 Windows 0.1.9 Beta 2 adds Stellarys Edit Outfit clothing-layer reordering and a
 mirror shader guard that skips zero-weight reads and clamps sampling to the

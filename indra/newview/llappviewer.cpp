@@ -3573,7 +3573,7 @@ bool LLAppViewer::initConfiguration()
     //
     // Set the name of the window
     //
-    gWindowTitle = LLVersionInfo::instance().getChannel() + " (based on Firestorm " + LLVersionInfo::instance().getVersion() + ")";
+    gWindowTitle = LLVersionInfo::instance().getChannel();
 #if LL_DEBUG
     gWindowTitle += std::string(" [DEBUG]");
 #endif

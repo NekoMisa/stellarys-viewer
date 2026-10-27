@@ -79,7 +79,7 @@
     <key>Type</key>
     <string>String</string>
     <key>Value</key>
-    <string>firestorm</string>
+    <string>stellarys_midnight</string>
   </map>
 
   <key>SkinCurrentTheme</key>
@@ -91,7 +91,7 @@
     <key>Type</key>
     <string>String</string>
     <key>Value</key>
-    <string>grey</string>
+    <string></string>
   </map>
 
   <key>FSSkinCurrentReadableName</key>
@@ -105,7 +105,7 @@
     <key>Type</key>
     <string>String</string>
     <key>Value</key>
-    <string>Firestorm</string>
+    <string>Stellarys Midnight</string>
   </map>
 
   <key>FSSkinCurrentThemeReadableName</key>
@@ -119,7 +119,7 @@
     <key>Type</key>
     <string>String</string>
     <key>Value</key>
-    <string>Grey</string>
+    <string>Midnight</string>
   </map>
 
   <key>LetterKeysAffectsMovementNotFocusChatBar</key>

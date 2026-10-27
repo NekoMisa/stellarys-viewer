@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='utf-8'?>
+<textures version="101">
+  <texture name="PushButton_Disabled" file_name="button_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Off" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_On" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_On_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Press" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Selected_Press" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Selected_Disabled" file_name="button_selected_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Login" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Login_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Login_Pressed" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Sign" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Sign_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="PushButton_Sign_Pressed" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Left_Off" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Left_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Left_Press" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Left_Disabled" file_name="button_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Left_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Left_Selected_Over" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Left_Selected_Press" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Left_Selected_Disabled" file_name="button_selected_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Middle_Disabled" file_name="button_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Middle_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Middle_Selected_Press" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Middle_Selected_Disabled" file_name="button_selected_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Right_Off" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Right_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Right_Press" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Right_Disabled" file_name="button_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Right_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Right_Selected_Press" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="SegmentedBtn_Right_Selected_Disabled" file_name="button_selected_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_First_Flat_Off" file_name="tab_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Last_Flat_Off" file_name="tab_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Middle_Flat_Off" file_name="tab_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_First_Flat_Selected" file_name="tab_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Last_Flat_Selected" file_name="tab_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Middle_Flat_Selected" file_name="tab_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Right_Off" file_name="tab_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Right_Selected" file_name="tab_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Right_Flashing" file_name="tab_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Middle_Off" file_name="tab_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Middle_Selected" file_name="tab_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Left_Off" file_name="tab_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TabTop_Left_Selected" file_name="tab_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Left_Flash" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Left_Off" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Left_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Left_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Middle_Off" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Middle_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Middle_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Middle_Flash" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Right_Off" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Right_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Right_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Right_Flash" file_name="button_pressed.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Left_IM_Unselected" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Middle_IM_Unselected" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Toolbar_Right_IM_Unselected" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Inv_TexturesOpen" file_name="legacy/inv_folder_texture.tga" />
+  <texture name="Inv_TexturesClosed" file_name="legacy/inv_folder_texture.tga" />
+  <texture name="Inv_SoundOpen" file_name="legacy/inv_folder_sound.tga" />
+  <texture name="Inv_SoundClosed" file_name="legacy/inv_folder_sound.tga" />
+  <texture name="Inv_CallingCardOpen" file_name="legacy/inv_folder_callingcard.tga" />
+  <texture name="Inv_CallingCardClosed" file_name="legacy/inv_folder_callingcard.tga" />
+  <texture name="Inv_LandmarksOpen" file_name="legacy/inv_folder_landmark.tga" />
+  <texture name="Inv_LandmarksClosed" file_name="legacy/inv_folder_landmark.tga" />
+  <texture name="Inv_ClothingOpen" file_name="legacy/inv_folder_clothing.tga" />
+  <texture name="Inv_ClothingClosed" file_name="legacy/inv_folder_clothing.tga" />
+  <texture name="Inv_ObjectsOpen" file_name="legacy/inv_folder_object.tga" />
+  <texture name="Inv_ObjectsClosed" file_name="legacy/inv_folder_object.tga" />
+  <texture name="Inv_MeshesOpen" file_name="legacy/inv_folder_meshes.tga" />
+  <texture name="Inv_MeshesClosed" file_name="legacy/inv_folder_meshes.tga" />
+  <texture name="Inv_NotecardsOpen" file_name="legacy/inv_folder_notecard.tga" />
+  <texture name="Inv_NotecardsClosed" file_name="legacy/inv_folder_notecard.tga" />
+  <texture name="Inv_SysClosed" file_name="legacy/inv_folder_plain_closed.tga" />
+  <texture name="Inv_SysOpen" file_name="legacy/inv_folder_plain_open.tga" />
+  <texture name="Inv_ScriptsOpen" file_name="legacy/inv_folder_script.tga" />
+  <texture name="Inv_ScriptsClosed" file_name="legacy/inv_folder_script.tga" />
+  <texture name="Inv_BodyPartsOpen" file_name="legacy/inv_folder_bodypart.tga" />
+  <texture name="Inv_BodyPartsClosed" file_name="legacy/inv_folder_bodypart.tga" />
+  <texture name="Inv_TrashClosed" file_name="legacy/inv_folder_trash.tga" />
+  <texture name="Inv_TrashOpen" file_name="legacy/inv_folder_trash.tga" />
+  <texture name="Inv_SnapshotsOpen" file_name="legacy/inv_folder_snapshot.tga" />
+  <texture name="Inv_SnapshotsClosed" file_name="legacy/inv_folder_snapshot.tga" />
+  <texture name="Inv_LostClosed" file_name="legacy/inv_folder_lostandfound.tga" />
+  <texture name="Inv_LostOpen" file_name="legacy/inv_folder_lostandfound.tga" />
+  <texture name="Inv_AnimationsOpen" file_name="legacy/inv_folder_animation.tga" />
+  <texture name="Inv_AnimationsClosed" file_name="legacy/inv_folder_animation.tga" />
+  <texture name="Inv_GesturesOpen" file_name="legacy/inv_folder_gesture.tga" />
+  <texture name="Inv_GesturesClosed" file_name="legacy/inv_folder_gesture.tga" />
+  <texture name="Inv_FavoritesOpen" file_name="legacy/inv_folder_favorite.tga" />
+  <texture name="Inv_FavoritesClosed" file_name="legacy/inv_folder_favorite.tga" />
+  <texture name="Inv_LookFolderOpen" file_name="legacy/inv_folder_outfit.tga" />
+  <texture name="Inv_LookFolderClosed" file_name="legacy/inv_folder_outfit.tga" />
+  <texture name="Inv_InboxOpen" file_name="legacy/inv_folder_inbox.tga" />
+  <texture name="Inv_InboxClosed" file_name="legacy/inv_folder_inbox.tga" />
+  <texture name="Inv_OutboxOpen" file_name="legacy/inv_folder_plain_open.tga" />
+  <texture name="Inv_OutboxClosed" file_name="legacy/inv_folder_plain_closed.tga" />
+  <texture name="Inv_SettingsOpen" file_name="legacy/inv_folder_settings.tga" />
+  <texture name="Inv_SettingsClosed" file_name="legacy/inv_folder_settings.tga" />
+  <texture name="Inv_MaterialsClosed" file_name="legacy/inv_folder_materials.tga" />
+  <texture name="Inv_MaterialsOpen" file_name="legacy/inv_folder_materials.tga" />
+  <texture name="Inv_FolderClosed" file_name="legacy/inv_folder_plain_closed.tga" />
+  <texture name="Inv_FolderOpen" file_name="legacy/inv_folder_plain_open.tga" />
+  <texture name="Inv_FirestormOpen" file_name="legacy/inv_folder_firestorm.tga" />
+  <texture name="Inv_FirestormClosed" file_name="legacy/inv_folder_firestorm.tga" />
+  <texture name="Inv_PhoenixOpen" file_name="legacy/inv_folder_phoenix.tga" />
+  <texture name="Inv_PhoenixClosed" file_name="legacy/inv_folder_phoenix.tga" />
+  <texture name="Inv_RLVOpen" file_name="legacy/inv_folder_RLVa.tga" />
+  <texture name="Inv_RLVClosed" file_name="legacy/inv_folder_RLVa.tga" />
+  <texture name="Inv_SuitcaseOpen" file_name="legacy/inv_folder_suitcase.tga" />
+  <texture name="Inv_SuitcaseClosed" file_name="legacy/inv_folder_suitcase.tga" />
+  <texture name="Inv_StockFolderClosed" file_name="legacy/inv_folder_stock_closed.tga" />
+  <texture name="Inv_StockFolderOpen" file_name="legacy/inv_folder_stock_open.tga" />
+  <texture name="Inv_VersionFolderClosed" file_name="legacy/inv_folder_version_closed.tga" />
+  <texture name="Inv_VersionFolderOpen" file_name="legacy/inv_folder_version_open.tga" />
+  <texture name="MarketplaceBtn_Off" file_name="marketplace_off.png" preload="true" scale.left="30" scale.top="19" scale.right="35" scale.bottom="4" />
+  <texture name="MarketplaceBtn_Selected" file_name="marketplace_selected.png" preload="true" scale.left="30" scale.top="19" scale.right="35" scale.bottom="4" />
+  <texture name="Window_Foreground" file_name="window_active.png" preload="true" scale.left="10" scale.top="39" scale.right="118" scale.bottom="6" />
+  <texture name="Window_Background" file_name="window_inactive.png" preload="true" scale.left="10" scale.top="39" scale.right="118" scale.bottom="6" />
+  <texture name="Window_NoTitle_Foreground" file_name="surface.png" preload="true" scale.left="6" scale.top="26" scale.right="58" scale.bottom="6" />
+  <texture name="Window_NoTitle_Background" file_name="surface.png" preload="true" scale.left="6" scale.top="26" scale.right="58" scale.bottom="6" />
+  <texture name="Toast_Background" file_name="surface.png" preload="true" scale.left="6" scale.top="26" scale.right="58" scale.bottom="6" />
+  <texture name="Toast_Over" file_name="surface.png" preload="true" scale.left="6" scale.top="26" scale.right="58" scale.bottom="6" />
+  <texture name="Tooltip" file_name="surface.png" preload="true" scale.left="6" scale.top="26" scale.right="58" scale.bottom="6" />
+  <texture name="Rounded_Rect" file_name="white_rounded.png" preload="true" scale.left="6" scale.top="26" scale.right="58" scale.bottom="6" />
+  <texture name="TextField_Off" file_name="field_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TextField_Search_Off" file_name="field_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TextField_Active" file_name="field_active.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TextField_Search_Active" file_name="field_active.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TextField_Highlight" file_name="field_active.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TextField_Search_Highlight" file_name="field_active.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TextField_Disabled" file_name="field_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="TextField_Search_Disabled" file_name="field_disabled.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="DropDown_Off" file_name="dropdown_off.png" preload="true" scale.left="5" scale.top="18" scale.right="99" scale.bottom="5" />
+  <texture name="DropDown_On" file_name="dropdown_selected.png" preload="true" scale.left="5" scale.top="18" scale.right="99" scale.bottom="5" />
+  <texture name="DropDown_Press" file_name="dropdown_selected.png" preload="true" scale.left="5" scale.top="18" scale.right="99" scale.bottom="5" />
+  <texture name="DropDown_Disabled" file_name="dropdown_disabled.png" preload="true" scale.left="5" scale.top="18" scale.right="99" scale.bottom="5" />
+  <texture name="ComboButton_Off" file_name="combo_off.png" preload="true" scale.left="4" scale.top="19" scale.right="18" scale.bottom="4" />
+  <texture name="ComboButton_Selected" file_name="combo_selected.png" preload="true" scale.left="4" scale.top="19" scale.right="18" scale.bottom="4" />
+  <texture name="ComboButton_On" file_name="combo_selected.png" preload="true" scale.left="4" scale.top="19" scale.right="18" scale.bottom="4" />
+  <texture name="ComboButton_Disabled" file_name="combo_disabled.png" preload="true" scale.left="4" scale.top="19" scale.right="18" scale.bottom="4" />
+  <texture name="Checkbox_Off" file_name="check_off.png" preload="true" />
+  <texture name="Checkbox_Slim_Off" file_name="check_off.png" preload="true" />
+  <texture name="Checkbox_On" file_name="check_on.png" preload="true" />
+  <texture name="Checkbox_Slim_On" file_name="check_on.png" preload="true" />
+  <texture name="Checkbox_Off_Disabled" file_name="check_disabled.png" preload="true" />
+  <texture name="Checkbox_On_Disabled" file_name="check_on_disabled.png" preload="true" />
+  <texture name="Checkbox_Press" file_name="check_off.png" preload="true" />
+  <texture name="Checkbox_On_Press" file_name="check_on.png" preload="true" />
+  <texture name="ScrollThumb_Vert" file_name="scroll_vertical.png" preload="true" scale.left="4" scale.top="28" scale.right="8" scale.bottom="4" />
+  <texture name="ScrollTrack_Vert" file_name="track_vertical.png" preload="true" scale.left="2" scale.top="30" scale.right="10" scale.bottom="2" />
+  <texture name="ScrollThumb_Horiz" file_name="scroll_horizontal.png" preload="true" scale.left="4" scale.top="8" scale.right="28" scale.bottom="4" />
+  <texture name="ScrollTrack_Horiz" file_name="track_horizontal.png" preload="true" scale.left="2" scale.top="10" scale.right="30" scale.bottom="2" />
+  <texture name="SliderTrack_Horiz" file_name="slider_Horiz.png" preload="true" scale.left="2" scale.top="4" scale.right="30" scale.bottom="2" />
+  <texture name="SliderTrack_Vert" file_name="slider_Vert.png" preload="true" scale.left="2" scale.top="30" scale.right="4" scale.bottom="2" />
+  <texture name="SliderThumb_Off" file_name="thumb_Off.png" preload="true" />
+  <texture name="SliderThumb_Press" file_name="thumb_Press.png" preload="true" />
+  <texture name="SliderThumb_Disabled" file_name="thumb_Disabled.png" preload="true" />
+  <texture name="NavBar_BG" file_name="flat_panel.png" preload="true" scale.left="1" scale.top="15" scale.right="15" scale.bottom="1" />
+  <texture name="NavBar_BG_NoFav_Bevel" file_name="flat_panel.png" preload="true" scale.left="1" scale.top="15" scale.right="15" scale.bottom="1" />
+  <texture name="NavBar_BG_NoNav_Bevel" file_name="flat_panel.png" preload="true" scale.left="1" scale.top="15" scale.right="15" scale.bottom="1" />
+  <texture name="ProgressBar" file_name="flat_progress.png" preload="true" scale.left="1" scale.top="15" scale.right="15" scale.bottom="1" />
+  <texture name="ProgressBarSolid" file_name="flat_progress.png" preload="true" scale.left="1" scale.top="15" scale.right="15" scale.bottom="1" />
+  <texture name="ProgressTrack" file_name="flat_base.png" preload="true" scale.left="1" scale.top="15" scale.right="15" scale.bottom="1" />
+  <texture name="Accordion_Off" file_name="button_off.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Accordion_Over" file_name="button_hover.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Accordion_Press" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+  <texture name="Accordion_Selected" file_name="button_selected.png" preload="true" scale.left="5" scale.top="19" scale.right="59" scale.bottom="5" />
+</textures>

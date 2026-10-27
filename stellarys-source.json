@@ -9,12 +9,12 @@
   "application_branding": "Stellarys Viewer",
   "updater": "Platform-specific verified GitHub Releases updates; approved download and installation",
   "black_dragon_renderer_port": "not implemented",
-  "stellarys_version": "0.1.9",
-  "windows_update_channel": "experimental",
-  "windows_beta": 2,
+  "stellarys_version": "0.2.0",
+  "windows_update_channel": "stable",
+  "windows_beta": 0,
   "profile": "Stellarys_x64",
   "viewer_identifier": "Versioned Stellarys channel + unchanged Firestorm numeric base",
-  "linux_debian_version": "0.1.9~linuxpreview1-1",
-  "linux_portable_version": "0.1.9-portable.1",
-  "linux_installer_preview": "0.1.9~linuxpreview1-1 (Ubuntu 22.04 amd64)"
+  "linux_debian_version": "0.2.0~linuxpreview1-1",
+  "linux_portable_version": "0.2.0-portable.1",
+  "linux_installer_preview": "0.2.0~linuxpreview1-1 (Ubuntu 22.04 amd64)"
 }

@@ -5,37 +5,35 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.9 Beta 2 for Windows - based on Firestorm 7.2.5.81788.**
+**Stellarys Viewer 0.2.0 for Windows.**
+Firestorm base: **7.2.5.81788**.
 The Stellarys version is separate from the Firestorm base version.
 
-## Windows 0.1.9 Beta 2
+## Windows 0.2.0
 
-Download the [Windows beta installer](https://github.com/NekoMisa/stellarys-viewer/releases/tag/v0.1.9-beta.2)
-to try the experimental branch. The new Windows updater includes an
-**Include experimental updates (beta)** checkbox, off by default and saved in
-your Stellarys profile. Stable users receive stable releases; opting in also
-allows Windows betas. A final 0.1.9 release supersedes its betas. Turning the
-checkbox off does not downgrade an installed beta. Existing 0.1.8 users need
-one manual beta installation to get this checkbox.
+Download the [Windows installer](https://github.com/NekoMisa/stellarys-viewer/releases/tag/v0.2.0)
+or check for updates in the viewer. This is a stable Windows release; experimental
+updates do not need to be enabled. Existing 0.1.9 beta users can also update to it.
 
-This beta updates the Firestorm base to **7.2.5.81788** while
-retaining Stellarys' AMD changes, consent-based poser, Photo menu, saved shots,
-cinematic camera paths, optional link controls and platform-specific updater.
-The avatar skinning shader combines AMD precision safeguards with bounded
-palette indexing from the new upstream release.
+**Stellarys Midnight** brings dark navy panels, restrained stars and softer unread
+IM highlights. It is the default for the Stellarys login mode; saved explicit skin
+choices take precedence. Prefer the familiar look? Select **Firestorm** or
+**StarLight** under **Preferences > Skins**, then restart. Please leave feedback
+on the new skin's readability, contrast and artwork through
+[GitHub Issues](https://github.com/NekoMisa/stellarys-viewer/issues).
 
-Beta 2 adds **drag-and-drop layer ordering** and **Move to position…** in
-**Appearance → Edit Outfit Parts → Clothing**. Position 1 is the topmost layer
-of the same clothing type. Wearing is unchanged. It also guards mirror texture
-sampling against unwritten mip levels to address the coloured surface artifacts
-confirmed in the maintainer's test scene with Mirrors enabled.
+Login and teleport screens now show bundled, rotating Stellarys feature tips
+instead of Firestorm promotional messages. No advertising service is added.
 
-Beta 1 users can enable experimental updates and use the updater to install Beta 2.
+This release includes the **Firestorm 7.2.5.81788** base, **drag-and-drop layer
+ordering** and **Move to position…** in **Appearance > Edit Outfit Parts > Clothing**,
+and the mirror sampling guard tested against coloured surface artifacts on the
+maintainer's AMD system. It retains the AMD mesh safeguards, permission-based
+poser, Photo tools, shot presets, cinematic camera paths and optional link controls.
 
-The stable Windows and published Linux downloads remain at 0.1.8. This Windows
-beta is optional; compilation and individual tests do not establish compatibility
-with every machine or region. See the [release notes](doc/RELEASE-NOTES-0.1.9.md)
-and [validation record](doc/VALIDATION-0.1.9.md).
+The published Linux packages remain at 0.1.8 while the Linux update is prepared
+separately. See the [release notes](doc/RELEASE-NOTES-0.2.0.md) and
+[validation record](doc/VALIDATION-0.2.0.md) for actual checks and their limits.
 
 Firestorm 7.2.5 uses the Inter font and wider script dialogs. To restore the
 previous font and text sizes, choose **Preferences > User Interface > Font >

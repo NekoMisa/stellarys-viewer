@@ -36,6 +36,7 @@
 #include "llfontgl.h"
 #include "lltimer.h"
 #include "lltextbox.h"
+#include "lltrans.h"
 #include "llglheaders.h"
 
 #include "llagent.h"
@@ -157,7 +158,7 @@ bool LLProgressView::postBuild()
     mLayoutMOTD = getChild<LLView>("panel_motd");
     mLayoutMOTDRectInitial = mLayoutMOTD->getRect();
 
-    getChild<LLTextBox>("title_text")->setText(LLStringExplicit(LLAppViewer::instance()->getSecondLifeTitle()));
+    getChild<LLTextBox>("title_text")->setText(LLStringExplicit(LLTrans::getString("StellarysLoadingTitle")));
 
     getChild<LLTextBox>("message_text")->setClickedCallback(onClickMessage, this);
 

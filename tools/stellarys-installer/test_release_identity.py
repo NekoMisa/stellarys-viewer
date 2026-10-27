@@ -14,7 +14,7 @@ with tempfile.TemporaryDirectory(prefix='stellarys-identity-') as name:
     run=root/'run.cmake'
     run.write_text('include("'+(cmake/'StellarysVersion.cmake').as_posix()+'")\nfile(WRITE "'+(root/'channel.txt').as_posix()+'" "${VIEWER_CHANNEL}")\n')
     channels=[]
-    for version,variant,valid in [('0.1.4','',True),('0.1.5','',True),
+    for version,variant,valid in [('0.2.0','',True),('0.1.5','',True),
                                  ('0.1.4','Linux Preview 1',True),('0.1.4','Linux Preview 2',True),
                                  ('0.1.9','Windows Beta 1',True),
                                  ('0.1.9','Windows Beta 2',True),
