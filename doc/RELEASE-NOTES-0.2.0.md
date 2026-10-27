@@ -4,9 +4,10 @@
 
 - New **Stellarys Midnight** skin: dark navy panels, subtle stars and softer blue unread-IM highlights.
 - Prefer **Firestorm** or **StarLight**? Choose it in **Preferences > Skins**, then restart. Please leave feedback on the new skin through GitHub Issues.
-- Rotating Stellarys feature tips replace Firestorm promotional messages during login and teleporting.
-- Includes the Firestorm **7.2.5.81788** base, clothing-layer drag-and-drop and numeric positioning, and the tested mirror sampling fix.
-- Preserves the AMD mesh safeguards, permission-based poser, Photo tools, saved shots, camera paths and separate settings/cache.
+- Rotating Stellarys feature tips during login and teleporting.
+- Stellarys additions: clothing-layer drag-and-drop, numeric layer positioning and the tested mirror sampling fix.
+
+**Firestorm base:** 7.2.5.81788.
 
 Join the [Stellarys Discord](https://discord.gg/MEHr9xgnXG) from the login page or **Help > Stellarys Discord** for community discussion and feedback.
 
@@ -30,11 +31,13 @@ hide private conversations and account details.
 Login/teleport tips are bundled locally and avoid an immediate repeat. This does
 not add paid advertisements, tracking pixels or a new content service.
 
-## Firestorm base, clothing layers and mirrors
+## Firestorm base
 
 This stable release brings the work previously offered in the Windows 0.1.9 betas
 to stable users. The official numeric base is **7.2.5.81788**, with upstream AO
 tracks/groups, custom inventory tabs, camera roll and WebRTC voice retained.
+
+## Stellarys clothing layers and mirror fix
 
 In **Appearance > Edit Outfit Parts > Clothing**, drag within one clothing type
 or right-click **Move to position…**. Position **1 is topmost within that type**.
