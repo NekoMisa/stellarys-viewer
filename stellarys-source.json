@@ -1,15 +1,20 @@
 {
   "project": "Stellarys Viewer",
   "upstream": "Firestorm",
-  "upstream_version": "7.2.4.80712",
-  "upstream_commit": "10bd3c9f930c76e1427ddd4ecece6cdf36b4406d",
+  "upstream_version": "7.2.5.81788",
+  "upstream_commit": "4ac201fdc56127de27de34567286885f4e75d194",
   "kitty_fix_version": "0.1.0",
   "poser_prototype_version": "0.1",
   "poser_revision": 2,
   "application_branding": "Stellarys Viewer",
-  "updater": "Windows GitHub Releases checks; approved download and install; SHA-256 verification",
+  "updater": "Platform-specific verified GitHub Releases updates; approved download and installation",
   "black_dragon_renderer_port": "not implemented",
-  "stellarys_version": "0.1.8",
+  "stellarys_version": "0.1.9",
+  "windows_update_channel": "experimental",
+  "windows_beta": 1,
   "profile": "Stellarys_x64",
-  "viewer_identifier": "Versioned Stellarys channel + unchanged Firestorm numeric base"
+  "viewer_identifier": "Versioned Stellarys channel + unchanged Firestorm numeric base",
+  "linux_debian_version": "0.1.9~linuxpreview1-1",
+  "linux_portable_version": "0.1.9-portable.1",
+  "linux_installer_preview": "0.1.9~linuxpreview1-1 (Ubuntu 22.04 amd64)"
 }

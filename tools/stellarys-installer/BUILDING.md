@@ -1,19 +1,17 @@
 # Stellarys Windows packaging
 
-The source uses MSVC v143 with Windows SDK 10.0.26100 and the existing upstream
-dependency configuration. `tools/kitty-prototype/build_prototype.py` is the
-historical build helper, now configured with channel `Stellarys Viewer`.
-Its default short source path is `C:\FK-Poser-Test\source`; synchronize the exact
-current source there before building. The folder name is historical, not the
-runtime identity. Installed files use `StellarysViewer.exe`; profiles/cache use
-`Stellarys_x64`. The compiled channel remains separate from the base version.
+Use the [current Windows build helper and guide](../stellarys-build/README.md)
+with MSVC v143 and a Windows SDK. Keep the source, build work and application
+staging separate from installed viewers and runtime profiles. Installed files
+use `StellarysViewer.exe`; profiles/cache use `Stellarys_x64`. The compiled
+Stellarys channel remains separate from the official Firestorm numeric base.
 
 Run `package_windows.py` with the configured Python environment after building.
 `STELLARYS_BUILD` selects the CMake build directory (default
 `C:\FK-Poser-Test\build-vs18-v143`). `STELLARYS_WORK` selects the staging/tool
 directory (default: the repository's parent). Put NSIS 3.12 under
 `STELLARYS_WORK\installer\nsis-3.12`, or adapt its one tool path. Outputs go to
-the sibling `outputs\Stellarys-Viewer-0.1.8` folder. Packaging invokes the
+the sibling `outputs\Stellarys-Viewer-VERSION` folder. Packaging invokes the
 upstream manifest, adds the .NET updater and native Explorer link-setup helper, creates an explicit file manifest and
 compiles NSIS. No settings are copied from a user profile.
 
@@ -21,6 +19,15 @@ compiles NSIS. No settings are copied from a user profile.
 folder, useful when an earlier test build is still running. Keep runtime test
 profiles outside this folder.
 `STELLARYS_OUTPUT` can place the complete output directory on a different drive.
+
+For Windows experimental builds, `windows_beta` must be positive and
+`windows_update_channel` must be `experimental` in `stellarys-source.json`.
+Match `Release.Current` and `Release.CurrentBeta` in the updater. Compile with
+`--channel-variant "Windows Beta N"`. Packaging checks the exact channel and
+updater identity, and uses `VERSION-beta.N` in the installer filename, marker
+and uninstall display version. The final release uses beta zero, channel
+`stable`, and no variant. Stable and beta installers use the same installation
+ownership and profile rules; the updater never downgrades automatically.
 
 ## File-preserving Windows installation
 

@@ -7,7 +7,6 @@ Stellarys Viewer — independent Firestorm-based viewer.
 https://github.com/NekoMisa/stellarys-viewer
 </text>
 			<button label="複製到剪貼簿" name="copy_btn" />
-			<button label="尋找是否有更新版本" name="update_btn" />
 		</panel>
 		<panel label="鳴謝" name="credits_panel">
 			<text name="linden_intro">
@@ -21,7 +20,7 @@ https://github.com/NekoMisa/stellarys-viewer
 			</text_editor>
 		</panel>
 		<!-- Firestorm Credits -->
-		<panel label="Firestorm" name="fs_credits_panel" height="930">
+		<panel label="Firestorm" name="fs_credits_panel">
 			<scroll_container name="fs_credits_scroll_container">
 				<panel name="fs_credits_scroll_container_content_panel">
 					<text name="firestorm_intro" height="120">
@@ -38,6 +37,7 @@ The Firestorm Development Team:
 					</text>
 					<text name="fs_art_intro">
 火風暴包含為火風暴修改的Starlight。它是由社群中的居民開發的設計的， 旨在提供一個更友好、更易於使用的界面。更多詳情，請參閱  &lt;nolink&gt;https://wiki.secondlife.com/wiki/Viewer_Skins/Starlight&lt;/nolink&gt;.
+
 
 UI 藝術家和設計師：
 					</text>

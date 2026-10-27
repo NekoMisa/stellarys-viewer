@@ -1029,7 +1029,13 @@ void LLShaderMgr::initShaderCache(bool enabled, const LLUUID& old_cache_version,
     {
         GLint num_binary_formats = 0;
         glGetIntegerv(GL_NUM_PROGRAM_BINARY_FORMATS, &num_binary_formats);
+#if LL_LINUX
+        // Linux links these GL dispatch symbols directly; their addresses cannot
+        // be null. GL version and advertised binary formats still gate the cache.
+        const bool have_entry_points = true;
+#else
         const bool have_entry_points = glProgramParameteri && glGetProgramBinary && glProgramBinary;
+#endif
         if (!have_entry_points || num_binary_formats <= 0)
         {
             LL_WARNS("ShaderMgr") << "Disabling shader binary cache: "
@@ -1058,8 +1064,23 @@ void LLShaderMgr::initShaderCache(bool enabled, const LLUUID& old_cache_version,
 
             llifstream instream(meta_out_path, std::ifstream::in | std::ifstream::binary);
             LLSD in_data;
-            // todo: this is likely very expensive to parse, should use binary
-            LLSDSerialize::fromBinary(in_data, instream, LLSDSerialize::SIZE_UNLIMITED);
+            try
+            {
+                LLSDSerialize::fromBinary(in_data, instream, LLSDSerialize::SIZE_UNLIMITED);
+            }
+            catch( std::bad_alloc& )
+            {
+                // Try to get a bit more memory back before we try to clear the cache.
+                in_data.clear();
+                // Just in case it was somehow the cause, clear cache.
+                clearShaderCache();
+                // If user run out of memory this early in init,
+                // we don't want to keep going just to crash again.
+                // Notify user and close.
+                LLError::LLUserWarningMsg::showOutOfMemory();
+                LL_ERRS("ShaderMgr") << "Failed to parse shader cache metadata, potentially due to size. Purged cache." << LL_ENDL;
+                return;
+            }
             instream.close();
 
             if (old_cache_version == current_cache_version

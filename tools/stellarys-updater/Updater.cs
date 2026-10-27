@@ -16,29 +16,59 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: System.Reflection.AssemblyTitle("Stellarys Viewer Updater")]
-[assembly: System.Reflection.AssemblyVersion("0.1.8.0")]
+[assembly: System.Reflection.AssemblyVersion("0.1.9.0")]
 
 internal sealed class Release
 {
     internal const string Repository = "https://github.com/NekoMisa/stellarys-viewer";
     internal const string Api = "https://api.github.com/repos/NekoMisa/stellarys-viewer/releases/latest";
-    internal const string Current = "0.1.8";
+    internal const string Current = "0.1.9";
+    internal const int CurrentBeta = 1; // 0 for a stable build; positive for Windows beta revisions.
     internal Version Version;
+    internal int Beta;
     internal string Tag, Notes, Url, Digest, Name;
     internal long Size;
     internal string PageUrl { get { return Repository + "/releases/tag/" + Tag; } }
+    internal string DisplayVersion { get { return Version + (Beta == 0 ? "" : " Beta " + Beta); } }
+    internal static string CurrentDisplay { get { return Current + (CurrentBeta == 0 ? "" : " Beta " + CurrentBeta); } }
+    internal int CompareTo(Release other) { return Compare(Version, Beta, other.Version, other.Beta); }
+    internal int CompareInstalled { get { return Compare(Version, Beta, ParseVersion(Current), CurrentBeta); } }
+    internal static int Compare(Version left, int leftBeta, Version right, int rightBeta)
+    {
+        int result = left.CompareTo(right);
+        if (result != 0 || leftBeta == rightBeta) return result;
+        if (leftBeta == 0) return 1;
+        if (rightBeta == 0) return -1;
+        return leftBeta.CompareTo(rightBeta);
+    }
+    internal static bool TryTag(string tag, bool allowExperimental, out Version version, out int beta)
+    {
+        version = null; beta = 0;
+        var match = Regex.Match(tag ?? "", @"^v((?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*))(?:-beta\.([1-9]\d*))?$");
+        if (!match.Success || !System.Version.TryParse(match.Groups[1].Value, out version)) return false;
+        if (match.Groups[2].Success && (!allowExperimental || !Int32.TryParse(match.Groups[2].Value, out beta))) return false;
+        return true;
+    }
     internal static Version ParseVersion(string value)
     {
         if (!Regex.IsMatch(value ?? "", @"^\d+\.\d+\.\d+$")) throw new InvalidDataException("Invalid stable version.");
         return new Version(value);
     }
     internal static Release Parse(string json)
+    { return Parse(json, false); }
+    internal static Release Parse(string json, bool allowExperimental)
     {
         var data = new JavaScriptSerializer { MaxJsonLength = 2097152 }.Deserialize<Dictionary<string, object>>(json);
-        if ((bool)data["draft"] || (bool)data["prerelease"]) throw new InvalidDataException("Not a stable release.");
+        return ParseData(data, allowExperimental);
+    }
+    internal static Release ParseData(Dictionary<string, object> data, bool allowExperimental)
+    {
+        if ((bool)data["draft"]) throw new InvalidDataException("Draft releases cannot be installed.");
         string tag = (string)data["tag_name"];
-        if (!tag.StartsWith("v", StringComparison.Ordinal)) throw new InvalidDataException("Expected vMAJOR.MINOR.PATCH release tag.");
-        var r = new Release { Tag = tag, Version = ParseVersion(tag.Substring(1)), Notes = data.ContainsKey("body") ? data["body"] as string ?? "" : "" };
+        Version version; int beta;
+        if (!TryTag(tag, allowExperimental, out version, out beta) || (bool)data["prerelease"] != (beta > 0))
+            throw new InvalidDataException("The Windows release tag or update channel is invalid.");
+        var r = new Release { Tag = tag, Version = version, Beta = beta, Notes = data.ContainsKey("body") ? data["body"] as string ?? "" : "" };
         r.Name = "Stellarys-Viewer-" + tag.Substring(1) + "-Windows-x64-Setup.exe";
         int matches = 0;
         foreach (Dictionary<string, object> a in (IEnumerable)data["assets"])
@@ -156,8 +186,8 @@ internal static class ReleaseNotes
 
 internal static class InstallChoice
 {
-    internal static bool Allowed(Version release, bool repair)
-    { return release != null && (release > Release.ParseVersion(Release.Current) || (repair && release == Release.ParseVersion(Release.Current))); }
+    internal static bool Allowed(Release release, bool repair)
+    { return release != null && (release.CompareInstalled > 0 || (repair && release.CompareInstalled == 0)); }
     internal static string Arguments(string home, bool repair)
     { return (repair ? "/REPAIR " : "") + "/D=" + home; } // NSIS requires /D to be last.
 }
@@ -172,47 +202,65 @@ internal sealed class Updater : Form
     readonly LinkLabel fullNotes = new LinkLabel { Text = "Read full release notes on GitHub", Dock = DockStyle.Bottom, Height = 30, Enabled = false };
     readonly Button action = new Button { Text = "Checking…", Enabled = false, Width = 160, Height = 30 };
     readonly CheckBox startup = new CheckBox { Text = "Check for updates when Stellarys starts", AutoSize = true };
+    readonly CheckBox experimental = new CheckBox {
+        Text = "Include experimental updates (beta)", AutoSize = true, Checked = false, Enabled = false };
     readonly CheckBox installAutomatically = new CheckBox {
         Text = "Install when the download finishes (closes Stellarys)", AutoSize = true, Checked = false, Enabled = false };
     readonly CheckBox repair = new CheckBox {
         Text = "Full reinstall / repair (keeps settings and cache)", AutoSize = true, Checked = false, Enabled = false };
     readonly CancellationTokenSource cancel = new CancellationTokenSource();
     readonly string home = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
-    readonly string preferences = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Stellarys_x64", "updater-disable-startup");
+    readonly UpdatePreferences preferences = UpdatePreferences.Default();
     readonly bool quiet;
     Release release;
     string downloaded;
     bool verified;
     bool busy;
+    bool checking, restoringPreference;
     internal Updater(bool automatic, Release preview = null)
     {
         quiet = automatic;
-        Text = "Stellarys Viewer — Updates"; Size = new Size(740, 570); MinimumSize = new Size(620, 480);
+        Text = "Stellarys Viewer — Updates"; Size = new Size(740, 600); MinimumSize = new Size(620, 510);
         Font = new Font("Segoe UI", 10); AutoScaleMode = AutoScaleMode.Dpi;
         BackColor = Color.White;
         heading.Font = new Font("Segoe UI", 19, FontStyle.Bold);
         versions.ForeColor = Color.DimGray;
-        versions.Text = "Installed: Stellarys " + Release.Current;
+        versions.Text = "Installed: Stellarys " + Release.CurrentDisplay;
         Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         StartPosition = FormStartPosition.CenterScreen;
-        var footer = new Panel { Dock = DockStyle.Bottom, Height = 148, Padding = new Padding(18, 8, 18, 12) };
+        var footer = new Panel { Dock = DockStyle.Bottom, Height = 178, Padding = new Padding(18, 8, 18, 12) };
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 37, FlowDirection = FlowDirection.RightToLeft, WrapContents = false };
         var close = new Button { Text = "Close", Width = 90, Height = 30 };
         close.Click += (s,e) => Close();
-        startup.Checked = !File.Exists(preferences);
+        startup.Checked = !File.Exists(preferences.StartupDisabledPath);
         startup.CheckedChanged += (s,e) => {
-            try { Directory.CreateDirectory(Path.GetDirectoryName(preferences)); if (startup.Checked) File.Delete(preferences); else File.WriteAllText(preferences, "disabled"); }
+            try { preferences.SaveStartup(startup.Checked); }
             catch (Exception ex) { MessageBox.Show(this, "Could not save update preference: " + ex.Message); }
+        };
+        experimental.Checked = preferences.IncludeExperimental;
+        experimental.CheckedChanged += async (s,e) => {
+            if (restoringPreference || busy || checking || downloaded != null) return;
+            try { preferences.SaveExperimental(experimental.Checked); }
+            catch {
+                restoringPreference = true;
+                experimental.Checked = !experimental.Checked;
+                restoringPreference = false;
+                status.Text = "Could not save the experimental update preference. The change was not applied.";
+                return;
+            }
+            await Check();
         };
         buttons.Controls.Add(close); buttons.Controls.Add(action);
         startup.Dock = DockStyle.Bottom;
         installAutomatically.Dock = DockStyle.Bottom;
         repair.Dock = DockStyle.Bottom;
+        experimental.Dock = DockStyle.Bottom;
         repair.CheckedChanged += (s,e) => UpdateAction();
-        footer.Controls.Add(buttons); footer.Controls.Add(installAutomatically); footer.Controls.Add(repair); footer.Controls.Add(startup);
+        footer.Controls.Add(buttons); footer.Controls.Add(installAutomatically); footer.Controls.Add(repair); footer.Controls.Add(experimental); footer.Controls.Add(startup);
         var installTip = new ToolTip();
         installTip.SetToolTip(installAutomatically, "Save your work before downloading. A verified download requests normal viewer shutdown, then opens Setup. Cancelling shutdown or administrator approval postpones installation.");
         installTip.SetToolTip(repair, "Normal updates keep identical application files. Repair replaces every packaged file and can reinstall the current release. Both download the complete installer and preserve your profile.");
+        installTip.SetToolTip(experimental, "Receive Windows beta releases as well as stable updates. Beta builds may have bugs. Turning this off waits for a suitable stable release; it does not downgrade your installed viewer. Choose before downloading.");
         var header = new Panel { Dock = DockStyle.Top, Height = 148, Padding = new Padding(20, 16, 20, 0) };
         header.Controls.Add(status); header.Controls.Add(versions); header.Controls.Add(heading);
         var content = new Panel { Dock = DockStyle.Fill, Padding = new Padding(22, 8, 22, 8) };
@@ -224,11 +272,11 @@ internal sealed class Updater : Form
             try { Process.Start(new ProcessStartInfo(release.PageUrl) { UseShellExecute = true }); }
             catch { MessageBox.Show(this, "Could not open GitHub. You can find the release notes at " + release.PageUrl); }
         };
-        action.Click += async (s,e) => await DownloadAndInstall();
+        action.Click += async (s,e) => { if (release == null) await Check(); else await DownloadAndInstall(); };
         FormClosing += (s,e) => cancel.Cancel();
         Shown += async (s,e) => {
             if (preview != null) {
-                release = preview; ShowRelease(); startup.Enabled = false;
+                release = preview; ShowRelease(); startup.Enabled = false; experimental.Enabled = false;
                 status.Text = "Release notes preview. Download and installation are disabled.";
                 action.Text = "Download update"; action.Enabled = false;
                 return;
@@ -239,8 +287,8 @@ internal sealed class Updater : Form
     }
     void ShowRelease()
     {
-        heading.Text = "Stellarys Viewer " + release.Version;
-        versions.Text = "Installed: " + Release.Current + "    •    Release: " + release.Version;
+        heading.Text = "Stellarys Viewer " + release.DisplayVersion;
+        versions.Text = "Installed: " + Release.CurrentDisplay + "    •    Release: " + release.DisplayVersion;
         notes.Clear();
         foreach (string item in ReleaseNotes.Summary(release.Notes))
         {
@@ -258,9 +306,9 @@ internal sealed class Updater : Form
     void Reveal() { Opacity = 1; ShowInTaskbar = true; Show(); Activate(); }
     void UpdateAction()
     {
-        if(IsDisposed || busy || release==null)return;
-        bool allowed=InstallChoice.Allowed(release.Version,repair.Checked);
-        repair.Enabled=release.Version>=Release.ParseVersion(Release.Current);
+        if(IsDisposed || busy || checking || release==null)return;
+        bool allowed=InstallChoice.Allowed(release,repair.Checked);
+        repair.Enabled=release.CompareInstalled>=0;
         action.Enabled=allowed;
         action.Text=downloaded==null?(repair.Checked?"Download repair":"Download update"):(repair.Checked?"Install repair":"Install update");
         installAutomatically.Enabled=downloaded==null&&allowed;
@@ -274,54 +322,59 @@ internal sealed class Updater : Form
     }
     async Task Check()
     {
-        if (quiet && File.Exists(preferences)) { Close(); return; }
-        status.Text = "Checking GitHub Releases…";
+        if (busy || checking || downloaded != null) return;
+        if (quiet && File.Exists(preferences.StartupDisabledPath)) { Close(); return; }
+        checking = true;
+        experimental.Enabled = false; action.Enabled = false; repair.Enabled = false; installAutomatically.Enabled = false;
+        release = null; fullNotes.Enabled = false; notes.Clear();
+        heading.Text = "Stellarys Viewer " + Release.CurrentDisplay;
+        versions.Text = "Installed: " + Release.CurrentDisplay;
+        status.Text = experimental.Checked ? "Checking stable and experimental Windows releases…" : "Checking stable Windows releases…";
         try
         {
             using (var c = Client())
             using (var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancel.Token))
             {
-                timeout.CancelAfter(TimeSpan.FromSeconds(30));
-                using (var response = await c.GetAsync(Release.Api, HttpCompletionOption.ResponseHeadersRead, timeout.Token))
-                {
-                    if (response.StatusCode == HttpStatusCode.NotFound) { Finish("No public Stellarys releases are available yet."); return; }
-                    response.EnsureSuccessStatusCode();
-                    using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var bytes = new MemoryStream())
-                    {
-                        byte[] buffer = new byte[16384]; int n;
-                        while ((n = await stream.ReadAsync(buffer, 0, buffer.Length, timeout.Token)) != 0)
-                        { if (bytes.Length + n > 2097152) throw new InvalidDataException("Release metadata is too large."); bytes.Write(buffer, 0, n); }
-                        release = Release.Parse(System.Text.Encoding.UTF8.GetString(bytes.ToArray()));
-                    }
-                }
+                timeout.CancelAfter(TimeSpan.FromSeconds(45));
+                release = await ReleaseFeed.Check(c, experimental.Checked, timeout.Token);
+            }
+            if (IsDisposed || cancel.IsCancellationRequested) return;
+            if (release == null) { Finish("No published Windows releases are available for this update channel."); return; }
+            if (release.CompareInstalled < 0) {
+                release = null;
+                Finish("No newer " + (experimental.Checked ? "Windows" : "stable") + " release is available. This build stays installed; automatic downgrades are disabled.");
+                return;
             }
             ShowRelease();
-            if (release.Version <= Release.ParseVersion(Release.Current)) {
-                Finish(release.Version == Release.ParseVersion(Release.Current) ? "Stellarys " + Release.Current + " is up to date. Select Full reinstall / repair to repair application files." : "This build is newer than the public release. Downgrading is disabled.");
+            if (release.CompareInstalled == 0) {
+                Finish("Stellarys " + Release.CurrentDisplay + " is up to date. Select Full reinstall / repair to repair application files.");
                 UpdateAction();return;
             }
             Reveal();
-            status.Text = "An update is ready. Review the highlights below, then choose Download update.";
+            status.Text = release.Beta > 0 ? "An experimental update is ready. Beta builds may have bugs. Review the highlights before downloading." : "A stable update is ready. Review the highlights below, then choose Download update.";
             UpdateAction();
         }
         catch (OperationCanceledException) { if (!IsDisposed) Finish("Update check cancelled or timed out."); }
         catch (Exception ex) { if (!IsDisposed) Finish("Could not check for updates. " + ex.Message); }
+        finally {
+            checking = false;
+            if (!IsDisposed) { experimental.Enabled = !busy && downloaded == null; UpdateAction(); }
+        }
     }
-    void Finish(string message) { if (quiet) Close(); else { status.Text = message; action.Text = "No update ready"; } }
+    void Finish(string message) { if (quiet) Close(); else { status.Text = message; action.Text = "Check again"; action.Enabled = true; } }
     async Task DownloadAndInstall()
     {
-        if (busy || release == null || !InstallChoice.Allowed(release.Version,repair.Checked)) return;
+        if (busy || checking || release == null || !InstallChoice.Allowed(release,repair.Checked)) return;
         // Consent is specific to this Download click; retries with an existing
         // download still use the normal Install confirmation.
         bool installAfterDownload = downloaded == null && installAutomatically.Checked;
         bool fullRepair=repair.Checked;
-        busy = true; action.Enabled = false; installAutomatically.Enabled = false;repair.Enabled=false;
+        busy = true; action.Enabled = false; installAutomatically.Enabled = false;repair.Enabled=false;experimental.Enabled=false;
         try
         {
             if (downloaded == null)
             {
-                string dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Stellarys_x64", "updates", Guid.NewGuid().ToString("N"));
+                string dir = Path.Combine(ProfilePaths.Local, "Stellarys_x64", "updates", Guid.NewGuid().ToString("N"));
                 Directory.CreateDirectory(dir);
                 downloaded = Path.Combine(dir, release.Name);
                 using (var c = Client())
@@ -402,6 +455,7 @@ internal sealed class Updater : Form
             busy = false;
             if (!IsDisposed) {
                 installAutomatically.Checked = false;
+                experimental.Enabled = downloaded == null;
                 UpdateAction();
             }
         }

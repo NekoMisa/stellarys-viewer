@@ -5,14 +5,14 @@ project, not a rewrite of the original authors' contribution history.
 
 | Component | Identity |
 | --- | --- |
-| Official Firestorm base | 7.2.4 (80712) |
-| Firestorm base commit | `10bd3c9f930c76e1427ddd4ecece6cdf36b4406d` |
+| Official Firestorm base | 7.2.5 (81788) |
+| Firestorm base commit | `4ac201fdc56127de27de34567286885f4e75d194` |
 | Kitty AMD fix version | Fire Kitty Fix 0.1.0 |
 | AMD reference commit | `0c132c2eb3d15afc56d7fe42589dc8f2eb778197` |
 | Poser snapshot | Fire Kitty Poser Prototype 0.1, revision 2 |
 | Public project name | Stellarys Viewer |
-| Stellarys Windows package version | 0.1.8 |
-| Current release source | Stellarys 0.1.8 |
+| Stellarys Windows package version | 0.1.9 Beta 1 |
+| Current development source | Stellarys 0.1.9 |
 
 Upstream repository: https://github.com/FirestormViewer/phoenix-firestorm
 
@@ -39,7 +39,7 @@ The root licence and original source notices remain intact. The prototype
 verification notes report exactly what was tested and what still needs live
 verification; the maintainer subsequently reported that the poser works.
 
-The official Firestorm base remains 7.2.4.80712. From 0.1.4 onward the compiled
+The current Firestorm base is 7.2.5.81788. From 0.1.4 onward the compiled
 channel contains the Stellarys release number, with a separate variant for
 different preview sources. Its channel/base-version pair is the viewer
 identifier used for login and statistics. Historical 0.1.1-0.1.3 identifiers
@@ -50,3 +50,18 @@ attribution, subject to FMOD's terms. The maintainer confirmed the project is
 entirely non-commercial. Linux uses OpenAL instead. Proprietary Havok/KDU and
 automatic crash upload are disabled in these build configurations. Dependency
 notices are retained; a complete independent legal audit is not claimed.
+
+## 0.1.9 upstream migration
+
+The original Stellarys import was based on Firestorm 7.2.4.80712 at
+`10bd3c9f930c76e1427ddd4ecece6cdf36b4406d`. Version 0.1.9 migrates to the pinned
+official Firestorm 7.2.5.81788 release above, using that original base for a
+three-way source comparison. Upstream notices are retained; their CI workflows
+are not enabled in this independent repository.
+
+Stellarys' independent feature layers and Linux packaging are retained. The
+avatar skinning shader preserves precise AMD interpolation while bounding both
+matrix-palette indices. Second Life builds follow upstream's WebRTC voice path;
+obsolete legacy Vivox binaries and their Linux 32-bit runtime dependencies are
+not included. This preview does not claim a fix for the unresolved report of a
+Windows restart/Bluetooth compatibility problem.

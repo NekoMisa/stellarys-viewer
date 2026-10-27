@@ -27,9 +27,11 @@
 #ifndef LLCALLBACKMAP_H
 #define LLCALLBACKMAP_H
 
-#include <map>
+#include "llstl.h"
+
 #include <string>
 #include <functional>
+#include <unordered_map>
 
 class LLCallbackMap
 {
@@ -37,9 +39,9 @@ public:
     // callback definition.
     typedef std::function<void* (void* data)> callback_t;
 
-    typedef std::map<std::string, LLCallbackMap> map_t;
-    typedef map_t::iterator map_iter_t;
-    typedef map_t::const_iterator map_const_iter_t;
+    typedef std::unordered_map<std::string, LLCallbackMap> map_t;
+    // Resolve iterator types through map_t after LLCallbackMap is complete.
+    // Eager aliases here instantiate an incomplete mapped type with GCC 11.
 
     template <class T>
     static void* buildPanel(void* data)

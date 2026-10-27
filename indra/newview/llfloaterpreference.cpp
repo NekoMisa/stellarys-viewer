@@ -1021,8 +1021,6 @@ void LLFloaterPreference::apply()
     // <FS:Ansariel> Sound cache
     setSoundCacheLocation(gSavedSettings.getString("FSSoundCacheLocation"));
 
-    //LLViewerMedia::getInstance()->setCookiesEnabled(getChild<LLUICtrl>("cookies_enabled")->getValue());
-
     if (hasChild("web_proxy_enabled", true) &&hasChild("web_proxy_editor", true) && hasChild("web_proxy_port", true))
     {
         bool proxy_enable = getChild<LLUICtrl>("web_proxy_enabled")->getValue();
@@ -6078,7 +6076,7 @@ void LLFloaterPreference::loadFontPresetsFromDir(const std::string& dir, LLCombo
         //hack to deal with "fonts.xml"
         if (file == "fonts.xml")
         {
-            font_selection_combo->add("Deja Vu", file);
+            font_selection_combo->add("Inter", file);
         }
         //hack to get "fonts_[name].xml" to "Name"
         else
@@ -6416,7 +6414,6 @@ bool FSPanelPreferenceSounds::postBuild()
     mMoapInteractionFriendObjects    = getChild<LLCheckBoxCtrl>("media_first_click_friend");
     mMoapInteractionLandownerObjects = getChild<LLCheckBoxCtrl>("media_first_click_land");
 
-#if LL_FMODSTUDIO
     if (gAudiop && mOutputDevicePanel && mOutputDeviceComboBox)
     {
         gSavedSettings.getControl("FSOutputDeviceUUID")->getSignal()->connect(boost::bind(&FSPanelPreferenceSounds::onOutputDeviceChanged, this, _2));
@@ -6426,12 +6423,10 @@ bool FSPanelPreferenceSounds::postBuild()
 
         mOutputDeviceComboBox->setCommitCallback(boost::bind(&FSPanelPreferenceSounds::onOutputDeviceSelectionChanged, this, _2));
     }
-#else
-    if (mOutputDevicePanel)
+    else if (!gAudiop && mOutputDevicePanel)
     {
         mOutputDevicePanel->setVisible(false);
     }
-#endif
 
     mMoapInteractionAll->setCommitCallback(boost::bind(&FSPanelPreferenceSounds::updateMoapInteractionSetting, this));
     mMoapInteractionAny->setCommitCallback(boost::bind(&FSPanelPreferenceSounds::updateMoapInteractionSetting, this));

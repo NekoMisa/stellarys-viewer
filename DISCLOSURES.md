@@ -3,7 +3,7 @@
 **This software is not provided or supported by Linden Lab, the makers of Second Life.**
 
 Stellarys Viewer is an independent, non-commercial hobby project based on
-Firestorm 7.2.4.80712. It is also not provided or supported by the Firestorm team.
+Firestorm 7.2.5.81788. It is also not provided or supported by the Firestorm team.
 
 - **Support:** use [GitHub Issues](https://github.com/NekoMisa/stellarys-viewer/issues).
   The maintainer helps as time permits; there is no guaranteed response time.
@@ -16,9 +16,10 @@ Firestorm 7.2.4.80712. It is also not provided or supported by the Firestorm tea
   (Stellarys or Black Dragon). Resulting poses are local, not synchronised.
   Shot presets restore camera/lens/blur, local lighting and snapshot dimensions
   in the original region; they do not restore poses or save/upload a photo.
-- **Limitations:** this is a hobby viewer with an older Firestorm base, not
-  guaranteed to have the fixes/features of the latest official viewers. Linux
-  builds are experimental. Windows is x64 with AVX2; Linux is native x86_64.
+- **Limitations:** this independent hobby viewer may differ from or lag official
+  viewers; compatibility and freedom from bugs are not guaranteed. Linux
+  previews and Windows betas are experimental. Windows is x64 with AVX2;
+  Linux is native x86_64.
   Builds are unsigned. SHA-256 verifies integrity, not publisher identity.
 - **Content and controls:** the viewer can access user-created Second Life
   content, including Moderate/Adult content where your account is permitted.

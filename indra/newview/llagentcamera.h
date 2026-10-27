@@ -307,6 +307,8 @@ public:
 private:
     F32             mCinematicFOV = -1.f; // Temporary path-preview lens; never a saved setting.
 public:
+    F32             getRollAngle() const { return mRollAngle; }
+    void            setRollAngle(F32 radians) { mRollAngle = radians; }
 // </FS:Chanayane>
     void            resetCameraOrbit();
     void            resetOrbitDiff();

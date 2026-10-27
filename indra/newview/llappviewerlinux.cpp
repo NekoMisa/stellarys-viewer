@@ -74,16 +74,19 @@ extern "C"
 #include "boost/json.hpp"
 #include "fsversionvalues.h"
 
-#define VIEWERAPI_SERVICE "com.secondlife.ViewerAppAPIService"
-#define VIEWERAPI_PATH "/com/secondlife/ViewerAppAPI"
-#define VIEWERAPI_INTERFACE "com.secondlife.ViewerAppAPI"
+#define VIEWERAPI_SERVICE "org.stellarys.ViewerAppAPIService"
+#define VIEWERAPI_PATH "/org/stellarys/ViewerAppAPI"
+#define VIEWERAPI_INTERFACE "org.stellarys.ViewerAppAPI"
 
-static const char * DBUS_SERVER = "<node name=\"/com/secondlife/ViewerAppAPI\">\n"
-                                  "  <interface name=\"com.secondlife.ViewerAppAPI\">\n"
+static const char * DBUS_SERVER = "<node name=\"/org/stellarys/ViewerAppAPI\">\n"
+                                  "  <interface name=\"org.stellarys.ViewerAppAPI\">\n"
                                   "    <annotation name=\"org.freedesktop.DBus.GLib.CSymbol\" value=\"viewer_app_api\"/>\n"
                                   "    <method name=\"GoSLURL\">\n"
                                   "      <annotation name=\"org.freedesktop.DBus.GLib.CSymbol\" value=\"dispatchSLURL\"/>\n"
                                   "      <arg type=\"s\" name=\"slurl\" direction=\"in\" />\n"
+                                  "    </method>\n"
+                                  "    <method name=\"RequestUpdateQuit\">\n"
+                                  "      <arg type=\"b\" name=\"accepted\" direction=\"out\" />\n"
                                   "    </method>\n"
                                   "  </interface>\n"
                                   "</node>";
@@ -296,10 +299,24 @@ static void DoMethodeCall (GDBusConnection       *connection,
                                 gpointer               user_data)
 {
     LL_INFOS() << "DBUS message " << method_name << "  from: " << sender << " interface: " << interface_name << LL_ENDL;
-    const gchar *slurl;
-
-    g_variant_get (parameters, "(&s)", &slurl);
-    dispatchSLURL(slurl);
+    if (std::strcmp(method_name, "RequestUpdateQuit") == 0)
+    {
+        // The updater calls this only after an explicit installation choice.
+        // Normal logout/cleanup preserves settings and editor shutdown handling.
+        LLAppViewer::instance()->requestQuit();
+        g_dbus_method_invocation_return_value(invocation, g_variant_new("(b)", TRUE));
+        return;
+    }
+    if (std::strcmp(method_name, "GoSLURL") == 0)
+    {
+        const gchar *slurl;
+        g_variant_get(parameters, "(&s)", &slurl);
+        dispatchSLURL(slurl);
+        g_dbus_method_invocation_return_value(invocation, nullptr);
+        return;
+    }
+    g_dbus_method_invocation_return_error(invocation, G_DBUS_ERROR,
+        G_DBUS_ERROR_UNKNOWN_METHOD, "Unsupported Stellarys method");
 }
 
 GDBusNodeInfo *gBusNodeInfo = nullptr;
@@ -317,6 +334,10 @@ static void busAcquired(GDBusConnection *connection, const gchar *name, gpointer
                                                              NULL,  /* user_data_free_func */
                                                              NULL); /* GError** */
     g_assert (id > 0);
+    // Give each process its own updater address, including secondary viewers.
+    const std::string updater_service = "org.stellarys.ViewerUpdater.p" + std::to_string(getpid());
+    g_bus_own_name_on_connection(connection, updater_service.c_str(),
+        G_BUS_NAME_OWNER_FLAGS_NONE, nullptr, nullptr, nullptr, nullptr);
 }
 
 static void nameAcquired(GDBusConnection *connection, const gchar *name, gpointer user_data)

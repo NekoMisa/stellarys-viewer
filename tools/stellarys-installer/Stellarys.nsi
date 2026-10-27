@@ -11,10 +11,16 @@ Var SettingsCheck
 Var CacheCheck
 Var DataArgs
 !define PRODUCT "Stellarys Viewer"
+!ifndef STELLARYS_PACKAGE_VERSION
+ !define STELLARYS_PACKAGE_VERSION "0.1.9"
+!endif
+!ifndef STELLARYS_DISPLAY_VERSION
+ !define STELLARYS_DISPLAY_VERSION "0.1.9"
+!endif
 !define MUI_ICON "${PAYLOAD}\Stellarys.ico"
 !define MUI_UNICON "${PAYLOAD}\Stellarys.ico"
 !define KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\StellarysViewer"
-Name "${PRODUCT} 0.1.8 (based on Firestorm 7.2.4.80712)"
+Name "${PRODUCT} ${STELLARYS_DISPLAY_VERSION} (based on Firestorm 7.2.5.81788)"
 OutFile "${OUTPUT}"
 InstallDir "$PROGRAMFILES64\StellarysViewer"
 InstallDirRegKey HKLM "${KEY}" "InstallLocation"
@@ -24,17 +30,17 @@ SetCompressor lzma
 SetCompressorDictSize 32
 !include "${__FILEDIR__}\InstallFiles.nsh"
 AllowSkipFiles off
-BrandingText "Stellarys Viewer 0.1.8 (based on Firestorm 7.2.4.80712)"
-VIProductVersion "0.1.8.0"
+BrandingText "Stellarys Viewer ${STELLARYS_DISPLAY_VERSION} (based on Firestorm 7.2.5.81788)"
+VIProductVersion "0.1.9.0"
 VIAddVersionKey /LANG=1033 "ProductName" "Stellarys Viewer"
-VIAddVersionKey /LANG=1033 "FileDescription" "Stellarys Viewer 0.1.8 Setup"
-VIAddVersionKey /LANG=1033 "FileVersion" "0.1.8.0"
-VIAddVersionKey /LANG=1033 "ProductVersion" "0.1.8 (based on Firestorm 7.2.4.80712)"
+VIAddVersionKey /LANG=1033 "FileDescription" "Stellarys Viewer ${STELLARYS_DISPLAY_VERSION} Setup"
+VIAddVersionKey /LANG=1033 "FileVersion" "0.1.9.0"
+VIAddVersionKey /LANG=1033 "ProductVersion" "${STELLARYS_DISPLAY_VERSION} (based on Firestorm 7.2.5.81788)"
 VIAddVersionKey /LANG=1033 "LegalCopyright" "Original viewer and libraries: their respective authors."
 Var GuardResult
 Var GuardMessage
 !define MUI_ABORTWARNING
-!define MUI_WELCOMEPAGE_TEXT "Stellarys Viewer 0.1.8 (based on Firestorm 7.2.4.80712), with the AMD flicker fix and permission-based local poser.$\r$\n$\r$\nInstalls for all Windows users. Each user has a separate Stellarys profile and cache. Existing Firestorm, Black Dragon and prototype profiles are not changed.$\r$\n$\r$\nUpdate checks are built in; downloading and installation require your approval."
+!define MUI_WELCOMEPAGE_TEXT "Stellarys Viewer ${STELLARYS_DISPLAY_VERSION} (based on Firestorm 7.2.5.81788), with the AMD flicker fix and permission-based local poser.$\r$\n$\r$\nInstalls for all Windows users. Each user has a separate Stellarys profile and cache. Existing Firestorm, Black Dragon and prototype profiles are not changed.$\r$\n$\r$\nUpdate checks are built in; downloading and installation require your approval."
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_TEXT_TOP "Read the Stellarys disclosures and privacy policy before installing."
 !insertmacro MUI_PAGE_LICENSE "${PAYLOAD}\DISCLOSURES.txt"
@@ -156,10 +162,10 @@ Section "Viewer"
  CreateShortCut "$SMPROGRAMS\${PRODUCT}\Read me.lnk" "$INSTDIR\README-Stellarys.txt"
  CreateShortCut "$SMPROGRAMS\${PRODUCT}\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
  CreateShortCut "$DESKTOP\${PRODUCT}.lnk" "$INSTDIR\StellarysViewer.exe" "" "$INSTDIR\StellarysViewer.exe"
- WriteRegStr HKLM "${KEY}" "DisplayName" "Stellarys Viewer 0.1.8"
- WriteRegStr HKLM "${KEY}" "DisplayVersion" "0.1.8"
- WriteRegStr HKLM "${KEY}" "BaseViewerVersion" "7.2.4.80712"
- WriteRegStr HKLM "${KEY}" "StellarysVersion" "0.1.8"
+ WriteRegStr HKLM "${KEY}" "DisplayName" "Stellarys Viewer ${STELLARYS_DISPLAY_VERSION}"
+ WriteRegStr HKLM "${KEY}" "DisplayVersion" "${STELLARYS_PACKAGE_VERSION}"
+ WriteRegStr HKLM "${KEY}" "BaseViewerVersion" "7.2.5.81788"
+ WriteRegStr HKLM "${KEY}" "StellarysVersion" "${STELLARYS_PACKAGE_VERSION}"
  WriteRegStr HKLM "${KEY}" "InstallerRevision" "1"
  WriteRegStr HKLM "${KEY}" "Publisher" "Stellarys (unofficial build)"
  WriteRegStr HKLM "${KEY}" "InstallLocation" "$INSTDIR"

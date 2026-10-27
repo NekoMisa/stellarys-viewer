@@ -34,21 +34,18 @@ mat4 getSkinnedTransform()
     int i = int(floor(weight.x));
     SKIN_PRECISE float x = fract(weight.x);
 
-    // Limit interpolation within the bounds of the matrix.
+    // Keep AMD's precise interpolation and bound both palette indices.
     if (i < 0)
     {
         i = 0;
         x = 0.0;
     }
-    else if (i >= 14)
-    {
-        i = 13;
-        x = 1.0;
-    }
+    i = min(i, 14);
+    int next = min(i + 1, 14);
 
-    ret[0] = mix(matrixPalette[i+0], matrixPalette[i+1], x);
-    ret[1] = mix(matrixPalette[i+15],matrixPalette[i+16], x);
-    ret[2] = mix(matrixPalette[i+30],matrixPalette[i+31], x);
+    ret[0] = mix(matrixPalette[i+0], matrixPalette[next+0], x);
+    ret[1] = mix(matrixPalette[i+15],matrixPalette[next+15], x);
+    ret[2] = mix(matrixPalette[i+30],matrixPalette[next+30], x);
     ret[3] = vec4(0,0,0,1);
 
 // TODO: Consider if this hack is still necessary. Any driver could potentially optimize this out if the return is before the unreachable code or if the assigned variable is unused.

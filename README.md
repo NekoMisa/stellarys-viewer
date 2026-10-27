@@ -5,25 +5,34 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.1.8 - based on Firestorm 7.2.4.80712.**
+**Stellarys Viewer 0.1.9 Beta 1 for Windows - based on Firestorm 7.2.5.81788.**
 The Stellarys version is separate from the Firestorm base version.
 
-## What's new in 0.1.8
+## Windows 0.1.9 Beta 1
 
-- Cinematic camera paths with keyframes, adjustable travel times, lens zoom and roll.
-- Instant cuts between selected keyframes: move from A to B, then cut straight to C.
-- Start countdowns, pause/resume, reverse loops and closed loops for circling shots.
-- Faster Windows installation: identical application files are kept in place.
-- Full reinstall / repair can replace every application file while preserving your data.
+Download the [Windows beta installer](https://github.com/NekoMisa/stellarys-viewer/releases/tag/v0.1.9-beta.1)
+to try the experimental branch. The new Windows updater includes an
+**Include experimental updates (beta)** checkbox, off by default and saved in
+your Stellarys profile. Stable users receive stable releases; opting in also
+allows Windows betas. A final 0.1.9 release supersedes its betas. Turning the
+checkbox off does not downgrade an installed beta. Existing 0.1.8 users need
+one manual beta installation to get this checkbox.
 
-Open **Photo → Camera Paths** to create and save a path locally. Stop / return or
-Esc ends the preview. See the [camera and shot guide](tools/stellarys-photography/README.md)
-and [release notes](doc/RELEASE-NOTES-0.1.8.md).
+This beta updates the Firestorm base to **7.2.5.81788** while
+retaining Stellarys' AMD changes, consent-based poser, Photo menu, saved shots,
+cinematic camera paths, optional link controls and platform-specific updater.
+The avatar skinning shader combines AMD precision safeguards with bounded
+palette indexing from the new upstream release.
 
-Windows still downloads the complete installer. Normal updates replace changed,
-missing or damaged application files; repair replaces every packaged file.
-Settings, cache, saved shots/paths and trusted/blocked lists are preserved in
-both modes. Firestorm settings import is not part of this version.
+The stable Windows and published Linux downloads remain at 0.1.8. This Windows
+beta is optional; compilation and individual tests do not establish compatibility
+with every machine or region. See the [release notes](doc/RELEASE-NOTES-0.1.9.md)
+and [validation record](doc/VALIDATION-0.1.9.md).
+
+Firestorm 7.2.5 uses the Inter font and wider script dialogs. To restore the
+previous font and text sizes, choose **Preferences > User Interface > Font >
+Font Scheme > Deja vu**, then restart Stellarys. Dialog width is a separate
+upstream layout change.
 
 **This software is not provided or supported by Linden Lab, the makers of Second Life.**
 Read [Before installing Stellarys](DISCLOSURES.md) and the
@@ -111,8 +120,8 @@ Development and support happen as time allows.
 
 ## Building and testing
 
-Developers can find the [Windows build instructions](doc/building_windows.md),
-[local build notes](tools/kitty-prototype/BUILDING.md) and
+Developers can find the [current Windows build guide](tools/stellarys-build/README.md),
+[Linux build guide](tools/stellarys-linux/BUILDING.md) and
 [packaging instructions](tools/stellarys-installer/BUILDING.md) in this repository.
 Build helpers need paths and external dependencies configured for your machine.
 

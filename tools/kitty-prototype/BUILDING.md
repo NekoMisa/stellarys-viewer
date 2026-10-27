@@ -1,5 +1,10 @@
 # Rebuilding this prototype
 
+These are historical notes for the original Firestorm 7.2.4 prototype. For
+current Stellarys builds, use [the current Windows build guide](../stellarys-build/README.md)
+or [the Linux guide](../stellarys-linux/BUILDING.md). The current poser discovery
+fixture can be run with `test_discovery.py --output <disposable-test-directory>`.
+
 The source/ tree already contains the existing Fire Kitty Fix 0.1.0 AMD changes
 and the experimental poser implementation. It is based on Firestorm commit
 10bd3c9f930c76e1427ddd4ecece6cdf36b4406d, base version 7.2.4 (80712).

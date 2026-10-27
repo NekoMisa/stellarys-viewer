@@ -52,14 +52,44 @@ maintainer action; this helper does not do it.
 
 ## Build and tests
 
-Compile `Updater.cs`, `LinkRegistration.cs` and `ViewerShutdown.cs` using .NET Framework's `csc.exe`, target `winexe`, referencing
+Compile `Updater.cs`, `UpdateChannels.cs`, `LinkRegistration.cs` and `ViewerShutdown.cs` using .NET Framework's `csc.exe`, target `winexe`, referencing
 `System.Windows.Forms.dll`, `System.Drawing.dll`, `System.Net.Http.dll`, and
 `System.Web.Extensions.dll`. Install it beside `StellarysViewer.exe`.
 
-For tests, compile those three `.cs` files plus `UpdaterTests.cs` with target `exe` and `/main:UpdaterTests`.
+For tests, compile those four `.cs` files plus `UpdaterTests.cs` with target `exe` and `/main:UpdaterTests`.
 The tests exercise real release parsing, version comparison, URL policy,
 release-summary formatting and SHA-256/size verification with harmless
 temporary files.
+
+Compile the same four sources with `UpdateChannelTests.cs` and
+`/main:UpdateChannelTests` to check beta ordering, release pagination, channel
+selection and profile persistence with disposable fixtures.
+
+## Windows experimental updates
+
+The updater's **Include experimental updates (beta)** checkbox is off by
+default. Its choice is stored in the user's Stellarys profile, so normal updates
+and uninstall with data preserved retain it. It has no effect on Linux feeds.
+
+The stable channel uses GitHub's latest stable release. Opting in also checks
+published releases for canonical Windows beta tags such as `v0.1.9-beta.1`.
+Beta releases must be marked as GitHub prereleases and contain the matching
+`Stellarys-Viewer-0.1.9-beta.1-Windows-x64-Setup.exe` asset, size and SHA-256 digest.
+Drafts and Linux releases are excluded. Existing download verification and
+installation protections apply to both Windows channels.
+
+Version order is Beta 1, Beta 2, then the final release at the same base version.
+Turning the checkbox off stops beta offers; it never automatically downgrades.
+An installation of 0.1.8 needs one manual installation of the new updater before
+it can opt in. The experimental branch is a development branch, not a download
+feed: publishing a beta requires a matching prerelease, installer and source.
+Keep stable `main` unchanged until the port has been tested and approved.
+
+For beta packaging, set `windows_update_channel` to `experimental`, set
+`windows_beta` to a positive integer, match `Release.CurrentBeta`, and compile
+with channel variant `Windows Beta N`. For a final release, use `stable`, beta
+zero, `CurrentBeta = 0`, and no channel variant. The packaging helper rejects
+mismatched identities.
 
 `Test-RemoveUserData.ps1 -FixtureRoot <new empty directory>` validates optional
 profile removal only against generated fixtures. Never run the production

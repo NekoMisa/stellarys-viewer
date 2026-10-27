@@ -1,8 +1,12 @@
 """Compile the actual viewer discovery function against controlled avatar fixtures."""
 from pathlib import Path
-import importlib.util, subprocess, sys
+import argparse, importlib.util, subprocess, sys
 here = Path(__file__).resolve().parent
-src = Path(r'C:\FK-Poser-Test\source\indra\newview\fsfloaterposer.cpp')
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--output', type=Path, required=True, help='Disposable test output directory outside the source tree')
+args = parser.parse_args()
+repo = here.parents[1]
+src = repo / 'indra/newview/fsfloaterposer.cpp'
 text = src.read_text(encoding='utf-8')
 start = text.index('uuid_vec_t FSFloaterPoser::getNearbyAvatarsAndAnimeshes() const')
 end = text.index('bool FSFloaterPoser::avatarIsNearbyMe(', start)
@@ -53,11 +57,13 @@ int main() {
     std::cout << "PASS: actual discovery function includes nearby other avatar and self/animesh; excludes muted, distant, dead, other-region and non-avatar; empty list handled.\n";
 }
 '''
-testdir = here / 'tests'
+testdir = args.output.resolve()
+if testdir.is_relative_to(repo):
+    parser.error('Keep generated test binaries outside the source tree.')
 testdir.mkdir(exist_ok=True)
 testsrc = testdir / 'discovery-tests.cpp'
 testsrc.write_text(prefix + function + suffix, encoding='utf-8')
-helper = here.parents[1] / 'work/package/Black-Dragon-AMD-Port/build_windows.py'
+helper = here / 'toolchain_helper.py'
 spec = importlib.util.spec_from_file_location('helper', helper)
 mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 _, install, version, _, env = mod.visual_studio_environment()
