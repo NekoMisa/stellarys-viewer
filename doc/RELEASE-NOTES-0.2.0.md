@@ -8,6 +8,8 @@
 - Includes the Firestorm **7.2.5.81788** base, clothing-layer drag-and-drop and numeric positioning, and the tested mirror sampling fix.
 - Preserves the AMD mesh safeguards, permission-based poser, Photo tools, saved shots, camera paths and separate settings/cache.
 
+Join the [Stellarys Discord](https://discord.gg/MEHr9xgnXG) from the login page or **Help > Stellarys Discord** for community discussion and feedback.
+
 ## Stellarys Midnight
 
 Midnight is the default for the Stellarys login mode. Saved explicit skin choices
