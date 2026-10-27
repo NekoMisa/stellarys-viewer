@@ -4,15 +4,14 @@ Thank you for helping improve Stellarys Viewer. Bug reports, documentation,
 translations and code contributions are welcome.
 
 Stellarys is an independent project based on Firestorm and Linden Lab viewer
-code. Please use this repository for Stellarys issues and pull requests.
+code. Please use the [Stellarys Discord](https://discord.gg/MEHr9xgnXG) for feedback and bug reports, and this repository for code contributions and pull requests.
 The upstream teams do not provide support for Stellarys builds.
 Review and support are best effort; a submission does not guarantee a merge
 or a response time.
 
 ## Reporting bugs and suggesting features
 
-Search the [existing issues](https://github.com/NekoMisa/stellarys-viewer/issues)
-before opening a new one. For a bug report, include:
+Please report bugs and suggest features on the [Stellarys Discord](https://discord.gg/MEHr9xgnXG). GitHub Issues remain available when useful for tracking development. For a bug report, include:
 
 - Your Stellarys version and the separate Firestorm base version from About.
 - Your Windows version and, for graphics problems, GPU and driver version.

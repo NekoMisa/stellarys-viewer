@@ -39,7 +39,7 @@ expanded states, with its original 40x35 dimensions and arrow preserved.
 Prefer the familiar look? Select **Firestorm** or **StarLight** under
 **Preferences > Skins**, then restart. Feedback on Midnight's readability,
 contrast and artwork is welcome through
-[GitHub Issues](https://github.com/NekoMisa/stellarys-viewer/issues).
+[Stellarys Discord](https://discord.gg/MEHr9xgnXG).
 
 Unread tab/button highlights use muted steel blue (#355574), with a slightly
 lighter blue for mentions (#466583). The selected tab remains lavender. The

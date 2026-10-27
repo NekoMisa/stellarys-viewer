@@ -97,20 +97,22 @@ choose a viewer action that does so.
 
 The Stellarys additions do not operate a separate maintainer analytics or
 automatic crash-upload service. Diagnostic files can still be created locally.
-Support requests are voluntary. GitHub Issues, comments and attachments are
-public; do not post passwords, saved sign-in files, private conversations or
+Support requests are voluntary. Discord is the preferred support channel.
+Messages and attachments in server channels may be visible to other members;
+GitHub Issues, comments and attachments are public; do not post passwords, saved sign-in files, private conversations or
 unredacted logs. Technical information sent to another resident through the
 inherited support feature requires your approval.
 
 The maintainer can read and use information you deliberately submit to the
 project to investigate issues and discuss development. Public submissions may
-remain in GitHub history and copies held by others. Do not assume that deleting
-a comment removes every copy. GitHub handles its own account and hosting data.
+remain in service histories and copies held by others. Do not assume that deleting
+a message or comment removes every copy. Discord and GitHub handle their own
+account and hosting data.
 
 ## Contact and changes
 
 For privacy questions, contact the maintainer through
-[Stellarys GitHub Issues](https://github.com/NekoMisa/stellarys-viewer/issues)
+[Stellarys Discord](https://discord.gg/MEHr9xgnXG)
 without including sensitive information. Ask for a private contact method before
 sharing any private details. Support is provided as time permits, without a
 guaranteed response time. Changes to these practices will be documented in this

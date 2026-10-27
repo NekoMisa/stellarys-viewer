@@ -20,7 +20,7 @@ IM highlights. It is the default for the Stellarys login mode; saved explicit sk
 choices take precedence. Prefer the familiar look? Select **Firestorm** or
 **StarLight** under **Preferences > Skins**, then restart. Please leave feedback
 on the new skin's readability, contrast and artwork through
-[GitHub Issues](https://github.com/NekoMisa/stellarys-viewer/issues).
+[Stellarys Discord](https://discord.gg/MEHr9xgnXG).
 
 Login and teleport screens now show bundled, rotating Stellarys feature tips
 instead of Firestorm promotional messages. No advertising service is added.
@@ -42,7 +42,7 @@ upstream layout change.
 
 **This software is not provided or supported by Linden Lab, the makers of Second Life.**
 Read [Before installing Stellarys](DISCLOSURES.md) and the
-[privacy policy](PRIVACY.md). Support is provided through GitHub Issues as time
+[privacy policy](PRIVACY.md). Support is provided through the Stellarys Discord server as time
 permits; do not post passwords, private conversations or unredacted logs.
 
 ## Features
@@ -120,7 +120,7 @@ Both are independent hobby projects with their own settings, cache and updates.
 ## Feedback and contributions
 
 This is an independent hobby project. Suggestions, bug reports and contributions
-are welcome through [GitHub Issues](https://github.com/NekoMisa/stellarys-viewer/issues)
+are welcome through [Stellarys Discord](https://discord.gg/MEHr9xgnXG)
 and pull requests. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to help.
 Development and support happen as time allows.
 

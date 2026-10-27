@@ -5,7 +5,7 @@
 Stellarys Viewer is an independent, non-commercial hobby project based on
 Firestorm 7.2.5.81788. It is also not provided or supported by the Firestorm team.
 
-- **Support:** use [GitHub Issues](https://github.com/NekoMisa/stellarys-viewer/issues).
+- **Support:** use [Stellarys Discord](https://discord.gg/MEHr9xgnXG).
   The maintainer helps as time permits; there is no guaranteed response time.
   Do not include credentials, private chat or unredacted logs in public issues.
 - **Privacy:** read the [Stellarys privacy policy](PRIVACY.md) before installing.

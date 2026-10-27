@@ -3,7 +3,7 @@
 ## What's new
 
 - New **Stellarys Midnight** skin: dark navy panels, subtle stars and softer blue unread-IM highlights.
-- Prefer **Firestorm** or **StarLight**? Choose it in **Preferences > Skins**, then restart. Please leave feedback on the new skin through GitHub Issues.
+- Prefer **Firestorm** or **StarLight**? Choose it in **Preferences > Skins**, then restart. Please leave feedback on the new skin through the Stellarys Discord server.
 - Rotating Stellarys feature tips during login and teleporting.
 - Stellarys additions: clothing-layer drag-and-drop, numeric layer positioning and the tested mirror sampling fix.
 
@@ -24,7 +24,7 @@ tabs use muted blue with a slightly lighter blue for mentions. Existing flashing
 settings remain in effect.
 
 Feedback on readability, contrast, stars and artwork is welcome at
-[GitHub Issues](https://github.com/NekoMisa/stellarys-viewer/issues). When reporting
+[Stellarys Discord](https://discord.gg/MEHr9xgnXG). When reporting
 a visual problem, include the skin, UI scale and relevant cropped screenshot;
 hide private conversations and account details.
 

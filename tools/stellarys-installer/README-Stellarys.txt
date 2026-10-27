@@ -16,7 +16,7 @@ The new navy/starry skin is the default for the Stellarys login mode; saved
 explicit skin choices take precedence. Prefer the familiar look? Select Firestorm
 or StarLight in Preferences > Skins, then restart. Leave toolbar reset unchecked
 to retain custom toolbar placement. Please leave feedback about the skin's
-readability, contrast and artwork at https://github.com/NekoMisa/stellarys-viewer/issues.
+readability, contrast and artwork at https://discord.gg/MEHr9xgnXG.
 Unread IM highlights use muted blue, with a lighter blue for mentions. Folder
 icons remain distinct and Received Items matches the navy controls.
 Login and teleport screens now show bundled rotating Stellarys feature tips.
@@ -54,7 +54,7 @@ This software is not provided or supported by Linden Lab, the makers of Second L
 It is also not provided or supported by the Firestorm team.
 Read the bundled DISCLOSURES.md and PRIVACY.md before installing/using it.
 Privacy: https://github.com/NekoMisa/stellarys-viewer/blob/main/PRIVACY.md
-Support: https://github.com/NekoMisa/stellarys-viewer/issues (as time permits).
+Support: https://discord.gg/MEHr9xgnXG (as time permits).
 Never post credentials or private/unredacted logs in public support requests.
 
 EXPERIMENTAL WEB LINK CONTROLS
