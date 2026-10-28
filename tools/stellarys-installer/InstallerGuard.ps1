@@ -32,11 +32,19 @@ function Assert-NoReparsePoint([string]$Path) {
         if (Test-Path -LiteralPath $p) {
             $item = Get-Item -LiteralPath $p -Force
             if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
-                throw 'Choose a normal folder, without junctions or symbolic links in its path.'
+                throw ('A Windows reparse point was found in the installation path: "{0}" (attributes: {1}). Choose a normal folder. No files will be changed.' -f $item.FullName, $item.Attributes)
             }
         }
         $p = [IO.Path]::GetDirectoryName($p)
     }
+}
+
+# ReShade may install a file link here. Stellarys does not package this file;
+# updates/repair/uninstall must leave it alone. Never permit directory redirects.
+function Test-PreservedReShadeLink($Item, [string]$InstallRoot) {
+    return (($Item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0 -and
+        ($Item.Attributes -band [IO.FileAttributes]::Directory) -eq 0 -and
+        [string]::Equals($Item.FullName, (Join-Path $InstallRoot 'opengl32.dll'), [StringComparison]::OrdinalIgnoreCase))
 }
 
 function Assert-KittyDestination([string]$Path, [bool]$RequireMarker = $false) {
@@ -64,7 +72,8 @@ function Assert-KittyDestination([string]$Path, [bool]$RequireMarker = $false) {
     while ($pending.Count -gt 0) {
         foreach ($item in Get-ChildItem -LiteralPath $pending.Pop() -Force) {
             if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
-                throw 'The installation contains a junction or symbolic link. No files will be changed.'
+                if (Test-PreservedReShadeLink $item $full) { continue }
+                throw ('The installation contains a Windows reparse point: "{0}" (attributes: {1}). This may be a junction, symbolic link or another special file type. No files will be changed.' -f $item.FullName, $item.Attributes)
             }
             if ($item.PSIsContainer) { $pending.Push($item.FullName) }
         }

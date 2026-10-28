@@ -5,13 +5,15 @@ Second Life photography, posing and experimenting with extra viewer features.
 The idea is to keep the familiar Firestorm experience while adding useful tools
 and graphics fixes as the project grows.
 
-**Stellarys Viewer 0.2.0 for Windows.**
+**Stellarys Viewer 0.2.1 for Windows.**
 Firestorm base: **7.2.5.81788**.
 The Stellarys version is separate from the Firestorm base version.
 
-## Windows 0.2.0
+## Windows 0.2.1
 
-Download the [Windows installer](https://github.com/NekoMisa/stellarys-viewer/releases/tag/v0.2.0)
+This hotfix restores Firestorm’s minimap avatar colours and group profile layout in Midnight, uses white for your own chat, and allows the root ReShade `opengl32.dll` file link to remain during updates. Discord is the preferred place for feedback and bug reports.
+
+Download the [Windows installer](https://github.com/NekoMisa/stellarys-viewer/releases/tag/v0.2.1)
 or check for updates in the viewer. This is a stable Windows release; experimental
 updates do not need to be enabled. Existing 0.1.9 beta users can also update to it.
 
@@ -22,18 +24,17 @@ choices take precedence. Prefer the familiar look? Select **Firestorm** or
 on the new skin's readability, contrast and artwork through
 [Stellarys Discord](https://discord.gg/MEHr9xgnXG).
 
-Login and teleport screens now show bundled, rotating Stellarys feature tips
-instead of Firestorm promotional messages. No advertising service is added.
+Login and teleport screens show bundled, rotating Stellarys feature tips.
 
-This release includes the **Firestorm 7.2.5.81788** base, **drag-and-drop layer
+The upstream base is **Firestorm 7.2.5.81788**. Stellarys adds **drag-and-drop layer
 ordering** and **Move to position…** in **Appearance > Edit Outfit Parts > Clothing**,
 and the mirror sampling guard tested against coloured surface artifacts on the
 maintainer's AMD system. It retains the AMD mesh safeguards, permission-based
 poser, Photo tools, shot presets, cinematic camera paths and optional link controls.
 
 The published Linux packages remain at 0.1.8 while the Linux update is prepared
-separately. See the [release notes](doc/RELEASE-NOTES-0.2.0.md) and
-[validation record](doc/VALIDATION-0.2.0.md) for actual checks and their limits.
+separately. See the [release notes](doc/RELEASE-NOTES-0.2.1.md) and
+[validation record](doc/VALIDATION-0.2.1.md) for actual checks and their limits.
 
 Firestorm 7.2.5 uses the Inter font and wider script dialogs. To restore the
 previous font and text sizes, choose **Preferences > User Interface > Font >

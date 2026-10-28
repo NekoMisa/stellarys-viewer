@@ -1,4 +1,4 @@
-Stellarys Viewer 0.2.0
+Stellarys Viewer 0.2.1
 Firestorm base: 7.2.5.81788
 
 A hobby viewer with the AMD flicker fix and permission-based local posing.
@@ -129,7 +129,7 @@ disabled there. By default it checks the latest stable GitHub Release at:
 https://github.com/NekoMisa/stellarys-viewer
 "Include experimental updates (beta)" is off by default. Enable it to also
 receive Windows betas. The choice is saved with your Stellarys settings and
-survives normal updates. Beta 2 replaces Beta 1; final 0.2.0 replaces its betas.
+survives normal updates. Beta 2 replaces Beta 1; final 0.2.1 replaces its betas.
 Turning it off stops beta offers without automatically downgrading your viewer.
 Version 0.1.8 needs one manual beta installation to get this checkbox.
 Updates require an exact versioned Windows installer asset with GitHub's SHA-256
@@ -171,3 +171,5 @@ LICENSING
 See LICENSE.txt and ThirdPartyLicenses. Credits and upstream notices retained.
 Source, issues and release information:
 https://github.com/NekoMisa/stellarys-viewer
+
+0.2.1 hotfix: Midnight minimap/radar colours match Firestorm, own chat is white, and group profiles use Firestorm’s layout with Midnight colours. The installer preserves ReShade’s additional root opengl32.dll file link. Other directory/owned-file links remain refused with an exact path in the error.

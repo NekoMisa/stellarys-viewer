@@ -61,6 +61,7 @@ def q(s):return '"'+str(s).replace('$','$$').replace('"','$\\"')+'"'
 for p in sorted(payload.rglob('*')):
  if not p.is_file():continue
  rel=p.relative_to(payload)
+ assert str(rel).lower() != 'opengl32.dll', 'Root opengl32.dll is reserved for preserved third-party graphics wrappers'
  assert not any(x.lower() in ('.git','logs','user_settings','private-backups','browser_profile','cache') for x in rel.parts),rel
  assert p.suffix.lower() not in ('.log','.dmp','.pdb','.pfx','.p12','.key'),rel
  assert p.name.lower() not in ('password.dat','bin_conf.dat','stored_logins.xml','agni_agents.xml'),rel

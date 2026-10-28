@@ -83,6 +83,20 @@ for name, palette, alpha in [
     ('ScriptDialog', 'raised', 1), ('ChatHeaderAlphaBackground', 'panel', .9),
 ]:
     ET.SubElement(colors, 'color', name=name, value=rgba(COLORS[palette], alpha))
+# Radar and minimap meaning colours follow Firestorm, independently of Midnight's accent.
+# Resolve references before copying so AvatarListItemChatRange does not inherit
+# our violet AccentColor. Saved per-user/contact-set choices remain untouched.
+firestorm_colors = {}
+for palette_file in (ROOT/'default/colors.xml', ROOT/'firestorm/colors.xml'):
+    firestorm_colors.update({entry.get('name'): entry.attrib for entry in ET.parse(palette_file).getroot()})
+def firestorm_color_value(name, seen=()):
+    if name in seen:
+        raise ValueError('Colour reference cycle: ' + name)
+    entry = firestorm_colors[name]
+    return entry['value'] if 'value' in entry else firestorm_color_value(entry['reference'], seen + (name,))
+for name in sorted(firestorm_colors):
+    if name.startswith(('AvatarListItem', 'MapAvatar')) or name == 'UserChatColor':
+        ET.SubElement(colors, 'color', name=name, value=firestorm_color_value(name))
 xml_write(colors, SKIN / 'colors.xml')
 
 textures = ET.Element('textures', version='101')
@@ -286,4 +300,8 @@ preview_path.parent.mkdir(parents=True,exist_ok=True)
 preview.save(preview_path,optimize=True)
 shutil.copyfile(ROOT/'default/html/en-us/stellarys/privacy.html',
                 SKIN/'html/en-us/stellarys/privacy.html')
+# Keep Firestorm's complete group profile layout; shared Midnight colour roles
+# and widget defaults still supply its appearance.
+shutil.copyfile(ROOT/'firestorm/xui/en/panel_group_info_sidetray.xml',
+                SKIN/'xui/en/panel_group_info_sidetray.xml')
 print('Generated',len(list(TEX.glob('*.png'))),'original UI textures and',len(textures),'texture aliases.')

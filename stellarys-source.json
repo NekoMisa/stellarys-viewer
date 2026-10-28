@@ -9,7 +9,7 @@
   "application_branding": "Stellarys Viewer",
   "updater": "Platform-specific verified GitHub Releases updates; approved download and installation",
   "black_dragon_renderer_port": "not implemented",
-  "stellarys_version": "0.2.0",
+  "stellarys_version": "0.2.1",
   "windows_update_channel": "stable",
   "windows_beta": 0,
   "profile": "Stellarys_x64",

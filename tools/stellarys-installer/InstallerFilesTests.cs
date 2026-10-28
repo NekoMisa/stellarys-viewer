@@ -21,6 +21,8 @@ class InstallerFilesTests
         if(args.Length!=1||Directory.Exists(args[0]))throw new Exception("Supply a new disposable fixture directory.");
         string root=Path.GetFullPath(args[0]);Directory.CreateDirectory(root);
         string app=Path.Combine(root,"app"),manifest=Path.Combine(root,"files.json");Directory.CreateDirectory(app);
+        string addon=Path.Combine(app,"opengl32.dll");
+        File.WriteAllText(addon,"Third-party wrapper fixture");
         var files=new[]{Entry("same.txt","same"),Entry("changed.txt","new!"),Entry("missing.txt","add")};
         File.WriteAllText(manifest,new JavaScriptSerializer().Serialize(files));
         var entries=InstallerFiles.Load(manifest);
@@ -37,6 +39,9 @@ class InstallerFilesTests
         foreach(var f in files)File.WriteAllText(Path.Combine(app,(string)f["path"]),f["path"].Equals("same.txt")?"same":f["path"].Equals("changed.txt")?"new!":"add",new UTF8Encoding(false));
         InstallerFiles.Verify(app,entries);Check(true);
         Check(Encoding.ASCII.GetString(InstallerFiles.Plan(app,entries,false))=="111");
+        Check(File.ReadAllText(addon)=="Third-party wrapper fixture");
+        Check(Encoding.ASCII.GetString(InstallerFiles.Plan(app,entries,true))=="000");
+        Check(File.ReadAllText(addon)=="Third-party wrapper fixture");
         using(var locked=new FileStream(Path.Combine(app,"same.txt"),FileMode.Open,FileAccess.ReadWrite,FileShare.None))
         {Reject(()=>InstallerFiles.Plan(app,entries,false));Reject(()=>InstallerFiles.Plan(app,entries,true));}
         foreach(string path in new[]{"../escape","C:\\outside","\\\\server\\share","file:stream","a\\..\\b","a\\.\\b","a\\\\b","a ","a.","NUL.txt","COM1","user_settings\\settings.xml","cache\\x","logs\\x","browser_profile\\x"})

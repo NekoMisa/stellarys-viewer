@@ -44,3 +44,7 @@ contrast and artwork is welcome through
 Unread tab/button highlights use muted steel blue (#355574), with a slightly
 lighter blue for mentions (#466583). The selected tab remains lavender. The
 existing notification flash timing, count and user settings are unchanged.
+
+Radar avatar/range/age/voice colour roles retain the standard Firestorm values independently of Midnight’s accent. Saved user/contact-set colours take precedence. The group profile uses the complete Firestorm panel layout with Midnight’s shared background colours and widget styling.
+
+Minimap avatar colours also retain Firestorm’s meanings: green other avatars, yellow friends. Own chat uses Firestorm’s white. Run `python tools/stellarys-skin/test_midnight_semantics.py` to check these roles and the group layout; add `--payload PATH` to compare the staged Midnight files too.

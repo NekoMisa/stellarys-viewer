@@ -16,13 +16,13 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly: System.Reflection.AssemblyTitle("Stellarys Viewer Updater")]
-[assembly: System.Reflection.AssemblyVersion("0.2.0.0")]
+[assembly: System.Reflection.AssemblyVersion("0.2.1.0")]
 
 internal sealed class Release
 {
     internal const string Repository = "https://github.com/NekoMisa/stellarys-viewer";
     internal const string Api = "https://api.github.com/repos/NekoMisa/stellarys-viewer/releases/latest";
-    internal const string Current = "0.2.0";
+    internal const string Current = "0.2.1";
     internal const int CurrentBeta = 0; // 0 for a stable build; positive for Windows beta revisions.
     internal Version Version;
     internal int Beta;

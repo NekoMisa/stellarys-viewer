@@ -11,8 +11,8 @@ project, not a rewrite of the original authors' contribution history.
 | AMD reference commit | `0c132c2eb3d15afc56d7fe42589dc8f2eb778197` |
 | Poser snapshot | Fire Kitty Poser Prototype 0.1, revision 2 |
 | Public project name | Stellarys Viewer |
-| Stellarys Windows package version | 0.2.0 |
-| Current development source | Stellarys 0.2.0 |
+| Stellarys Windows package version | 0.2.1 |
+| Current development source | Stellarys 0.2.1 |
 
 Upstream repository: https://github.com/FirestormViewer/phoenix-firestorm
 

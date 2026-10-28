@@ -106,4 +106,20 @@
   <color name="TitleBarFocusColor" value="0.678431 0.607843 0.980392 0.035" />
   <color name="ScriptDialog" value="0.078431 0.129412 0.231373 1" />
   <color name="ChatHeaderAlphaBackground" value="0.047059 0.086275 0.168627 0.9" />
+  <color name="AvatarListItemAgeAlert" value="0.729 0 0.121 1" />
+  <color name="AvatarListItemBeyondShoutRange" value="0.75 0.75 0.75 1" />
+  <color name="AvatarListItemChatRange" value="0.75 0.92 0.49 1.0" />
+  <color name="AvatarListItemIconDefaultColor" value="1 1 1 1" />
+  <color name="AvatarListItemIconOfflineColor" value="0.5 0.5 0.5 0.50" />
+  <color name="AvatarListItemIconOnlineColor" value="1 1 1 1" />
+  <color name="AvatarListItemIconVoiceInvitedColor" value="0.5 0.5 0.5 0.50" />
+  <color name="AvatarListItemIconVoiceJoinedColor" value="1 1 1 1" />
+  <color name="AvatarListItemIconVoiceLeftColor" value="0.5 0.5 0.5 0.50" />
+  <color name="AvatarListItemShoutRange" value="1 1 1 1" />
+  <color name="MapAvatarColor" value="0 1 0 1" />
+  <color name="MapAvatarFriendColor" value="1 1 0 1" />
+  <color name="MapAvatarLindenColor" value="0 0 1 1" />
+  <color name="MapAvatarMutedColor" value="0.4 0.4 0.4 1" />
+  <color name="MapAvatarSelfColor" value="0.53125 0 0.498047 1" />
+  <color name="UserChatColor" value="1 1 1 1" />
 </colors>

@@ -50,6 +50,48 @@ Check 'junction destination refused' { Assert-KittyDestination $junction } $true
 $inner=Folder 'inner-junction' "StellarysViewer`n"
 New-Item -ItemType Junction -Path (Join-Path $inner 'redirect') -Target $empty | Out-Null
 Check 'junction within installation refused' { Assert-KittyDestination $inner } $true
+Check 'nested link refusal identifies exact path and attributes' {
+    try { Assert-KittyDestination $inner; throw 'Expected rejection' }
+    catch {
+        if (-not $_.Exception.Message.Contains((Join-Path $inner 'redirect')) -or -not $_.Exception.Message.Contains('ReparsePoint')) { throw }
+    }
+}
+Check 'linked destination refusal identifies exact path' {
+    try { Assert-KittyDestination $junction; throw 'Expected rejection' }
+    catch { if (-not $_.Exception.Message.Contains($junction)) { throw } }
+}
+
+
+# The ReShade exception is restricted to a root file reparse point.
+$wrapper = [pscustomobject]@{FullName=(Join-Path $valid 'opengl32.dll'); Attributes=([IO.FileAttributes]::Archive -bor [IO.FileAttributes]::ReparsePoint)}
+Check 'root ReShade file link is preserved' { if (-not (Test-PreservedReShadeLink $wrapper $valid)) { throw 'Not preserved' } }
+Check 'ReShade path comparison ignores case' { if (-not (Test-PreservedReShadeLink $wrapper $valid.ToUpperInvariant())) { throw 'Not preserved' } }
+$directoryWrapper = [pscustomobject]@{FullName=$wrapper.FullName; Attributes=([IO.FileAttributes]::Directory -bor [IO.FileAttributes]::ReparsePoint)}
+Check 'directory named opengl32.dll is not exempt' { if (Test-PreservedReShadeLink $directoryWrapper $valid) { throw 'Directory exempted' } }
+$otherWrapper = [pscustomobject]@{FullName=(Join-Path $valid 'StellarysViewer.exe'); Attributes=$wrapper.Attributes}
+Check 'packaged executable link is not exempt' { if (Test-PreservedReShadeLink $otherWrapper $valid) { throw 'Executable exempted' } }
+$nestedWrapper = [pscustomobject]@{FullName=(Join-Path $valid 'llplugin\opengl32.dll'); Attributes=$wrapper.Attributes}
+Check 'nested opengl32.dll link is not exempt' { if (Test-PreservedReShadeLink $nestedWrapper $valid) { throw 'Nested link exempted' } }
+$normalWrapper = [pscustomobject]@{FullName=$wrapper.FullName; Attributes=[IO.FileAttributes]::Archive}
+Check 'ordinary DLL is not a link exception' { if (Test-PreservedReShadeLink $normalWrapper $valid) { throw 'Ordinary file exempted' } }
+$badWrapperFolder=Folder 'directory-wrapper' "StellarysViewer`n"
+New-Item -ItemType Junction -Path (Join-Path $badWrapperFolder 'opengl32.dll') -Target $empty | Out-Null
+Check 'real directory junction with ReShade name refused' { Assert-KittyDestination $badWrapperFolder } $true
+
+# Exercise the production traversal with a file-link directory-entry fixture.
+# Windows requires elevation to create an actual file symlink on this test host.
+$script:ReparseMockRoot=$valid
+$script:ReparseEntry=[pscustomobject]@{FullName=(Join-Path $valid 'opengl32.dll'); Name='opengl32.dll'; Attributes=([IO.FileAttributes]::Archive -bor [IO.FileAttributes]::ReparsePoint); PSIsContainer=$false}
+function Get-ChildItem { param($LiteralPath,[switch]$Force)
+    $actual=@(Microsoft.PowerShell.Management\Get-ChildItem -LiteralPath $LiteralPath -Force:$Force)
+    if ($LiteralPath -eq $script:ReparseMockRoot) { return @($actual)+@($script:ReparseEntry) }
+    return $actual
+}
+Check 'production update traversal preserves ReShade file-link entry' { Assert-KittyDestination $valid }
+Check 'production uninstall traversal preserves ReShade file-link entry' { Assert-KittyDestination $valid $true }
+$script:ReparseEntry=[pscustomobject]@{FullName=(Join-Path $valid 'StellarysViewer.exe'); Name='StellarysViewer.exe'; Attributes=([IO.FileAttributes]::Archive -bor [IO.FileAttributes]::ReparsePoint); PSIsContainer=$false}
+Check 'production traversal still refuses packaged executable link' { Assert-KittyDestination $valid } $true
+Remove-Item -LiteralPath Function:\Get-ChildItem
 
 # Mock only process discovery, then run the exact production decision functions.
 $script:FakeProcesses=@()

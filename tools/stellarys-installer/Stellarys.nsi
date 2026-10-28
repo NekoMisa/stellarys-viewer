@@ -12,10 +12,10 @@ Var CacheCheck
 Var DataArgs
 !define PRODUCT "Stellarys Viewer"
 !ifndef STELLARYS_PACKAGE_VERSION
- !define STELLARYS_PACKAGE_VERSION "0.2.0"
+ !define STELLARYS_PACKAGE_VERSION "0.2.1"
 !endif
 !ifndef STELLARYS_DISPLAY_VERSION
- !define STELLARYS_DISPLAY_VERSION "0.2.0"
+ !define STELLARYS_DISPLAY_VERSION "0.2.1"
 !endif
 !define MUI_ICON "${PAYLOAD}\Stellarys.ico"
 !define MUI_UNICON "${PAYLOAD}\Stellarys.ico"
@@ -31,10 +31,10 @@ SetCompressorDictSize 32
 !include "${__FILEDIR__}\InstallFiles.nsh"
 AllowSkipFiles off
 BrandingText "Stellarys Viewer ${STELLARYS_DISPLAY_VERSION}"
-VIProductVersion "0.2.0.0"
+VIProductVersion "0.2.1.0"
 VIAddVersionKey /LANG=1033 "ProductName" "Stellarys Viewer"
 VIAddVersionKey /LANG=1033 "FileDescription" "Stellarys Viewer ${STELLARYS_DISPLAY_VERSION} Setup"
-VIAddVersionKey /LANG=1033 "FileVersion" "0.2.0.0"
+VIAddVersionKey /LANG=1033 "FileVersion" "0.2.1.0"
 VIAddVersionKey /LANG=1033 "ProductVersion" "${STELLARYS_DISPLAY_VERSION}"
 VIAddVersionKey /LANG=1033 "LegalCopyright" "Original viewer and libraries: their respective authors."
 Var GuardResult
